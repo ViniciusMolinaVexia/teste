@@ -1,0 +1,78 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.ContatoDto
+@if ((@Model != null))
+{
+    var colorRating = "cinza";
+    if (Model.MediaAvaliacao.HasValue)
+    {
+        colorRating = Model.MediaAvaliacao < 2 ? "pessimo" : (Model.MediaAvaliacao < 4 ? "ruim" : (Model.MediaAvaliacao < 6 ? "neutro" : (Model.MediaAvaliacao < 8 ? "bom" : "excelente")));
+    }
+    
+    
+    <label>
+        Contato:</label>
+    <table>
+        <thead>
+            <tr>
+                <th class="colun-1">
+                    Endereço
+                </th>
+                <th class="colun-2">
+                    Mapa
+                </th>
+                <th class="colun-3">
+                    Dados contato
+                </th>
+                <th class="colun-4">
+                    Categoria
+                </th>
+                <th class="colun-5">
+                    &nbsp;
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @if (@Model != null)
+                {   <td>
+                        @Model.Endereco,
+                        @Model.Numero
+                        @Model.Bairro - @Model.Cidade - @Model.Estado
+                        CEP:
+                        @Model.CEP
+                    </td>
+                }
+                else
+                {
+                    <td>
+                    </td>    
+                }
+                <td>
+                    <a class="ico-localizacao" href="javascript:void(0)">Localização</a>
+                </td>
+                <td class="dados-contato" id="dadoscontato" data-id="@Model.Id" data-tipopessoa="@Model.TipoPessoa">
+                    <div class="box-nota @colorRating">
+                        <span class="nota">NOTA</span> <span class="valor-nota">@(Model.MediaAvaliacao.HasValue ? Model.MediaAvaliacao.Value.ToString() : "n/d")</span>
+                    </div>
+                    <div class="box-dados-contato">
+                        <div class="nome-dados-contato">
+                            NOME: @Model.NomeContato</div>
+                        <div>
+                            E-MAIL: @Model.Email</div>
+                        @foreach (var telefone in @Model.Telefones)
+                        {
+                            <div>
+                                FONE: (@telefone.DDD) @telefone.Numero
+                            </div>
+                        }
+                    </div>
+                </td>
+                <td>
+                    Engenheiro Ambiental
+                </td>
+                <td>
+                    <a class="ico-excluir" id="btnExcluirContato" href="javascript:void(0)">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,89 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@using Gafisa.AlphaBook.Models.Home
+@model PostagemModel
+@{
+    var classNotificacao = Model.Notificacao ? "ico-post-notificacao" : "ico-post-notificacao-inativo";
+    var classCurtir = Model.Curtiu ? "ico-post-like post-like-modal" : "ico-post-like-inativo post-like-modal";
+    var classLembrete = Model.DataLembrete.HasValue ? "ico-post-lembrete" : "ico-post-lembrete-inativo";
+    var lembrete = Model.DataLembrete.HasValue ? string.Format("Lembrete: {0:d}", Model.DataLembrete) : "Lembrete";
+
+    // var lembrete = string.Format("Lembrete: {0:d}", Model.DataLembrete);
+    var linhaTempo = Model.LinhaTempo ? "ico-post-linha-tempo" : "ico-post-linha-tempo-inativo";
+    var areaPrivacidade = Model.DepartamentoPrivacidade.IsNullOrEmpty() ? "" : Model.DepartamentoPrivacidade;
+    var dataPublicacao = string.Format("{0}", Model.DataPublicacao);
+    if (Model.DataRetroativa.HasValue)
+    {
+        dataPublicacao += " | " + string.Format("{0}", Model.DataRetroativa);
+    }
+}
+
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close fechar">x</a>
+    <h3></h3>
+</div>
+<div class="modal-body modal-validar-post" id="postDetalhado">
+    <div data-id="@Model.Id" style="width: 100%; float: left; margin: 0 10px 10px 0;">
+        <div class="box-post">
+            @if (Model.DeveExibirIconeEtapa())
+            {
+            <div class="status-post @Model.ObterClasseCssStatusEtapa()"></div>
+            }
+            @Html.ProfilePhoto(Model.UsuarioDonoPostagemId)
+            <div class="dados-post">
+                <p class="nome-post">@Model.Titulo</p>
+                <a data-projetoId="@Model.ProjetoId" class="nome-projeto-post" href="javascript:void()">
+                    @Model.NomeProjeto</a>
+                <p class="usario-post">@string.Format("{0} | {1}", Model.NomeCompleto, Model.Departamento)</p>
+                <p class="data-post">@dataPublicacao</p>
+            </div>
+            <div class="msg-post">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Postagem))
+            </div>
+            <div class="icones-post" data-idPostagem="@Model.Id">
+                @if (Model.Anexos > 0)
+                {
+                    <a href="javascript:void(0);" class="ico-post-anexo" title="Anexos"  data-postagemid="@Model.Id" id="visualizarAnexosPost">@Model.Anexos</a>
+                }
+                else{
+                    <a href="javascript:void(0);" class="ico-post-anexo-inativo" title="Anexos">0</a>
+                }
+
+                @if (!Model.Latitude.IsNullOrEmpty())
+                {
+                    <a href="javascript:void(0)" class="ico-post-pin navegar-mapa" title="Localização"  data-id="@Model.Id" data-tipo="postagem" data-idProjeto="@Model.ProjetoId">Localização</a>
+                }
+                else if (Model.ContatoId.HasValue)
+                {
+                    <a href="javascript:void(0)" class="ico-post-pin navegar-mapa" title="Localização"   data-id="@Model.ContatoId" data-tipo="contato" data-idProjeto="@Model.ProjetoId">Localização</a>     
+                }
+                else{
+                    <a href="javascript:void(0)" class="ico-post-pin-inativo" title="Localização">Localização</a>
+                }
+                
+                <a href="javascript:void(0);" class="@classNotificacao" title="Notificação">Notificação</a>
+                <a href="javascript:void(0);" class="@classLembrete" title="@lembrete">Lembrete</a>
+                <a href="javascript:void(0);" class="@linhaTempo linhaTempo" title="@Html.Conditional(Model.EtapaId.HasValue, Model.EtapaNome, "Linha do tempo")" data-podealterar="@Model.PodeAlterar.ToString().ToLower()"  data-id="@Model.Id" data-marco="@Model.LinhaTempo.ToString().ToLower()">Linha do tempo</a>
+                <a href="javascript:void(0);" class="ico-post-p-associados iconeProjetosAssociados" title="Projetos associados">@Model.ProjetosAssociados</a>
+                @if (Model.PrivacidadeId == Privacidade.UsuariosEspecificos)
+                {
+                    <a href="javascript:void(0);" title="@Model.UsuariosEspecificos" data-html-tooltip="true" class="ico-post-perfil-publicacao">@Model.NomePrivacidade</a>
+                }
+                else
+                {
+                    <a href="javascript:void(0);" title="@areaPrivacidade" class="ico-post-perfil-publicacao">@Model.NomePrivacidade</a>
+                }
+            </div>
+            @if (Model.PodeExcluir)
+            {
+                <a href="javascript:void(0);" data-postagemId="@Model.Id" class="ico-post-excluir btn-Excluir-Modal-Postagem" title="Excluir">Excluir</a>     
+            }
+            <a href="javascript:void(0);" data-postagemId="@Model.Id" class="@classCurtir" title="Curtiram isso"></a>
+            <a href="javascript:void(0);" data-id="@Model.Id" class="numero-seguir btn-curtidores">@Model.Curtidas</a> 
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a id="validar" data-postagemId="@Model.Id" data-projetoId="@Model.ProjetoId" class="bt-padrao" href="javascript:void(0);">Validar</a>
+    <a id="rejeitar" data-postagemId="@Model.Id" data-projetoId="@Model.ProjetoId" class="bt-padrao" href="javascript:void(0);">Rejeitar</a>
+</div>
+    

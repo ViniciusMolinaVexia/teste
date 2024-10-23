@@ -1,0 +1,163 @@
+﻿@model Gafisa.AlphaBook.Models.LinhaTempo.LinhaTempoModel
+
+@{
+    var podeVerDetalhe = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.Visualizar);
+    var podeVerPadrao = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoPadrao, Acao.Visualizar);
+    var podeVerFases = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoFase, Acao.Visualizar);
+    var podeVerCronologica = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoCronologica, Acao.Visualizar);
+}
+<div id="cabecalhoProjeto" data-projetoid="@Model.ProjetoId" data-passagemetapaid="@(Model.PassagemEtapaId.HasValue? Model.PassagemEtapaId.Value.ToString() : String.Empty)"></div>
+
+<h2>Linha do Tempo</h2>
+
+<div id="tabs" class="abas-linha-tempo">
+    <ul class="list-tabs">
+        @if (podeVerPadrao)
+        {
+        <li><a class="line1" href="#aba-padrao">Padrão</a></li>
+        }
+        @if (Model.ProjetoPossuiFilhos && podeVerFases)
+        {
+        <li><a class="line1" href="#aba-fases">Fases</a></li>    
+        }
+        @if (podeVerCronologica)
+        {
+        <li><a class="line1" href="#aba-cronologica">Cronológica</a></li>
+        }
+        @if (podeVerDetalhe)
+        {
+        <li><a class="line1" href="#aba-detalhe">Detalhe</a></li>
+        }
+    </ul>
+    <div class="box-tabs">
+        <div id="menu-passagens-etapa" class="box-menu-lt" @Html.Conditional(!Model.ExibirLinhaTempo, "style=\"display:none !important;\"")>
+            <div class="menu-lt">
+                <ul>
+                    @foreach (var passagem in Model.PassagensEtapa)
+                    {
+                    <li>
+                        <a class="passagem-etapa @Html.Conditional(Model.PassagemEtapaId.HasValue && Model.PassagemEtapaId.Value == passagem.Id, "active")" data-id="@passagem.Id" href="javascript:void(0);">
+                            @passagem.Nome
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+            <div id="filtros-padrao" class="box-datas-lt">
+                <div class="seg-check-lt">
+                    <input id="filtroCronogramaPrevisto" type="checkbox" checked="checked">
+                    <label for="filtroCronogramaPrevisto">Cronograma Previsto</label>
+                </div>
+                <div class="seg-check-lt">
+                    <input id="filtroDataBaseline" type="checkbox">
+                    <label for="filtroDataBaseline">Data Baseline</label>
+                </div>
+            </div>
+        </div>
+        @if (podeVerPadrao)
+        {
+        <div id="aba-padrao">
+            @Html.Partial("~/Views/LinhaTempo/LinhaTempoPadrao.cshtml", Model)
+        </div>
+        }
+        @if (Model.ProjetoPossuiFilhos && podeVerFases)
+        {
+        <div id="aba-fases">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+            {
+                <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirLinhaTempoFases">Imprimir</a>
+            }
+            <div class="etapas-linha-tempo"></div>
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+            {
+            <div class="etapas-linha-vertical hide">
+                <div class="conteudo-linha-impressao">
+                    <div class="box-menu-lt" @Html.Conditional(!Model.ExibirLinhaTempo, "style=\"display:none !important;\"")>
+                        <div class="menu-lt">
+                            <ul>
+                                @foreach (var passagem in Model.PassagensEtapa)
+                                {
+                                <li>
+                                    <a class="passagem-etapa @Html.Conditional(Model.PassagensEtapa.First().Id == passagem.Id, "active")" data-id="@passagem.Id" href="javascript:void(0);">
+                                        @passagem.Nome
+                                    </a>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-linha-tempo-print">
+                    </div>
+                    <div class="box-legenda-status-etapa" style="display: block;">
+                        <ul>
+                        <li class="leg-nao-iniciado">- Não iniciada</li>
+                        <li class="leg-na">- Não se aplica</li>
+                        <li class="leg-concluido">- Concluída</li>
+                        <li class="leg-concluido-apos">- Concluída após fechamento da próxima</li>
+                        <li class="leg-iniciado">- Iniciada / Aguardando validação</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+        @if (podeVerCronologica)
+        {
+        <div id="aba-cronologica">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+            {
+                <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirLinhaTempoCronologica">Imprimir</a>
+            }
+            <div class="etapas-linha-tempo"></div>
+
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+            {
+            <div class="etapas-linha-vertical hide">
+                <div class="conteudo-linha-impressao">
+                    <div class="box-linha-tempo-print">
+                    </div>
+                    <div class="box-legenda-status-etapa" style="display: block;">
+                        <ul>
+                        <li class="leg-nao-iniciado">- Não iniciada</li>
+                        <li class="leg-na">- Não se aplica</li>
+                        <li class="leg-concluido">- Concluída</li>
+                        <li class="leg-concluido-apos">- Concluída após fechamento da próxima</li>
+                        <li class="leg-iniciado">- Iniciada / Aguardando validação</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+        @if (podeVerDetalhe)
+        {
+        <div id="aba-detalhe">
+            <div class="etapas-linha-tempo"></div>
+        </div>
+        }
+        <div class="box-legenda-status-etapa">
+	        <ul>
+		        <li class="leg-nao-iniciado">- Não iniciada</li>
+		        <li class="leg-na">- Não se aplica</li>
+		        <li class="leg-concluido">- Concluída</li>
+		        <li class="leg-concluido-apos">- Concluída após fechamento da próxima</li>
+		        <li class="leg-iniciado">- Iniciada / Aguardando validação</li>
+	        </ul>
+        </div>
+    </div>
+</div>
+
+@if (!Model.ExibirLinhaTempo && Model.PodeAlterar)
+{
+@Html.Partial("~/Views/LinhaTempo/ModalBaseline.cshtml", Model)
+}
+
+@if (Model.PodeAlterar)
+{
+<div id="modalPrevisao" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+}
+
+<div id="modalPostsEtapa" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="divEtapasFases" class="box-show-filhos" data-fechado="true"></div>

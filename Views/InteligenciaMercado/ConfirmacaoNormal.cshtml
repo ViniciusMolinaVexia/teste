@@ -1,0 +1,43 @@
+﻿@model Gafisa.AlphaBook.Models.InteligenciaMercado.ImportacaoMercadoModel
+<span class="sub-titulo">Abaixo o resumo da importação:</span>
+@if (Model.NumeroErrosProcessamento > 0)
+{
+        
+    <span class="">A planilha contem valores inválidos e não foi importada:</span>
+    <div class="div-resultado" id="ListaErros" style="padding: 20px;">
+        <input type="hidden" id="numeroErrosProcessamento" value="@Model.NumeroErrosProcessamento" />
+        <ul>
+            @foreach (var item in Model.Erros)
+            {
+                <li class="ico-negativo">Linha: @item.numeroLinha - Campo: @item.campo - Valor: @(String.IsNullOrEmpty(item.valor) ? "n/d" : item.valor)</li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="div-resultado">
+        <ul>
+            @if (Model.NumeroCidadesNaoCadastradas > 0)
+            {
+                <li class="ico-negativo">@Model.NumeroCidadesNaoCadastradas cidades ainda não estão
+                    cadastradas e não serão importadas.</li>
+            }
+            @if (Model.NumeroCidadesAtualizadas > 0)
+            {
+                <li class="ico-positivo">@Model.NumeroCidadesAtualizadas cidades que terão seus índices
+                    atualizados.</li>
+            }
+            @if (@Model.NumeroCidadesIncluidas > 0)
+            {
+                <li class="ico-positivo">@Model.NumeroCidadesIncluidas cidades que terão seus índices
+                    criados.</li>
+            }
+        </ul>
+    </div>
+            if ((Model.NumeroCidadesAtualizadas > 0) || (Model.NumeroCidadesIncluidas > 0))
+            {
+    <span class="txt-pergunta">Deseja prosseguir com a importação?</span>
+            }
+}
+<input type="hidden" value="@Model.NomeArquivoTmp" id="nomeArquivoTmp" />

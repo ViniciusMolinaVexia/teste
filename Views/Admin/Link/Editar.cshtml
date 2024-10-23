@@ -1,0 +1,115 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.LinkModel
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Status.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Link/link-editar.js")"></script>
+
+     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/jquery.colorpicker.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/i18n/jquery.ui.colorpicker-nl.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/swatches/jquery.ui.colorpicker-pantone.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parts/jquery.ui.colorpicker-rgbslider.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parts/jquery.ui.colorpicker-memory.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parsers/jquery.ui.colorpicker-cmyk-parser.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parsers/jquery.ui.colorpicker-cmyk-percentage-parser.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.ddslick.min.js")"></script>
+
+}
+
+@section css {
+    <link href="@Url.Content("~/Scripts/jquery/colorpicker/jquery.colorpicker.css")" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/link.css")" />
+}
+
+<div class="container">
+    @if (Model.LinkEdicao.Id == 0)
+    {
+        <h2>Adicionar Links</h2>
+    }
+    else
+    {
+        <h2>Editar Links</h2>
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("Link", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        
+        <form action="@Url.Action("SalvarLink", "Admin")" id="form" class="forms">
+        
+            @Html.Hidden("Id", Model.LinkEdicao.Id, new { id = "Id" })
+        
+            @if (Model.LinkEdicao != null && Model.LinkEdicao.Id > 0)
+            {
+                <div class="sep-line-form">
+                    <div class="form-line form-id">
+                        <label>Id: <strong>@Model.LinkEdicao.Id</strong></label>
+                    </div>
+                </div>
+            }
+        
+            <div class="sep-line-form">
+                <div class="form-line form-tooltip">
+                    <label>
+                        Tooltip:</label>
+                    <input type="text" class="" id="tooltip" name="Tooltip" maxlength="50" value="@Model.LinkEdicao.Tooltip" />
+                </div>
+            </div>
+
+            <div class="sep-line-form">
+                <div class="form-line form-tooltip">
+                    <label>
+                        URL:</label>
+                    <input type="text" class="" id="Url" name="Url" maxlength="100" value="@Model.LinkEdicao.Url" />
+                </div>
+            </div>
+
+            <div class="sep-line-form">
+                <div class="form-line form-icone" data-idselecionado="@(Model.LinkEdicao.Id == 0 ? "0" : Model.LinkEdicao.IconeLinkId.ToString())">
+                    <label>
+                        Icone:</label>
+                    <select id="IconeLinkId" name="IconeLinkId">
+                        @foreach (var icone in Model.IconesLinks)
+                        {
+                            if (Model.LinkEdicao.Id > 0 && Model.LinkEdicao.IconeLinkId == icone.Id)
+                            {
+                                <option value="@icone.Id" data-imagesrc="@Url.Content("~/Content/img/links/" + icone.Arquivo)" selected></option>        
+                            }
+                            else
+                            {
+                                <option value="@icone.Id" data-imagesrc="@Url.Content("~/Content/img/links/" + icone.Arquivo)"></option>        
+                            }
+
+                        }
+                    </select>
+                </div>
+                <div class="form-line form-cor">
+                    <label>Cor:</label>
+                    <input type="hidden" id="cor" name="Cor" maxlength="7" value="@(Model.LinkEdicao.Id == 0 ? "#FFFFFF" : Model.LinkEdicao.Cor)" />
+                    <div class="base-cor">
+                        <div class="cor">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-line form-ordem">
+                    <label>
+                        Ordem:</label>
+                    <input type="text" class="campo-inteiro" id="Sequencia" name="Sequencia" maxlength="100" value="@Model.LinkEdicao.Sequencia" />
+                </div>
+            </div>
+
+        
+            @if ((Model.LinkEdicao.Id == 0 && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Links, Acao.Adicionar))
+                 || (Model.LinkEdicao.Id > 0 && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Links, Acao.EditarProprios)))
+            {
+                <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+            }
+        </form>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Home.PostagemModel
+<form class="forms">
+    <div class="box-post">
+        <div id="etapa-post" class="etapa-post hide">
+            @if (!Model.EtapaLinhaTempo && !Model.Etapas.HasItems())
+            {
+                <span class="sem-baseline">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.BaselineNaoConfigurada</span>
+            }
+            else
+            {
+                <div class="forms">
+                    <div class="sep-line-form">
+                        <div class="form-line @Html.Conditional(Model.EtapaLinhaTempo, "hide")" style="margin-right: 10px;">
+                            <label>Etapa:</label>
+                            @Html.DropDownListFor(model => model.EtapaId, Model.Etapas.ToSelectList(e => e.Etapa.Nome, e => e.Etapa.Id + "|" + e.StatusEtapa.Id), new { style = "width:169px;" })
+                        </div>
+                        <div class="form-line campo-etapa" style="margin-right: 10px;">
+                            <label>Concluída?</label>
+                            <select id="etapaConcluida" name="etapaConcluida" style="width:70px;">
+                                <option value="false">Não</option>
+                                <option value="true">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-line campo-etapa">
+                            <label>Status:</label>
+                            @if (Model.EtapaLinhaTempo)
+                            {
+                            <select id="statusEtapaNaoConcluida" name="statusEtapaId" style="width:125px;">
+                                <option value="@StatusEtapa.Iniciada">Iniciada</option>
+                                <option value="@StatusEtapa.NaoSeAplica">Não se aplica</option>
+                            </select>    
+                            }
+                            else
+                            {
+                            <input type="text" id="statusEtapaNaoConcluida" value="Iniciada" disabled="disabled" style="width:154px;" />
+                            }
+                            @if (Model.CargoUsuarioId.In(Cargo.Analista, Cargo.Coordenador))
+                            {
+                                <input type="text" id="statusEtapaConcluida" value="Aguardando validação" class="hide" disabled="disabled" style="width:154px;" />
+                            }
+                            else if (Model.CargoUsuarioId.In(Cargo.Gerente, Cargo.Diretor))
+                            {
+                                <input type="text" id="statusEtapaConcluida" value="Concluída" class="hide" disabled="disabled" style="width:154px;" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @Html.ProfilePhoto(Model.UsuarioDonoPostagemId)
+        <div class="dados-post" style="padding-bottom:0;">
+            <input type="text" id="TituloCriacaoPost" value="" class="nome-post" />
+            <p class="lugar-post">@Model.NomeProjeto</p>
+            <p class="usario-post">@Model.NomeCompleto | @Model.Departamento</p>
+            <p class="data-post">@DateTime.Now.ToShortDateString() @DateTime.Now.ToShortTimeString() <span id="spanDataRetroativa"></span></p>
+            <a href="javascript:void(0);" class="ico-calendario-post" title="" id="postRetroativo">Calendário</a>
+
+            <div id="dataHoraPost" class="dataHoraPost hide">
+                <input type="text" id="DataRetroativa">
+                <a href="javascript:void(0);" class="bt-padrao bt-limpar-data" id="limparDataRetroativa">Limpar</a>
+                <a href="javascript:void(0);" class="bt-padrao bt-ok-limpar" id="confirmarDataRetroativa">OK</a>
+            </div>
+        </div>
+        <div class="msg-post-criar-post">
+            <span id="textoCriacaoPost"></span>
+        </div>
+        <div id="lembretePost" class="dataHoraPost hide">
+            <input type="text" id="DataLembrete">
+            <a href="javascript:void(0);" class="bt-padrao bt-limpar-data" id="limparDataLembrete">Limpar</a>
+            <a href="javascript:void(0);" class="bt-padrao bt-ok-limpar" id="confirmarDataLembrete">OK</a>
+        </div>
+
+        <div class="icones-post-criar">
+            <a href="javascript:void(0);" class="ico-post-anexo" id="@Html.Conditional(Model.ProtocoloId.HasValue, "anexosEdicao", "anexos")" title="Anexos">0</a>
+            <a href="javascript:void(0);" class="ico-post-pin-inativo" id="localizacao" title="Localização">Pin</a>
+            <a href="javascript:void(0);" class="ico-post-notificacao-inativo" id="notificacao" data-notificar="false" title="Notificação">Notificação</a>
+            <a href="javascript:void(0);" class="ico-post-lembrete-inativo" id="lembrete" data-lembrete="false" title="Lembrete"></a>
+            <a href="javascript:void(0);" class="ico-post-linha-tempo-inativo" id="@Html.Conditional(Model.PodeAlterar, "marco")" data-marco="false" title="Linha do tempo">Linha do tempo</a>
+            <a href="javascript:void(0);" class="ico-post-p-associados" id="@Html.Conditional(Model.ProtocoloId.HasValue, "projetosAssociadosEdicao", "projetosAssociados")" title="Projetos associados">1</a>
+            @if (Model.ExibirConfidencialidade)
+            {
+                <div class="seg-combos-privacidade-criar">
+                    @Html.DropDownListFor(model => model.PrivacidadeId, Model.Privacidades.ToSelectList(text => text.Descricao, value => value.Id, "Confidencialidade"), new { @class = "combo-privacidade" })
+                    @Html.DropDownListFor(model => model.DepartamentoId, Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), new { @class = "combo-area hide" })
+                </div>
+                <div id="divUsuariosEspecificos" class="hide">
+                    <div  class="sep-line-form textarea-usuarios-especificos" data-source="">
+                        <label>Usuários:</label>
+                        <select name="usuariosEspecificos" id="usuariosEspecificos" class="hide no-multiple-select"></select>
+                    </div>
+                </div>
+            }
+            @if (Model.ExibirSalvar)
+            {
+                <div id="divBtnSalvarPost">
+                    <a href="javascript:void(0);" class="bt-padrao" id="salvarPost" style="margin-top: 10px;">Salvar</a>
+                </div>
+            }
+        </div>
+    </div>
+</form>

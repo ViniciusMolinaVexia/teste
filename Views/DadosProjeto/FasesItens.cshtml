@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Projeto.FaseProjetoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "fase do projeto")</p>
+}
+else
+{
+    foreach (var faseProjeto in Model)
+    {
+        <tr data-id="@faseProjeto.IdFaseProjeto">
+            <td class="colun-1">
+                @faseProjeto.Sequencia
+            </td>
+            <td class="colun-2">
+                <a class="linkCodigoProjeto" data-id="@faseProjeto.IdProjeto" href="javascript:void();">@faseProjeto.CodigoProjeto</a>
+            </td>
+            <td class="colun-3">
+                @faseProjeto.NomeProjeto
+            </td>
+            <td class="colun-4">
+                @faseProjeto.Data.ToString("dd/MM/yyyy HH:mm")
+            </td>
+            <td class="colun-5">
+                @faseProjeto.Status
+            </td>
+            <td class="colun-6">
+                @Html.ProfilePhoto(faseProjeto.IdResponsavel)
+                @faseProjeto.Responsavel
+            </td>
+            <td class="colun-7">
+                @if (faseProjeto.Localizacao)
+                {
+                    <a href="javascript:void(0)" class="ico-localizacao navegar-mapa coordenadaProjeto" title="Localização"  data-id="@faseProjeto.IdProjeto" data-tipo="projeto" data-idProjeto="@faseProjeto.IdProjeto">Localização</a>
+                }
+                else
+                {
+                    <a href="javascript:void(0)" class="ico-localizacao-inativo coordenadaProjeto">Localização</a>
+                }
+
+            </td>
+        </tr>
+    }
+}

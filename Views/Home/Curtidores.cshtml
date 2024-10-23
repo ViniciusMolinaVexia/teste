@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.UsuarioDto>
+
+<ul>
+    @if (Model.Any()){
+    
+         foreach (var usuario in Model)
+         {
+            <li>@usuario.Nome @usuario.Sobrenome</li> 
+         }
+
+    }
+    else
+    {
+        <li>Nenhum curtidor</li> 
+     }
+</ul>

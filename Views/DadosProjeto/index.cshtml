@@ -1,0 +1,116 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Dominio.DTO.Projeto.DadosProjetoDTO
+<h2 id="tituloDadosProjeto" data-id="@Model.Id">
+    Dados do Projeto</h2>
+@{
+    var permissaoDadosProjeto = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoTileeCabeçalho, Acao.Visualizar);
+    var permissaoDadosTerreno = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosTerreno, Acao.Visualizar);
+    var permissaoFases = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoFases, Acao.Visualizar);
+    var permissaoPassagens = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoPassagens, Acao.Visualizar);
+    var permissaoContatosPrincipais = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoContatosPrincipais, Acao.Visualizar);
+    var permissaoDadosFinanceiros = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosFinanceiros, Acao.Visualizar);
+    var permissaoInteligenciaMercado = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInteligênciaMercado, Acao.Visualizar);
+    var permissaoInformacoesContrato = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInformacoesContrato, Acao.Visualizar);
+    var permissaoAtaReuniao = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoAtaReuniao, Acao.Visualizar);
+    var permissaoCentroCusto = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoCentroCusto, Acao.Visualizar);
+
+    if (permissaoDadosProjeto)
+    {
+    <div class="bg-branco header-dados-projeto">
+        @Html.Action("ObterDadosProjeto", "Projeto", new { id = Model.Id })
+    </div>
+    }
+    <!-- Tabs -->
+    <div id="tabs" class="tabDadosProjeto" @Html.Conditional(!permissaoDadosProjeto, "style=\"margin-top: 0px !important;\"", string.Empty)>
+        <ul class="list-tabs">
+            @if (permissaoDadosTerreno)
+            {
+                <li><a href="#aba-dados" id="abaDadosTerreno">Dados do<br />
+                    Terreno</a></li>
+            }
+            @if (permissaoFases)
+            {
+                <li><a class="line1" href="#aba-fases" id="abaFases">Fases</a></li>
+            }
+            @if (permissaoPassagens)
+            {
+                <li><a class="line1" href="#aba-passagem" id="abaPassagem">Passagens</a></li>
+            }
+            @if (permissaoContatosPrincipais)
+            {
+                <li><a href="#aba-contatos" id="abaContatos">Contatos<br />
+                    Principais</a></li>
+            }
+            @if (permissaoDadosFinanceiros)
+            {
+                <li><a href="#aba-dados-financeiros" id="abaDadosFinanceiros">Dados<br />
+                    Financeiros</a></li>
+            }
+            @if (permissaoCentroCusto)
+            {
+            <li><a href="#aba-centro-custo" id="abaCentroCusto">Centro de<br />
+                            Custo</a></li>
+            }
+            @if (permissaoInteligenciaMercado)
+            {
+                <li><a href="#aba-inteligencia" id="abaInteligencia">Inteligência<br />
+                    de Mercado</a></li>
+            }
+            @if (permissaoInformacoesContrato)
+            {
+                <li><a href="#aba-informacoes" id="abaInformacoesContrato">Informações<br />
+                    do Contrato</a></li>
+            }
+            @if (permissaoAtaReuniao)
+            {
+                <li><a href="#aba-ata-reuniao" id="abaAtaReuniao">Ata de<br/>Reunião</a></li>
+            }
+        </ul>
+        @if (permissaoDadosTerreno)
+        {
+            <div class="box-tabs" id="aba-dados">
+                @Html.Action("ObterDadosTerreno", "Projeto", new { idProjeto = Model.Id })
+            </div>
+        }
+        @if (permissaoFases)
+        {
+            <div class="box-tabs" id="aba-fases">
+            </div>
+        }
+        @if (permissaoPassagens)
+        {
+            <div class="box-tabs" id="aba-passagem" style="height: 475px;">
+            </div>
+        }
+        @if (permissaoContatosPrincipais)
+        {
+            <div class="box-tabs" id="aba-contatos">
+            </div>
+        }
+        @if (permissaoDadosFinanceiros)
+        {
+            <div class="box-tabs" id="aba-dados-financeiros">
+            </div>
+        }
+        @if (permissaoCentroCusto)
+        {
+            <div class="box-tabs" id="aba-centro-custo">
+            </div>
+        }
+        @if (permissaoInteligenciaMercado)
+        {
+            <div class="box-tabs" id="aba-inteligencia">
+            </div>
+        }
+        @if (permissaoInformacoesContrato)
+        {
+            <div class="box-tabs" id="aba-informacoes">
+            </div>
+        }
+        @if (permissaoAtaReuniao)
+        {
+            <div class="box-tabs" id="aba-ata-reuniao">
+            </div>
+        }
+    </div>
+}

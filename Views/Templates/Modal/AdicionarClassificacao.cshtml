@@ -1,0 +1,55 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao;
+
+@model Gafisa.AlphaBook.Models.Templates.TemplateModel
+
+@{
+    var permissaoAdicionar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrõesClassificações, Acao.Adicionar);
+}
+           
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close voltar">x</a>
+    <h3>Adicionar Classificação</h3>
+</div>
+<div class="modal-body">
+    <div class="adicionar-esq-classificacao">
+        <form id="formIncluirClassificacao" class="forms" method="post" action="">
+        <fieldset>
+            <div class="sep-line-form add-pasta-dept">
+                <label>Pasta:</label>
+                <span>@Model.NomeTaxonomia</span>
+                @Html.HiddenFor(model => model.TaxonomiaId)
+            </div>
+            <div class="sep-line-form form-pasta">
+                <label>Nome da Classificação:</label>
+                <input id="NomeClassificacao" name="NomeClassificacao" type="text" />
+            </div>
+            <div class="sep-line-form form-pasta">
+                <label>Palavras-chave(separados por vírgula):</label>
+                <input id="PalavrasChave" name="PalavrasChave" type="text" />
+            </div>
+            <div class="sep-line-form form-pasta">
+                <label>Confidencialidade sugerida:</label>
+                @Html.DropDownList("PrivacidadeId", Model.Privacidades.ToSelectList(text => text.Descricao, value => value.Id), "Selecione")
+            </div>
+        </fieldset>
+        </form>
+    </div>
+    <div class="adicionar-dir-classificacao">
+        <div class="sep-line-form info-dados-projeto">
+            <label>Milestone Obigatório:</label>
+            <span class="sep-radio"><input type="radio" name="Milestone" value="S" />Sim</span> 
+            <span class="sep-radio"><input type="radio" checked name="Milestone" value="N" />Não</span>
+        </div>
+        <div class="sep-line-form pra-que-serve">
+            <label>Para que serve:</label>
+            <textarea id="ParaQueServe" name="ParaQueServe" rows="10" cols="100" maxlength="255"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    @if (permissaoAdicionar)
+    {
+        <a id="incluirClassificacao" class="bt-padrao" href="javascript:void(0)">Salvar</a> 
+    }
+    <a id="voltarClassificacaoTemplate" class="bt-padrao" href="javascript:void(0)">Voltar</a>
+</div>

@@ -1,0 +1,58 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@{
+    ViewBag.Title = "Alphabook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var podeAdicionar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.FAQ, Acao.Adicionar);
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Faq/faq-pesquisa.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/faq.css")" />
+}
+<h2>
+    Manutenção de FAQ</h2>
+
+<div id="filtros">
+    <div class="div-filtro">
+        <h4>Filtros</h4>        
+        <a id="buscar" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+        <div class="div-busca-filtro">
+            <input type="text" watermark="Busca" class="watermark-font" id="termo" name="termo" value=""/>
+        </div>
+    </div>
+</div>
+<div class="div-acoes">
+    @if (podeAdicionar)
+    {
+        <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarFaq", "Admin")">Adicionar nova Pergunta</a>        
+    }    
+</div>
+
+<div class="div-listar">
+    <div class="box-tabela">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th class="table-title table-left colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title table-left colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Pergunta</a>
+                            </th>
+                            <th class="table-title colun-3">Editar</th>
+                            <th class="table-title colun-4">Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

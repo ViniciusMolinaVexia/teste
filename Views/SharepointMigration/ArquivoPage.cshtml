@@ -1,0 +1,26 @@
+﻿@model System.Guid
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test Upload</title>
+</head>
+<body>
+    <div>
+        @if (Model == Guid.Empty)
+        {
+            <p>Id inválido</p>
+        }
+        else
+        {
+            <img src="http://alphaville.alphabook.ef5.local/SharepointMigration/Arquivo?idArquivo=@Model" />
+        }
+    </div>
+</body>
+</html>

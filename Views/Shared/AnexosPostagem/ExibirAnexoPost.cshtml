@@ -1,0 +1,81 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.Projeto.PostagemDto
+@{
+var dataPublicacao = string.Format("{0}", Model.DataPublicacao);
+if (Model.Retroativa.HasValue)
+{
+    dataPublicacao += " | " + string.Format("{0}", Model.Retroativa);
+} 
+}
+<div id="modalVisAnexoPost" data-postagemId="@Model.Id" data-projetoId="@Model.ProjetoId">
+    <div class="seg-modal">
+        <div class="modal-header">
+            <a href="javascript:void(0);" class="close fechar">x</a>
+            <h3 id="">Visualizar anexos</h3>
+            <div style="width: 100%; float: left; margin: 0 10px 10px 0;" class="forms">
+                <div class="topo">
+                    <div class="col-esq">
+                        <div class="form-line">
+                            <label>Título do Post:</label>
+                            <span>@Model.TituloPostagem</span>
+                        </div>
+                        <div class="form-line">
+                            <label>Nome do Projeto:</label>
+                            <span>@Model.NomeProjeto</span>
+                        </div>
+                        <div class="form-line">
+                            <label>Autor:</label>
+                            <span>@Model.NomeCompleto</span>
+                        </div>
+                    </div>
+                    <div class="col-dir">
+                        <div class="form-line">
+                            <label>Data:</label>
+                            <span>@dataPublicacao</span>
+                        </div>
+                        <div class="form-line">
+                            <label>Departamento:</label>
+                            <span>@Model.Departamento</span>
+                        </div>
+                        <div class="form-line">
+                            <label>Perfil de Publicação:</label>
+                            <span>@Model.Privacidade</span>
+                            <div id="alertaPrivacidade" class="hide">
+                            <a href="javascript:void(0)" class="ico-alerta" title="@Gafisa.AlphaBook.Dominio.Mensagens.Taxonomias.PerfilIncompativel">Alerta</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Anexos do Post:</h4>
+
+                <div class="box-tabela">
+			        <div class="wrap">
+                        <div class="inner">
+                            <table id="tabelaAnexosPostagem">
+				                <thead>
+					                <tr class="even">
+                                        <th class="table-title table-title-no-ord colun-0">&nbsp;</th>
+						                <th class="table-title table-title-ord-up colun-1"><a  href="javascript:void(0)"  data-ordenacao="1" data-tipo="1">Arquivo</a></th>
+						                <th class="table-title table-title-ord-up colun-2"><a  href="javascript:void(0)"   data-ordenacao="2" data-tipo="1">Versão</a></th>
+						                <th class="table-title table-title-ord-up colun-3"><a  href="javascript:void(0)"   data-ordenacao="3" data-tipo="1">Pasta</a></th>
+						                <th class="table-title table-title-ord-up colun-4"><a  href="javascript:void(0)"   data-ordenacao="4" data-tipo="1">Classificação</a></th>
+						                <th class="table-title table-title-ord-up colun-5"><a  href="javascript:void(0)"   data-ordenacao="5" data-tipo="1">Para que serve</a></th>
+						                <th class="table-title table-title-ord-up colun-6"><a href="javascript:void(0)"  data-ordenacao="6" data-tipo="1">Confidencialidade Sugerida</a></th>
+						                <th class="table-title table-title-no-ord colun-7">Download</th>
+					                </tr>
+				                </thead>
+				                <tbody>
+                                    
+				                </tbody>
+			                </table>
+                        </div>
+                    </div>
+		        </div>
+            </div>  
+        </div>
+        @if(Model.Detalhado)
+        {
+            <a class="bt-voltar-modal" href="javascript:void(0);" id="voltarPostCompleto">Voltar</a> 
+            <a class="bt-padrao" href="javascript:void(0);" id="enviarPorEmail">ENVIAR EMAIL</a>
+        }
+    </div>
+</div>

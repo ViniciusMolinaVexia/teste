@@ -1,0 +1,62 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.TaxonomiaModel
+<div id="filtros">
+    @Html.Hidden("taxonomiaId", Model.TaxonomiaEdicao.Id, new { id = "taxonomiaId" })
+    <div class="div-filtro">
+        <h4>
+            Filtros</h4>
+        <div class="input-block">
+            @Html.DropDownList("privacidadeId", Model.Privacidades.ToSelectList(text => text.Descricao, value => value.Id), "Todos", new { id = "privacidadeId" })
+        </div>
+        <a id="buscarClassificacao" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+        <div class="div-busca-filtro">
+            <input type="text" watermark="Busca" class="watermark-font" id="termo" name="termo"
+                value="" maxlength="255" />
+        </div>
+    </div>
+</div>
+@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.Adicionar)) {
+<div class="div-acoes">
+    <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarClassificacao", "Admin", new { taxonomiaId = Model.TaxonomiaEdicao.Id, nome = Model.TaxonomiaEdicao.Nome })">
+        Adicionar Classificação</a>
+</div>
+}
+<div class="div-listar">
+    <div class="box-tabela">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabelaClassificacao">
+                    <thead>
+                        <tr>
+                            <th class="table-title table-left colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title table-left colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Nome</a>
+                            </th>
+                            <th class="table-title table-left colun-3 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Para Que Serve</a>
+                            </th>
+                            <th class="table-title table-left colun-4 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Palavras-Chave</a>
+                            </th>
+                            <th class="table-title table-left colun-5 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Conf. Sugerida</a>
+                            </th>
+                            <th class="table-title table-left colun-6 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Milestone</a>
+                            </th>
+                            <th class="table-title colun-7">
+                                Editar
+                            </th>
+                            <th class="table-title colun-8">
+                                Excluir
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@model Gafisa.AlphaBook.Models.Home.HomeModel
+<a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="javascript:void(0);">
+    <span>Nome do projeto</span> <b class="ico-seta"></b>
+</a>
+<ul class="dropdown-menu">
+    @foreach (var projeto in Model.Projetos)
+    {
+        <li data-id="@projeto.Id" data-nome="@projeto.Nome" data-cidade="@projeto.CidadeId|@projeto.Cidade" data-favorito="@projeto.Favorito">
+            <a class="linkProjeto" href="javascript:void(0);">@projeto.Nome</a></li>
+    }
+    <li class="divider"></li>
+    <li><a class="linkHome" href="javascript:void(0);">Página Inicial</a></li>
+</ul>

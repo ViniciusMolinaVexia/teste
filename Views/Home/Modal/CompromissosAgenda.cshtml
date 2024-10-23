@@ -1,0 +1,42 @@
+﻿<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalCompromissoAgenda">
+                <div class="topo-resultado-detalhe">
+                    <div class="ico-agenda">
+                        <h1 style="float: left;">
+                            Agenda</h1>
+                        <div class="input-control text pull-right" id="buscaSuperiorAgenda">
+                            <input type="text" id="campoBuscaAgenda" class="watermark-font" watermark="Digite o nome do colaborador"/>
+                            <button class="btn-search" id="botaoBuscaAgenda">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filtro-compromissos-geral">
+                    <div class="filtro-compromissos">
+                        <span class="label">Filtros:</span> <a class="btn btn-cinza-escuro" href="javascript:void(0)" id="filtroAgendaTodos">Todos</a> <a class="btn btn-verde" href="javascript:void(0)" id="filtroAgendaConcluidos">Concluidos</a> <a class="btn btn-vermelho" href="javascript:void(0)" id="filtroAgendaNaoConcluidos">Não concluidos</a>
+                    </div>
+                    <a class="btn-azul btn-ad-compromisso" id="addCompromisso">+ Adicionar compromisso</a>
+                </div>
+                <br />
+                <br />
+                <div id="filtroData" style="float: left">
+                    
+                </div>
+                <div id="agendaWrapper" class="antiscroll-wrap" style="width:70%; float:right">
+                    <div class="antiscroll-inner" style="height: 300px; overflow-y: scroll; overflow-x: hidden; width:103%">
+                        <div id="compromissosAgenda" class="rolagem">
+                            <div id="loadCompromissos" class="loading-circulo-cinza"></div>
+                            <table id="compromissosModal">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal" id="fechaModalCompromissos">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

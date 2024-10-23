@@ -1,0 +1,69 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model IEnumerable<Gafisa.AlphaBook.Models.Home.AgendaModel>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Agenda e Compromissos")</p>
+}
+else
+{
+    foreach (var compromisso in Model)
+    {
+        var projetoId = compromisso.HomeProjeto == true ? (long?)compromisso.ProjetoId : null;        
+        var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosAgenda, idProjeto: projetoId, idCompromisso: compromisso.Id);
+        
+    <tr data-id="@compromisso.Id" data-responsavel="@compromisso.UsuarioResponsavelId">
+        <td class="tabela-agenda colun-1 agn-agendado">
+            @compromisso.Status
+        </td>
+        <td class="tabela-agenda colun-2">@compromisso.DataInicio<br />@compromisso.HoraInicio
+        </td>
+        <td class="tabela-agenda colun-3">@compromisso.DataTermino<br />@compromisso.HoraTermino
+        </td>
+        <td class="tabela-agenda colun-4 table-left">
+            @Html.ProfilePhoto((int)compromisso.UsuarioResponsavelId, new { @class = "table-img-usuario" })
+            @compromisso.UsuarioResponsavelNome
+        </td>
+        <td class="tabela-agenda colun-5 nomeProjeto" data-id="@compromisso.ProjetoId">@compromisso.NomeProjeto
+        </td>
+        <td class="tabela-agenda colun-6 dsAssunto">@compromisso.Assunto
+        </td>
+        <td class="tabela-agenda colun-7">@compromisso.Cidade
+        </td>
+        <td class="tabela-agenda colun-8">@compromisso.Uf
+        </td>
+        <td class="tabela-agenda colun-9">
+            <a @Html.Conditional(@String.IsNullOrWhiteSpace(compromisso.ComentariosGerais), "class=\"ico-comentario-inativo ico\"", "class=\"ico-comentario ico\"")  href="javascript:void(0);" title="@compromisso.ComentariosGerais.Truncate(100)">
+                Comentário</a>
+        </td>
+        <td class="tabela-agenda colun-10">
+            <a class="ico-atribuir-responsavel ico btAtribuirResponsavel" data-compromissoid="@compromisso.Id" data-id="@compromisso.UsuarioResponsavelId" href="javascript:void(0);" title="Assumir Compromisso">
+                Atribuir Responsável</a>
+        </td>
+        <td class="tabela-agenda colun-11">
+            @if(compromisso.ContatoId.HasValue){
+                <a href="javascript:void(0)" class="ico-pin-inativo ico navegar-mapa" title="Localização"   data-id="@compromisso.ContatoId" data-tipo="contato" data-idProjeto="@compromisso.ProjetoId">Localização</a>     
+            }
+            else{
+                <a class="ico-pin-inativo ico" href="javascript:void(0);">pin</a>
+            }
+        </td>
+        <td class="tabela-agenda colun-12">
+             <a @Html.Conditional(@compromisso.Lembrete == Gafisa.AlphaBook.Dominio.Lembrete.ZeroMinutos, "class=\"ico-lembrete-inativo ico\"", "class=\"ico-lembrete ico\"") href="javascript:void(0);" title="@(compromisso.ConfigurarLembrete().HasValue ? "LEMBRETE: " + @compromisso.ConfigurarLembrete().ToString() : "")">
+                lembrete</a>
+        </td>
+        <td class="tabela-agenda colun-13">
+            @if (comportamentoVisual.PodeEditar)
+            {
+                <a class="ico-editar ico btEditar" href="javascript:void(0);">editar</a>    
+            }
+            
+        </td>
+        <td class="tabela-agenda colun-14">
+            @if (comportamentoVisual.PodeRemover)
+            {
+                <a class="ico-excluir ico btExcluirCompromisso" href="javascript:void(0);">excluir</a>    
+            }
+        </td>
+    </tr>
+    }
+}

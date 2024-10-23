@@ -1,0 +1,90 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao;
+
+@model Gafisa.AlphaBook.Models.Templates.TemplateModel
+           
+@{
+    var permissaoAdicionarModelo = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.Adicionar);
+    
+    var permissaoAdicionarPasta = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrõesPastas, Acao.Adicionar);
+    var permissaoAdicionarClassificacao = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrõesClassificações, Acao.Adicionar);
+
+    var permissaoPasta = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrõesPastas, Acao.Visualizar);
+    var permissaoClassificacao = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrõesClassificações, Acao.Visualizar);
+}
+           
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close fechar-template">x</a>
+    <h3>Adicionar Modelo/Padrão</h3>
+</div>
+<div class="modal-body">
+    <div class="adicionar-esq">
+    	<form id="formIncluirTemplate" class="forms" method="post" action="">
+			<fieldset>
+				<div class="sep-line-form form-pasta">
+					<label>* Arquivo:</label>
+					<div id="containerTemplate" class="div-upload">
+                        <a id="selecionarArquivoTemplate" href="javascript:void(0)" class="bt-padrao bt-procurar">Procurar</a>
+                    </div> 
+                    <div class="hide arquivo-template">
+                    </div>
+				</div>
+                @if (permissaoAdicionarModelo)
+                {
+				<div class="sep-line-form form-pasta">
+					<label>* Pasta:</label>
+					<select data-taxonomiaid="0" id="templateTaxonomiaId" name="Pasta" class="campo-pasta"></select>
+                    <div id="listaTemplateTaxonomias" class="hide">
+                        <ul>
+                            @Html.Partial("Taxonomias", Model.Taxonomias)
+                        </ul>
+                    </div>
+                    @if (permissaoAdicionarPasta)
+                    {
+					    <a id="incluirNovaTaxonomia" href="javascript:void(0)" class="form-bt-add">Adicionar</a>
+                    }
+				</div>
+                }
+                @if (permissaoAdicionarModelo)
+                {
+				    <div class="sep-line-form form-pasta">
+					    <label>* Classificação:</label>
+                        <select id="templateClassificacaoTaxonomiaId" name="ClassificacaoTaxonomiaId"></select>
+					    @if (permissaoAdicionarClassificacao)
+                        {
+                            <a id="incluirNovaClassificacao" href="javascript:void(0)" class="form-bt-add">Adicionar</a>
+                        }
+				    </div>
+                }
+			</fieldset>	
+		</form>
+	</div>
+
+    <div id="privacidade" class="adicionar-dir hide">
+        <div class="sep-line-form">
+            <label>Para que serve:</label>
+            <span id="paraQueServe"></span>
+        </div>
+        <div class="sep-line-form">
+            <label>Palavra-chave:</label>
+            <span id="palavraChave"></span>
+        </div>
+        <div class="sep-line-form">
+            <label>Confidencialidade sugerida:</label>
+            <span id="privacidadeSugerida"></span>
+        </div>
+    </div>
+    
+    <div class="adicionar-dir template-observacoes forms">
+        <div class="sep-line-form">
+            <label>* Observações:</label>
+            <textarea id="templateObservacao"></textarea>
+        </div>
+    </div>
+</div>
+@if (permissaoAdicionarModelo)
+{
+<div class="modal-footer">
+    <a id="incluirNovoTemplate" class="bt-padrao" href="javascript:void(0);">Salvar</a>
+</div>
+}
+

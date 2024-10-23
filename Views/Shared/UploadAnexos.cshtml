@@ -1,0 +1,47 @@
+﻿@model Gafisa.AlphaBook.Models.Home.PostagemModel
+<div id="postagemAnexos" class="bg-branco seg-anexos-post">
+    <a href="javascript:void(0);" class="accordion-anexos" id="accordionAnexos">Anexos</a>
+        <div class="" id="divAccordionAnexos">
+            <div class="forms">
+                <div class="topo">
+                    <div id="container" class="div-upload">
+                        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.PostsAnexos, Acao.Adicionar))
+                        {
+                            <a id="selecionarArquivos" href="javascript:void(0)" class="bt-padrao bt-procurar">Procurar</a>
+                        }
+                    </div>     
+                    <div class="col-dir hide" id="alertaPrivacidade">
+                        <div class="form-line">
+                            <label>Perfil de Publicação:</label>
+                            <span id="perfil-publicacao">Meu Depto</span>
+                            <a href="javascript:void(0)" class="ico-alerta" title="@Gafisa.AlphaBook.Dominio.Mensagens.Taxonomias.PerfilIncompativel">
+                                Alerta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-tabela tabela-anexos">
+                    <div class="wrap">
+                        <div class="inner">
+			                <table id="arquivos">
+				                <thead>
+					                <tr class="even">
+						                <th class="table-title colun-1">* Arquivo</th>
+						                <th class="table-title colun-2">* Pasta</th>
+						                <th class="table-title colun-3">* Classificação</th>
+						                <th class="table-title colun-4">Para que serve</th>
+						                <th class="table-title colun-5">Confidencialidade Sugerida</th>
+						                <th class="table-title colun-6">&nbsp;</th>
+					                </tr>
+				                </thead>
+				                <tbody>
+				                </tbody>
+			                </table>
+                        </div>
+                    </div>
+		        </div>
+            </div>
+        </div>
+    </div>
+    

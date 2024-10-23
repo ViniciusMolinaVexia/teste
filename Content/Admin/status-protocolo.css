@@ -1,0 +1,174 @@
+﻿.inner {
+    height: 375px !important;
+}
+.wrap
+{
+    height: 417px !important;
+}
+
+.form-container
+{
+    background: #FFF !important;
+    padding: 30px !important;
+}
+
+#form .form-status {
+    width: 400px;
+}
+
+#form .form-departamento {
+    width: 400px;
+    margin-left: 20px;
+}
+
+#form .form-cor {
+    width: 400px;
+}
+
+#form .form-ordem {
+    width: 80px;
+    margin-left: 20px;
+}
+
+#form .form-inicial {
+    width: 150px;
+}
+
+#form .form-final {
+    width: 150px;
+}
+
+#form .form-lancado {
+    width: 150px;
+}
+
+#form .form-visivel {
+    width: 150px;
+}
+
+#form .form-cobranca {
+    width: 270px;
+}
+
+.div-acoes 
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#filtros .div-filtro 
+{
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 735px;
+}
+
+#filtros .div-filtro-arquivosmanuais {
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 735px;
+}
+
+#tabela th {
+    border-right: none;
+}
+
+#tabela th.colun-1
+{
+    width: 70px;
+}
+
+#tabela th.colun-2
+{
+    width: 634px;
+}
+
+#tabela th.colun-3
+{
+    width: 69px;
+}
+
+#tabela th.colun-4
+{
+    width: 89px;
+}
+
+#tabela th.colun-5
+{
+    width: 91px;
+}
+
+
+
+#tabela td.colun-1
+{
+    width: 55px;
+}
+
+#tabela td.colun-2
+{
+    width: 500px;
+}
+
+#tabela td.colun-3
+{
+    width: 55px;
+}
+
+#tabela td.colun-4
+{
+    width: 70px;
+    padding-left: 15px;
+}
+
+#tabela td.colun-5
+{
+    width: 70px;
+    padding-left: 15px;
+}
+
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 20px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+table .ic-excluir {
+    background: url("../img/icons/ico-excluir.png") no-repeat scroll 20px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+#tabela th.col-1 {
+    width: 735px !important;
+padding-left: 15px !important;
+}
+
+#tabela th.col-2 {
+    width: 100px !important;
+}
+
+#tabela th.col-3 {
+    width: 100px !important;
+}
+
+#tabela td.col-1 {
+    width: 738px !important;
+}
+
+#tabela td.col-2 {
+    width: 100px !important;
+padding-left: 20px;
+}
+
+#tabela td.col-3 {
+    width: 100px !important;
+padding-left: 20px;
+}

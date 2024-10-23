@@ -1,0 +1,117 @@
+﻿@model Gafisa.AlphaBook.Models.InteligenciaMercado.InteligenciaMercadoModel
+<div class="box-inteligencia-mercado">
+    <h2 id="">
+        Inteligência de mercado</h2>
+    <div class="bt-excel">
+        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.InteligênciaMercado, Acao.ExportarImprimir))
+        {
+            <a class="bt-padrao" href="javascript:void(0)" id="btExportarInteligenciaMercado">Exportar
+                excel</a>
+        }
+        @if (Model.PodeAlterar && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.InteligênciaMercado, Acao.EditarProprios) && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.InteligênciaMercado, Acao.Adicionar))
+        {
+            <div id="container" style="position: absolute !important;" class="botao-importar">
+                <a id="btnImportarInteligenciaMercado" class="bt-padrao" href="javascript:void(0);">
+                    Importar excel</a>
+            </div>
+        }
+    </div>
+    <div class="forms">
+        <div class="div-filtro">
+            <h4>Filtros</h4>
+            <div class="input-block">
+                <label>UF:</label>
+                @Html.MultipleCheckList("Estado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 110, true)
+            </div>
+            <div class="input-block" style="margin-left: 5px;">
+                <label>Cidade:</label>
+                @Html.MultipleCheckList("Cidade", null, null, 235)
+            </div>
+            <div class="input-block">
+                <input type="checkbox" id="cidadeAlvoInteligencia" class="checkbox" />
+                <label for="cidadeAlvoInteligencia">Cidade Alvo</label>
+            </div>
+            <a class="bt-padrao-filtro" id="btnFiltroInteligenciaMercado" href="javascript:void(0)">Buscar</a>
+            <div class="div-busca-filtro" style="width: 200px;">
+                <input type="text" watermark="Busca" class="watermark-font filtro-carrossel-nome" id="termoBusca" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="table-im-head">
+         <div>
+            <table id="tabelaInteligenciaMercadoH">
+                <thead>
+                    <tr class="even">
+                        <th rowspan="2" class="table-title-ord-down colun-1">
+                            <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">UF</a>
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-2">
+                            <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Cidade</a>
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-3">
+                            <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Região Metropolitana</a>
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-4">
+                            <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Cidade Alvo</a>
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-5">
+                            <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">População</a>
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-6">
+                            <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Taxa Cresc. Populacional</a>
+                        </th>
+                        <th colspan="7" class="table-title-title colun-7">
+                            Domicílios
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-8">
+                            <a href="javascript:void(0);" data-ordenacao="8" data-tipo="1">Índice de Desenv. Mundial</a>
+                        </th>
+                        <th rowspan="2" class="table-title-ord-down colun-9">
+                            <a href="javascript:void(0);" data-ordenacao="9" data-tipo="1">Índice de Violência Municipal</a>
+                        </th>
+                    </tr>
+                    <tr class="odd">
+                        <th class="table-title-ord-down  colun-7-1">
+                            <a href="javascript:void(0);" data-ordenacao="10" data-tipo="1">Total</a>
+                        </th>
+                        <th class="table-title-ord-down  colun-7-2">
+                            <a href="javascript:void(0);" data-ordenacao="11" data-tipo="1">Classe A</a>
+                        </th>
+                        <th class="table-title-ord-down  colun-7-3">
+                            <a href="javascript:void(0);" data-ordenacao="12" data-tipo="1">Classe B</a>
+                        </th>
+                        <th class="table-title-ord-down  colun-7-4">
+                            <a href="javascript:void(0);" data-ordenacao="13" data-tipo="1">Classe C1</a>
+                        </th>
+                        <th class="table-title-ord-down  colun-7-5">
+                            <a href="javascript:void(0);" data-ordenacao="9" data-tipo="1">Classe C2</a>
+                        </th>
+                        <th class="table-title-ord-down  colun-7-6">
+                            <a href="javascript:void(0);" data-ordenacao="14" data-tipo="1">Classe C3</a>
+                        </th>
+                        <th class="table-title-ord-down  colun-7-7">
+                            <a href="javascript:void(0);" data-ordenacao="15" data-tipo="1">Classe DE</a>
+                        </th>
+                    </tr>
+                </thead>
+                       
+            </table>
+        </div>
+    </div>
+    <div class="inteligenciaMercado" tabela-scroll="true">
+        <div class="box-tabela" style="display: none;">
+            <div class="table2">
+                <div>
+                    <table id="tabelaInteligenciaMercado" class="tabelaInteligenciaMercado">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.DataUltimaAtualizacao.HasValue)
+    {
+        <span class="atualizado">@String.Format("Atualizado em {1} por {0}.", Model.UsuarioUltimaAtualizacao, Model.DataUltimaAtualizacao.Value.ToString("dd/MM/yyyy HH:mm:ss"))</span>
+    }
+</div>

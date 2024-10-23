@@ -1,0 +1,61 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Contatos.ContatoAgendaModel
+
+@{
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosAgenda, idContato: Model.ContatoId, idProjeto: Model.ProjetoId);    
+}
+
+@if (comportamentoVisual.PodeAdicionar && Model.PodeCriarCompromisso)
+{
+    <a href="javascript:void(0);" id="botaoCriarCompromisso" class="bt-adicionar bt-add-compromisso" >Adicionar<br />Compromisso</a>
+}
+<div class="box-tabela tabela-agenda" style="display: none;">
+    <div class="wrap table2">
+        <div class="inner">
+            <table id="tabelaAgenda">
+                <thead>
+                    <tr>
+                        <th class="table-title-ord-down colun-1">
+                            <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Status</a>
+                        </th>
+                        <th class="table-title-ord-down colun-2">
+                            <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Data Inicial</a>
+                        </th>
+                        <th class="table-title-ord-down colun-3">
+                            <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Data Final</a>
+                        </th>
+                        <th class="table-title-ord-down colun-4">
+                            <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Responsável</a>
+                        </th>
+                        <th class="table-title-ord-down colun-5">
+                            <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Projeto</a>
+                        </th>
+                        <th class="table-title colun-6">
+                            Assunto
+                        </th>
+                        <th class="table-title-ord-down colun-7">
+                            <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Cidade</a>
+                        </th>
+                        <th class="table-title-ord-down colun-8">
+                            <a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">UF</a>
+                        </th>
+                        <th class="table-title colun-9">
+                        </th>
+                        <th class="table-title colun-10">
+                        </th>
+                        <th class="table-title colun-11">
+                        </th>
+                        <th class="table-title colun-12">
+                        </th>
+                        <th class="table-title colun-13">
+                        </th>
+                        <th class="table-title colun-14">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

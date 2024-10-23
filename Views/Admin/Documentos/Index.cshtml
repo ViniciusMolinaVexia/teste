@@ -1,0 +1,87 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.TaxonomiaModel 
+
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Documentos/taxonomia-pesquisa.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/taxonomia.css")" />
+}
+
+<h2>Taxonomia de @(Model.template ? "Modelos e Padrões" : "Documentos")</h2>
+
+<div id="filtros">
+    <div class="div-filtro">
+        <h4>Filtros</h4>
+        <div class="input-block">
+            <label>Departamento</label>
+            @Html.DropDownList("departamentoId", Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), "Todos", new { id = "departamentoId" })
+        </div>
+        <a id="buscar" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+        <div class="div-busca-filtro">
+            <input type="text" watermark="Busca" class="watermark-font" id="termo" name="termo" value="" maxlength="255" />
+        </div>
+        @Html.Hidden("template", @Model.template, new {id = "template"})
+    </div>
+</div>
+@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.Adicionar))
+{
+    <div class="div-acoes">
+    @if (Model.template)
+    {
+	    <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarTaxonomia", "Admin", new { template = true })">Adicionar Pasta</a>
+    }
+    else
+    {
+        <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarTaxonomia", "Admin")">Adicionar Pasta</a>
+    }
+    </div>
+}
+<div class="div-listar">
+    <div class="box-tabela">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th class="table-title table-left colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title table-left colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Nome Pasta</a>
+                            </th>
+                            <th class="table-title table-left colun-3 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Pasta Pai</a>
+                            </th>
+                            <th class="table-title table-left colun-4 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">P. Portal</a>
+                            </th>
+                            <th class="table-title table-left colun-5 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">P. Protocolo</a>
+                            </th>
+                            <th class="table-title table-left colun-6">
+                                Prospecção
+                            </th>
+                            <th class="table-title table-left colun-7">
+                                Negócio
+                            </th>
+                            <th class="table-title colun-8">
+                                Editar
+                            </th>
+                            <th class="table-title colun-9">
+                                Excluir
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

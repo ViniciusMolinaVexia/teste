@@ -1,0 +1,169 @@
+﻿@using Gafisa.AlphaBook.Componentes.Configuration
+@using Gafisa.AlphaBook.Componentes.Sessao
+@using Gafisa.AlphaBook.Controllers
+@using Gafisa.AlphaBook.Dominio
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/font/font.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/padroes.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/home.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/estilo.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/Automplete/style.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/jquery-ui/jquery.multiselect.css")" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/jquery-ui/jquery-te-1.4.0.css")" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/jquery-ui/jquery-ui-1.10.3.custom.min.css")" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/metro-ui/modern.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/auto-suggest.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui/jqtree.css")" type="text/css" />
+    @RenderSection("css", false)
+    <!-- Fim Estilos CSS -->
+    <!-- Script's -->
+    <script type="text/javascript">
+        @{
+            var sessaoSistema = new SessaoSistema(ViewData);
+            var sessaoUsuario = new SessaoUsuario(sessaoSistema);
+            
+            var nomeCompleto = ((sessaoUsuario.Nome.IsNullOrEmpty() ? sessaoUsuario.Nome : sessaoUsuario.Nome.Split(' ').First()) + "         ").Substring(0,8) + " " 
+                             + ((sessaoUsuario.Sobrenome.IsNullOrEmpty() ? sessaoUsuario.Sobrenome : sessaoUsuario.Sobrenome.Split(' ').Last()) + "         ").Substring(0,8);
+            
+        }
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/namespace.js")"></script>
+    <!-- Fim Script's -->
+</head>
+<body>
+    <div class="seg-header">
+        <div class="header">
+            <h1>
+                <a class="logo-alphabook" href="@AlphabookSettings.Url.Administrativo">Alphabook</a>
+            </h1>
+            <div class="box-usuario-admin">
+                <div class="bt-usuario">
+                    @Html.ProfilePhoto(sessaoUsuario.Id.Value)
+                </div>
+                <span>
+                    <div class="bt-usuario" title="@(sessaoUsuario.Nome + ' ' + sessaoUsuario.Sobrenome)" >@nomeCompleto</div>
+                </span>
+                <div class="box-detalhe-usuario">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="carregandoTela" class="loading-circulo hide">
+    </div>
+    <div class="seg-content">
+        <div class="content">
+            <div class="row cinturao-conteudo">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div class="seg-footer">
+        <div class="footer">
+            <span class="text-left">Administrativo Alphabook
+                <br />
+                @typeof(AdminController).Assembly.GetName().Version.ToString(3)</span> <a href="http://www.alphaville.com.br"
+                    class="text-right" title="www.alphaville.com.br">www.alphaville.com.br</a>
+        </div>
+    </div>
+    <div class="box-confirmacao">
+        <div class="msg-confirmacao">
+            <p>
+            </p>
+            <a class="bt-padrao bt-msg-fechar" href="javascript:void(0);">Ok</a>
+        </div>
+    </div>
+    <div class="box-alerta">
+        <div class="msg-alerta">
+            <p>
+            </p>
+            <a class="bt-padrao bt-msg-fechar" href="javascript:void(0);">Ok</a>
+        </div>
+    </div>
+    <div class="box-erro">
+        <div class="msg-erro">
+            <p>
+            </p>
+            <a class="bt-padrao bt-msg-fechar-erro" href="javascript:void(0);">Ok</a>
+        </div>
+    </div>
+    <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="conteudoModal">
+        </div>
+    </div>
+    <div id="modalConfirmacao" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="seg-modal">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="box-modal-confirmacao">
+                    <p>
+                    </p>
+                    <div class="box-bts-modal-confirmacao">
+                        <a id="nao" class="bt-padrao" href="javascript:void(0);">Não</a> 
+                        <a id="sim" class="bt-padrao" href="javascript:void(0);">Sim</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalSelecaoTripla" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="seg-modal">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="box-modal-confirmacao">
+                    <p>
+                    </p>
+                    <div class="box-bts-modal-confirmacao">
+                        <a id="opcao1" class="bt-padrao" href="javascript:void(0);"></a>
+                        <a id="opcao2" class="bt-padrao" href="javascript:void(0);"></a>
+                        <a id="opcao3" class="bt-padrao" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Script's -->
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery-1.10.2.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.livequery.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.animate-colors-min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.watermark.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.maxlength-min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.meio.mask.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.mousewheel.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap/bootstrap.custom.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.touchSwipe.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.clickOutside.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.contentModal.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.loading.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.dialogo.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tabela.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.KeyEvents.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.jstree.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-1.10.3.custom.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery-te-1.4.0.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery.multiselect.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/core.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/padroes.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/mensagens.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/rotasMVC.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/util.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/formControls.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/setup.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/serializacao.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/validacaoFormatos.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/json2.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Mensagens/Comum.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Mensagens/CategoriaContato.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Mensagens/CidadeAdministracao.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Mensagens/Upload.js")"></script>
+@RenderSection("scripts", false)
+<!-- Fim Script's -->
+</html>

@@ -1,0 +1,79 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Relatorios.RelatorioAndamentoProjetosModel
+@if (Model.ItensRelatorioAndamentoProjetos.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "andamento dos projetos")</p>
+}
+else
+{
+    var etapas = Model.Etapas;
+    var etapasColuna = new List<long>();
+
+    foreach (var passagem in etapas.GroupBy(e => e.Passagem.Nome))
+    {
+        etapasColuna.AddRange(passagem.Select(etapa => etapa.Id));
+    }
+
+    foreach (var item in Model.ItensRelatorioAndamentoProjetos)
+    {
+        var vgv = Model.DepartamentoId == Departamento.Prospeccao ? item.VGVAUSAPipeline : item.VGVAUSALandbank;
+    <tr>
+        <td class=" align-left col-1"><a class="linha-tempo" data-id="@item.ProjetoId" href="javascript:void(0);">@item.ProjetoNome</a></td>
+        <td class="col-1">@item.ProjetoCodigo</td>
+        <td class="col-1">@vgv.ToStringFormat()</td>
+        <td class="col-1">@item.DivisaoAtiva</td>
+       <td class="col-1">@item.DivisaoInativa</td>
+        @foreach (var etapaColuna in etapasColuna)
+        {
+            var etapa = item.Etapas.FirstOrDefault(e => e.Etapa.Id == etapaColuna);
+
+            if (etapa == null)
+            {
+                <td></td>
+            }
+            else
+            {
+                if (etapa.StatusEtapa.Id.In(StatusEtapa.ConcluidaAposFechamentoProxima, StatusEtapa.Concluida))
+                {
+                    <td class="leg-concluido bg-align-center col-1"></td>
+                }
+                else if (etapa.StatusEtapa.Id == StatusEtapa.NaoSeAplica)
+                {
+                    <td class="leg-na bg-align-center col-1"></td>
+                }
+                else if (etapa.StatusEtapa.Id == StatusEtapa.NaoIniciada)
+                {
+                    <td class="leg-nao-iniciado bg-align-center col-1"></td>
+                }
+                else if (etapa.StatusEtapa.Id.In(StatusEtapa.Iniciada, StatusEtapa.AguardandoValidacao))
+                {
+                    <td class="leg-iniciado bg-align-center col-1"></td>
+                }
+            }
+        }
+        
+       
+       
+    </tr>
+    }
+    <tr>
+        <td class="col-1"></td>
+        <td class="col-1"></td>
+        <td class="total-vgv col-1">Total VGV AUSA</td>
+        @foreach (var etapaColuna in etapasColuna)
+        {
+            if (Model.FiltroEtapaId.HasValue && Model.FiltroEtapaId.Value == etapaColuna)
+            {
+                var total = Model.ItensRelatorioAndamentoProjetos.Sum(p => ViewBag.Departamento == Departamento.Prospeccao ? p.VGVAUSAPipeline : p.VGVAUSALandbank);
+                    
+            <td class="col-1">@(total > 0m ? total.ToStringFormat() : "-")</td>
+            }
+            else
+            {
+            <td class="col-1"></td>
+            }
+        }
+       
+    </tr>
+         
+}

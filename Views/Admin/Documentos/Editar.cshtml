@@ -1,0 +1,118 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.TaxonomiaModel
+
+@{
+	ViewBag.Title = "AlphaBook - Administração";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.fcbkcomplete.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.jstree.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Documentos/taxonomia-editar.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Documentos/classificacao-pesquisa.js")"></script>
+}
+
+@section css {
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/taxonomia.css")" />
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/classificacao.css")" />
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui/jqtree.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/Automplete/style.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/auto-suggest.css")" type="text/css" />
+}
+<div class="container">
+    @if (Model.TaxonomiaEdicao.Id == 0)
+    {
+        <h2>Adicionar Taxonomia de @(Model.template ? "Modelos e Padrões" : "Documentos")</h2>
+    }
+    else
+    {
+        <h2>Editar Taxonomia de @(Model.template ? "Modelos e Padrões" : "Documentos")</h2>
+    }
+    
+	<div class="form-container">
+		
+		@if (Model.template)
+  {
+			<a href="@Url.Action("Taxonomia", "Admin", new { template = true })" class="bt-padrao">Voltar</a>
+  }
+  else
+  {
+			<a href="@Url.Action("Taxonomia", "Admin")" class="bt-padrao">Voltar</a>
+  }
+		
+		<form action="@Url.Action("SalvarTaxonomia", "Admin")" id="form" class="forms">
+		
+		@Html.Hidden("Template", Model.template, new { id = "Template" })
+		@Html.Hidden("Id", Model.TaxonomiaEdicao.Id, new { id = "Id" })
+		
+		@if (Model.TaxonomiaEdicao != null && Model.TaxonomiaEdicao.Id > 0)
+  {
+			<div class="sep-line-form">
+				<div class="form-line form-id">
+					<label>Id: <strong>@Model.TaxonomiaEdicao.Id</strong></label>
+				</div>
+			</div>
+  }
+		
+		<div class="sep-line-form">
+			<div class="form-line form-nome">
+				<label>*Nome Pasta:</label>
+				<input type="text" class="" id="Nome" name="Nome" maxlength="255" value="@Model.TaxonomiaEdicao.Nome" />
+			</div>
+			<div class="form-line form-pastapai">
+				<label>Pasta Pai:</label>
+				<select id="IdTaxonomiaPai" name="Pasta" class="campo-pasta">
+					@if (Model.TaxonomiaEdicao.IdTaxonomiaPai.HasValue)
+     {
+						<option value="@Model.TaxonomiaEdicao.IdTaxonomiaPai">@Model.TaxonomiaEdicao.PastaPai</option>
+     }
+				</select>
+				<div id="ListaPasta" class="hide">
+					<ul>
+						@Html.Partial("Taxonomias", Model.Taxonomias)
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		  <div class="sep-line-form">
+			<div class="form-line form-departamento">
+				<label>*Departamento:</label>
+				<fieldset>
+					<div  id="autoDepartamento" class="sep-line-form textarea-departamento" data-source="@Model.ItensDepartamento">
+						<select name="departamentoTaxonomia" id="departamentoTaxonomia" class="hide"></select>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		@if (!Model.template)
+  {
+		<div class="sep-line-form">
+			<div class="form-line form-padraoprotocolo">
+				<label>Padrão Protocolo:</label>
+				<input type="checkbox" id="PadraoProtocolo" name="PadraoProtocolo" @Html.Conditional(Model.TaxonomiaEdicao.PadraoProtocolo, "checked=\"true\"") @Html.Conditional(Model.TaxonomiaEdicao.Id > 0 && Model.TaxonomiaEdicao.PadraoProtocolo, "disabled=\"disabled\"") />
+			</div>
+			<div class="form-line form-padraoportal">
+				<label>Padrão Portal:</label>
+				<input type="checkbox" id="PadraoPortal" name="PadraoPortal" @Html.Conditional(Model.TaxonomiaEdicao.PadraoPortal, "checked=\"true\"") @Html.Conditional(Model.TaxonomiaEdicao.Id > 0 && Model.TaxonomiaEdicao.PadraoPortal, "disabled=\"disabled\"") />
+			</div>
+		</div>
+  }
+		
+		@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.Adicionar))
+  {
+			<a id="salvar" href="javascript:void(0)" class="bt-padrao" data-id="@Model.TaxonomiaEdicao.Id">Salvar</a>
+  }
+		</form>
+	
+	@if (Model.TaxonomiaEdicao.Id > 0)
+ {
+		<br />
+		<hr />
+		<br />
+		
+		@Html.Partial("Documentos/Classificacoes", Model)
+	}
+	</div>
+</div>

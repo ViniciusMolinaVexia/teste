@@ -1,0 +1,30 @@
+.container-mes
+{
+	width: 895px;
+	height: 45px;
+	position:relative;
+	clear:both;
+}
+
+.container-mes .imagem-fundo
+{
+	position:absolute;
+	left:0;
+	top:0;
+	width: 895px;
+	height: 45px;
+}
+.container-mes .titulo-mes
+{
+	z-index:100;
+	position:absolute;
+	color:#222;
+	font-size:30px;
+	padding:0px 10px;
+	font-family: 'BreeRgRegular';
+}
+
+body
+{
+	background-color: transparent;
+}

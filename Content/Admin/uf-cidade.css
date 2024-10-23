@@ -1,0 +1,155 @@
+﻿.filtro-alfabetico
+{
+    border: medium none;
+    clear: none;
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.filtro-alfabetico a
+{
+    color: #006655;
+    float: left;
+    font-size: 15px;
+    margin-top: 4px;
+    padding: 0 1.7px;
+    text-decoration: none;
+}
+
+.filtro-alfabetico a.selecionada
+{
+    background-color: #006655;
+    color: #FFFFFF;
+}
+
+.ico-post-excluir
+{
+    position: static;
+}
+
+.div-acoes
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#corpo
+{
+    width: 967px !important;
+}
+.inner
+{
+    height: 375px !important;
+    width: 967px !important;
+}
+.wrap
+{
+    height: 417px !important;
+}
+
+#tabela
+{
+    width: 951px !important;
+    clear: both;
+}
+#tabela th
+{
+    border-right: none;
+}
+
+#tabela th.colun-1
+{
+    width: 83px;
+}
+
+#tabela td.colun-1
+{
+    width: 62px;
+}
+
+#tabela th.colun-2
+{
+    width: 288px;
+}
+
+#tabela td.colun-2
+{
+    width: 215px;
+}
+
+
+#tabela th.colun-3
+{
+    width: 249px;
+}
+
+#tabela td.colun-3
+{
+    width: 185px;
+}
+
+#tabela th.colun-4
+{
+    width: 250px;
+}
+
+#tabela td.colun-4
+{
+    width: 185px;
+}
+
+#tabela th.colun-6
+{
+    width: 39px;
+}
+
+#tabela td.colun-6
+{
+    width: 30px;
+}
+
+#tabela th.colun-7
+{
+    width: 43px;
+}
+
+#tabela td.colun-7
+{
+    width: 30px;
+}
+
+.form-nome
+{
+    width: 415px;
+    margin-left: 20px;
+}
+
+.form-ativa
+{
+    margin-left: 20px;
+}
+
+.campo-ativa
+{
+    margin-left: -7px;
+}
+
+.form-latitude
+{
+}
+
+.form-longitude
+{
+    margin-left: 20px;
+}
+
+#salvar
+{
+    margin-top: -36px;
+}
+
+.box-erro {
+    height: 185px;
+}

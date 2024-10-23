@@ -1,0 +1,142 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.AgendaModel
+@{
+    var edicao = Model.Id > 0;
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.AgendaCompromisso, edicao, Model.ProjetoId);
+}
+<div id="cabecalhoProjeto" data-projetoid="@Model.ProjetoId"></div>
+<div class="box-editar-compromisso" style="height: 829px;">
+    <h2 id="">
+        @ViewBag.TipoOperacao</h2>
+    <div class="editar-compromisso">
+        <div class="forms" id="formCompromisso">
+            <fieldset>
+                <script language="javascript" type="text/javascript">gafisa.alphabook.home.agenda.configurarAutoCompleteConvidados();</script>
+                <div  class="sep-line-form textarea-convidados-compromisso" data-source="@Model.ItensConvidados">
+                    <label>Convidados:</label>
+                    <select name="convidadosCompromisso" id="convidadosCompromisso" class="hide no-multiple-select"></select>
+                </div>
+                <div class="form-superior" id="frmCompromisso" data-id="@Model.Id" data-projeto="@Model.ProjetoId" data-statusprojeto="@Model.StatusProjetoId" data-responsavel="@Model.UsuarioResponsavelId">
+                    <div class="sep-line-form">
+                        <div class="form-line form-data-inicial">
+                            <label>Data e hora inicial:</label>
+                            <input type="text" value="@Model.DataInicio" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") name="" id="txtDataInicioEdicao" />
+                        </div>
+                        <div class="form-line form-hora-inicial">
+                            <input type="text" value="@Model.HoraInicio" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") name="" id="txtHoraInicioEdicao" />
+                        </div>
+                        <div class="form-line form-agenda">
+                            <a id="icoDataInicioEdicao" @Html.Conditional(@Model.Concluido, "class=\"ico-calendario-inativo inativo\"", "class=\"ico-calendario\"") href="javascript:void(0);">Calendário</a>
+                        </div>
+                        <div class="form-line form-data-final">
+                            <label>Data e hora final:</label>
+                            <input type="text" value="@Model.DataTermino" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") name="" id="txtDataFimEdicao" />
+                        </div>
+                        <div class="form-line form-hora-final">
+                            <input type="text" value="@Model.HoraTermino" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") name="" id="txtHoraFimEdicao" />
+                        </div>
+                        <div class="form-line form-agenda">
+                            <a id="icoDataFimEdicao" @Html.Conditional(@Model.Concluido, "class=\"ico-calendario-inativo inativo\"", "class=\"ico-calendario\"") href="javascript:void(0);">Calendário</a>
+                        </div>
+                        <span class="sep-radio">
+                            <input type="checkbox" @Html.Conditional(@Model.DiaTodo, "checked=\"checked\"") @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="diaTodo" id="chkDiaTodoEdicao" name="OPCAO" />Dia
+                            todo </span>
+                    </div>
+                </div>
+                <div id="dataHoraCompromisso" class="dataHoraPost hide">
+                    <input type="text" id="DataCompromisso" />
+                    <a href="javascript:void(0);" class="bt-padrao bt-limpar-data" id="limparDataCompromisso">Limpar</a>
+                    <a href="javascript:void(0);" class="bt-padrao bt-ok-limpar"  id="confirmarDataCompromisso">OK</a>
+                </div>
+                <div class="sep-line-form">
+                    <div class="form-line form-lembrete">
+                        <label>
+                            Lembrete:</label>
+                        @Html.EnumDropDownListFor(model => model.Lembrete)
+                    </div>
+                    <div class="form-line form-status">
+                        <label>
+                            Status:</label>
+                        <span>@Model.Status</span>
+                    </div>
+                    <span class="sep-radio atividade-concluida">
+                        <input type="checkbox" @Html.Conditional(@Model.Concluido, "checked=\"checked\" disabled=\"disabled\"") value="Concluido" id="chkConcluidoEdicao" name="OPCAO" />Atividade
+                        Concluída </span>
+                </div>
+                <div class="sep-line-form">
+                    <div class="form-line form-nome">
+                        <label>
+                            Assunto:</label>
+                        <input type="text" value="@Model.Assunto" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") name="" id="txtAssuntoEdicao" />
+                    </div>
+                </div>
+                <div class="sep-line-form">
+                    <div class="form-line form-observacoes">
+                        <label>
+                            Comentários gerais:</label>
+                        <textarea rows="2" name="Observacao" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") id="txtComentariosGerais" cols="20">@Model.ComentariosGerais</textarea>
+                    </div>
+                </div>
+
+                <div class="tabela-contato box-tabela" id="divTabelaContato" data-id="@Model.ContatoId">
+                            
+                </div>    
+                
+                <div class="form-contato" id="formEnderecoContato" @Html.Conditional(@Model.ContatoId.HasValue, "style=\"display:none\"")>
+                    <div class="sep-line-form">
+                        <div class="form-line form-cep">
+                            <label>
+                                Local:</label>
+                            <label>
+                                CEP:</label>
+                            <div class="box-input-busca">
+                                <input type="text" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="@Model.Cep" name="CEP" id="CEP" data-preventOnPressEnter="true" />
+                                <a href="javascript:void(0);" id="btnBuscarCep">Buscar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sep-line-form">
+                        <div class="form-line form-logradouro">
+                            <label>
+                                Logradouro:</label>
+                            <input type="text" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="@Model.Logradouro" name="Endereco" id="Logradouro" />
+                        </div>
+                        <div class="form-line form-numero">
+                            <label>
+                                Número:</label>
+                            <input type="text" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="@Model.Numero" name="Numero" id="Numero" />
+                        </div>
+                        <div class="form-line form-complemento">
+                            <label>
+                                Complemento:</label>
+                            <input type="text" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="@Model.Complemento" name="Complemento" id="Complemento" />
+                        </div>
+                    </div>
+                    <div class="sep-line-form">
+                        <div class="form-line form-bairro">
+                            <label>
+                                Bairro:</label>
+                            <input type="text" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="@Model.Bairro" name="Bairro" id="Bairro" />
+                        </div>
+                        <div class="form-line form-UF">
+                            <label>
+                                UF:</label>
+                            @Html.DropDownListFor(model => model.Uf, Model.ListaUf, "Selecione", new { id = "Estado" })
+                        </div>
+                        <div class="form-line form-cidade">
+                            <label>
+                                Cidade:</label>
+                            <input type="text" @Html.Conditional(@Model.Concluido, "disabled=\"disabled\"") value="@Model.Cidade" name="cidade" id="cidade" data-preventOnPressEnter="true" />
+                        </div>
+                    </div>
+                </div>
+                @if (comportamentoVisual.PodeSalvar && (Model.PodeAlterar || Model.Id == 0))
+                {
+                    <a href="javascript:void(0);" @Html.Conditional(@Model.Concluido, "class=\"bt-padrao-inativo bt-buscar-contato\"", "class=\"bt-padrao bt-buscar-contato\"") id="btnBuscarLocalContato">Buscar local
+                        de um contato</a>                
+                    <a href="javascript:void(0);" @Html.Conditional(@Model.Concluido, "class=\"bt-padrao-inativo\"", "class=\"bt-padrao\"")  id="btnSalvarCompromisso" data-contato="@Model.Contato">Salvar</a>
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>

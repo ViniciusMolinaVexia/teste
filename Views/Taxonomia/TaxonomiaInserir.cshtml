@@ -1,0 +1,42 @@
+﻿@model Gafisa.AlphaBook.Models.Home.TaxonomiaModel
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalTaxonomiaInserir">
+            <form action="" id="formTaxonomia" data-id="@Model.Id" data-taxonomiapaiid="@Model.IdTaxonomiaPai">
+                    <div class="topo-adicionar-contato">
+                        <div class="txt-agenda">
+                            <a id="taxonomiaVoltar" class="ico-voltar" title="Voltar" href="javascript:void(0);">Voltar</a>
+                        </div>
+                        <h1 id="tituloTaxonomia">Adicionar taxonomias </h1>
+                    </div>
+                    <div class="div-secao">
+                        <div class="div-1">
+                            <label class="label">Taxonomia:</label>
+                            <input type="text" value="@Model.Nome" id="nomeTaxonomia" maxlength="50" name="Nome" class="span2 obrigatorio" />
+                        </div>
+                    </div>
+
+                    <div class="div-secao">
+                        <div class="div-2">
+                            <label class="label">Taxonomia pai:</label>
+                            <input type="text" value="@Model.NomeTaxonomiaPai" id="nomeTaxonomiaPai" maxlength="50" name="NomeTaxonomiaPai" class="span2" />
+                        </div>
+                    </div>
+
+                    <div class="div-secao">
+                        <div class="div-2">
+                            <label class="label">Descrição:</label>
+                            <textarea cols="2" rows="3" class="span2 obrigatorio" name="Descricao" id="taxonomiaDescricao">@Model.Descricao</textarea>
+                        </div>
+                    </div>
+
+                    <div class="div-btn">
+                        <a href="javascript:void(0)" class="btn btn-verde" id="lnkSalvarTaxonomia">Cadastrar</a>
+                        <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal">Fechar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

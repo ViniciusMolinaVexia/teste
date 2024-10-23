@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.FaqDto>
+
+@if (!Model.IsNullOrEmptyCollection())
+{
+    foreach (var faq in Model)
+    {
+    <div class="linha-faq">
+        <a href="javascript:void(0)" id="lnkMaisInformacoesFaq" class="fechado" >@faq.Titulo</a>
+        <div class="linha-faq-interna" >@faq.Descricao</div>
+    </div>
+    }
+}
+else
+{
+    <p>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+}

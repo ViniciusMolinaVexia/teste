@@ -1,0 +1,80 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Admin.PerfilAcesso.PesquisaAutorizacaoModel
+@{
+    ViewBag.Title = "AlphaBook - Administração - Perfil de Acesso";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/PerfilAcesso/perfil-acesso-manter.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/perfil-acesso.css")" />
+}
+<h2>
+    Perfil de Acesso</h2>
+<div id="filtros">
+    <div class="div-filtro">
+        <div class="input-block">
+            <label>
+                *Departamento</label>
+            @Html.DropDownListFor(m => m.DepartamentoId, Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), "Selecione", new { id = "departamento" })
+        </div>
+        <div class="input-block">
+            <label>
+                *Ação</label>
+            @Html.DropDownListFor(m => m.Acao, Model.Acoes, "Selecione", new { id = "acao" })
+        </div>
+        <div class="input-block">
+            <label>
+                *Seção</label>
+            @Html.DropDownListFor(m => m.Secao, Model.Secoes, "Selecione", new { id = "secao" })
+        </div>
+        <div class="input-block">
+            <label id="labelAdministrador">
+                Administrador</label>
+            <input type="checkbox" class="checkbox" id="administrador" name="Administrador" />
+        </div>
+        <a id="ir" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+    </div>
+</div>
+<div id="corpo">
+    <p class="msg-sem-retorno" id="nenhumaInformacaoSeleciona">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.NenhumaInformacaoSelecionada</p>
+    <form id="formPerfilAcesso">
+    <div class="box-tabela hide">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabelaPerfilAcesso">
+                    <thead>
+                        <tr>
+                            <th class="table-title table-left colun-1">
+                                Funcionalidade
+                            </th>
+                            <th class="table-title table-left colun-2">
+                                Analista
+                            </th>
+                            <th class="table-title table-left colun-3">
+                                Coordernador
+                            </th>
+                            <th class="table-title table-left colun-4">
+                                Gerente
+                            </th>
+                            <th class="table-title table-left colun-5">
+                                Diretor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.PerfilAcesso, Acao.EditarProprios))
+    {
+        <div class="div-acoes hide" id="acaoes">
+            <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a> <a id="cancelar"
+                href="javascript:void(0)" class="bt-padrao">Cancelar</a>
+        </div>
+    }
+    </form>
+</div>

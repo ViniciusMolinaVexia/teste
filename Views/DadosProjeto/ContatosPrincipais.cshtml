@@ -1,0 +1,23 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model bool
+<div class="header-contatos-principais">
+    <div class="box-legenda">
+        <span>
+            <input type="radio" name="contatoPrincipal" value="contato" checked>
+        </span>
+        Contato Master
+    </div>
+    @if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoContatosPrincipais, Acao.Adicionar))
+    {
+        <a class="bt-adicionar" href="javascript:void(0);" id="botaoAssociarcontatoPrincipal">
+            Associar contato principal</a>
+    }
+</div>
+<div class="seg-contatos-principais" style="display: none;" id="listaContatosPrincipais">
+</div>
+<div class="seg-bt-contatos">
+    @if (Model && Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoContatosPrincipais, Acao.EditarProprios))
+    {
+        <a class="bt-padrao" href="javascript:void(0);" id="botaoSalvarContatoPrincipal">Salvar</a>
+    }
+</div>

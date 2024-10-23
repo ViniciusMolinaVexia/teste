@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Projeto.UsuarioResponsavelDTO>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+}
+
+@foreach (var usuarioResponsavel in @Model)
+{
+    var nomeCompleto = usuarioResponsavel.Nome.Split(' ').First() + " " + usuarioResponsavel.Sobrenome.Split(' ').Last();
+    <a href="javascript:void(0);" class="box-sel-resp" data-numeroLinha="@usuarioResponsavel.NumeroLinha" data-id="@usuarioResponsavel.Id" data-imagem ="@Url.Content("~/Content/img/usuario.jpg")" data-nome="@String.Format("{0} {1}", usuarioResponsavel.Nome, usuarioResponsavel.Sobrenome)">
+    @Html.ProfilePhoto(usuarioResponsavel.Id)
+        <div>@nomeCompleto</div></a>    
+}

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.Uso>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+<p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Uso")</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+<tr data-id="@item.Id">
+    <td class="col-1">@item.Nome</td>
+	<td class="col-2">
+    @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UsoFinanceiro, Acao.EditarProprios))
+    {
+        <a class="ic-editar" href="@Url.Action("EditarUso", "Admin", new { id = item.Id })">Editar</a>
+    }
+    </td>
+    <td class="col-3">
+    @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UsoFinanceiro, Acao.RemoverProprios) && !item.Padrao)
+    {
+        <a class="ic-excluir" data-id="@item.Id" href="javascript:void(0);">Excluir</a>
+    }
+    </td>
+</tr>
+    }
+}

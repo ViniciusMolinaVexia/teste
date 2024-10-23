@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.DetalheArquivoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhum, "anexo associado")</p>
+}
+else
+{
+    foreach (var arquivo in Model)
+    {
+        <tr>
+            <td class="colun-0"><input type="checkbox" class="" name="ArquivosEmail" data-id="@arquivo.ArquivoId" data-referencia="@arquivo.IdStream" data-idstream="@arquivo.IdStream" data-nome="@arquivo.NomeOriginal" /></td>
+            <td class="colun-1"><a href="javascript:void(0);" data-id="@arquivo.ArquivoId" id="detalheArquivo">@arquivo.NomeOriginal</a></td>
+            <td class="colun-2">@arquivo.Versao</td>
+            <td class="colun-3">@arquivo.Taxonomia</td>
+            <td class="colun-4">@arquivo.Classificacao</td>
+            <td class="colun-5">@arquivo.ParaQueServe</td>
+
+            @if (arquivo.ClassificacaoPrivacidadeId != arquivo.PostagemPrivacidadeId)
+            {
+                <td class="colun-6">@arquivo.ClassificacaoPrivacidade <a href="javascript:void(0)" class="ico-alerta" title="@Gafisa.AlphaBook.Dominio.Mensagens.Taxonomias.PerfilIncompativel">Alerta</a></td>
+            }
+            else
+            {
+                 <td class="colun-6">@arquivo.ClassificacaoPrivacidade</td>
+            }
+
+            <td class="colun-7"><a href="javascript:void(0)" class="ico-download ajuste-ico" title="Download" data-referencia="@arquivo.Referencia" data-nome="@arquivo.NomeOriginal" data-idimagem="@arquivo.IdStream">Download</a></td>
+        </tr>
+    }
+}

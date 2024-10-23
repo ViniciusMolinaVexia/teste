@@ -1,0 +1,91 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.UsuarioModel
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Usuario/usuario-editar.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/usuario.css")" />
+}
+<div class="container">    
+    @if (Model.Usuario.Id == 0)
+    {
+        <h2>Cadastro de usuários</h2>
+    }
+    else
+    {
+        <h2>Alteração de Usuários</h2>
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("Usuario", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        <form action="@Url.Action("SalvarUsuario", "Admin")" id="form" class="forms">
+        @Html.Hidden("Id", Model.Usuario.Id, new { id = "Id" })
+        <div class="sep-line-form">
+            <div class="form-line form-login">
+                <label>Login:</label>
+                <div class="box-input-busca">
+                    <input type="text" class="" id="login" name="Login" maxlength="100" type="text" value="@Model.Usuario.Login">
+                    <a id="btnBuscarUsuario" href="javascript:void(0);">Buscar</a>
+                </div>
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-nome">
+                <label>Nome:</label>
+                <input type="text" class="" id="nomeUsuario" name="Nome" maxlength="100" value="@Model.Usuario.Nome" />
+            </div>
+            <div class="form-line form-sobrenome">
+                <label>Sobrenome:</label>
+                <input type="text" class="" id="sobrenomeUsuario" name="Sobrenome" value="@Model.Usuario.Sobrenome" maxlength="100" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-email">
+                <label>E-mail:</label>
+                <input id="email" type="text" class="" name="Email" maxlength="200" value="@Model.Usuario.Email" />
+            </div>
+            <div class="form-line form-dominio">
+                <label>Domínio:</label>
+                <input type="text" class="" id="dominio" name="Dominio" maxlength="100" value="@Model.Usuario.Dominio" disabled="disabled" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-area">
+                <label>Departamento:</label>
+                @Html.Hidden("DepartamentoAnteriorId", Model.Usuario.DepartamentoAnteriorId, new { id = "DepartamentoAnteriorId" })
+                @Html.DropDownListFor(model => model.Usuario.DepartamentoId, Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), "Selecione", new { id = "Departamento", Name = "DepartamentoId" })
+            </div>
+            <div class="form-line form-cargo">
+                <label>Cargo:</label>
+                @Html.DropDownListFor(model => model.Usuario.IdCargo, Model.Perfis.ToSelectList(text => text.Nome, value => value.Id), "Selecione", new { id = "Cargo", Name = "IdCargo" })
+            </div>
+            <div class="form-line form-funcao">
+                <label>Função:</label>
+                <input type="text" class="" id="Funcao" name="Funcao" maxlength="200" value="@Model.Usuario.Funcao" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-superior">
+                <label>Superior:</label>
+                @Html.Hidden("idUsuarioSuperiorAnterior", Model.Usuario.IdUsuarioSuperiorAnterior, new { id = "idUsuarioSuperiorAnterior" })
+                @Html.DropDownListFor(model => model.Usuario.IdUsuarioSuperior, Model.Coordernadores.ToSelectList(text => string.Concat(text.Nome, " ", text.Sobrenome, " ", "(", text.Cargo, ")"), value => value.Id), "Selecione", new { id = "UsuarioCoordenador", Name = "IdUsuarioSuperior" })
+            </div>
+            <div class="form-line form-administrador">
+                <label>Administrador:</label>
+                <input type="checkbox" id="usuarioAdministrador" name="Administrador" @Html.Conditional(Model.Usuario.Administrador, "checked=\"true\"") />
+            </div>
+            <div class="form-line form-inativo">
+                <label>Inativo:</label>
+                <input type="checkbox" id="inativo" name="Inativo" @Html.Conditional(Model.Usuario.Inativo, "checked=\"true\"")  />
+            </div>
+        </div>
+        @if ((Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Usuários, Acao.Adicionar) && Model.Usuario.Id == 0) || (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Usuários, Acao.Editar) && Model.Usuario.Id > 0))
+        {
+            <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+        }
+        </form>
+    </div>
+</div>

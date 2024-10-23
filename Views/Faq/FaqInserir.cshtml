@@ -1,0 +1,34 @@
+﻿@model Gafisa.AlphaBook.Models.Home.FaqModel
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalFaqInserir">
+                <form action="" id="formFaq" data-id="@Model.Id">
+                    <div class="topo">
+                        <div class="txt-agenda">
+                            <a href="javascript:void(0);" title="Voltar" class="ico-voltar" id="faqVoltar">Voltar</a>
+                        </div>
+                        <h1 id="tituloFaq">Adicionar F.A.Q.</h1>
+                    </div>
+                    
+                    <div class="div-secao">
+                        <div class="div-1">
+                            <label class="label">Pergunta:</label>
+                            <input type="text" value="@Model.Titulo" id="titulo" name="Titulo" class="span2 obrigatorio" maxlength="100" />
+                        </div>
+                    </div>
+                    <div class="div-secao">
+                        <div class="div-2">
+                            <label class="label">Resposta:</label>
+                            <textarea cols="2" rows="1" class="span2 obrigatorio" name="Descricao" id="faqDescricao">@Model.Descricao</textarea>
+                        </div>
+                    </div>
+                    <div class="div-btn">
+                        <a class="btn-modal btn-cadastrar" href="javascript:void(0)" id="lnkSalvarFaq">Cadastrar</a>
+                        <a class="btn-modal btn-fechar" href="javascript:void(0)" data-dismiss="modal">Fechar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Models.Home.AtaReuniaoModel>
+@foreach (var item in Model)
+{
+<div class="item-ata-reuniao">
+    <div>
+        <strong>Título:</strong><span>@item.Titulo</span>
+        <a class="ico-editar ico botaoEditarAtaReuniao" href="javascript:void(0);" data-id="@item.Id" title="Editar" style="float:right;">Editar</a>
+    </div>
+    <div>
+        <strong>Data:</strong><span>@item.Data</span>
+    </div>
+    <div>
+        <strong>Participantes:</strong><span>@String.Join(", ", item.Participantes)</span>
+    </div>
+    <div>
+        <strong>Conteúdo:</strong>
+        <br/>
+        @if (item.Conteudo.Length >= 500) 
+        { 
+            <span class="spanConteudoAta" style="height: 80px;width:875px; display:block;overflow-x: hidden;overflow-y: scroll;word-wrap: break-word;">@item.Conteudo</span>
+        }else
+        {
+            <span class="spanConteudoAta">@item.Conteudo</span>
+        }
+        
+    </div>
+</div>
+}

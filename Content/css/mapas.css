@@ -1,0 +1,662 @@
+﻿.mapa-geral {
+    position: relative;
+}
+
+.title-mapas{float: left; display: table;}
+
+.tile-mapas .tile-projeto .tile-topo
+{
+    background-color: #FFFFFF;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    
+}
+
+.tile-sup-mapa
+{
+    margin-top: 15px;
+}
+
+.tile-mapas .tile-projeto .tile-topo h2
+{
+    color: #006655;
+    font-family: BreeRgRegular;
+    font-size: 22px;
+    font-weight: normal;
+    height: 40px;
+    line-height: 22px;
+    margin: 0 !important;
+    overflow: hidden;
+    padding: 7px 0 !important;
+}
+
+.tile-mapas .tile-projeto .tile-topo h3
+{
+    color: #6f6f6f;
+    font-family: BreeRgRegular;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 !important;
+    overflow: hidden;
+   
+}
+
+.ico-post-mapa {
+    background: url("../img/icons/ico-post-mapa.png") no-repeat scroll 0 0 transparent;
+    height: 32px;
+    left: 285px;
+    position: absolute;
+    text-indent: -9999px;
+    top: 100px;
+    width: 49px;
+    z-index: 500;
+}
+
+.bt-filtros {
+    position: absolute;
+    right: 155px;
+    top: 81px;
+    z-index: 99 !important;
+}
+
+.bt-limparPoligono {
+    position: absolute;
+    right: 4px;
+    top: 620px;
+    z-index: 99 !important;
+}
+
+.mapGoogle {
+    float: left;
+    margin-top: 5px;
+    width: 952px;
+}
+
+.mapGoogle #mapa {
+    height: 700px !important;
+}
+
+
+.box-menu {
+    background-color: #FFFFFF;
+    border: 1px solid #BFBFBF;
+    padding: 10px 0 0 5px;
+    position: absolute;
+    right: 9px;
+    top: 127px;
+    width: 235px;
+    height: auto;
+    max-height: 538px;
+    z-index: 1;
+}
+
+.cont-menu {
+    padding-bottom: 20px;
+    text-align: left;
+}
+
+.cont-menu .topo {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.cont-menu .topo .bt-adicionar {
+    background: url("../img/mais.png") no-repeat scroll 8px 7px #FFFFFF;
+}
+
+.cont-menu .topo .bt-remover {
+    background: url("../img/menos.png") no-repeat scroll 8px 7px #FFFFFF;
+}
+
+.cont-menu .titulo {
+    font-family: 'Trebuchet MS'  !important;
+    font-size: 14px  !important;
+    text-transform: uppercase;
+    color: #006655;
+    margin-left: 17px;
+    width: 72px;
+    text-decoration: none;
+}
+
+.cont-menu .titulo.inteligencia {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bt-criar-contato {
+    font-family: 'Trebuchet MS' !important;
+    font-size: 9px !important;
+    text-transform: uppercase;
+    color: #006655;
+    margin: 0 10px 0 0;
+    padding: 5px 6px 5px 23px;
+}
+
+.bt-filtrar-post
+{
+    padding: 5px 10px 5px 10px;
+    margin: 10px 24px 5px 5px;
+}
+
+.box-menu .scroll-y {
+    display: none;
+    float: left;
+    height: 340px;
+    overflow-y: scroll;
+    width: 230px;
+}
+
+.box-menu ul {
+    margin: 0 !important;
+    padding-left: 1em;
+}
+
+.box-menu li {
+    list-style-type: none;
+    clear: both;
+}
+
+.box-menu li.destaque {
+    margin-bottom: 10px;
+    clear: both;
+}
+
+.box-menu li.destaque label {
+    font-weight: bold;
+    color: #717171;
+}
+
+.box-menu li.sub {
+    margin-left: 20px;
+    clear: both;
+}
+
+.box-status-projeto {
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin: 5px 5px 1px 5px;
+}
+
+.cont-menu label {
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    color: #a1a1a1;
+    float: left;
+}
+
+.cont-menu input {
+    float: left;
+}
+
+.cont-menu .topo .ico-calendario {
+    background: url("../img/icons/ico-calendario.png") no-repeat scroll 55px 1px #FFFFFF;
+    width: 16px;
+    height: 16px;
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    color: #006655;
+    padding-right: 28px;
+    margin-left: 40px;
+}
+
+.menu-borda-cima {
+    border-top: 1px solid #e2e2e2;
+    margin-top: 15px;
+    padding: 5px 0;
+}
+
+.menu-borda-baixo {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#categoriasContatosMapa
+{
+    padding: 0 30px 0 0;
+    text-align: left;
+    background: #fff;
+    font-size: 12px;
+}
+
+.box-data-filtro {
+    margin: 10px 0px 0px 20px;
+}
+
+/* ####### Janelas ####### */
+
+
+.seta-baixo {
+    background: url("../img/seta-baixo.png") no-repeat scroll 0 1px transparent;
+    height: 11px;
+    text-indent: -9999px;
+    width: 22px;
+    display: block;
+}
+
+/* Janela Projeto Inicial */
+
+.tile-projeto-mapa {
+    border-color: #006655 #FFFFFF #FFFFFF;
+    border-style: solid;
+    border-width: 3px 2px 2px;
+    box-shadow: 0 0 1px #FFFFCC inset;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-family: 'Segoe UI Semilight','Open Sans',Verdana,Arial,Helvetica,sans-serif;
+    font-size: 11pt;
+    font-weight: 300;
+    height: 205px;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    margin: 0;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+    text-decoration: none;
+    width: 235px;
+    background-color: #ededed;
+    z-index: 100;
+}
+
+
+.tile-projeto-mapa .tile-topo {
+    background-color: #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.tile-projeto-mapa .tile-topo h2 {
+    color: #006655;
+    font-family: BreeRgRegular;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 15px;
+    margin: 0 !important;
+}
+
+.tile-projeto-mapa .tile-topo h3 {
+    color: #6F6F6F;
+    font-family: BreeRgRegular;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 !important;
+}
+
+.div-inferior .codigo {
+color: #6f6f6f !important;
+font-family: Trebuchet MS;
+font-size: 12px;
+font-weight: normal;
+margin-left: 8px;
+float: left;
+}
+
+.tile-projeto-mapa .responsavel,
+.tile-projeto-mapa .status,
+.tile-projeto-mapa .atualizado{
+    color: #A1A1A1;
+    display: block;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 8px;
+}
+
+.tile-projeto-mapa .div-inferior {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.tile-projeto-mapa .div-inferior .icones-projeto {
+    float: right;
+    position: relative;
+    width: 90px;
+    z-index: 99;
+}
+
+.tile-projeto-mapa .div-inferior .icones-projeto .ico-projetos-pai, 
+.tile-projeto-mapa .div-inferior .icones-projeto .ico-localizacao {
+    display: inline-block;
+    height: 17px;
+    text-indent: -9999px;
+    width: 16px;
+}
+
+
+.tile-projeto-mapa .div-inferior .icones-projeto .ico-projetos-pai {
+    background: url("../img/icons/ico-projeto-pai.png") no-repeat scroll 0 1px transparent;
+}
+
+.tile-projeto-mapa .div-inferior .icones-projeto .ico-localizacao {
+    background: url("../img/icons/ico-localizacao.png") no-repeat scroll 0 1px transparent;
+}
+
+.tile-projeto-mapa .div-inferior .icones-projeto .ico-seguir {
+    background: url("../img/icons/ico-seguir.png") no-repeat scroll 0 1px transparent;
+    display: inline-block;
+    height: 17px;
+    text-indent: -9999px;
+    width: 19px;
+}
+
+.tile-projeto-mapa .div-inferior .icones-projeto .numero-seguir {
+    color: #006655;
+    font-family: Trebuchet MS;
+    font-size: 13px;
+    text-decoration: none;
+    top: -2px;
+    left: 0;
+    position: relative;
+}
+
+/* Fim Janela Projeto Inicial */
+
+
+
+
+/* Janela Projeto */
+
+.projeto-mapa {
+    border-color: #006655 #FFFFFF #FFFFFF;
+    border-style: solid;
+    border-width: 3px 2px 2px;
+    box-shadow: 0 0 1px #FFFFCC inset;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-family: 'Segoe UI Semilight','Open Sans',Verdana,Arial,Helvetica,sans-serif;
+    font-size: 11pt;
+    font-weight: 300;
+    height: 228px;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    margin: 0;
+    text-decoration: none;
+    width: 300px;
+    background-color: #E2E2E2;
+    z-index: 100;
+}
+
+.projeto-mapa .tile-topo {
+    background-color: #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.projeto-mapa .tile-topo h2 {
+    color: #006655;
+    font-family: BreeRgRegular;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 15px;
+    margin: 0 !important;
+}
+
+.projeto-mapa .tile-topo h3 {
+    color: #6F6F6F;
+    font-family: BreeRgRegular;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 !important;
+}
+.projeto-mapa .ofertante,
+.projeto-mapa .terreno {
+    color: #6F6F6F;
+    display: block;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
+.projeto-mapa .responsavel,
+.projeto-mapa .status,
+.projeto-mapa .atualizado {
+    color: #A1A1A1;
+    display: block;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 8px;
+}
+
+.projeto-mapa .div-inferior {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.projeto-mapa .div-inferior .icones-projeto {
+    float: right;
+    position: relative;
+    width: 92px;
+    z-index: 99;
+    text-align: right;
+}
+
+.projeto-mapa .div-inferior .icones-projeto .ico-projetos-pai, 
+.projeto-mapa .div-inferior .icones-projeto .ico-localizacao {
+    display: inline-block;
+    height: 17px;
+    text-indent: -9999px;
+    width: 16px;
+}
+
+
+.projeto-mapa .div-inferior .icones-projeto .ico-projetos-pai {
+    background: url("../img/icons/ico-projeto-pai.png") no-repeat scroll 0 1px transparent;
+    text-align: left;
+}
+
+.projeto-mapa .div-inferior .icones-projeto .ico-localizacao {
+    background: url("../img/icons/ico-localizacao.png") no-repeat scroll 0 1px transparent;
+    text-align: left;
+}
+
+.projeto-mapa .div-inferior .icones-projeto .ico-seguir {
+    background: url("../img/icons/ico-seguir.png") no-repeat scroll 0 1px transparent;
+    text-align: left;
+    display: inline-block;
+    height: 17px;
+    text-indent: -9999px;
+    width: 19px;
+}
+
+.projeto-mapa .div-inferior .icones-projeto .numero-seguir {
+    color: #006655;
+    font-family: Trebuchet MS;
+    font-size: 13px;
+    text-decoration: none;
+    top: -2px;
+    left: 0;
+    position: relative;
+    padding-right: 5px;
+}
+
+/* Fim Janela Projeto */
+
+
+
+
+/* Janela Inteligência de Mercado */
+
+.div-inteligencia-mercado {
+    width: 248px;
+    height: 283px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    z-index: 101;
+}
+
+.div-inteligencia-mercado .close {
+  margin-top: 2px;
+  font-weight: bold;
+  font-size: 21px;
+  color:#006655;
+  display: block;
+  text-decoration: none;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+.div-inteligencia-mercado h3 {
+    color: #006655;
+    font-family: Trebuchet MS;
+    font-size: 18px;
+}
+
+.div-inteligencia-mercado h4 {
+    color: #a1a1a1;
+    font-family: Trebuchet MS;
+    font-size: 14px;
+    width: 100%;
+    display: block;
+    line-height: 14px;
+    font-weight: bold;
+}
+
+.div-inteligencia-mercado span {
+    color: #a1a1a1;
+    font-family: Trebuchet MS;
+    font-size: 14px;
+    width: 100%;
+    display: block;
+    line-height: 16px;
+}
+
+.div-inteligencia-mercado .mt12 {
+    margin-top: 12px;
+}
+
+.div-inteligencia-mercado .seta-baixo {
+    position: absolute;
+    top: 302px;
+    left: 173px;
+}
+
+/* Fim Janela Inteligência de Mercado */
+
+
+
+
+
+/* Janela Contatos */
+
+.box-contato-mapa {
+    background-color: #FFFFFF;
+    display: table;
+    height: 300px;
+    padding: 10px;
+    width: 290px;
+    z-index: 102;
+}
+
+.box-contato-mapa .scroll-y {
+    overflow-y: auto;
+    height: 250px;
+    width: 307px;
+    display: block;
+}
+
+.box-contato-mapa .linha-contatos {
+    display: block;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #e2e2e2;
+    cursor: pointer;
+}
+
+.box-contato-mapa .box-dados-contato div {
+    line-height: 15px;
+    margin-bottom: 5px;
+}
+
+.box-contato-mapa .nome-dados-contato {
+    font-size: 18px;
+    font-weight: bold !important;
+}
+
+.box-contato-mapa .empresa-dados-contato {
+    font-size: 14px;
+    color: #a1a1a1;
+}
+
+.box-contato-mapa .tel-dados-contato {
+    font-size: 15px;
+    color: #6f6f6f;
+}
+
+.box-contato-mapa .box-nota {
+    margin: 10px;
+}
+
+.box-contato-mapa .div-bt-criar-contato {
+    border-top: 1px solid #e2e2e2;
+    display: block;
+    float: left;
+    margin-top: 15px;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.box-contato-mapa .div-bt-criar-contato .bt-adicionar {
+    background: url("../img/mais.png") no-repeat scroll 8px 7px #FFFFFF;
+}
+
+.box-post-projeto {
+    width: 187px;
+    margin: 13px 0px 0px 18px;
+}
+
+.box-post-projeto label {
+    color: #006655 !important;
+}
+
+/* Fim Janela Contatos */
+
+
+
+
+/* Janela Posts */
+
+.div-post-mapa {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 455px;
+    height: 300px;
+    padding: 10px;
+    z-index: 102;
+}
+
+.div-post-mapa .scroll-y {
+    overflow-y: auto;
+    height: 295px;
+    width: 450px;
+    display: block;
+}
+
+
+/* Fim Janela Posts */
+
+/* Campo de Pesquisa no Mapa */
+
+#divPesquisaMapa {
+    position: absolute;
+    left: 247px;
+    top: 81px;
+    z-index: 99 !important;
+    width: 410px !important;
+}
+
+/* Fim Campo de Pesquisa no Mapa */
+
+#mapaProjeto > div#container {
+    z-index: 2;
+}

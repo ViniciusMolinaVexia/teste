@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.CompromissoDto>
+@if (!Model.IsNullOrEmptyCollection())
+{
+    foreach (var compromisso in Model)
+    {
+    <div class="linha-agenda bd-bottom" data-id="@compromisso.Id" data-responsavel="@compromisso.ResponsavelId">
+        <span>@String.Format("{0} | {1}", @compromisso.Assunto.ToUpper(), @compromisso.NomeProjeto)</span>
+        
+            @if(!@compromisso.DiaTodo){
+                <span>
+                    @String.Format("{0:dd/MM/yy} {1:HH:mm} às {2:HH:mm}", @compromisso.DataInicio, @compromisso.DataInicio, @compromisso.DataTermino)
+                    | @compromisso.Cidade – @compromisso.Uf
+                </span>
+            }
+            else
+            {
+                <span>
+                    @String.Format("{0:dd/MM/yy} - {1}", @compromisso.DataInicio, "DIA INTEIRO")
+                </span>
+            }
+            <a class="ico-convidados-agenda" href="#">Convidados</a>
+    </div>         
+    }
+}
+else
+{
+    <p class="msg-sem-retorno" style="color: #FFF; font-size:14px;">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Compromissos")</p>
+}

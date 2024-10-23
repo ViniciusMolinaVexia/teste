@@ -1,0 +1,74 @@
+﻿@model Gafisa.AlphaBook.Models.Home.FiltroContatoModel
+
+<div class="modal-header">
+    <a class="close fechar" href="javascript:void(0);" id="fecharSelecaoContato">x</a> 
+    <a class="bt-voltar voltar" href="javascript:void(0);" id="voltarSelecaoContato" style="display: none;">Voltar</a>
+    <h3 id="tituloBuscaLocal" style="display: none;">
+        Buscar local de um contato</h3>
+    <h3 id="tituloBuscaContato" style="display: none;">
+        Buscar um contato</h3>
+</div>
+<div class="modal-body" data-tipo="@Model.TipoModal" id="modalBuscaContato">
+    
+    <div class="forms">
+        <div class="div-filtro">
+            <h4>
+                Filtros</h4>
+            <div class="input-block">
+                <label>
+                    Categoria:</label>
+                <select id="tipoCategoriaSelecao" class="uf" style="width: 108px">
+                    <option>Selecione</option>
+                </select>
+                <div id="categoriasSelecao" class="hide">
+        <ul>
+            @Html.Partial("Categorias", Model.Categorias)
+        </ul>
+    </div>
+            </div>
+            @if (Model.IdProjeto.HasValue)
+            {
+                <div class="input-block">
+                    <input type="checkbox" id="todoProjetos" />
+                    <label>
+                        TODOS OS PROJETOS</label>
+                </div>
+            }
+            else
+            {
+                <div class="input-block">
+                    <input class="checkbox" type="checkbox" id="meusProjetos" />
+                    <label>MEUS PROJETOS</label>
+                </div>
+                <div class="input-block">
+                    <input class="checkbox" type="checkbox" id="projetosSeguidos" />
+                    <label>PROJETOS SEGUIDOS</label>
+                </div>
+            }
+            <div class="input-block">
+                <input type="text" value="" id="termoBuscaSelecao" style="width: 113px;"  watermark="Busca" autocomplete="off" />
+            </div>
+            <a href="javascript:void(0)" class="bt-padrao-filtro" id="btnFiltroProjetosDepartamento">Buscar</a>
+        </div>
+        <div class="filtro-alfabetico letrasSelecao">
+            <a href="javascript:void(0);" class="letra">[0-9]</a> <a href="javascript:void(0);"
+                class="letra">A</a> <a href="javascript:void(0);" class="letra">B</a> <a href="javascript:void(0);"
+                    class="letra">C</a> <a href="javascript:void(0);" class="letra">D</a> <a href="javascript:void(0);"
+                        class="letra">E</a> <a href="javascript:void(0);" class="letra">F</a>
+            <a href="javascript:void(0);" class="letra">G</a> <a href="javascript:void(0);" class="letra">
+                H</a> <a href="javascript:void(0);" class="letra">I</a> <a href="javascript:void(0);"
+                    class="letra">J</a> <a href="javascript:void(0);" class="letra">K</a> <a href="javascript:void(0);"
+                        class="letra">L</a> <a href="javascript:void(0);" class="letra">M</a>
+            <a href="javascript:void(0);" class="letra">N</a> <a href="javascript:void(0);" class="letra">
+                O</a> <a href="javascript:void(0);" class="letra">P</a> <a href="javascript:void(0);"
+                    class="letra">Q</a> <a href="javascript:void(0);" class="letra">R</a> <a href="javascript:void(0);"
+                        class="letra">S</a> <a href="javascript:void(0);" class="letra">T</a>
+            <a href="javascript:void(0);" class="letra">U</a> <a href="javascript:void(0);" class="letra">
+                V</a> <a href="javascript:void(0);" class="letra">W</a> <a href="javascript:void(0);"
+                    class="letra">X</a> <a href="javascript:void(0);" class="letra">Y</a> <a href="javascript:void(0);"
+                        class="letra">Z</a>
+        </div>
+    </div>
+    <div class="box-contatos" id="listaContatosSelecionar">
+    </div>
+</div>

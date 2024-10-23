@@ -1,0 +1,148 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.DadosGeraisUsuarioDto
+@{
+    var nomeUsuario = string.Format("{0} {1}", Model.Usuario, Model.Administrador ? "(Adm)" : string.Empty);
+}
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close fechar-template">x</a>
+    <h3>Detalhes Usuário</h3>
+</div>
+<div class="modal-body">
+    <div class="box-detalhe">
+        <div class="content-detalhe-usuario">
+            <div class="detalhe-line-1">
+                @Html.ProfilePhoto((int)Model.IdUsuario)
+                <div class="detalhe-subline-1" style="display: block !important;">
+                    <span class="nome-usuario">@nomeUsuario <span>@string.Format("Último Acesso: {0}", Model.DataUltimoAcesso)</span></span>
+                </div>
+            </div>
+
+            <div class="detalhe-line-2">
+                <div class="box-dados-inner">
+                    <h3>
+                        DADOS GERAIS</h3>
+                    <div>
+                        <label>
+                            Cargo:</label>
+                        <span>@Model.Cargo</span>
+                    </div>
+                    <div>
+                        <label>
+                            Função:</label>
+                        <span>@Model.Funcao</span>
+                    </div>
+                    <div>
+                        <label>
+                            Departamento:</label>
+                        <span>@Model.Departamento</span>
+                    </div>
+                    <div>
+                        <label>
+                            Superior Imediato:</label>
+                        <span>@Model.Superior</span>
+                    </div>
+                </div>
+                <div class="box-dados-inner">
+                    <h3>
+                        PROJETOS</h3>
+                    <div>
+                        <label>
+                            Minha gestão:</label>
+                        <span>@Model.ProjetosMinhaGestao</span>
+                    </div>
+                    <div>
+                        <label>
+                            Lançados:</label>
+                        <span>@Model.ProjetosLancados</span>
+                    </div>
+                    <div>
+                        <label>
+                            Seguidores:</label>
+                        <span>@Model.Seguidores</span>
+                    </div>
+                    <div>
+                        <label>
+                            Quantos eu sigo:</label>
+                        <span>@Model.ProjetosSeguidos</span>
+                    </div>
+                </div>
+
+                <a id="verContato" data-id="@Model.ContatoId" href="javascript:void(0);" class="ico-associar">Associar Contato</a>
+
+                <div class="email">
+                    <label>
+                        E-mail:</label>
+                    <span>@Model.Email</span>
+                </div>
+                @if (!Model.TelefoneComercial.IsNullOrWhiteSpace())
+                {
+                <div class="email">
+                    <label>
+                        Tel:</label>
+                    <span>@Model.TelefoneComercial</span>
+                </div>
+                }
+                @if(!Model.TelefoneCelular.IsNullOrWhiteSpace())
+                {
+                <div class="email">
+                    <label>
+                        Cel:</label>
+                    <span>@Model.TelefoneCelular</span>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="detalhe-line-2">
+            <div class="box-dados-inner">
+                <h3>
+                    FEEDS</h3>
+                <div>
+                    <label>
+                        Curtidas dadas:</label>
+                    <span>@Model.CurtidasDadas</span>
+                </div>
+                <div>
+                    <label>
+                        Curtidas recebidas:</label>
+                    <span>@Model.CurtidasRecebidas</span>
+                </div>
+                <div>
+                    <label>
+                        Nº de Feeds:</label>
+                    <span>@Model.Postagens</span>
+                </div>
+            </div>
+            <div class="box-dados-inner">
+                <h3>
+                    CIDADE BASE</h3>
+                <form action="" id="formDadosUsuario">
+                <div id="dadosCidade">
+                    @if (!Model.Cidade.IsNullOrEmpty())
+                    {
+                        <label id="cidadeEstado">@string.Format("{0} - {1}", Model.Cidade, Model.UF)</label>
+                        <a href="javascript:void(0)" class="ico-post-pin navegar-mapa localizacao-cidade" title="Localização"  data-id="@Model.CidadeId" data-tipo="cidade">
+                            Localização</a>
+                    }
+                    else
+                    {
+                        <a href="javascript:void(0)" class="ico-post-pin-inativo localizacao-cidade" title="Localização"
+                            data-tipo="cidade">Localização</a>    
+                    }
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="detalhe-line-2 detalhe-line-2-last">
+            <div class="box-dados-inner box-dados-inner-last">
+                <h3>
+                    ATIVIDADE</h3>
+                <div>
+                    <label>
+                        Usuário ativo desde:</label>
+                    <span>@string.Format("{0:dd/MM/yyyy} até {1:dd/MM/yyyy}", Model.DataCriacao, Model.DataInativacao ?? (object)" __/__/____")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+</div>

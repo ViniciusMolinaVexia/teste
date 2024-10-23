@@ -1,0 +1,59 @@
+﻿@model Gafisa.AlphaBook.Models.CoordenadoresProspeccaoModel
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div>
+                <div class="topo-resultado-detalhe">
+                    <div class="div-1">
+                        <div class="ico-coordenadores">
+                            <h1>Coordenadores</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="rolagem" id="historicoArquivo">
+                    @if (!Model.CoordenadoresAssociados.IsNullOrEmptyCollection())
+                    {
+                        <table id="historicoArquivoModal">
+                            <tr class="linha-topo">
+                                <td>UF</td>
+                                <td>Coordenador</td>
+                            </tr>
+                            @{var x = 0;}
+                            @foreach (var coordenador in Model.CoordenadoresAssociados)
+                            {
+                                <tr class="@Html.Conditional(x % 2 == 0, "linha-destaque")">
+                                    <td class="uf">@coordenador.UFId - @coordenador.UF</td>
+                                    <td>
+                                        @if (coordenador.UsuarioId > 0)
+                                        {
+                                            <a id="lnkAlterar" href="javascript:void(0);" data-id="@coordenador.UsuarioId" data-uf="@coordenador.UFId">@coordenador.Nome @coordenador.Sobrenome - @coordenador.Cargo</a>
+                                        }
+                                        else
+                                        {
+                                            <a id="lnkAlterar" href="javascript:void(0);" data-uf="@coordenador.UFId">Definir</a>
+                                        }
+                                        
+                                    </td>
+                                </tr>
+                                x++;
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <p>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+                    }
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalDefinirCoordenador">
+    <h4>Coordenador</h4>
+    @Html.DropDownList("ddlCoordenador", Model.Coordenadores, new { id = "ddlCoordenador" })
+    <a id="lnkCancelar" href="javascript:void(0)">Cancelar</a>
+    <a id="lnkSalvar" href="javascript:void(0)">Salvar</a>
+</div>

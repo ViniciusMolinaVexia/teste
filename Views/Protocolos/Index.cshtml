@@ -1,0 +1,60 @@
+﻿@model Gafisa.AlphaBook.Models.Home.ProtocoloModel
+
+<div id="cabecalhoProjeto"></div>
+<h2 id="tituloDadosProjeto">Protocolos</h2>
+<div class="protocolos" id="protocolosProjeto">
+    <div class="forms">
+        <div class="div-filtro">
+            <h4>Filtros</h4>
+
+            <div class="input-block">
+                <label>Status:</label>
+                @Html.MultipleCheckList("Status", Model.ListaStatus.ToSelectList(text => text.Text, value => value.Value), null, 200, true)
+            </div>
+            <a class="bt-padrao-filtro" href="javascript:void(0)" id="buscaProtocolo">Buscar</a>
+            <div class="div-busca-filtro">
+                <input type="text" watermark="Busca" class="watermark-font filtro-carrossel-nome" id="termoBuscaProtocolo" value="" />
+            </div>
+        </div>
+        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Protocolos, Acao.Adicionar))
+        {
+            <a id="adicionarProtocolo" class="bt-adicionar bt-add-protocolo" href="javascript:void(0)">Adicionar<br> Protocolo</a>
+        }
+    </div>
+
+    <div class="box-tabela">
+	    <div class="wrap">
+            <div class="inner">
+                <table id="tabelaProtocolos" class="tabela-sem-estilo">
+				    <thead>
+					    <tr>
+						    <th class="table-title-ord-down colun-1">
+                                <a href="javascript:void(0)"  data-ordenacao="1" data-tipo="2">Nº Protocolo</a>
+                            </th>
+						    <th class="table-title-ord-up colun-2">
+                                <a href="javascript:void(0)"  data-ordenacao="2" data-tipo="1">Data Abertura</a>
+                             </th>
+						    <th class="table-title-ord-up  colun-3">
+                                <a href="javascript:void(0)" data-ordenacao="3" data-tipo="1">Órgão</a>
+                            </th>
+						    <th class="table-title-ord-up  colun-4">
+                                <a href="javascript:void(0)" data-ordenacao="4" data-tipo="1">Status</a>
+                            </th>
+                            <th class="table-title-ord-up  colun-5">
+                                <a href="javascript:void(0)" data-ordenacao="5" data-tipo="1">Requerente</a>
+                            </th>
+						    <th class="table-title-ord-up  colun-6">
+                                <a href="javascript:void(0)" data-ordenacao="6" data-tipo="1">Assunto</a>
+                            </th>
+                            <th class="table-title colun-7">Observação</th>
+                            <th class="table-title colun-8">Anexos</th>
+                            <th class="table-title colun-8">Remover</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+				    </tbody>
+			    </table>
+            </div>
+        </div>
+    </div>
+</div>

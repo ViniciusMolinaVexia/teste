@@ -1,0 +1,747 @@
+#controleRelatorios {
+    float: left;
+    margin-bottom: 195px;
+}
+
+
+/* Titulo e Campo de Busca */
+
+.title-relatorios {
+    float: left;
+    display: table;
+    width: 100%;
+}
+
+.busca-relatorios{float: right; margin-top: 20px;}	
+	.relatorios-busca{width: 249px !important;}
+
+.relatorios-tiles{display: table; width: 100%;}
+/* END Titulo e Campo de Busca */
+
+/* Lista de Documentos */
+.doc-documents{
+	border-top: 1px solid #cbcbcb;
+	display: table;
+	width: 100%;
+	padding-top: 20px;
+}
+	.sep-line-docs{
+		margin-bottom: 20px;
+		display: table;
+		width: 100%;
+	}
+		
+		.box-doc{
+			width: 259px;
+			padding:5px 0 5px 45px;
+			margin-right: 20px;
+			float: left;
+			background: url(../img/ico-documentos.png) 0px 7px no-repeat;
+			position: relative;
+			cursor: pointer;
+		}
+			
+			.box-doc-sel{background: #FFF url(../img/ico-documentos.png)  0px 7px no-repeat !important;}
+			
+			.sep-line-docs .last{margin-right: 0 !important;}
+			
+			.box-doc a{
+				display: block;
+				color: #006655;
+				text-decoration: none;
+				font-family: 'BreeRgRegular';
+				font-size: 12px;
+				font-weight: normal;
+			}
+			
+			.box-doc a:hover
+			{
+			    text-decoration: underline;
+			}
+			
+			.box-doc p{
+				color: #a1a1a1;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			.box-doc span{
+				display: block;
+				color: #a1a1a1;
+				font-size: 12px;
+			}
+
+/* END Lista de Documentos */
+
+/* Pop Over Documento */
+.editar-doc{
+	position: absolute;
+	z-index: 99;
+	/*top: 12px;*/
+	/*right: -156px;*/
+	background: #FFF;
+	padding:13px 25px;
+	border: 2px solid #9d9d9d;
+	border-radius: 6px;
+}
+	.ico-seta-doc{
+		position: absolute;
+		top: 16px;
+		left: -23px;
+		width: 23px;
+		height: 22px;
+		background: url(../img/ico-seta-doc.png) no-repeat;
+	}
+
+	.ico-download{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 0px;
+		background: url(../img/ico-download.png) 5px 3px no-repeat !important;
+	}
+	.ico-informacoes{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 20px;
+		background: url(../img/ico-informacao.png) 6px 5px no-repeat;
+	}
+/* END Pop Over Documento */
+.breadcrumb a.last
+{
+    background: none repeat scroll 0 0 #F2F2F2;
+    border: 1px solid #ACACAC;
+    border-radius: 3px 3px 3px 3px;
+    color: #000000;
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-right: 20px;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+
+/* Relatório Pipeline */
+
+.box-relatorio-pipeline {
+    float: left;
+    margin-bottom: 30px;
+    width: 952px;
+}
+
+.relatorio-pipeline {
+    float: left;
+    height: 361px;
+    overflow-y: scroll;
+    padding-bottom: 30px;
+    position: relative;
+    width: 969px;
+}
+
+.relatorio-ArquivosManuais {
+    float: left;
+    height: 361px;
+    
+    padding-bottom: 30px;
+    position: relative;
+    width: 969px;
+}
+
+.relatorio-pipeline .div-filtro {
+    width: 929px;
+}
+
+.relatorio-ArquivosManuais .div-filtro {
+    width: 929px;
+}
+
+.relatorio-pipeline .box-tabela {
+    width: 6153px;
+    overflow: hidden;
+    display: block;
+}
+
+.relatorio-ArquivosManuais .box-tabela {
+    width: 6153px;
+    overflow: hidden;
+    display: block;
+}
+
+#tabelaRelatorioPipeline tr th {
+    text-align: center;
+
+}
+
+#tabelaRelatorioArquivosManuais {
+    width: 21.35%;
+}
+
+.modal-ArquivosManuais {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content-ArquivosManuais {
+    background-color: #fefefe;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #888;
+    width: 300px; /* Largura menor */
+    border-radius: 5px;
+    position: relative;
+    top: 20px; /* Posiciona no topo da tela */
+    left: calc(33% - 150px); /* Centraliza horizontalmente */
+}
+
+.success {
+    border-left: 5px solid #4CAF50; /* Verde */
+}
+
+.error {
+    border-left: 5px solid #f44336; /* Vermelho */
+}
+
+.btn-edit, .btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.btn-edit {
+    color: #007bff; /* Cor padrão para o ícone de editar */
+}
+
+    .btn-edit:hover {
+        color: #0056b3; /* Cor ao passar o mouse */
+    }
+
+.btn-delete {
+    color: #dc3545; /* Cor vermelha para o ícone de excluir */
+}
+
+    .btn-delete:hover {
+        color: #c82333; /* Cor vermelha mais escura ao passar o mouse */
+    }
+
+    .btn-edit i, .btn-delete i {
+        margin: 0;
+    }
+
+.close-button-ArquivosManuais {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button-ArquivosManuais:hover {
+        color: #000;
+}
+
+#tabelaRelatorioArquivosManuais tr th {
+    text-align: center;
+    width: 21.35%;
+}
+
+/* Tabela */
+
+/* THead */
+
+#tabelaRelatorioPipelineH th.colun-1 {width: 80px;}
+#tabelaRelatorioArquivosManuaisH th.colun-1 {
+    width: 80px;
+}
+#tabelaRelatorioPipelineH th.colun-2 {width: 130px;}
+#tabelaRelatorioArquivosManuaisH th.colun-2 {
+    width: 130px;
+}
+#tabelaRelatorioPipelineH th.colun-3 {width: 125px;}
+#tabelaRelatorioArquivosManuaisH th.colun-3 {
+    width: 125px;
+}
+/*#tabelaRelatorioPipelineH th.colun-3 {width: 180px;}*/
+#tabelaRelatorioPipelineH th.colun-4 {width: auto;}
+#tabelaRelatorioArquivosManuaisH th.colun-4 {
+    width: auto;
+}
+
+#tabelaRelatorioPipeline .colun-1 {width: 83px;}
+#tabelaRelatorioArquivosManuais .colun-1 {
+    width: 83px;
+}
+#tabelaRelatorioPipeline .colun-2 {width: 133px;}
+#tabelaRelatorioArquivosManuais .colun-2 {
+    width: 133px;
+}
+#tabelaRelatorioPipeline .colun-3 {width: 183px;}
+#tabelaRelatorioArquivosManuais .colun-3 {
+    width: 183px;
+}
+#tabelaRelatorioPipeline .colun-4 {width: auto;}
+#tabelaRelatorioArquivosManuais .colun-4 {
+    width: auto;
+}
+
+
+
+/* Fim Relatório Pipeline */
+
+
+/* Relatório Land Banking */
+
+.box-relatorio-landbanking {
+    float: left;
+    height: auto;
+    margin-bottom: 30px;
+    width: 952px;
+    display: block;
+}
+
+.box-relatorio-landbanking .div-filtro .bt-padrao-filtro {
+    margin-left: 5px;
+}
+
+.box-relatorio-landbanking .bt-excel .bt-padrao {
+    margin-left: 0;
+    padding: 8px;
+}
+
+.box-relatorio-landbanking .div-filtro h4{
+    height:25px\9\0;
+}
+
+.box-relatorio-landbanking .div-filtro .ui-multiselect{
+    height:26px\9\0;
+}
+
+.box-relatorio-landbanking .div-filtro .input-block.filtro-estado{
+    margin-bottom:-1px\9\0;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    .box-relatorio-landbanking .div-filtro h4 {
+        height: 25px;
+    }
+}
+
+.relatorio-landbanking {
+    float: left;
+    height: 361px;
+    overflow-y: scroll;
+    padding-bottom: 30px;
+    position: relative;
+    width: 969px;
+}
+
+.relatorio-landbanking .box-tabela {
+    display: block;
+    overflow: hidden;
+    width: 4293px;
+}
+
+#tabelaRelatorioLandBanking tr th {
+    text-align: center;
+}
+
+/* Tabela */
+
+/* THead */
+
+#tabelaRelatorioLandBankingH th.colun-1 {width: 80px;}
+#tabelaRelatorioLandBankingH th.colun-2 {width: 130px;}
+#tabelaRelatorioLandBankingH th.colun-3 {width: 180px;}
+#tabelaRelatorioLandBankingH th.colun-4 {width: auto;}
+#tabelaRelatorioLandBankingH th.fix { padding-left: 15px !important; }
+
+#tabelaRelatorioLandBanking .colun-1 {width: 83px;}
+#tabelaRelatorioLandBanking .colun-2 {width: 133px;}
+#tabelaRelatorioLandBanking .colun-3 {width: 183px;}
+#tabelaRelatorioLandBanking .colun-4 {width: auto;}
+
+/* Fim Relatório Land Banking */
+
+
+/* Relatório Estrutura */
+
+.relatorio-estrutura
+{
+    height: 590px;
+}
+
+.relatorio-estrutura .legenda {
+    width: 220px;
+    height: auto;
+    border: 1px solid #000;
+    padding: 10px;
+    display: block;
+    float: left;
+    background-color: #fff;
+    position: absolute;
+}
+
+.relatorio-estrutura .legenda .titulo {
+    float: left;
+    font-family: 'Trebuchet MS' !important;
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 10px;
+    text-transform: uppercase;
+    color: #006655;
+    cursor: pointer;
+}
+
+.relatorio-estrutura .scroll-y {
+    display: none;
+    float: left;
+    height: 349px;
+    width: 230px;
+}
+
+.relatorio-estrutura .scroll-y ul {
+    margin: 0 !important;
+    padding-left: 1em;
+}
+
+.relatorio-estrutura .scroll-y li {
+    list-style-type: none;
+    clear: both;
+}
+
+.relatorio-estrutura .scroll-y li.sub {
+    margin-left: 20px;
+    clear: both;
+}
+
+.relatorio-estrutura .scroll-y input {
+    float: left;
+}
+
+.relatorio-estrutura .scroll-y label {
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    color: #a1a1a1;
+    float: left;
+}
+
+.grafico-organograma
+{
+    float: left;
+    width: 953px;
+}
+
+.grafico-organograma table
+{
+   margin-left: auto;
+   margin-right : auto; 
+}
+
+.box-relatorio-usuario {
+    width: 230px;
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.box-relatorio-usuario .icones {
+    float: right;
+}
+
+.box-relatorio-usuario .icones .ico-central
+{
+    background: url(../img/icons/ico-usuario-central.png) no-repeat 0 4px;
+    width: 16px;
+    height: 19px;
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.box-relatorio-usuario .icones .ico-dados
+{
+    background: url(../img/icons/ico-dados-projeto-verde.png) 0 4px no-repeat;
+    width: 16px;
+    height: 20px;
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.box-relatorio-usuario .icones .numero-projetos
+{
+    text-decoration: none;
+    color: #006655;
+    font-weight: bold;
+}
+
+.box-relatorio-usuario .dados {
+    font-size: 13px;
+    margin-left: 47px;
+    margin-top: -51px;
+}
+
+.box-relatorio-usuario .dados span 
+{
+    display: block;
+}
+
+.box-relatorio-usuario .dados span.nome
+{
+    font-weight: bold;
+}
+
+.box-relatorio-usuario .dados span.cargo
+{
+    font-size: 10px;
+}
+
+.box-relatorio-usuario .dados span.funcao
+{
+    font-size: 10px;
+    width: 180px;
+    height: 20px;
+}
+
+.box-relatorio-usuario.central
+{
+    background-color: #006655 !important;
+    color: #fff !important;
+}
+
+.box-relatorio-usuario.central
+{
+    background-color: #006655 !important;
+    color: #fff !important;
+}
+
+.box-relatorio-usuario.central .icones .numero-projetos
+{
+    color: #fff !important;
+}
+
+.box-relatorio-usuario.central .icones .ico-dados
+{
+    background: url(../img/icons/ico-dados-projeto-verde-branco.png) 0 4px no-repeat;
+}
+
+.box-detalhe{
+    z-index: 288;
+    display: block;
+}
+
+.content-detalhe{
+    padding: 10px;
+}
+
+.box-projeto{
+    z-index: 288;
+    display: block;
+}
+
+.box-projeto .projetos
+{
+    width: 400px;
+}
+
+.box-projeto li 
+{
+    list-style-type: none;
+}
+
+.box-projeto a 
+{
+   font-weight: bold;
+   color: #006655;
+   text-decoration: none;
+}
+
+.box-projeto a:hover
+{
+   text-decoration: underline;
+}			
+
+.box-projeto .content-detalhe-projeto
+{
+    padding: 10px;
+}
+
+
+#ListaUsuarios, #ListaStatusProjeto{
+            background: none repeat scroll 0 0 #FFFFFF !important;
+            border: 1px solid #006655;
+            height: 90px;
+            max-width: 300px;
+            overflow: auto;
+            padding: 0 30px 0 0;
+            position: absolute;
+            text-align: left;
+            z-index: 999;
+    }
+    
+    
+.alternar-grupo {
+    background: #e9e9e9 !important;
+}
+    
+/* Relatório Andamento de Projetos */
+
+.box-relatorio-andamento-projetos {
+    float: left;
+    margin-bottom: 30px;
+    width: 952px;
+}
+
+.box-relatorio-andamento-projetos .bt-padrao-filtro {
+    margin-left: 0;
+}
+
+.box-relatorio-andamento-projetos .div-filtro h4{
+    height:25px\9\0;
+}
+
+.box-relatorio-andamento-projetos .div-filtro .ui-multiselect{
+    height:26px\9\0;
+}
+
+.box-relatorio-andamento-projetos .div-filtro .input-block.filtro-estado{
+    margin-bottom:-1px\9\0;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    .box-relatorio-andamento-projetos .div-filtro h4 {
+        height: 25px;
+    }
+}
+
+.relatorio-andamento-projetos {
+    float: left;
+    max-height: 361px;
+    overflow-y: scroll;
+    padding-bottom: 30px;
+    position: relative;
+    width: 969px;
+    margin-bottom: 20px;
+}
+
+.bg-align-center {
+    background-position: center center!important;
+}
+
+
+/* Relatório de Projetos em Andamentos */
+.relatorio-andamento-projetos .classeProc {
+    width: 2081px;
+}
+.relatorio-andamento-projetos .classeNeg {
+    width: 3840px;
+}
+
+.relatorio-andamento-projetos tbody tr td {
+    padding:10px !important;
+}
+
+.total-vgv {
+    color:#353535 !important;
+    font-weight:bold;
+}
+
+.table-projetos-andamento .col-1{width:150px !important;padding:0px 3px;}/*138*/
+.table-projetos-andamento .col-2{width:140px !important;}
+.table-projetos-andamento .col-3{width:90px !important;}
+
+.table-projetos-andamentoH .col-1{width:148px !important;padding:0px 3px;}/*160*/
+.table-projetos-andamentoH .col-2{width:140px !important;}
+.table-projetos-andamentoH .col-3{width:90px !important;}
+
+.align-center {text-align:center !important;}
+.align-left {text-align:left !important;}
+.align-right {text-align:right !important;}
+
+
+.nameBold {
+    font-weight:bold;
+    text-transform:uppercase;
+    color:#125c4f;
+}
+
+/* END Relatório de Projetos em Andamentos */
+
+
+
+
+
+
+.table-ap-head {
+    width:951px;
+    height:87px;
+    overflow:hidden;
+    clear:both;
+}
+.table-ap-head div {
+        width:4160px !important;
+    }
+
+
+.table-pl-head {
+    width:951px;
+    height:62px;
+    overflow:hidden;
+    clear:both;
+}
+.table-pl-head .seg-table-pl {
+        width:5160px !important;
+    }
+.table-pl-head .seg-table-pl table thead {
+        background: #FFF;
+    }
+.table-ap-head table thead tr th {
+    padding:0px !important;
+}
+
+
+
+
+
+.table-pp-head {
+    width:951px;
+    height:87px;
+    overflow:hidden;
+    clear:both;
+}
+
+.table-pp-head-ArquivosManuais {
+    width:951px;
+    overflow:hidden;
+    clear:both;
+}
+.table-pp-head .seg-table-pp {
+        width:5160px !important;
+    }
+
+.table-pp-head-ArquivosManuais .seg-table-pp {
+    width: 100% !important;
+}

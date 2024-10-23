@@ -1,0 +1,133 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao;
+
+@model Gafisa.AlphaBook.Models.Home.ResultadoBuscaDocumentoModel
+		   
+@{
+	var permissaoAdicionar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.Adicionar);
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Content/css/modelos-padroes.css")" type="text/css" />
+
+<div id="controleTemplates">
+
+<input type="hidden" id="controleSessao" value="@Model.ControleSessao" />
+
+<h2 class="title-documentos">Modelos / Padrões</h2>
+
+<div class="busca-docs">
+	<form id="formBusca" class="forms" action="" method="get">
+		<fieldset>
+			<div class="form-line form-cep">
+				<div class="box-input-busca doc-busca">
+					<input id="termo" name="termo" type="text" placeholder="Nome do documento..." />
+					<a id="buscarArquivos" href="javascript:void(0);">Buscar</a>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+@if (permissaoAdicionar)
+{
+<div class="seg-bt-adicionar-modelos">
+	<a id="incluirTemplate" class="bt-adicionar" href="javascript:void(0)" data-toggle="modal">Adicionar modelo</a>
+</div>
+}
+
+<div>
+	<div class="breadcrumb">
+
+	@if (!Model.BuscaTermo)
+	{
+		if (Model.Navegacao == null || Model.Navegacao.Count == 0)
+		{
+			<a href="javascript:void(0);">Todos</a>
+		}
+
+		if (Model.Navegacao != null && Model.Navegacao.Count > 0)
+		{
+		<a href="@(!String.IsNullOrEmpty(Model.HashInicial) ? Model.HashInicial : String.Empty)">Todos</a>
+			
+			for (int i = 0; i < Model.Navegacao.Count; i++)
+			{
+				var navegacao = Model.Navegacao[i];
+
+				if (Model.Navegacao.IsLast(i))
+				{
+					<a class="last" href="javascript:void(0);">@navegacao.Nome</a>
+				}
+				else
+				{
+					<a href="@navegacao.Hash">@navegacao.Nome</a>
+				}
+			}
+		}
+	}
+	else
+	{
+		<a href="javascript:window.history.back();">Voltar</a>
+		<a class="last" href="javascript:void(0);">Resultado busca</a>
+	}
+	</div>
+</div>
+
+@if (!Model.BuscaTermo)
+{
+			
+<div class="doc-tiles">
+	@{ var count = 1; }
+	@foreach (var documento in @Model.Documentos.Where(x => x.Quantidade > 0))
+	{
+		<a class="tile-ativo pastaDocumento @Html.Conditional(count % 3 == 0, "last")" data-nome="@documento.Nome" data-nivel="@Model.Nivel" data-tax="@documento.TaxonomiaId" data-dep="@documento.DepartamentoId" href="javascript:void(0);">
+			<span class="nome-tile">@documento.Nome</span>
+			<span class="numero-tile">@documento.Quantidade</span>
+		</a>
+		
+		count++;
+	}  
+</div>
+}
+
+@{  var arquivos = Model.Documentos.Where(x => x.Arquivos != null && x.Arquivos.Count() > 0).SelectMany(x => x.Arquivos); }
+
+@if (arquivos != null && arquivos.Count() > 0)
+{
+	<div class="doc-documents">
+		<div class="sep-line-docs">
+			@foreach (var documento in @Model.Documentos.Where(x => x.Arquivos.Count() > 0))
+			{
+				if (documento.Quantidade == 0)
+				{
+					foreach (var arquivo in documento.Arquivos.Distinct())
+					{  
+					<div class="box-doc-content">
+						<div class="box-doc">
+							<a data-id="@arquivo.ArquivoId" href="javascript:void(0);">@arquivo.NomeOriginal</a>
+							<p>@arquivo.Classificacao</p>
+							<p>@arquivo.ParaQueServe</p>
+							<span>@arquivo.Data.ToString() - @arquivo.NomeAutor @arquivo.SobrenomeAutor</span>
+						</div>
+						<div class="editar-doc">
+							<div class="ico-seta-doc"></div>
+							<div class="box-seg-ico-docs">
+								<a href="javascript:void(0);" data-referencia="@arquivo.Referencia" data-nome="@arquivo.NomeOriginal" data-idimagem="@arquivo.IdStream" class="ico-download">Download</a>
+
+								@if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.Visualizar, idArquivo: arquivo.ArquivoId))
+								{
+									<a href="javascript:void(0);" data-id="@arquivo.ArquivoId" class="ico-informacoes">Ver Informações</a>
+								}
+
+								@if (Model.UsuarioAdministrador)
+								{
+									<a href="javascript:void(0);" data-referencia="@arquivo.Referencia" data-id="@arquivo.ArquivoId" data-idimagem="@arquivo.IdStream" class="ico-excluir-modelo">Excluir</a>
+								}
+							</div>
+						</div>
+					</div>
+					}
+				}
+			}
+		</div>
+	</div>
+}
+
+</div>

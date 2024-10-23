@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.StatusProtocoloDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Status de Protocolo")</p>
+}
+else
+{
+    foreach (var status in Model)
+    {
+        <tr data-id="@status.Id">
+            <td class="colun-1">@status.Id</td>
+			<td class="colun-2">@status.Nome</td>
+            <td class="colun-3">@status.Ordem</td>
+			<td class="colun-4">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProtocolo, Acao.EditarProprios))
+            {
+                <a class="ic-editar" href="@Url.Action("EditarStatusProtocolo", "Admin", new { id = status.Id })">Editar</a>
+            }
+            </td>
+            <td class="colun-5">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProtocolo, Acao.RemoverProprios))
+            {
+                <a class="ic-excluir" data-id="@status.Id" href="javascript:void(0);">Excluir</a>
+            }
+            </td>
+        </tr>
+    }
+}

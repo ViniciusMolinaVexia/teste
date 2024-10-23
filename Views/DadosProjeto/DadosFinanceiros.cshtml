@@ -1,0 +1,364 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@using Gafisa.AlphaBook.Models.Home
+@model Gafisa.AlphaBook.Dominio.DTO.Projeto.DadosFinanceirosDto
+           
+<script type="text/javascript">
+    gafisa.alphabook.home.dadosProjeto.ocultarColunas = @(ViewBag.OcultarColunas ? "true" : "false");
+</script>
+
+<div class="header-dados-financeiros" data-id="@Model.Id">
+    <div class="dados-parceria-consorcio">
+        <div class="dados-parceria">
+            <h4>Parceria:</h4>
+            <form class="forms dadosFinanceiros" id="formParceria">
+                <fieldset>
+                    <div class="sep-line-form">
+                        <div class="form-line" style="margin-right: 20px;">
+                            <label>Proprietário(%):</label>
+                            <input type="text" class="campo-percentual" id="textBoxProprietario" name="ParceriaProprietario" value="@Model.ParceriaProprietario" />
+                        </div>
+                        <div class="form-line">
+                            <label class="label-ausa">AUSA(%):</label>
+                            <input type="text" id="textBoxAUSA" class="input-ausa campo-percentual" name="ParceriaAUSA" value="@Model.ParceriaAUSA" />
+                        </div>
+                    </div>
+                    @*<div class="form-total">
+                    <span id="totalParceria">@((Model.ParceriaAUSA + Model.ParceriaProprietario).ToString("P"))</span>
+                </div>*@
+                </fieldset>
+            </form>
+        </div>
+        <div class="seta"></div>
+        <div class="dados-consorcio">
+            <h4>Consórcio:</h4>
+            <form class="forms dadosFinanceiros" id="formConsorcio">
+            <fieldset>
+                <div class="sep-line-form">
+                    <div class="form-line" style="margin-right: 20px;">
+                        <label>Sócio(%):</label>
+                        <input type="text" class="campo-percentual" id="textBoxSocio" name="ConsorcioSocio" value="@Model.ConsorcioSocio" />
+                    </div>
+                    <div class="form-line">
+                        <label>AUSA(%):</label>
+                        <input type="text" class="campo-percentual" id="textBoxConsorcioAUSA" name="ConsorcioAUSA" value="@Model.ConsorcioAUSA" />
+                    </div>
+                </div>
+                
+            </fieldset>
+            </form>
+            @*<hr />*@
+        </div>
+    </div>
+    <div class="dados-maturacao">
+        <form class="forms dadosFinanceiros" id="formMaturacao">
+        <fieldset>
+            <div class="sep-line-form" style="margin-bottom: 10px;">
+                <label>Ano de Maturação:</label>
+                <input type="text" value="@Model.AnoMaturacao" id="AnoMaturacao" name="AnoMaturacao" maxlength="255" />
+            </div>
+            <div class="sep-line-form">
+                <label>Observação:</label>
+                <input type="text" value="@Model.Observacao" id="Observacao" name="Observacao" maxlength="255" />
+            </div>
+        </fieldset>
+        </form>
+    </div>
+</div>
+@*<form class="dadosFinanceiros" id="formTabela">*@
+    <div class="box-tabela">
+        <table id="tabelaDadosFinanceiros">
+            <thead>
+                <tr>
+                    <th class="table-title colun-1" rowspan="2">
+                        &nbsp;
+                    </th>
+                    <th class="table-title colun-2" rowspan="2">
+                        Área total m²
+                    </th>
+                    <th class="table-title colun-3" rowspan="2">
+                        ALV m²
+                    </th>
+                    <th class="table-title colun-4" rowspan="2">
+                        Número<br />unidade
+                    </th>
+                    <th class="table-title colun-5" rowspan="2">
+                        Estimativa<br />preço m²
+                    </th>
+                    <th class="table-title colun-6" rowspan="2">
+                        VGV Total R$
+                    </th>
+                    <th class="table-title colun-7" rowspan="2">
+                        VGV<br />Parceiro R$
+                    </th>
+                    <th class="table-title colun-8" rowspan="2">
+                        VGV<br />Sócio R$
+                    </th>
+                    <th class="table-title-title colun-9 negocios-colspan" colspan="5">
+                        VGV AUSA R$
+                    </th>
+                    <th class="table-title colun-10 negocios-ocultar" rowspan="2">
+                        Lucro R$
+                    </th>
+                    <th class="table-title colun-11 negocios-ocultar" rowspan="2">
+                        Receita R$
+                    </th>
+                    <th class="table-title colun-12 negocios-ocultar" rowspan="2">
+                        %<br />Geração caixa
+                    </th>
+                </tr>
+                <tr>
+                    <th class="table-title colun-9.1 negocios-ocultar">
+                        Total
+                    </th>
+                    <th class="table-title colun-9.2 negocios-ocultar">
+                        Imediato<br />(ano)
+                    </th>
+                    <th class="table-title colun-9.3 negocios-ocultar">
+                        Curto prazo<br />(ano+1)
+                    </th>
+                    <th class="table-title colun-9.4 negocios-ocultar">
+                        Médio prazo<br />(ano+2)
+                    </th>
+                    <th class="table-title colun-9.5 negocios-ocultar">
+                        Longo prazo
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-sub-title table-left" colspan="16">
+                        Pipeline / Comitê
+                    </td>
+                </tr>
+                <tr class="dadosFinanceiros">
+                    <td class="table-left">
+                        Total
+                    </td>
+                    <td>
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @(Html.TextBoxFor(model => model.ComiteAreaTotal, new { @class = "campo-valor-grande" }))
+                    }
+                    else
+                    {
+                        @(Html.TextBoxFor(model => model.ComiteAreaTotal, new { @class = "campo-valor-grande", disabled = "disabled" }))
+                    }
+                    </td>
+                    <td>
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteAlv, new { @class = "campo-valor-grande campo-formula-vgv" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteAlv, new { @class = "campo-valor-grande campo-formula-vgv", disabled = "disabled"  })
+                    }
+                    </td>
+                    <td>
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteNumeroUnidades, new { @class = "campo-inteiro", style = "text-align: right" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteNumeroUnidades, new { @class = "campo-inteiro", style = "text-align: right", disabled = "disabled" })
+                    }  
+                    </td>
+                    <td>
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteEstimativaPreco, new { @class = "campo-valor-grande campo-formula-vgv" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteEstimativaPreco, new { @class = "campo-valor-grande campo-formula-vgv", disabled = "disabled"  })
+                    }
+                    </td>
+                    <td id="totalVGVComite">
+                    @if (Model.ComiteAlv * Model.ComiteEstimativaPreco == Model.ComiteVGVProprietario + Model.ComiteVGVSocio + (Model.ComiteAlv * (Model.ParceriaAUSA / 100) * (Model.ConsorcioAUSA / 100) * Model.Usos.Sum(u => u.EstimativaPreco)))
+                    {
+                        @(Model.ComiteAlv * Model.ComiteEstimativaPreco)
+                    }
+                    else
+                    {
+                        @("erro")
+                    }
+                    </td>
+                    <td>
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVProprietario, new { @class = "campo-valor-grande campo-vgv" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVProprietario, new { @class = "campo-valor-grande campo-vgv", disabled = "disabled"  })
+                    }
+                    </td>
+                    <td>
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVSocio, new { @class = "campo-valor-grande campo-vgv" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVSocio, new { @class = "campo-valor-grande campo-vgv", disabled = "disabled" })
+                    }
+                    </td>
+                    <td id="totalVGVAUSAComite">
+                        @(Model.ComiteAlv * (Model.ParceriaAUSA / 100) * (Model.ConsorcioAUSA / 100) * Model.ComiteEstimativaPreco)
+                    </td>
+                    <td class="negocios-ocultar">
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSAImediato, new { @class = "campo-valor-grande campo-vgv-ausa" })         
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSAImediato, new { @class = "campo-valor-grande campo-vgv-ausa", disabled = "disabled" })
+                    }
+                    </td>
+                    <td class="negocios-ocultar">
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSACurtoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSACurtoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", disabled = "disabled" })
+                    }
+                    </td>
+                    <td class="negocios-ocultar">
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSAMedioPrazo, new { @class = "campo-valor-grande campo-vgv-ausa" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSAMedioPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", disabled = "disabled" })
+                    }
+                    </td>
+                    <td class="negocios-ocultar">
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSALongoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteVGVAUSALongoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", disabled = "disabled" })
+                    }
+                    </td>
+                    <td class="negocios-ocultar">
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteLucro, new { @class = "campo-valor-grande campo-lucro-receita" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteLucro, new { @class = "campo-valor-grande campo-lucro-receita", disabled = "disabled"  })
+                    }
+                    </td>
+                    <td class="negocios-ocultar">
+                    @if (Model.PermiteEdicaoCampos)
+                    {
+                        @Html.TextBoxFor(model => model.ComiteReceita, new { @class = "campo-valor-grande campo-lucro-receita" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ComiteReceita, new { @class = "campo-valor-grande campo-lucro-receita", disabled = "disabled"  })
+                    }
+                    </td>
+                    <td id="porcentagemGeracaoCaixaComite" class="negocios-ocultar">
+                        @(Model.ComiteLucro.HasValue && (Model.ComiteReceita.HasValue && Model.ComiteReceita.Value > 0) ? (Model.ComiteLucro / Model.ComiteReceita).Value.ToString("P") : String.Empty)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-sub-title table-left" colspan="16">
+                        Landbank
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-left">
+                        Total
+                    </td>
+                    <td class="dadosFinanceiros">
+                        @Html.TextBoxFor(model => model.LandbankAreaTotal, new { @class = "campo-valor" })
+                    </td>
+                    <td>
+                        @(Model.Usos.Sum(u => u.Alv))
+                    </td>
+                    <td>
+                        @(Model.Usos.Sum(u => u.NumeroUnidades))
+                    </td>
+                    <td>
+                    </td>
+                    <td id="totalVGV">
+                    </td>
+                    <td id="totalVGVProprietario">
+                        @(Model.Usos.Sum(u => u.VGVProprietario))
+                    </td>
+                    <td id="totalVGVSocio">
+                        @(Model.Usos.Sum(u => u.VGVSocio))
+                    </td>
+                    <td id="totalVGVAUSA">
+                    </td>
+                    <td id="VGVAUSAImediatoTotal" class="negocios-ocultar">
+                        @(Model.Usos.Sum(u => u.VGVAUSAImediato))
+                    </td>
+                    <td id="VGVAUSACurtoPrazoTotal" class="negocios-ocultar">
+                        @(Model.Usos.Sum(u => u.VGVAUSACurtoPrazo))
+                    </td>
+                    <td id="VGVAUSAMedioPrazoTotal" class="negocios-ocultar">
+                        @(Model.Usos.Sum(u => u.VGVAUSAMedioPrazo))
+                    </td>
+                    <td id="VGVAUSALongoPrazoTotal" class="negocios-ocultar">
+                        @(Model.Usos.Sum(u => u.VGVAUSALongoPrazo))
+                    </td>
+                    <td id="lucroTotal" class="negocios-ocultar">
+                        @{var lucroTotal = (Model.Usos.Sum(u => u.Lucro));}
+                        @(lucroTotal)
+                    </td>
+                    <td id="receitaTotal" class="negocios-ocultar">
+                        @{var receitaTotal = (Model.Usos.Sum(u => u.Receita));}
+                        @(receitaTotal)
+                    </td>
+                    <td id="porcentagemGeracaoCaixa" class="negocios-ocultar">
+                        @(lucroTotal > 0 && receitaTotal > 0 ? (lucroTotal / receitaTotal).Value.ToString("P") : String.Empty)
+                    </td>
+                </tr>
+                @for (int i = 0; i < Model.Usos.Count(); i++)
+                {
+                    var item = Model.Usos.ElementAt(i);
+                    var usos = ((IEnumerable<Uso>)ViewBag.Usos).Where(u => !u.Id.In(Model.Usos.Where(d => d.Uso.Id != item.Uso.Id).Select(d => d.Uso.Id)));
+                @Html.Partial("~/Views/DadosProjeto/DadosFinanceirosUso.cshtml", DadosFinanceirosUsoModel.CriarModel(item, i, Model.PermiteEdicaoCampos, usos))
+                }
+                @if (Model.PermitidoAlteracao && Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosFinanceiros, Acao.Editar, Model.IdProjeto))
+                {
+                <tr>
+                    <td>
+                        <a class="form-bt-add" id="botaoAdicionarUso" href="javascript:void(0);"></a>
+                    </td>
+                    <td colspan="15"></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+@*</form>*@
+
+<table style="margin-top: 20px;">
+    <tr>
+        <td style="width: 900px">
+            @if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosFinanceiros, Acao.ExportarImprimir))
+            {
+            <a class="bt-padrao" href="javascript:void(0);" id="exportarDadosFinanceiros">Exportar</a>
+            }
+        </td>
+        <td>
+            @if (Model.PermitidoAlteracao && Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosFinanceiros, Acao.Editar, Model.IdProjeto))
+            {
+            <a class="bt-padrao" href="javascript:void(0);" id="botaoSalvar">Salvar</a>
+            }
+        </td>
+    </tr>
+</table>

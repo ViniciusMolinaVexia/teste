@@ -1,0 +1,71 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.Cidade.CidadeModel
+@{
+    ViewBag.Title = "AlphaBook - Administração - UF & Cidade";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Cidade/cidade-editar.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/uf-cidade.css")" />
+}
+<div class="container">
+    @if (Model.Id == 0)
+    {
+        <h2>Cadastro de Cidade</h2>
+    }
+    else
+    {
+        <h2>Alteração de Cidade</h2>
+    }
+    <div class="form-container">
+        <a href="@Url.Action("Cidade", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        <form id="form" class="forms">
+        @if (Model.Id.HasValue)
+        {
+            <div class="sep-line-form">
+                <div class="form-line form-id">
+                    <label>
+                        Id:</label>
+                    @Html.TextBoxFor(m => m.Id, new { disabled = "disabled" })
+                </div>
+            </div>
+        }
+        <div class="sep-line-form">
+            <div class="form-line">
+                <label>
+                    *Estado:</label>
+                <div class="box-input-busca">
+                    @if (String.IsNullOrEmpty(Model.SiglaEstado))
+                    {
+                        @Html.DropDownListFor(m => m.SiglaEstado, Model.Ufs, "Selecione", new { id = "estado" })
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(m => m.SiglaEstado, Model.Ufs, "Selecione", new { id = "estado", disabled = "disabled" })
+                    }
+                </div>
+            </div>
+            <div class="form-line form-nome">
+                <label>
+                    *Nome:</label>
+                @Html.TextBoxFor(m => m.Nome, new { maxlength = 50, id = "nome" })
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-latitude">
+                <label>
+                    Latitude:</label>
+                @Html.TextBoxFor(m => m.Latitude, new { id = "latitude", @class = "campo-posicao-global" })
+            </div>
+            <div class="form-line form-longitude">
+                <label>
+                    Longitude:</label>
+                @Html.TextBoxFor(m => m.Longitude, new { id = "longitude", @class = "campo-posicao-global" })
+            </div>
+        </div>
+        <a id="salvar" href="javascript:void(0)" class="bt-padrao" @Html.Conditional(Model.Id.HasValue, "data-id=\"" + @Model.Id + "\"")>
+            Salvar</a>
+        </form>
+    </div>
+</div>

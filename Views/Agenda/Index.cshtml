@@ -1,0 +1,87 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.AgendaModel
+@{
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.AgendaCompromisso, idProjeto: Model.ProjetoId == 0 ? null : (long?)Model.ProjetoId);
+}
+
+<!-- CSS que deve ser carregado junto a tela de Documentos -->
+            <link rel="stylesheet" href="@Url.Content("~/Content/css/agenda.css")" type="text/css" />
+        <!-- END CSS que deve ser carregado junto a tela de Documentos -->
+
+        <div id="cabecalhoProjeto"></div>
+
+        <h2 class="title-documentos">Agenda</h2>
+
+        <div class="forms">
+		    <div class="div-filtro filtro-agenda">
+			    <h4>Filtros</h4>
+			    <div class="input-block">
+                    <label>Status:</label>
+                    @Html.MultipleCheckList("Status", Model.ListaStatus.ToSelectList(text => text.Text, value => value.Value), null, 130, true)
+                </div>
+			    <div class="input-block">
+				    <label>DE:</label>
+				    <input class="filtro-data-agenda"  id="txtDataInicio" type="text" watermark="__/__/____" />
+				    <a class="filtro-calendario" id="icoDataInicio" href="javascript:void(0);">calendário</a>
+			    </div>
+			    <div class="input-block">
+				    <label>ATÉ:</label>
+				    <input class="filtro-data-agenda" id="txtDataFim" type="text" watermark="__/__/____" />
+				    <a class="filtro-calendario" id="icoDataFim" href="javascript:void(0);">calendário</a>
+			    </div>
+			    <a class="bt-padrao-filtro" id="btnFiltrarAgenda" href="javascript:void(0)">Buscar</a>
+
+			    <div class="div-busca-filtro">
+				    <input type="text" watermark="Busca" class="watermark-font filtro-carrossel-nome" id="txtTexto" value="" />
+			    </div>
+		    </div>
+        </div>
+        @if (comportamentoVisual.PodeAdicionar && ViewBag.PodeCriarCompromisso)
+        {
+            <a id="criarCompromisso" href="javascript:void(0)" class="bt-adicionar bt-add-compromisso">Adicionar<br /> Compromisso</a>
+        }
+
+		<div class="box-tabela tabela-agenda">
+            <div class="wrap">
+                <div class="inner">
+                    <table id="tabelaAgenda">
+                        <thead>
+                            <tr>
+	                            <th class="table-title-ord-down colun-1">
+                                    <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Status</a>
+                                </th>
+	                            <th class="table-title-ord-down colun-2">
+                                    <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Data Inicial</a>
+                                </th>
+	                            <th class="table-title-ord-down colun-3">
+                                    <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Data Final</a>
+                                </th>
+	                            <th class="table-title-ord-down colun-4">
+                                    <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Responsável</a>
+                                </th>
+	                            <th class="table-title-ord-down colun-5">
+                                    <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Projeto</a>
+                                </th>
+	                            <th class="table-title colun-6">
+                                    Assunto
+                                </th>
+	                            <th class="table-title-ord-down colun-7">
+                                    <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Cidade</a>
+                                </th>
+	                            <th class="table-title-ord-down colun-8">
+                                    <a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">UF</a>
+                                </th>
+	                            <th class="table-title colun-9"></th>
+	                            <th class="table-title colun-10"></th>
+	                            <th class="table-title colun-11"></th>
+	                            <th class="table-title colun-12"></th>
+	                            <th class="table-title colun-13"></th>
+	                            <th class="table-title colun-14"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+	                </table>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.HierarquiaUsuario>
+
+@foreach(var item in Model)
+{
+    var nome = item.Nome + " " + item.Sobrenome;
+    
+    <li id="@item.Id" data-usuarioid="@item.Id" data-usuarionome="@item.Nome">
+        <a href="javascript:void(0);" data-usuarioid="@item.Id" >@nome</a>
+        @if (item.Filhos.Count() > 0)
+        {
+            <ul>
+                @Html.Partial("HierarquiaUsuario", item.Filhos)
+            </ul>
+        }
+    </li>
+}

@@ -1,0 +1,77 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.ClassificacaoModel
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Documentos/classificacao-editar.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/classificacao.css")" />
+}
+<div class="container">
+    @if (Model.ClassificacaoEdicao.Id == 0)
+    {
+        <h2>Adicionar Classificação</h2>
+    }
+    else
+    {
+        <h2>Editar Classificação</h2>
+    }
+    
+    <div class="form-container">
+        <a href="javascript:history.back();" class="bt-padrao">Voltar</a>
+        <form action="@Url.Action("SalvarClassificacao", "Admin")" id="form" class="forms">
+        
+        <div class="sep-line-form add-pasta-dept">
+                <label>Pasta:</label>
+                <span>@Model.ClassificacaoEdicao.NomeTaxonomia</span> 
+                @Html.Hidden("IdTaxonomia", Model.ClassificacaoEdicao.IdTaxonomia, new { id = "IdTaxonomia" })   
+            </div>
+
+        @if (Model.ClassificacaoEdicao.Id > 0)
+        {   
+            <div class="sep-line-form">
+                <div class="form-line form-id">
+                    <label>Id: <strong>@Model.ClassificacaoEdicao.Id</strong></label>
+                </div>
+            </div>
+        }
+        
+        <div class="sep-line-form form-pasta">
+            <label>
+                Nome da Classificação:</label>
+            <input id="Nome" name="Nome" type="text" value="@Model.ClassificacaoEdicao.Nome" />
+        </div>
+        <div class="sep-line-form form-pasta">
+            <label>
+                Palavras-chave(separados por vírgula):</label>
+            <input id="PalavrasChave" name="PalavrasChave" type="text" value="@Model.ClassificacaoEdicao.PalavrasChave" />
+        </div>
+        <div class="sep-line-form form-pasta">
+            <label>
+                Confidencialidade sugerida:</label>
+            @Html.DropDownListFor(model => model.ClassificacaoEdicao.IdPrivacidade, Model.Privacidades.ToSelectList(text => text.Descricao, value => value.Id), "Selecione", new { id = "PrivacidadeId", Name = "IdPrivacidade" })
+        </div>
+        <div class="adicionar-dir-classificacao">
+            <div class="sep-line-form info-dados-projeto">
+                <label>
+                    Milestone Obigatório:</label>
+                <span class="sep-radio">
+                    <input type="radio" class="checkbox-milestone" name="Milestone" value="S" @Html.Conditional(Model.ClassificacaoEdicao.Milestone, "checked") />Sim</span>
+                <span class="sep-radio">
+                    <input type="radio" class="checkbox-milestone" name="Milestone" value="N" @Html.Conditional(!Model.ClassificacaoEdicao.Milestone, "checked") />Não</span>
+            </div>
+            <div class="sep-line-form pra-que-serve">
+                <label>
+                    Para que serve:</label>
+                <textarea id="ParaQueServe" name="ParaQueServe" rows="10" cols="100" maxlength="255">@Model.ClassificacaoEdicao.ParaQueServe</textarea>
+            </div>
+        </div>
+        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaClassificações, Acao.Adicionar))
+        {
+            <a id="salvar" href="javascript:void(0)" class="bt-padrao" data-id="@Model.ClassificacaoEdicao.Id">Salvar</a>
+        }
+        </form>
+    </div>
+</div>

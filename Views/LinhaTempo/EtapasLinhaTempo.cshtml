@@ -1,0 +1,53 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.LinhaTempo.LinhaTempoModel
+@if (!Model.ExibirLinhaTempo)
+{
+    return;
+}
+
+<div class="box-lt">
+    <div class="content-linha-tempo" style="width: @(Model.EtapasLinhaTempo.Count() * 148)px">
+    @foreach (var item in Model.EtapasLinhaTempo)
+    {
+        <div class="lt-estrutura @Model.ObterClasseCss(item.StatusEtapa)" data-passagemetapaid="@item.PassagemEtapa.Id">
+            <div class="lt-titulo">
+                @item.Etapa.Nome
+            </div>
+            <div class="lt-icone">
+                @if (!Model.AbaFases)
+                {
+                <a data-etapa-id="@item.Etapa.Id" data-status-etapa-id="@item.StatusEtapa.Id" class="ico-status-lt @Html.Conditional(Model.PodeAlterar, "criar-post-etapa")" href="javascript:void(0);"></a>
+                }
+                else
+                {
+                <a data-etapa-id="@item.Etapa.Id" class="ico-status-lt ver-fases-etapa" href="javascript:void(0);"></a>
+                }
+                @if (!Model.AbaFases)
+                {
+                <a class="ico-post-lt ver-posts-etapa" data-etapa-id="@item.Etapa.Id" href="javascript:void(0);">posts</a>    
+                }
+            </div>
+            @if (!Model.AbaFases)
+            {
+            <div class="lt-datas">
+                <span class="lt-dt-1">@Html.Conditional(item.StatusEtapa.Id.In(StatusEtapa.Concluida, StatusEtapa.ConcluidaAposFechamentoProxima), item.DataAlteracaoStatus.ToStringFormat())</span>
+                @if (item.StatusEtapa.Id != StatusEtapa.NaoSeAplica)
+                {
+                <span class="lt-dt-2 data-previsao">
+                    @if (Model.PodeAlterar && (!item.StatusEtapa.Id.In(StatusEtapa.Concluida, StatusEtapa.ConcluidaAposFechamentoProxima)))
+                    {
+                        <a href="javascript:void(0);" class="adicionar-previsao" data-id="@item.Etapa.Id">@(item.DataPrevisao.HasValue ? item.DataPrevisao.ToStringFormat() : "+ Previsão")</a>    
+                    }
+                    else if (item.DataPrevisao.HasValue)
+                    {
+                        @item.DataPrevisao.ToStringFormat()
+                    }
+                </span>
+                <span class="lt-dt-3 data-baseline" style="display:none;">@item.DataBaseline.ToStringFormat()</span>   
+                }
+            </div>
+            }
+        </div>
+    }
+    </div>
+</div>

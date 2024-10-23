@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.UsuarioDto>
+<table id="historicoArquivoModal">
+    <tbody>
+        <tr class="linha-topo">
+            <td class="nome-arquivo">
+                <div>
+                    Usuários</div>
+            </td>
+            <td class="data-inclusao">
+                <div>
+                    Data de inclusão</div>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr data-id="4" class="linha-destaque">
+                <td class="nome-arquivo">
+                    @item.Nome @item.Sobrenome
+                </td>
+                <td>
+                    @item.DataInclusao.Value.ToString("dd/MM/yyyy hh:mm")
+                </td>
+                <td>
+                    <a href="javascript:void(0)" title="Excluir" class="ico-excluir excluir-coordenador" data-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+        @*<tr data-id="5">
+            <td class="nome-arquivo">
+                Usuário.sobrenome
+            </td>
+            <td>
+                19/02/2013 13:58
+            </td>
+            <td>
+                <a href="javascript:void(0)" id="lnkExcluirFase" title="Excluir" class="ico-excluir">
+                    Excluir</a>
+            </td>
+        </tr>
+        <tr data-id="6" class="linha-destaque">
+            <td class="nome-arquivo">
+                Usuário.sobrenome
+            </td>
+            <td>
+                19/02/2013 13:58
+            </td>
+            <td>
+                <a href="javascript:void(0)" id="lnkExcluirFase" title="Excluir" class="ico-excluir">
+                    Excluir</a>
+            </td>
+        </tr>
+        <tr data-id="5">
+            <td class="nome-arquivo">
+                Usuário.sobrenome
+            </td>
+            <td>
+                19/02/2013 13:58
+            </td>
+            <td>
+                <a href="javascript:void(0)" id="lnkExcluirFase" title="Excluir" class="ico-excluir">
+                    Excluir</a>
+            </td>
+        </tr>
+        <tr data-id="6" class="linha-destaque">
+            <td class="nome-arquivo">
+                Usuário.sobrenome
+            </td>
+            <td>
+                19/02/2013 13:58
+            </td>
+            <td>
+                <a href="javascript:void(0)" id="lnkExcluirFase" title="Excluir" class="ico-excluir">
+                    Excluir</a>
+            </td>
+        </tr>
+        <tr data-id="5">
+            <td class="nome-arquivo">
+                Usuário.sobrenome
+            </td>
+            <td>
+                19/02/2013 13:58
+            </td>
+            <td>
+                <a href="javascript:void(0)" id="lnkExcluirFase" title="Excluir" class="ico-excluir">
+                    Excluir</a>
+            </td>
+        </tr>
+        <tr data-id="6" class="linha-destaque">
+            <td class="nome-arquivo">
+                Usuário.sobrenome
+            </td>
+            <td>
+                19/02/2013 13:58
+            </td>
+            <td>
+                <a href="javascript:void(0)" id="lnkExcluirFase" title="Excluir" class="ico-excluir">
+                    Excluir</a>
+            </td>
+        </tr>*@
+    </tbody>
+</table>

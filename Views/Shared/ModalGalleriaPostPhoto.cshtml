@@ -1,0 +1,84 @@
+﻿@model List<Gafisa.AlphaBook.Dominio.DTO.FotoPostDto>
+
+    @*
+        O CSS tem que estar na mesma pasta que o JS:
+        /Scripts/jquery/galleria/themes/classic/galleria.classic.js
+        /Scripts/jquery/galleria/themes/classic/galleria.classic.css
+
+    *@
+    <style>
+        .galleria-modal .content {
+            color: #777;
+            font: 12px/1.4 "helvetica neue",arial,sans-serif;
+            width: 620px;
+            margin: 20px auto;
+        }
+
+        .galleria-modal h1 {
+            font-size: 12px;
+            font-weight: normal;
+            color: #ddd;
+            margin: 0;
+        }
+
+        .galleria-modal p {
+            margin: 0 0 20px
+        }
+
+        .galleria-modal a {
+            color: #22BCB9;
+            text-decoration: none;
+        }
+
+        .galleria-modal .galleria-info-description a {
+            color: #bbb;
+        }
+
+        .galleria-modal .cred {
+            margin-top: 20px;
+            font-size: 11px;
+        }
+
+        /* This rule is read by Galleria to define the gallery height: */
+        #galleria {
+            height: 500px
+        }
+    </style>
+    <div class="seg-modal galleria-modal">
+        <div class="modal-header">
+            <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+            <h2 id="tituloPost"></h2>
+        </div>
+        <div class="modal-body">
+            @if (Model != null && Model.Count > 0)
+            {
+                <div id="galleria">
+                    @foreach (var foto in Model)
+                    {
+                        var url = Url.Action("CarregarFotoPost", "Arquivo", new { id = foto.IdStream, nome = foto.NomeOriginal });
+                        var descptUrl = "/Arquivo/CarregarFotoPost/" + foto.IdStream + "?nome=" + foto.NomeOriginal;
+                        var description = "&lt;a href=&quot;" + descptUrl + "&quot;&gt;Clique aqui para baixar a imagem&lt;/a&gt;";
+
+                        <a href="@url">
+                            <img src="@url"
+                                 data-big="@url" alt="@foto.NomeOriginal"
+                                 data-description="@Html.Raw(description)"
+                                 data-title="@foto.NomeOriginal" />
+                        </a>
+                    }
+
+                </div>
+
+                <script type="text/javascript">
+                    var indexGalleria = 0;
+
+                    Galleria.loadTheme('/Scripts/galleria/themes/galleria.classic.js');
+                    // Initialize Galleria
+                    Galleria.run('#galleria');
+
+
+                </script>
+            }
+        </div>
+    </div>
+

@@ -1,0 +1,98 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Dominio.DTO.CompromissoDto
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div id="modalDetalheAgenda" class="modalDetalheAgenda" data-id="@Model.Id" data-diatodo="@Model.DiaTodo" data-datainicio="@Model.DataInicio.ToLocalTime().ToString("dd/MM/yyyy")" data-horainicio="@Model.DataInicio.ToLocalTime().ToString("HH:mm")" data-usuarioid="@Model.UsuarioId">
+                <div class="ico-agenda">
+                    <h1>Agenda</h1>
+                </div>
+                <div class="div-data-assunto">
+                    
+                         @if (!Model.DiaTodo)
+                         {
+                             <div class="data-assunto">
+                                    <a class="ico-voltar-agenda" title="Voltar" href="javascript:void(0);" id="compromissoVoltar">Voltar</a>
+                                    <span>
+                                        @Model.DataInicio.ToLocalTime().ToString("dd/MM/yyyy") 
+                                        ás
+                                        @Model.DataInicio.ToLocalTime().ToString("HH:mm")
+                                        até
+                                        @Model.DataTermino.ToLocalTime().ToString("dd/MM/yyyy")
+                                        ás
+                                        @Model.DataTermino.ToLocalTime().ToString("HH:mm")
+                                    </span>
+                             </div>
+                         }
+                         else if (@Model.DataTermino.Date.Subtract(Model.DataInicio.Date).Days == 1 )
+                         {
+                             <div class="data-assunto">
+                                    <a class="ico-voltar-agenda" title="Voltar" href="javascript:void(0);" id="compromissoVoltar">Voltar</a>
+                                    <span>
+                                        @Model.DataInicio.ToString("dd/MM/yyyy") o dia todo
+                                    </span>
+                             </div>
+
+                         }
+                         else
+                          {
+                             <div class="data-assunto">
+                                    <a class="ico-voltar-agenda" title="Voltar" href="javascript:void(0);" id="compromissoVoltar">Voltar</a>
+                                    <span>
+                                        @Model.DataInicio.ToString("dd/MM/yyyy")
+                                        até
+                                        @Model.DataTermino.AddDays(-1).ToString("dd/MM/yyyy")
+                                    </span>
+                             </div>
+
+                          }
+                    
+                    <div class="data-assunto" style="margin:20px 0 20px 54px;">@Model.Assunto</div>
+                    
+                </div>
+                <div class="local-reuniao">@Model.Local</div>
+                <div class="msg-detalhe">
+                    @Html.Raw(Model.Mensagem)
+                </div>
+                 @if (Model.Status == StatusCompromisso.NaoRealizada)
+                 {
+                     <div class="msg-detalhe">
+                         Motivo da não realização: @Html.Raw(Model.Motivo)
+                     </div>
+                 }
+                 else if (Model.Status == StatusCompromisso.Futura && !Model.Motivo.IsEmpty())
+                 {
+                      <div class="msg-detalhe">
+                         Motivo do adiamento: @Html.Raw(Model.Motivo)
+                     </div>
+                 }
+                 
+                @foreach (var arquivo in Model.Arquivos)
+                {   
+                    <span><a class="downloadArquivo" data-referencia="@arquivo.NomeArquivo" href="javascript:void(0)">@arquivo.NomeArquivo.Substring(arquivo.NomeArquivo.LastIndexOf('/') + 1)</a>
+                    </span>
+                }
+                <div class="btn-group">
+                    <div id="divNaoConcluido">
+                        <div class="box-tooltip-1">
+                            <div class="box-motivo-nao-concluido">
+                                <input id="txtMotivoNaoConcluido" maxlength="200" type="text" class="watermark-font" watermark="Coloque o motivo" />
+                                <a id="lnkSalvarStatusNaoConcluido" href="javascript:void(0);" title="Ok" class="btn-ok">Ok</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div id="botoesAlterarStatusCompromisso" data-id="@Model.Id">
+                        <a id="lnkConcluido" href="javascript:void(0)" class="btn btn-verde">Concluido</a>
+                        <a id="lnkNaoConcluido" href="javascript:void(0)" class="popover-link btn btn-vermelho" rel="tooltip">Não concluido</a>
+                        <a id="lnkAdiar" href="javascript:void(0)" class="btn btn-azul">Adiar</a>
+                    </div>
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal" id="fechaModalCompromissos">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

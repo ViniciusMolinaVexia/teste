@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.Localizacao.TipoPontoInteresse>
+<div id="modalEstabelecimentos" class="box-estabelecimentos">
+    <div class="">
+        <ul>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                var tipoPontoInteresse = Model.ElementAt(i);
+                var id = String.Concat("chkEstabelecimento_", i + 1);
+                var icone = Url.Content(String.Concat("~/Content/img/pin/", tipoPontoInteresse.Pin));
+                <li>
+                    <input id="@id" type="checkbox" name="estabelecimentos" value="@tipoPontoInteresse.Id" data-icone="@icone" />
+                    <label for="@id" class="pontoInteresse">
+                        @tipoPontoInteresse.Nome
+                    </label>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

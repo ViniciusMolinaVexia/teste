@@ -1,0 +1,39 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Admin.CategoriaContato.CategoriaContatoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "categoria de contato")</p>
+}
+else
+{
+    var podeEditar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.CategoriaContato, Acao.EditarProprios);
+    var podeExcluir = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.CategoriaContato, Acao.RemoverProprios);
+    foreach (var categoria in @Model)
+    {
+    <tr>
+        <td class="colun-1">
+            @categoria.Id
+        </td>
+        <td class="colun-2">
+            @categoria.Nome
+        </td>
+        <td class="colun-3">
+            @categoria.NomeCategoriaPai
+        </td>
+        <td class="colun-4">
+            @if (podeExcluir)
+            {
+                <a href="javascript:void(0);" name="excluir" class="ico-post-excluir ico" data-id="@categoria.Id">
+                    Excluir</a>
+            }
+        </td>
+        <td class="colun-5">
+            @if (podeEditar)
+            {
+                <a class="ico-editar ico" href="@Url.Action("EditarCategoriaContato", "Admin", new { id = categoria.Id })" name="editar" data-id="@categoria.Id" >
+                    Editar</a>
+            }
+        </td>
+    </tr>
+    }
+}

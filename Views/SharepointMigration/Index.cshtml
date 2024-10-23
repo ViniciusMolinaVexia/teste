@@ -1,0 +1,157 @@
+﻿@model  System.Collections.Generic.List<Gafisa.AlphaBook.Models.SharepointMigration.SharepointFilesModel>
+
+    @{
+        ViewBag.Title = @ViewBag.sMigration;
+        Layout = "~/Views/Shared/_LayoutBasic.cshtml";
+    }
+
+    @System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro.css")
+    @System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro-icons.css")
+    @System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro-icons-ie7.css")
+
+
+
+    @section script
+    {
+        <script type="text/javascript" src="@Url.Content("~/Scripts/SharepointMigration/sharepointMigration.js?v=2")"></script>
+        <style type="text/css">
+            .input-indicador{
+                max-width: 100px;
+            }
+            .ck-loop{
+                margin-top: 25px;
+            }
+        </style>
+    }
+
+    <div class="container" style="height: 100%">
+
+        <div class="page-header">
+            <h1>@ViewBag.sMigration</h1>
+        </div>
+
+
+        @{
+            var listFiles = new List<Gafisa.AlphaBook.Models.SharepointMigration.SharepointFilesModel>();
+            if (Model != null)
+            {
+                listFiles = (List<Gafisa.AlphaBook.Models.SharepointMigration.SharepointFilesModel>)Model;
+            }
+        }
+
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/SharepointMigration">Home</a>
+                    <a class="brand" href="/SharepointMigration/ListarArquivosStream">Stream uploaded list</a>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        @if (Model == null)
+        {
+            <form action="/SharepointMigration" method="get">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <label for="inicial">Tabela:</label>
+                        <select id="tb" name="tb">
+                            <option value="arquivos">Tabela de Arquivos</option>
+                            <option value="usuarios">Tabela de usuários</option>
+                            <option value="historico-arquivos">Tabela histórico de Arquivos</option>
+                            <option value="link-email">Tabela link de email</option>
+                            <option value="material-treinamento">Tabela Material de Treinamento</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <label for="inicial">inicial:</label>
+                        <input class="input-indicador" type="number" id="inicial" name="inicial" value="1" />
+                    </div>
+                    <div class="span2">
+                        <label for="final">final:</label>
+                        <input class="input-indicador" type="number" id="final" name="final" value="5" />
+                    </div>
+                    <div class="span2">
+                        <br />
+                        <input type="submit" value="Migrar" />
+                    </div>
+                    <div class="span3">
+                        <label class="checkbox ck-loop">
+                            <input type="checkbox" name="ck-loop" id="ck-loop"><span class="metro-checkbox">Loop</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    
+                </div>
+            </form>
+
+            <hr />
+
+            @*using (Html.BeginForm("PostsFile", "SharepointMigration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="docfile" />
+                    <input type="submit" value="Upload" />
+                }*@
+            @*<h3>Upload da planilha de Inteligência de Mercado</h3>
+            using (Html.BeginForm("ValidarImportacao", "InteligenciaMercado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="file" />
+                <input type="submit" value="Upload" />
+            }*@
+        }
+        else
+        {
+
+            <a type="submit" class="btn btn-primary" href="/SharepointMigration">
+                <i class="icon-arrow-left"></i>Voltar
+            </a>
+
+
+            <div class="row">
+                <div class="span12">
+                    <hr />
+                </div>
+            </div>
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>ID</th>
+                        <th>Imagem Nome</th>
+                        <th>Referência</th>
+                        <th>Migrado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in listFiles)
+                    {
+                        var migrado = file.Migrado ? "OK" : "-";
+
+
+                        <tr>
+                            <td>@file.ColIndex</td>
+                            <td>@file.Id</td>
+                            @if (file.Reference.IsNullOrWhiteSpace() || file.Reference == "-----")
+                            {
+                                <td>@file.Name</td>
+                            }
+                            else
+                            {
+                                <td><a href="/SharepointMigration/ArquivoSharepointPage?tb=@file.Tabela&extension=@file.Extensao&idArquivo=@file.Id" target="_blank">@file.Name</a></td>
+                            }
+                            <td>@file.Reference</td>
+                            <td>@migrado</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+
+    </div>

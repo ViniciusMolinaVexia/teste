@@ -1,0 +1,68 @@
+﻿@using Gafisa.AlphaBook.Dominio.DTO.Projeto
+@model IEnumerable<PassagemDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "passagens do projeto")</p>
+}
+else
+{
+
+    var idsUnicos = Model.Distinct(p => p.IdPassagemProjeto).Select(p => p.IdPassagemProjeto).OrderByDescending(p => p);
+    foreach (var idUnico in idsUnicos)
+    {
+        var origem = this.Model.FirstOrDefault(p => p.IdPassagemProjeto == idUnico && p.TipoPassagem == TipoPassagem.Origem);
+        var destino = this.Model.FirstOrDefault(p => p.IdPassagemProjeto == idUnico && p.TipoPassagem == TipoPassagem.Destino);
+    <tr>
+        <td rowspan="2">
+            <img src="@(!destino.UsuarioId.HasValue ? Url.Content("~/Content/img/ico-passagens-vermelha.png") : Url.Content("~/Content/img/ico-passagens-verde.png"))" alt="passagem com pendência">
+        </td>
+        <td>
+            Destino
+        </td>
+        <td>
+            @destino.StatusProjeto
+        </td>
+        <td>
+            @(destino.DataNovoResponsavel.HasValue ? destino.DataNovoResponsavel.Value.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty)
+        </td>
+        <td>
+            @destino.Departamento
+        </td>
+        <td class="colun-6">
+            @if (destino.UsuarioId.HasValue)
+            {
+                <a title="@destino.Usuario" href="javascript:void(0);">
+                    @Html.ProfilePhoto(destino.UsuarioId.Value)
+                </a>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Origem
+        </td>
+        <td>
+            @origem.StatusProjeto
+        </td>
+        <td>
+            @(origem.DataNovoResponsavel.HasValue ? origem.DataNovoResponsavel.Value.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty)
+        </td>
+        <td>
+            @origem.Departamento
+        </td>
+        <td class="colun-6">
+            @if (origem.UsuarioId.HasValue)
+            {
+                <a href="javascript:void(0);" title="@origem.Usuario">
+                    @Html.ProfilePhoto(origem.UsuarioId.Value)
+                </a>
+            }
+        </td>
+    </tr>
+    <tr class="no-paging">
+        <td class="table-sub-title table-left" colspan="6">
+            &nbsp;
+        </td>
+    </tr>
+    }
+}

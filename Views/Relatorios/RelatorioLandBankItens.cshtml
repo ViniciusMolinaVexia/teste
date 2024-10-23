@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Relatorio.Landbank.ItemRelatorioLandbank>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Projetos")</p>
+}
+else
+{
+    var classeAgrupador = "alternar-grupo";
+    
+    foreach (var projeto in Model)
+    {
+        classeAgrupador = classeAgrupador == "alternar-grupo" ? "" : "alternar-grupo";
+
+        var rowspan = projeto.Usos.Count() + 1;
+        
+        var lucroTotal = projeto.Usos.Sum(d => d.Lucro).GetValueOrDefault();
+        var receitaTotal = projeto.Usos.Sum(d => d.Receita).GetValueOrDefault();
+        var geracaoCaixaTotal = 0m;
+
+        if (lucroTotal > 0 && receitaTotal > 0)
+        {
+            geracaoCaixaTotal = lucroTotal / receitaTotal * 100;
+        }
+        
+        <tr>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.UF
+                                                                        @if (!String.IsNullOrWhiteSpace(projeto.EstadoSecundarioId))
+                                                                        {
+                                                                            <br/>
+                                                                            @projeto.EstadoSecundarioId
+                                                                        }
+                                                                    </div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>@projeto.Cidade
+                                                                        @if (!String.IsNullOrWhiteSpace(projeto.CidadeSecundaria))
+                                                                        {
+                                                                            <br/>
+                                                                            @projeto.CidadeSecundaria
+                                                                        }
+                                                                    </div></td>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.Codigo</div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>&nbsp; @projeto.Produto</div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>@projeto.Nome</div></td>           
+            <td class="colun-2"><div>@(projeto.LandbankAreaTotal.GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2"><div>Total</div></td>
+            <td class="colun-2"><div>@(projeto.Usos.Sum(d => d.Alv).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2"><div>@(projeto.Usos.Sum(d => d.NumeroUnidades).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.ParceriaAUSA%</div></td>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.ConsorcioAUSA%</div></td>
+            <td class="colun-2"><div>-</div></td>
+            <td class="colun-2"><div>@(projeto.Usos.Sum(d => d.ObterVGV(projeto.ParceriaAUSA, projeto.ConsorcioAUSA)).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2"><div>@(projeto.Usos.Sum(d => d.VGVProprietario).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2"><div>@(projeto.Usos.Sum(d => d.VGVSocio).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2"><div>@(projeto.Usos.Sum(d => d.ObterVGVAUSA(projeto.ParceriaAUSA, projeto.ConsorcioAUSA)).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@(projeto.Usos.Sum(d => d.VGVAUSAImediato).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@(projeto.Usos.Sum(d => d.VGVAUSACurtoPrazo).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@(projeto.Usos.Sum(d => d.VGVAUSAMedioPrazo).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@(projeto.Usos.Sum(d => d.VGVAUSALongoPrazo).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@(projeto.Usos.Sum(d => d.Lucro).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@(projeto.Usos.Sum(d => d.Receita).GetValueOrDefault().ToString("N02"))</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@geracaoCaixaTotal.ToString("N02")%</div></td>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.StatusProjeto</div></td>
+            <td class="colun-2 negocios-ocultar @classeAgrupador" rowspan="@rowspan"><div>@(projeto.Comite?"Sim":"Não")</div></td>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.AnoMaturacao</div></td>
+            <td class="colun-2 @classeAgrupador" rowspan="@rowspan"><div>@projeto.Etapa</div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>@(projeto.Responsavel.IsNullOrEmpty() ? "Sem responsável" : projeto.Responsavel)</div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>@projeto.Observacao</div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>@projeto.DivisaoAtiva</div></td>
+            <td class="colun-3 @classeAgrupador" rowspan="@rowspan"><div>@projeto.DivisaoInativa</div></td>
+        </tr>
+    foreach (var item in projeto.Usos)
+    {
+        <tr class="no-paging">
+            <td class="colun-2"><div></div></td>
+            <td class="colun-2"><div>@item.Uso.Nome</div></td>
+            <td class="colun-2"><div>@item.Alv.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2"><div>@item.NumeroUnidades.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2"><div>@item.EstimativaPreco.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2"><div>@item.ObterVGV(projeto.ParceriaAUSA, projeto.ConsorcioAUSA).GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2"><div>@item.VGVProprietario.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2"><div>@item.VGVSocio.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2"><div>@item.ObterVGVAUSA(projeto.ParceriaAUSA, projeto.ConsorcioAUSA).GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.VGVAUSAImediato.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.VGVAUSACurtoPrazo.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.VGVAUSAMedioPrazo.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.VGVAUSALongoPrazo.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.Lucro.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.Receita.GetValueOrDefault().ToString("N02")</div></td>
+            <td class="colun-2 negocios-ocultar"><div>@item.ObterGeracaoCaixa().GetValueOrDefault().ToString("N02")%</div></td>
+        </tr>
+    }
+    }
+}

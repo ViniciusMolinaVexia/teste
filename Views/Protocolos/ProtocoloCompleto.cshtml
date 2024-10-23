@@ -1,0 +1,15 @@
+﻿@model Gafisa.AlphaBook.Models.Home.ProtocoloModel
+        
+<div class="post-completo" id="protocoloCompleto" data-idtaxonomia="@Model.IdTaxonomiaPadrao" data-nometaxonomia="@Model.NomeTaxonomiaPadrao">
+    <div id="postagemCriacao">
+        @Html.Partial(Model.Id == 0 ? "Model/AdicionarProtocolo" : "Model/AdicionarPostCompletoProtocolo", Model)
+
+        @Html.Partial("~/Views/Shared/UploadAnexos.cshtml", Model.Postagem)
+
+        @Html.Partial("~/Views/Shared/AssociacaoProjetos.cshtml", Model.Postagem)
+    
+        <input type="hidden" id="hddProtocolo" value="@Model.Id" />
+
+        <a id="@Html.Conditional(Model.Id == 0, "salvarProtocolo" , "incluirPostCompletoProtocolo")" class="bt-padrao bt-salvar-inferior" href="javascript:void(0);" data-protocolo="@Model.Id" >Salvar</a>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.MaterialTreinamento>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Material de Treinamento")</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+    <tr data-id="@item.Id">
+        <td class="col-1">@item.Titulo</td>
+        <td class="col-2">
+            <a class="ic-download" href="@Url.Action("DownloadArquivo", "Arquivo", new { nome = item.Arquivo.Nome, referencia = item.Arquivo.NomeBiblioteca, idImagem = item.Arquivo.IdStream })">Download</a>
+        </td>
+        <td class="col-3">
+            <a class="ic-excluir" data-id="@item.Id" href="javascript:void(0);">Excluir</a>
+        </td>
+    </tr>
+    }
+}

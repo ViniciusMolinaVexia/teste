@@ -1,0 +1,142 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.DadosTerrenoModel
+<form class="forms" id="formDadosTerreno" data-id="@Model.Id">
+@{
+    var podeAlterar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosTerreno, Acao.Editar, Model.IdProjeto);
+    <fieldset>
+        <div class="form-line form-cep">
+            <label>
+                CEP:</label>
+            <div class="box-input-busca">
+                @Html.TextBoxFor(model => model.CEP)
+                @if(podeAlterar)
+                {
+                    <a id="btnBuscarCep" data-preventOnPressEnter="true" href="javascript:void(0);">Buscar</a>
+                }
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-logradouro">
+                <label>
+                    Logradouro:</label>
+                <input type="text" value="@Model.Logradouro" id="Logradouro" name="Logradouro" />
+            </div>
+            <div class="form-line form-numero">
+                <label>
+                    Número:</label>
+                <input type="text" value="@Model.Numero" id="Numero" name="Numero" class="campo-inteiro" />
+            </div>
+            <div class="form-line form-complento">
+                <label>
+                    Complemento:</label>
+                <input type="text" value="@Model.Complemento" id="Complemento" name="Complemento" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-bairro">
+                <label>
+                    Bairro:</label>
+                <input type="text" value="@Model.Bairro" id="Bairro" name="Bairro" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-UF">
+                <label>UF Principal:</label>
+                @Html.DropDownListFor(model => model.EstadoId, Model.UFs, "Selecione", new { id = "Estado" })
+            </div>
+            <div class="form-line form-cidade">
+                <label>Cidade Principal:</label>
+                <input type="text" value="@Model.Cidade" data-id="@Model.CidadeId" id="cidade" name="Cidade" data-preventOnPressEnter="true" />
+            </div>
+            <div class="form-line">
+                <br/>
+                <a class="form-bt-add" id="botaoAdicionarCidadeSecundaria" href="javascript:void(0);"></a>
+            </div>
+        </div>
+        <div id="divCidadeSecundaria" class="sep-line-form @Html.Conditional(Model.CidadeSecundariaId > 0, "", "hide")">
+            <div class="form-line form-UF">
+                <label>UF:</label>
+                @Html.DropDownListFor(model => model.EstadoSecundarioId, Model.UFs, "Selecione", new { id = "EstadoSecundario" })
+            </div>
+            <div class="form-line form-cidade">
+                <label>Cidade:</label>
+                <input type="text" value="@Model.CidadeSecundaria" data-id="@Model.CidadeSecundariaId" id="cidadeSecundaria" name="CidadeSecundaria" @Html.Conditional(Model.CidadeSecundariaId > 0, "", "disabled=\"disabled\"") data-preventOnPressEnter="true" />
+            </div>
+            <div class="form-line">
+                <br/>
+                <a class="form-bt-remove" id="botaoRemoverCidadeSecundaria" href="javascript:void(0);"></a>
+            </div>
+        </div>
+        @if (Model.CidadeSecundariaId > 0)
+        {
+        <script type="text/javascript">gafisa.alphabook.home.dadosProjeto.configurarAutoCompleteCidade(false);</script>
+        }
+        <div class="sep-line-form" id="matricula_area_0">
+            <div class="form-line form-matriculas">
+                <label>
+                    Matrículas:</label>
+                <input type="text" id="matricula_0" value="@(Model.Matriculas != null && Model.Matriculas.Length > 0 && Model.Matriculas[0].Valor.HasValue ? Model.Matriculas[0].Valor.Value.ToString() : string.Empty)" class="campo-inteiro" />
+            </div>
+            <div class="form-line form-area">
+                <label>
+                    Área:</label>
+                <input type="text" id="area_0" value="@(Model.Matriculas != null && Model.Matriculas.Length > 0 && Model.Matriculas[0].Area.HasValue ? Model.Matriculas[0].Area.Value.ToString() : string.Empty)" class="campo-valor" />
+                @if(podeAlterar)
+                {
+                    <a class="form-bt-add" id="adicionarMatricula" href="javascript:void(0);">Adicionar</a>
+                }
+            </div>
+        </div>
+        @if (Model.Matriculas != null)
+            {
+                for (int i = 1; i < Model.Matriculas.Length; i++)
+                {
+                    var matricula = Model.Matriculas[i];
+            <div class="sep-line-form" id="@string.Format("matricula_area_{0}", i)">
+                <div class="form-line form-matriculas">
+                    <input type="text" id="@string.Format("matricula_{0}", i)" value="@(matricula.Valor.HasValue ? matricula.Valor.Value.ToString() : string.Empty)" class="campo-inteiro" />
+                </div>
+                <div class="form-line form-area">
+                    <input type="text" id="@string.Format("area_{0}", i)" value="@(matricula.Area.HasValue ? matricula.Area.Value.ToString() : string.Empty)" class="campo-valor" />
+                    <a class="form-bt-remove" href="javascript:void(0);" id="@string.Format("remover_", i)" >
+                        Remover</a>
+                </div>
+            </div>
+                }
+            }
+        <div class="sep-line-form">
+            <div class="form-line form-matriculas-unificadas">
+                <label>
+                    Matrícula unificada:</label>
+                <input type="text" value="@Model.MatriculaUnificada" id="matriculaUnificada" name="MatriculaUnificada" class="campo-inteiro" />
+            </div>
+            <div class="form-line form-area-total">
+                <label>
+                    Área total:</label>
+                <input type="text" value="@Model.AreaTotal" id="areaTotal" name="AreaTotal" class="campo-valor-grande" />
+            </div>
+            <div class="form-line form-area-poligono">
+                <label>
+                    Área do poligono (m2):</label>
+                <span id="areaPoligono">@(Model.AreaPoligono.HasValue ? Model.AreaPoligono.Value.ToString("N2") : String.Empty)</span>
+                @if(podeAlterar)
+                {
+                    <a class="pin-cidade editar-poligono" href="javascript:void(0)" id="editarPoligono">
+                        Pin</a>
+                }
+                else
+                {
+                    <a href="javascript:void(0)" class="ico-localizacao navegar-mapa dadosProjeto" title="" data-id="@Model.IdProjeto" data-tipo="projeto" data-idprojeto="@Model.IdProjeto" aria-describedby="ui-tooltip-1">
+                        Localização</a>
+                }
+            </div>
+        </div>
+        <div>
+            @if (Model.PermitidoAlteracao && podeAlterar)
+            {
+                <a class="bt-padrao" href="javascript:void(0);" id="botaoSalvarDadosTerreno">Salvar</a>
+            }
+        </div>
+    </fieldset>
+}
+</form>

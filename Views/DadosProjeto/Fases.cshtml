@@ -1,0 +1,51 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Dominio.DTO.Projeto.FaseDto 
+<h3>
+    Fases do Projeto:</h3>
+    @if (Model.IdResponsavel.HasValue)
+    {
+        if (Model.IdResponsavel == Model.IdUsuarioLogado && Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoFases, Acao.Adicionar))
+        {
+            <div>
+                <a class="bt-adicionar" href="javascript:void(0);" id="botaoAdicionarFase">Adicionar
+                    fase</a>
+            </div>
+        }
+    }
+<div>
+    <div class="box-tabela tabela-fases" style="display: none;">
+        <div class="wrap table2">
+            <div class="inner">
+                <table style="width: 100%;" id="tabelaFasesProjeto">
+                    <thead>
+                        <tr>
+                            <th class="table-title-ord-down colun-1">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Seq.</a>
+                            </th>
+                            <th class="table-title-ord-down colun-2">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Código Projeto</a>
+                            </th>
+                            <th class="table-title-ord-down colun-3">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Nome do Projeto</a>
+                            </th>
+                            <th class="table-title-ord-down colun-4">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Data / Hora</a>
+                            </th>
+                            <th class="table-title-ord-down colun-5">
+                                <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Status</a>
+                            </th>
+                            <th class="table-title-ord-down colun-6">
+                                <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Responsável</a>
+                            </th>
+                            <th class="table-title colun-7">
+                                &nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

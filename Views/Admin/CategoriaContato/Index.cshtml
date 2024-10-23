@@ -1,0 +1,61 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Admin.CategoriaContato.PesquisaCategoriaContatoModel
+@{
+    ViewBag.Title = "AlphaBook - Administração - Categoria de contato";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/CategoriaContato/categoria-contato-pesquisa.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/categoria-contato.css")" />
+}
+<h2>Categoria de contato</h2>
+<div id="filtros">
+    <div class="div-filtro">
+        <div class="input-block">
+            <div class="div-busca-filtro">
+                <input type="text" watermark="Busca" class="watermark-font" id="termo" name="Termo"
+                       value="" maxlength="255" />
+            </div>
+        </div>
+        <a id="buscar" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+    </div>
+</div>
+@if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.CategoriaContato, Acao.Adicionar))
+{
+    <div class="div-acoes">
+        <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarCategoriaContato", "Admin")">Adicionar
+            Categoria</a>
+    </div>
+}
+<div id="corpo">
+    <p class="msg-sem-retorno" id="nenhumaInformacaoSelecionada">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.NenhumaInformacaoSelecionada</p>
+    <div class="box-tabela hide">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th class="table-title colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Categoria</a>
+                            </th>
+                            <th class="table-title colun-3 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Categoria Pai</a>
+                            </th>
+                            <th class="table-title colun-4">
+                            </th>
+                            <th class="table-title colun-5">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

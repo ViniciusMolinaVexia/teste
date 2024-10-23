@@ -1,0 +1,386 @@
+/* Filtros */
+.filtro-agenda .div-busca-filtro {width: 164px;}
+    .filtro-agenda .div-busca-filtro .filtro-carrossel-nome{width: 163px;}
+
+.filtro-todos-agenda{width:125px;}
+.filtro-agenda{
+	width: 785px;
+	padding:5px 11px !important;
+}
+.check-todos-projetos{
+	margin-top: 8px;
+}
+
+.bt-add-compromisso{
+	line-height: 12px !important;
+	margin-left: 0px !important;
+}
+	.input-block{
+		margin-right: 5px !important;
+	}
+	.div-filtro .input-block label{
+		margin-left: 0px !important
+	}
+
+
+	.filtro-data-agenda{
+		width:75px !important;
+	}
+	.filtro-calendario{
+		display:block;
+		float:left;
+		width:15px;
+		height:15px;
+		margin:6px 0 0 4px;
+		text-indent:-9999px;
+		over-flow:hidden;
+		background:url(../img/ico-calendario.png) no-repeat;
+	}
+
+    .filtro-agenda button.ui-multiselect {
+        max-width: 130px !important;
+    }
+/* END Filtros */
+
+/* Tabela de Agenda */
+.tabela-agenda table{
+	width:100%;
+}
+	.tabela-agenda table thead tr th a{padding:15px 0;}
+
+	.tabela-agenda th.colun-1{width: 72px;}
+	.tabela-agenda th.colun-2{width: 65px;}
+	.tabela-agenda th.colun-3{width: 58px;}
+	.tabela-agenda th.colun-4{width: 98px;}
+	.tabela-agenda th.colun-5{width: 59px;}
+	.tabela-agenda th.colun-6{width: 175px;}
+	.tabela-agenda th.colun-7{width: 59px;}
+	.tabela-agenda th.colun-8{width: 81px;}
+	.tabela-agenda th.colun-9{width: 30px;}
+	.tabela-agenda th.colun-10{width: 30px;}
+	.tabela-agenda th.colun-11{width: 30px;}
+	.tabela-agenda th.colun-12{width: 30px;}
+	.tabela-agenda th.colun-13{width: 30px;}
+	.tabela-agenda th.colun-14{width: 30px;}
+	
+	.tabela-agenda td.colun-1{width: 72px;}
+	.tabela-agenda td.colun-2{width: 65px;}
+	.tabela-agenda td.colun-3{width: 58px;}
+	.tabela-agenda td.colun-4{width: 130px;}
+	.tabela-agenda td.colun-5{width: 98px;}
+	.tabela-agenda td.colun-6{width: 259px;}
+	.tabela-agenda td.colun-7{width: 155px;}
+	.tabela-agenda td.colun-8{width: 50px;}
+	.tabela-agenda td.colun-9{width: 30px;}
+	.tabela-agenda td.colun-10{width: 30px;}
+	.tabela-agenda td.colun-11{width: 30px;}
+	.tabela-agenda td.colun-12{width: 30px;}
+	.tabela-agenda td.colun-13{width: 30px;}
+	.tabela-agenda td.colun-14{width: 30px;}
+    
+    .tabela-agenda .wrap {padding: 63px 0 0; height: 450px;}
+    
+    .tabela-agenda .inner {height: 450px !important;}
+    
+	.agn-agendado{color:#252dd5 !important;}
+	.agn-pendente{color:#d50303 !important;}
+	.agn-concluida{color:#62bb46 !important;}
+
+	.table-img-usuario{
+		float:left;
+		width:21px;
+		height:21px;
+		padding:4px 5px 0px 3px;
+	}
+
+	.ico{
+		display:block;
+		margin:0 auto;
+		text-indent:-9999px;
+		over-flow:hidden;
+	}
+	.ico-comentario{background:url(../img/ico-comentario.png) no-repeat; width:20px; height:14px;}
+		.ico-comentario-inativo{background:url(../img/ico-comentario-inativo.png) no-repeat; width:20px; height:14px; cursor:default;}
+
+	.ico-atribuir-responsavel{background:url(../img/ico-atribuir-agenda.png) no-repeat; width:35px; height:17px;}
+	
+	.ico-atribuir-responsavel-inativo{background:url(../img/ico-atribuir-agenda-inativo.png) no-repeat; width:35px; height:17px;}
+
+	.ico-pin{background:url(../img/pin-contato-ativo.png) no-repeat; width:12px; height:16px;}
+		.ico-pin-inativo{background:url(../img/pin-contato-inativo.png) no-repeat; width:12px; height:16px; cursor:default;}
+
+	.ico-lembrete{background:url(../img/ico-lembrete.png) no-repeat; width:16px; height:16px;}
+		.ico-lembrete-inativo{background:url(../img/ico-lembrete-inativo.png) no-repeat; width:16px; height:16px; cursor:default;}
+
+	.ico-editar{background:url(../img/ico-editar.png) no-repeat; width:13px; height:14px;}
+
+	.ico-excluir{background:url(../img/ico-excluir.png) no-repeat; width:17px; height:17px; text-indent: -9999px; display: block;}
+/* END Tabela de Agenda */
+
+
+
+
+/* Criar - Editar Compromisso */
+
+.editar-compromisso {
+    padding: 1em 1.4em;
+    background-color: #FFFFFF;
+    float: left;
+}
+
+.editar-compromisso .form-superior label {
+    display: inline-block !important;
+}
+
+.editar-compromisso .form-data-inicial {
+    width: 215px;
+}
+
+.editar-compromisso .form-data-inicial input {
+    width: 90px;
+}
+
+.editar-compromisso .form-hora-inicial {
+    margin-left: 20px;
+    width: 65px;
+}
+
+.editar-compromisso .form-agenda {
+    width: 16px;
+}
+
+.editar-compromisso .form-agenda .ico-calendario {
+    background: url("../img/ico-calendario.png") no-repeat scroll 0 center #FFFFFF;
+    width: 16px;
+    height: 34px;
+    float: left;
+    text-indent: -9999px;
+}
+
+
+
+.editar-compromisso .form-agenda .ico-calendario-inativo
+{
+    background: url("../img/icons/ico-calendario-inativo.png") no-repeat scroll 0 0 transparent;
+    color: #006655;
+    display: inline-block;
+    text-indent: -9999px;
+    height: 17px;
+    width: 40px;
+}
+
+.editar-compromisso .form-hora-inicial input {
+    width: 52px;
+}
+
+.editar-compromisso .form-data-final {
+    width: 205px;
+    margin-left: 135px;
+}
+
+.editar-compromisso .form-data-final input {
+    width: 90px;
+}
+
+.editar-compromisso .form-hora-final {
+    margin-left: 20px;
+    width: 65px;
+}
+
+.editar-compromisso .form-hora-final input {
+    width: 52px;
+}
+.editar-compromisso .sep-radio {
+    float: left;
+    margin: 8px 0 0 40px;
+}
+
+.editar-compromisso .form-lembrete {
+    width: 250px;
+}
+
+.editar-compromisso .form-status {
+    width: 144px;
+    margin-left: 125px;
+}
+
+.atividade-concluida {
+    margin: 20px 0 0 40px !important;
+}
+
+
+
+
+.editar-compromisso .bt-buscar-contato {
+    float: left !important;
+    margin-left: 0 !important;
+}
+
+.editar-compromisso .form-contato {
+    /*display: none;*/
+}
+
+    /* Form Contato */
+    
+    .editar-compromisso .form-cep {
+        width: 250px;
+    }
+    
+    .editar-compromisso .form-logradouro {
+        width: 517px;
+    }
+    
+    .editar-compromisso .form-numero {
+        margin-left: 20px;
+        width: 100px;
+    }
+    
+    .editar-compromisso .form-complemento {
+        margin-left: 20px;
+        width: 250px;
+    }
+    
+    .editar-compromisso .form-bairro {
+        width: 397px;
+    }
+    
+    .editar-compromisso .form-UF {
+        margin-left: 20px;
+        width: 100px;
+    }
+    
+    .editar-compromisso .form-cidade {
+        margin-left: 20px;
+        width: 370px;
+    }
+    
+    /* Fim Form Contato */
+    
+
+
+.editar-compromisso .box-tabela {
+    overflow: hidden;
+}
+
+.editar-compromisso .tabela-contato table thead {
+    border-bottom: 1px solid #a1a1a1 !important;
+}
+
+.editar-compromisso .tabela-contato table {
+    border-collapse: collapse !important;
+    margin: 20px 0;
+    width: 892px;
+}
+
+.editar-compromisso .box-tabela table thead tr th {
+    border-bottom: 4px solid #006655;
+    padding: 10px;
+    text-align: center;
+}
+
+.editar-compromisso .box-tabela table tbody tr td.dados-contato {
+    text-align: left;
+}
+
+/* Convidados */
+.textarea-convidados-compromisso{
+	width:100% !important;
+}	
+	
+	.textarea-convidados-compromisso ul.holder {
+		font-size: 14px;
+		color: #a1a1a1;
+		border: 1px solid #096b5b;
+		padding: 8px 5px;
+		font-weight: normal;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	}
+/* END Convidados *
+
+
+.box-tabela table .ico-excluir {
+    margin-left: 5px;
+}
+
+.editar-compromisso .tabela-contato .colun-1 {width: 250px;}
+.editar-compromisso .tabela-contato .colun-2 {width: 60px;}
+.editar-compromisso .tabela-contato .colun-3 {width: 410px;}
+.editar-compromisso .tabela-contato .colun-4 {width: 70px;}
+.editar-compromisso .tabela-contato .colun-5 {width: 17px;}
+
+/* Fim Criar - Editar Compromisso */
+
+
+/* Modal Buscar Contato */
+
+#modalBuscaContato {
+    overflow-y: hidden !important;
+    padding-bottom: 30px;
+}
+
+#modalBuscaContato .div-filtro h4 {
+    margin-right: 10px !important;
+}
+
+#modalBuscaContato .categoria {
+    width: 126px;
+    margin-right: 8px;
+}
+
+#modalBuscaContato .filtro-alfabetico {
+    width: 695px;
+}
+
+#modalBuscaContato .filtro-alfabetico a {
+    padding: 0 6px;
+}
+
+#modalBuscaContato .box-contatos {
+    padding: 0 60px;
+    height: 280px;
+    overflow-y: scroll;
+}
+
+#modalBuscaContato .item-contatos {
+    width: 309px;
+    float: left;
+    margin: 0 20px 20px 0px;
+}
+
+#modalBuscaContato .item-contatos.last {
+    margin-right: 0 !important;
+}
+
+#modalBuscaContato .box-dados-contato {
+    font-size: 12px;
+}
+
+#modalBuscaContato .bt-padrao {
+    margin: -8px 10px 9px 0;
+    padding: 3px 15px;
+}
+
+
+/* Confidencialidade Icones*/
+.box-lista-convidados {
+    position:absolute;
+    border:2px solid #ccc;
+    background:#FFF;
+    width:180px;
+    top:12px;
+    right:-200px
+}
+    .box-lista-convidados h3 {
+        font-size:17px;
+        font-weight:bold;
+        padding:7px;
+        border-bottom:1px solid #ccc;
+    }
+    .box-lista-convidados ul li {
+        list-style:none;
+        font-size:14px;
+        padding:5px;
+    }
+/* END Confidencialidade Icones*/

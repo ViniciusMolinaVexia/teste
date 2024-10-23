@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.StatusProjeto>
+<div id="ListaStatusProjeto" class="hide">
+    <ul>
+        @{
+            var departamentos = Model.Select(o => o.DepartamentoId).Distinct();
+            foreach(var departamento in departamentos)
+             {
+                 long idDepartamento = departamento;
+                 var status = Model.Where(x => x.DepartamentoId == idDepartamento).OrderBy(x => x.Ordem);
+                 
+                 <li id="0">
+                    <a href="javascript:void(0);">@status.First().Departamento</a>
+                    <ul>
+                        @foreach (var statusProjeto in status)
+                        {
+                            <li id="@statusProjeto.Id" data-statusnome="@statusProjeto.Nome">
+                                    <a href="javascript:void(0);" data-statusprojetoid="@statusProjeto.Id" >@statusProjeto.Nome</a>
+                            </li>
+                        }
+                    </ul>
+                 </li>
+             }
+        }
+    </ul>
+</div>

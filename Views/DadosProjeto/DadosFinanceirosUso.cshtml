@@ -1,0 +1,111 @@
+﻿@model Gafisa.AlphaBook.Models.Home.DadosFinanceirosUsoModel
+@{
+   var i = Model.Indice;
+   var item = Model.DadosFinanceirosUso;
+}
+<tr class="linha-uso">
+    <td>
+    </td>
+    <td>
+        @{ var usos = Model.Usos.ToSelectList(u => u.Nome, u => u.Id, selectedValue: item.Uso.GetValueOrDefault(u => u.Id));}
+        @Html.DropDownList("Uso", usos, new { id = "Uso_" + i })
+    </td>
+    <td>
+        @Html.TextBox("Alv", item.Alv, new { @class = "campo-valor campo-formula-vgv", id = "Alv_" + i })
+    </td>
+    <td>
+        @Html.TextBox("NumeroUnidades", item.NumeroUnidades, new { @class = "campo-inteiro", id = "NumeroUnidades_" + i, style = "text-align: right" })
+    </td>
+    <td>
+        @Html.TextBox("EstimativaPreco", item.EstimativaPreco, new { @class = "campo-valor campo-formula-vgv", id = "EstimativaPreco_" + i })
+    </td>
+    <td id="@("totalVGV_" + i)">
+        0,00
+    </td>
+    <td>
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("VGVProprietario", item.VGVProprietario, new { @class = "campo-valor-grande campo-vgv", id = "VGVProprietario_" + i })
+    }
+    else
+    {
+        @Html.TextBox("VGVProprietario", item.VGVProprietario, new { @class = "campo-valor-grande campo-vgv", id = "VGVProprietario_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td>
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("VGVSocio", item.VGVSocio, new { @class = "campo-valor-grande campo-vgv", id = "VGVSocio_" + i })
+    }
+    else
+    {
+        @Html.TextBox("VGVSocio", item.VGVSocio, new { @class = "campo-valor-grande campo-vgv", id = "VGVSocio_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td id="@("totalVGVAUSA_" + i)">
+        0,00
+    </td>
+    <td class="negocios-ocultar">
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("VGVAUSAImediato", item.VGVAUSAImediato, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSAImediato_" + i })
+    }
+    else
+    {
+        @Html.TextBox("VGVAUSAImediato", item.VGVAUSAImediato, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSAImediato_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td class="negocios-ocultar">
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("VGVAUSACurtoPrazo", item.VGVAUSACurtoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSACurtoPrazo_" + i })
+    }
+    else
+    {
+        @Html.TextBox("VGVAUSACurtoPrazo", item.VGVAUSACurtoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSACurtoPrazo_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td class="negocios-ocultar">
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("VGVAUSAMedioPrazo", item.VGVAUSAMedioPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSAMedioPrazo_" + i })
+    }
+    else
+    {
+        @Html.TextBox("VGVAUSAMedioPrazo", item.VGVAUSAMedioPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSAMedioPrazo_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td class="negocios-ocultar">
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("VGVAUSALongoPrazo", item.VGVAUSALongoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSALongoPrazo_" + i })
+    }
+    else
+    {
+        @Html.TextBox("VGVAUSALongoPrazo", item.VGVAUSALongoPrazo, new { @class = "campo-valor-grande campo-vgv-ausa", id = "VGVAUSALongoPrazo_" + i, disabled = "disabled" })
+    }   
+    </td>
+    <td class="negocios-ocultar">
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("Lucro", item.Lucro, new { @class = "campo-valor-grande campo-lucro-receita", id = "Lucro_" + i })
+    }
+    else
+    {
+        @Html.TextBox("Lucro", item.Lucro, new { @class = "campo-valor-grande campo-lucro-receita", id = "Lucro_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td class="negocios-ocultar">
+    @if (Model.PermiteEdicaoCampos)
+    {
+        @Html.TextBox("Receita", item.Receita, new { @class = "campo-valor-grande campo-lucro-receita", id = "Receita_" + i })
+    }
+    else
+    {
+        @Html.TextBox("Receita", item.Receita, new { @class = "campo-valor-grande campo-lucro-receita", id = "Receita_" + i, disabled = "disabled" })
+    }
+    </td>
+    <td id="@("porcentagemGeracaoCaixa_" + i)" class="negocios-ocultar">
+        @(item.Lucro > 0 && item.Receita > 0 ? (item.Lucro.Value / item.Receita.Value).ToString("P") : "0,00%")
+    </td>
+</tr>

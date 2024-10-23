@@ -1,0 +1,149 @@
+﻿.inner {
+    height: 375px !important;
+}
+.wrap
+{
+    height: 417px !important;
+}
+
+.form-container
+{
+    background: #FFF !important;
+    padding: 30px !important;
+    height: 700px;
+}
+
+#form .form-ativo {
+    width: 40px;
+}
+
+#form .form-assunto {
+    width: 800px;
+}
+
+#form .form-corpo {
+    width: 600px;
+}
+
+#form .form-variaveis {
+    width: 200px;
+    padding-left: 20px; 
+}
+
+#form .form-inicial {
+    width: 150px;
+}
+
+#form .form-final {
+    width: 150px;
+}
+
+#form .form-lancado {
+    width: 150px;
+}
+
+#form .form-visivel {
+    width: 150px;
+}
+
+#form .form-cobranca {
+    width: 270px;
+}
+
+.div-acoes 
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#filtros .div-filtro 
+{
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 937px;
+}
+
+#tabela tbody
+{
+    width: 935px !important;
+    clear: both;
+}
+
+#tabela th {
+    border-right: none;
+}
+
+#tabela th.colun-1
+{
+    width: 40px;
+}
+
+#tabela th.colun-2
+{
+    width: 195px;
+}
+
+#tabela th.colun-3
+{
+    width: 246px;
+}
+
+#tabela th.colun-4
+{
+    width: 349px;
+}
+
+#tabela th.colun-5
+{
+   width: 48px;
+}
+
+#tabela th.colun-6
+{
+    width: 54px;
+}
+
+
+#tabela td.colun-1
+{
+    width: 41px;
+}
+
+#tabela td.colun-2
+{
+    width: 200px;
+    text-align: left;
+}
+
+#tabela td.colun-3
+{
+    width: 250px ;
+    text-align: left;
+}
+
+#tabela td.colun-4
+{
+    width: 270px;
+    text-align: left;
+}
+
+#tabela td.colun-5
+{
+    width: 50px;
+    padding-left: 15px;
+}
+
+#tabela td.colun-6
+{
+    width: 50px;
+}
+
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 2px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}

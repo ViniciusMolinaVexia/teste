@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.UsuarioDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Usuário")</p>
+}
+else
+{
+    foreach (var usuario in Model)
+    {
+        <tr data-id="@usuario.Id">
+            <td class="table-left colun-1">@usuario.Id</td>
+			<td class="colun-2">@usuario.Login</td>
+            <td class="colun-3">@usuario.NomeCompleto</td>
+            <td class="colun-4">@usuario.Departamento</td>
+			<td class="colun-5">@usuario.Cargo</td>
+			<td class="colun-6">@(usuario.Inativo ? "Inativo" : "Ativo" )</td>
+			<td class="colun-7">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Usuários, Acao.EditarProprios))
+            {
+                <a class="ic-editar" data-id="@usuario.Id" href="@Url.Action("EditarUsuario", "Admin", new { id = usuario.Id })">Editar</a>
+            }
+            </td>
+        </tr>
+    }
+}

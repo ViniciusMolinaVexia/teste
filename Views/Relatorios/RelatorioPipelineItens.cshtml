@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Relatorio.Pipeline.ItemRelatorioPipeline>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "pipeline dos projetos")</p>
+}
+else
+{
+    foreach (var pipeline in Model)
+    {
+    <tr>
+        <td class="colun-2">
+            @pipeline.Uf
+            @if (!String.IsNullOrWhiteSpace(pipeline.EstadoSecundarioId))
+            {
+                <br/>
+                @pipeline.EstadoSecundarioId
+            }
+        </td>
+        <td class="colun-3">
+            @pipeline.Cidade
+            @if (!String.IsNullOrWhiteSpace(pipeline.CidadeSecundaria))
+            {
+                <br/>
+                @pipeline.CidadeSecundaria
+            }
+        </td>
+        <td class="colun-2">
+            @pipeline.Codigo
+        </td>
+        <td class="colun-3">
+            @pipeline.Produto
+        </td>
+        <td class="colun-3">
+            @pipeline.NomeProjeto
+        </td>
+        <td class="colun-2">
+            @(pipeline.ComiteAreaTotal.ToString("N2"))
+        </td>
+        <td class="colun-2">
+            @(pipeline.ComiteAlv.ToString("N0"))
+        </td>
+        <td class="colun-2">
+            @(pipeline.ComiteNumeroUnidades.ToString("N0"))
+        </td>
+        <td class="colun-2">
+            @(pipeline.ParceriaAUSA)%
+        </td>
+        <td class="colun-2">
+            @(pipeline.ConsorcioAUSA)%
+        </td>
+        <td class="colun-2">
+            @(pipeline.ComiteEstimativaPreco.ToString("N2"))
+        </td>
+        <td class="colun-2">
+            @((pipeline.ComiteVGVProprietario + pipeline.ComiteVGVSocio + (pipeline.ComiteVGVAUSALongoPrazo + pipeline.ComiteVGVAUSAMedioPrazo + pipeline.ComiteVGVAUSACurtoPrazo + pipeline.ComiteVGVAUSAImediato)).ToString("N2"))
+        </td>
+        <td class="colun-2">
+            @(pipeline.ComiteVGVProprietario.ToString("N2"))
+        </td>
+        <td class="colun-2">
+            @(pipeline.ComiteVGVSocio.ToString("N2"))
+        </td>
+        <td class="colun-2">
+            @((pipeline.ComiteVGVAUSALongoPrazo + pipeline.ComiteVGVAUSAMedioPrazo + pipeline.ComiteVGVAUSACurtoPrazo + pipeline.ComiteVGVAUSAImediato).ToString("N2"))
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @(pipeline.ComiteVGVAUSAImediato.ToString("N2"))
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @(pipeline.ComiteVGVAUSACurtoPrazo.ToString("N2"))
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @(pipeline.ComiteVGVAUSAMedioPrazo.ToString("N2"))
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @(pipeline.ComiteVGVAUSALongoPrazo.ToString("N2"))
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @if (pipeline.ComiteLucro.HasValue)
+            {
+                @(pipeline.ComiteLucro.Value.ToString("N2"))
+            }
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @if (pipeline.ComiteReceita.HasValue)
+            {
+                @(pipeline.ComiteReceita.Value.ToString("N2"))
+            }
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @if (pipeline.ComiteReceita.HasValue && pipeline.ComiteLucro.HasValue)
+            {
+                @(pipeline.ComiteReceita.Value > 0 ? (pipeline.ComiteLucro.Value / pipeline.ComiteReceita.Value).ToString("P") : "0")
+            }
+        </td>
+        <td class="colun-2 negocios-ocultar">
+            @(pipeline.Comite ? "Sim" : "Não")
+        </td>
+        <td class="colun-2">
+            @pipeline.Status
+        </td>
+        <td class="colun-2">
+            @pipeline.AnoMaturacao
+        </td>
+        <td class="colun-2">
+            @pipeline.Etapa
+        </td>
+        <td class="colun-3">
+            @pipeline.Responsavel
+        </td>
+        <td class="colun-3">
+            @pipeline.Observacao
+        </td>
+        <td class="colun-2">
+            @pipeline.DivisaoAtiva
+        </td>
+        <td class="colun-2">
+            @pipeline.DivisaoInativa
+        </td>
+    </tr>
+    }
+}

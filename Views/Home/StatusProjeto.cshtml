@@ -1,0 +1,18 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.StatusProjetoDto
+<div class="btn-group">
+    <div class="seg-cont-status">
+        <h3 class="label span2">Status:</h3>
+        
+        <select id="dropdownStatusProjeto">
+            @foreach (var statusProjeto in Model.StatusProjeto)
+                 {
+                    <option @Html.Conditional(statusProjeto.Id == Model.StatusProjetoId, "Selected=\"Selected\"",string.Empty) value="@statusProjeto.Id" >@statusProjeto.Nome</option>    
+                 }
+        </select>
+        <input type="text" id="posicaoStatusProjeto" class="span7" value="@Model.PosicaoStatus"/>
+    </div>
+    <div class="seg-cont-status">
+        <a href="javascript:void(0);" class="btn" id="salvarStatusProjeto" title="Salvar"></a>
+        <a href="javascript:void(0);" class="btn" id="cancelarStatusProjeto" title="Cancelar"></a>
+    </div>
+</div>

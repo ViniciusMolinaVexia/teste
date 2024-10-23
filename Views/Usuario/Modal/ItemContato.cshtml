@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ContatoAssociarDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhum, "Contato")</p>
+}
+else
+{
+    foreach (var contato in Model)
+    {
+        <tr>
+            <td class="colun-1"><input type="radio" data-id="@contato.Id.Value" name="ContatoId" /></td>
+            <td class="colun-2">@contato.NomeContato</td>
+            <td class="colun-3">@contato.Email</td>
+        </tr>
+    }
+}

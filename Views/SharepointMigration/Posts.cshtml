@@ -1,0 +1,31 @@
+﻿@using Gafisa.AlphaBook.Models.Home
+@*@using System.Collections.Generic*@
+
+@model List<PostagemModel>
+
+    @{
+        Layout = null;
+
+
+        var posts = Model;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title></title>
+    </head>
+    <body>
+        <div>
+            @foreach (var post in @Model)
+            {
+            <p>@post.EtapaNome</p>
+            }
+        </div>
+        <div>
+          Posts total: @ViewBag.postsCount
+        </div>
+    </body>
+</html>

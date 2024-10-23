@@ -1,0 +1,59 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Home.EtapaPostModel
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+        <h3>Vincular etapa</h3>
+    </div>
+    <div class="modal-body">
+        @if (!Model.Etapas.Any())
+        {
+        <span class="sem-baseline">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.BaselineNaoConfigurada</span>
+        }
+        else
+        {
+            if (!Model.PrivacidadePublica)
+            {
+        <a href="javascript:void(0)" class="ico-alerta">Alerta</a>
+        <span style="color: #6f6f6f; font-size: 12px;">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.PrivacidadeDivergenteEtapaPost</span>
+            }
+        <form id="form-etapa-post" class="forms" style="margin-top:10px;">
+            <fieldset>
+                <div class="sep-line-form">
+                    <div class="form-line" style="margin-right: 10px;">
+                        <label>Etapa:</label>
+                        @Html.DropDownListFor(model => model.EtapaId, Model.Etapas.ToSelectList(e => e.Etapa.Nome, e => e.Etapa.Id + "|" + e.StatusEtapa.Id), new { style = "width:310px;" })
+                        @Html.HiddenFor(model => model.PostagemId)
+                        @Html.HiddenFor(model => model.ProjetoId)
+                    </div>
+                    <div class="form-line campo-etapa" style="margin-right: 10px;">
+                        <label>Concluída?</label>
+                        <select id="etapaConcluida" name="etapaConcluida" style="width:70px;">
+                            <option value="false">Não</option>
+                            <option value="true">Sim</option>
+                        </select>
+                    </div>
+                    <div class="form-line campo-etapa">
+                        <label>Status:</label>
+                        <input type="text" id="statusEtapaNaoConcluida" value="Iniciada" disabled="disabled" style="width:154px;" />
+                        @if (Model.CargoUsuarioId.In(Cargo.Analista, Cargo.Coordenador))
+                        {
+                        <input type="text" id="statusEtapaConcluida" value="Aguardando validação" class="hide" disabled="disabled" style="width:154px;" />
+                        }
+                        else if (Model.CargoUsuarioId.In(Cargo.Gerente, Cargo.Diretor))
+                        {
+                        <input type="text" id="statusEtapaConcluida" value="Concluída" class="hide" disabled="disabled" style="width:154px;" />
+                        }
+                    </div>
+                </div>
+            </fieldset>	
+        </form>
+        }
+    </div>
+    <div class="modal-footer">
+        @if (Model.Etapas.Any())
+        {
+        <a id="salvar-etapa-post" class="bt-padrao" href="javascript:void(0);">Salvar</a>
+        }
+    </div>
+</div>

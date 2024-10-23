@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+
+
+    var listImgExtension = new System.Collections.Generic.List<string>() {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".svg",
+            ".webp",
+            ".tif"
+            };
+
+
+    var tb = ViewBag.tb;
+    var idArquivo = ViewBag.idArquivo;
+    var extension = ViewBag.extension;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test Upload</title>
+</head>
+<body>
+    <div>
+
+        @if (listImgExtension.Contains(extension))
+        {
+            <img src="/SharepointMigration/File?tb=@tb&id=@idArquivo" />
+        }
+        else
+        {
+            <a href="/SharepointMigration/File?tb=@tb&id=@idArquivo" target="_blank">Baixar Documento</a>
+        }
+    </div>
+</body>
+</html>

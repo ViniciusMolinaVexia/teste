@@ -1,0 +1,157 @@
+/* Dados do Documento e UpLoad */
+
+.bt-voltar-documento {
+    background: url("../img/bt-voltar.png") no-repeat scroll 12px 15px #FFFFFF;
+    border: 1px solid #B0B2B2;
+    color: #096B5B;
+    display: block;
+    float: right;
+    font-size: 12px;
+    margin: 30px 0 0 20px;
+    padding: 8px 20px 8px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.detalhe-documento{
+	display: table;
+	width: 100%;
+	padding:0px 0 25px 0;
+	border-bottom: 1px solid #c1c1c1;
+}
+
+	h4{
+		font-family: 'BreeRgRegular';
+		font-size: 18px;
+		font-weight: normal;
+		color: #6f6f6f;
+	}
+	
+	.det-dados-doc{
+		width: 490px;
+		float: left;
+	}
+		.det-dados-doc p{
+			font-size: 13px;
+			color: #a1a1a1;
+		}
+
+	.det-upload{
+		float: right;
+		width: 420px;
+	}
+		.det-upload .sep-line-form{width: 100% !important;}
+
+		.det-upload p{float: left; font-size: 13px;padding-top: 4px;}
+			.det-upload p span{font-weight: bold;}
+/* END Dados do Documento e UpLoad */
+
+/* Taxonomia */
+.detalhe-taxonomia{
+	display: table;
+	width: 100%;
+	padding:25px 0;
+	border-bottom: 1px solid #c1c1c1;
+}
+	
+	.det-form-taxonomia{
+		width: 480px;
+		float: left;
+	}
+		.det-form-taxonomia .sep-line-form{width: 100% !important;}
+
+	.det-dados{
+		float: right;
+		font-size: 14px;
+		color: #a1a1a1;
+		margin-top: 20px;
+	}
+		.det-dados label{
+			display: block;
+			float: left;
+			width: 160px;
+			font-weight: bold;
+		}
+		.det-dados span{
+			display: block;
+			float: left;
+			width: 200px;
+		}
+			.span-publico{width: auto !important;}
+			a.ico-alerta{
+				display: block;
+				width: 19px;
+				height: 16px;	
+				margin:2px 0 0 15px;
+				float: left;
+				text-indent: -9999px;
+				overflow: hidden;
+				background: url(../img/ico-alerta.png) no-repeat;
+			}
+/* END Taxonomia */
+
+/* Histórico */
+.detalhe-historico{
+	display: table;
+	width: 100%;
+	padding:25px 0;
+}
+	
+	.detalhe-historico .box-tabela .wrap {padding: 63px 0 0;}
+	
+	.detalhe-historico table{width: 100%;}
+	
+	.detalhe-historico table thead tr th.colun-1{width: 168px;}
+	.detalhe-historico table thead tr th.colun-2{width: 68px;}
+	.detalhe-historico table thead tr th.colun-3{width: 183px;}
+	.detalhe-historico table thead tr th.colun-4{width: 141px;}
+	.detalhe-historico table thead tr th.colun-5{width: 91px;}
+	.detalhe-historico table thead tr th.colun-6{width: 100px;}
+	.detalhe-historico table thead tr th.colun-7{width: 139px;}
+	.detalhe-historico table thead tr th.colun-8{width: 84px;}
+	.detalhe-historico table thead tr th.colun-9{width: 40px;}
+	
+	.detalhe-historico .ico-alerta{
+		display: block;
+		width: 19px;
+		height: 16px;	
+		margin:2px 0 0 15px;
+		float: left;
+		text-indent: -9999px;
+		overflow: hidden;
+		background: url(../img/ico-alerta.png) no-repeat;
+	}
+	.detalhe-historico .ico-post{
+		display: block;
+		width: 28px;
+		height: 19px;
+		margin: 0 auto;
+		text-indent: -9999px;
+		overflow: hidden;
+		background: url(../img/ico-post.png) no-repeat;
+	}
+	.detalhe-historico .ico-download{
+		display: block;
+		width: 16px;
+		height: 19px;
+		margin-left: 13px;
+		text-indent: -9999px;
+		overflow: hidden;
+		background: url("../img/icons/ico-download.png") no-repeat scroll 5px 3px transparent;
+	}
+	.detalhe-historico .ico-excluir {
+        background: url(../img/ico-excluir.png) no-repeat;
+        width: 17px;
+        height: 17px;
+        text-indent: -9999px;
+        display: block;
+	    margin-left: 13px !important;
+	}
+
+#ListaTaxonomias 
+{
+    max-width: 448px;
+    width: 448px;
+}
+	
+/* END Histórico */

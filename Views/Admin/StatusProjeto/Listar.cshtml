@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.StatusProjetoDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Status de Projeto")</p>
+}
+else
+{
+    foreach (var status in Model)
+    {
+        <tr data-id="@status.Id">
+            <td class="colun-1">@status.Id</td>
+			<td class="colun-2">
+            @if (status.Inicial)
+            {
+                @Html.CheckBox("Inicial", @status.Inicial, new { disabled = true, @checked = @status.Inicial })
+            }
+            </td>
+            <td class="colun-3">@status.Nome</td>
+            <td class="colun-4">@status.Departamento</td>
+            <td class="colun-5">
+                <div class="base-cor">
+                    <div class="cor" style="background: @status.Cor">
+                        &nbsp;
+                    </div>
+                </div>
+            </td>
+			<td class="colun-6">@Html.CheckBox("Final", @status.Final, new { disabled = true, @checked = @status.Final })</td>
+			<td class="colun-7">@Html.CheckBox("Lancado", @status.Lancado, new { disabled = true, @checked = @status.Lancado })</td>
+            <td class="colun-8">@Html.CheckBox("Visivel", @status.Visivel, new { disabled = true, @checked = @status.Visivel })</td>
+            <td class="colun-9">
+            @if(status.CobrancaDocumentacao)
+            {
+                @Html.CheckBox("CobrancaDocumentacao", @status.CobrancaDocumentacao, new { disabled = true, @checked = @status.CobrancaDocumentacao })
+            }
+            </td>
+            <td class="colun-10">@status.Ordem</td>
+			<td class="colun-11">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProjeto, Acao.EditarProprios))
+            {
+                <a class="ic-editar" href="@Url.Action("EditarStatusProjeto", "Admin", new { id = status.Id })">Editar</a>
+            }
+            </td>
+            <td class="colun-12">
+            @if(Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProjeto, Acao.RemoverProprios))
+            {
+                <a class="ic-excluir" data-id="@status.Id" href="javascript:void(0);">Excluir</a>
+            }
+            </td>
+        </tr>
+    }
+}

@@ -1,0 +1,13 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.UsuarioDto
+@if (Model != null)
+{
+    <span class="seta"></span>
+    <div class="box-contato">
+        <div class="img-box-contato">
+            @Html.ProfilePhoto(Model.Id, new { @class = "img-responsavel img-foto-perfil" })
+        </div>
+        <div class="nome-box-contato">
+            @Model.NomeCompleto
+        </div>
+    </div>
+}

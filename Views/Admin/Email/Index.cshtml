@@ -1,0 +1,61 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.StatusProtocoloModel 
+
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Email/email-pesquisa.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/email.css")" />
+}
+
+<h2>
+    Manutenção de E-mails</h2>
+
+<div id="filtros">
+    <div class="div-filtro">
+        <h4>Filtro</h4>
+        <div class="div-busca-filtro">
+            <input type="text" watermark="Busca" class="watermark-font" id="termo" name="termo" value="" maxlength="255" />
+        </div>
+        <a id="buscar" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+    </div>
+</div>
+<div class="div-listar">
+    <div class="box-tabela">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th class="table-title table-left colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title table-left colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Situação / Contexto</a>
+                            </th>
+                            <th class="table-title table-left colun-3 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Assunto</a>
+                            </th>
+                            <th class="table-title table-left colun-4 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Descrição</a>
+                            </th>
+                            <th class="table-title colun-5">
+                                Editar
+                            </th>
+                            <th class="table-title colun-6">
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

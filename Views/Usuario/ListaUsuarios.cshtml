@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.UsuarioDto>
+@if (!Model.IsNullOrEmptyCollection())
+{
+    foreach (var usuario in Model)
+    {
+        var nomeCompleto = (usuario.Nome.IsNullOrEmpty() ? usuario.Nome : usuario.Nome.Split(' ').First()) + " " + (usuario.Sobrenome.IsNullOrEmpty() ? usuario.Sobrenome : usuario.Sobrenome.Split(' ').Last());
+        <li data-id="@usuario.Id">
+            @nomeCompleto
+        </li>
+    }
+}
+else
+{
+    <p>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+}

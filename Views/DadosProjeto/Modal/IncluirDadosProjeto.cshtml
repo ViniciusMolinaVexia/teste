@@ -1,0 +1,79 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.Projeto.DadosProjetoDTO
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close fechar" id="fecharIncluirDadosProjeto">x</a>
+    <h3 id="">
+        Adicionar Projeto</h3>
+</div>
+<div class="modal-body">
+    <form class="forms" id="formDadosProjeto">
+    <fieldset>
+        <div class="sep-line-form">
+            <div class="form-line modal-editar-nome">
+                <label>
+                    *Nome:</label>
+                <input type="text" value="@Model.Nome" name="Nome" id="nome" />
+            </div>
+            <div class="form-line modal-editar-status">
+                <label>
+                    *Status:</label>
+                <select id="dropdownStatusProjeto">
+                    @foreach (var statusProjeto in Model.StatusProjeto)
+                    {
+                        <option @Html.Conditional(statusProjeto.Id == Model.StatusProjetoId, "Selected=\"Selected\"", string.Empty) value="@String.Format("{0}|{1}", statusProjeto.Id, statusProjeto.DepartamentoId)" >@statusProjeto.Nome</option>    
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line modal-editar-comite">
+                <label>
+                    Em Comitê:</label>
+                <span class="sep-radio">
+                    <input type="radio" name="Comite" value="1" @(Model.Comite ? "checked" : String.Empty)>Sim</span>
+                <span class="sep-radio">
+                    <input type="radio" name="Comite" value="0" @(!Model.Comite ? "checked" : String.Empty)>Não</span>
+            </div>
+            <div class="form-line modal-editar-produto">
+                <label>Produto:</label>
+                @Html.DropDownListFor(model => model.ProdutoId, Model.Produtos.ToSelectList(x => x.Nome, x => x.Id), "Selecione", new { id = "ProdutoId"})
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-UF">
+                <label>*UF Principal:</label>
+                @Html.DropDownListFor(model => model.EstadoId, Model.UFs, "Selecione", new { id = "EstadoModal" })
+            </div>
+            <div class="form-line form-cidade">
+                <label>*Cidade Principal:</label>
+                <input type="text" value="@Model.Cidade" data-id="@Model.CidadeId" id="cidadeModal" name="CidadeModal" />
+            </div>
+            <div class="form-line">
+                <br/>
+                <a class="bt-adicionar" id="botaoAdicionarCidadeSecundaria" href="javascript:void(0);"></a>
+            </div>
+        </div>
+        <div id="divCidadeSecundaria" class="sep-line-form hide">
+            <div class="form-line form-UF">
+                <label>*UF:</label>
+                @Html.DropDownListFor(model => model.EstadoSecundarioId, Model.UFs, "Selecione", new { id = "EstadoSecundarioModal" })
+            </div>
+            <div class="form-line form-cidade">
+                <label>*Cidade:</label>
+                <input type="text" value="@Model.Cidade" data-id="@Model.CidadeSecundariaId" id="cidadeSecundariaModal" name="CidadeSecundariaModal" disabled="disabled" />
+            </div>
+            <div class="form-line">
+                <br/>
+                <a class="form-bt-remove" id="botaoRemoverCidadeSecundaria" href="javascript:void(0);"></a>
+            </div>
+        </div>
+        <div class="sep-line-form modal-editar-responsavel" id="dadosResponsavel" data-id="@Model.ResponsavelId">
+            <span>*Responsável:</span>
+            @Html.ProfilePhoto((int)Model.ResponsavelId, new { @class = "imagemResponsavel" })
+            <span id="nomeResponsavel">@Model.Responsavel</span> <a class="bt-trocar-responsavel" id="adicionaResponsavelProjeto" href="javascript:void(0);">Trocar Responsável</a>
+        </div>
+    </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <a class="bt-padrao" id="botaoIncluirProjeto" href="javascript:void(0);">Salvar</a>
+</div>

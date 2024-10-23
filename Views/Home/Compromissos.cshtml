@@ -1,0 +1,34 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.CompromissoDto>
+<div class="tile-content agenda">
+    <a id="listaCompromissosAgenda" data-toggle="modal" href="#modalCompromissosAgenda"
+        style="width: 100%; height: 100%">
+        <img class="place-left" src="@Url.Content("~/Content/img/icons/ico-agenda.png")"/></a>
+    @if (Model.IsNullOrEmptyCollection())
+    {
+        <p class="sem-compromissos">
+            Não há compromissos pendentes!</p>
+    }
+    else
+    {
+        foreach (var compromisso in Model)
+        {
+            if (compromisso.DataInicio < DateTime.Now || compromisso.Status == StatusCompromisso.Pendente) 
+            {
+                <div class="seg-item-agenda">
+                    <p class="tarefa  nao-concluido" data-id="@compromisso.Id">> @compromisso.Assunto</p>
+                    <p class="tarefaHorario  nao-concluido" data-id="@compromisso.Id">@compromisso.DataInicio.ToLocalTime().ToString("dd/MM/yyyy")
+                        ás @compromisso.DataTermino.ToLocalTime().ToString("hh:mm")</p>
+                </div>
+            }
+            else
+            {
+                <div class="seg-item-agenda">
+                    <p class="tarefa" data-id="@compromisso.Id">> @compromisso.Assunto</p>
+                    <p class="tarefaHorario" data-id="@compromisso.Id">@compromisso.DataInicio.ToLocalTime().ToString("dd/MM/yyyy")
+                        ás @compromisso.DataTermino.ToLocalTime().ToString("hh:mm")</p>
+                </div>
+            }
+        }
+    }
+</div>

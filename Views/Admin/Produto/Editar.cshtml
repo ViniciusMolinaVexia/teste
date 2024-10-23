@@ -1,0 +1,47 @@
+﻿@model Gafisa.AlphaBook.Dominio.Produto
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Status.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Produto/produto-editar.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/status-projeto.css")" />
+}
+
+<div class="container">
+    
+    @if (Model.Id == 0)
+    {
+        <h2>Adicionar Produto</h2>
+    }
+    else
+    {
+        <h2>Editar Produto</h2>
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("Produto", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        
+        <form action="@Url.Action("SalvarProduto", "Admin")" id="form" class="forms">
+        
+        @Html.HiddenFor(model => model.Id)
+        
+        <div class="sep-line-form">
+            <div class="form-line form-status">
+                <label for="Nome">Nome:</label>
+                <input type="text" class="" id="Nome" name="Nome" maxlength="100" value="@Model.Nome" />
+            </div>
+        </div>
+        @if ((Model.Id == 0 && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Produto, Acao.Adicionar))
+            || (Model.Id > 0 && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Produto, Acao.EditarProprios)))
+        {
+            <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+        }
+        </form>
+    </div>
+</div>

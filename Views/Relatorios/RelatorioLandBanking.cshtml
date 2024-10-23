@@ -1,0 +1,185 @@
+﻿@model Gafisa.AlphaBook.Models.Relatorios.RelatorioModel
+<script type="text/javascript">
+    gafisa.alphabook.home.relatorios.landbank.ocultarColunas = @(ViewBag.OcultarColunas ? "true" : "false");
+</script>
+<div class="box-relatorio-landbanking">
+    <h2>Relatório Landbank</h2>
+
+    @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosLandBanking, Acao.ExportarImprimir))
+    {
+        <div class="bt-excel">
+            <a href="javascript:void(0)" class="bt-padrao" id="btnExportarRelatorioLandbank">Exportar excel</a>
+        </div>
+    }
+    <div id="ListaUsuarios" class="hide">
+        <ul>
+            @Html.Partial("HierarquiaUsuario", Model.Usuarios)
+        </ul>
+    </div>
+    @Html.Partial("HierarquiaStatusProjeto", Model.ListaStatusProjeto)
+    <div class="forms">
+        <div class="div-filtro" style="width: 806px;">
+            <h4>Filtros</h4>
+            
+            <div class="input-block filtro-estado">
+                @Html.MultipleCheckList("FiltroEstado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 30, true)
+            </div>
+            
+            <div class="input-block">
+                <input style="width: 160px;" type="text" value="" watermark="Cidade" class="cidade watermark-font ui-autocomplete-input" autocomplete="off" />
+            </div>
+
+            <div class="input-block">
+                <select id="statusProjeto" style="width: 215px">
+                    <option id="opcaoStatusProjeto">Status</option>
+                </select>
+            </div>
+
+            <div class="input-block" style="margin-right: 0px !important;">
+                @Html.DropDownList("ProdutoId", Model.ListaProdutos, "Produto", new { id = "ProdutoId", style = "width: 255px;"})
+            </div>
+
+            <div class="input-block margin-top margin-left">
+                @Html.DropDownList("EtapaId", Model.ListaEtapasSelectItems, "Etapa", new { id = "EtapaId", style = "width: 265px;"})
+            </div>
+
+            <div class="input-block margin-top">
+                <select id="responsavel" style="width: 215px">
+                    <option id="opcaoResponsavel">Responsável</option>
+                </select>
+            </div>
+
+            <div class="input-block margin-top">
+                <input style="width: 160px;" type="text" value="" id="Maturacao" watermark="Ano de Maturação" class="" />
+            </div>
+            
+
+            <a href="javascript:void(0)" class="bt-padrao-filtro margin-top btnFiltroLandbank">Buscar</a>
+        </div>
+    </div>
+<div class="box-tabela table-pl-head">
+   <div class="seg-table-pl">
+        <table id="tabelaRelatorioLandBankingH">
+            <thead>
+                <tr class="even">
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">UF</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Cidade</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">ID</a>
+                    </th>
+                        <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Produto</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Nome Projeto</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="8" data-tipo="1">
+                            <div>Área<br />Total m²</div>
+                        </a>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>Tipo</div>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>ALV m²</div>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>Número Unidades</div>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="11" data-tipo="1">% AUSA</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="12" data-tipo="1">% Sociedade (consórcio)</a>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>Estimativa Preço / m²</div>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>VGV Total R$</div>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>VGV Parceiro R$</div>
+                    </th>
+                    <th class="fix colun-2" rowspan="2">
+                        <div>VGV Sócio (AUSA) R$</div>
+                    </th>
+                    <th class="fix colun-2">
+                        <div>
+                            VGV AUSA R$</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar">
+                        <div>
+                            Imediato (Ano)</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar">
+                        <div>
+                            Curto Prazo (Ano+1)</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar">
+                        <div>
+                            Médio Prazo (Ano+2)</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar">
+                        <div>
+                            Longo Prazo</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar" rowspan="2">
+                        <div>Lucro R$</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar" rowspan="2">
+                        <div>Receita R$</div>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar" rowspan="2">
+                        <div>% Geração Caixa</div>
+                    </th>
+                    <th class="fix table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="21" data-tipo="1">Status</a>
+                    </th>
+                    <th class="fix colun-2 negocios-ocultar" rowspan="2">
+                        <div>Comitê</div>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="23" data-tipo="1">Ano de Maturação</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="24" data-tipo="1">Etapa</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Responsável</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="25" data-tipo="1">Observação</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="26" data-tipo="1">Divisão Ativa</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="27" data-tipo="1">Divisão Inativa</a>
+                    </th>
+                </tr>
+                
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+    <div class="relatorio-landbanking" tabela-scroll="true">
+        <div class="box-tabela hide" style="@(ViewBag.OcultarColunas == true ? "width: 3296px;" : "width: 4456px;")">
+            <div class="table2">
+                <div>
+                    <table id="tabelaRelatorioLandBanking">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

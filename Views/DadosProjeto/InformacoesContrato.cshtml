@@ -1,0 +1,76 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.InformacoesContratoModel
+<div class="seg-informacoes-contrato">
+    <form class="forms" id="formInforamacoesContrato" data-id="@Model.Id">
+    <fieldset>
+        <div class="sep-line-form">
+            <div class="form-line inf-data-assinatura">
+                @{var data = Model.DataAssinatura == null ? "" : Model.DataAssinatura.Value.ToString("d");} 
+                <label>Data da assinatura do contrato:</label>
+                <input class = "info-data" id = "dataAssinatura" value="@data" name="DataAssinatura" />                
+            </div>
+            <div class="form-line inf-particularidades">
+                <label>
+                    Particularidades do contrato:</label>
+                @Html.TextAreaFor(m => m.Particularidades, new { id="particularidadesContrato" })
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <h4>
+                Aditamentos:</h4>
+        </div>
+        <div class="sep-line-form" id="adiantamento_0">
+            <div class="form-line inf-seq">
+                <label>
+                    Seq.:</label>
+                <input type="text" name="sequencia" class="campo-inteiro" value="@(Model.Adiantamentos != null && this.Model.Adiantamentos.Any() && Model.Adiantamentos[0].Sequencia.HasValue ? Model.Adiantamentos[0].Sequencia.Value.ToString() : String.Empty)" />
+            </div>
+            <div class="form-line inf-data">
+                <label>Data aditamento:</label>
+                @{var dataAditamento = Model.Adiantamentos != null && this.Model.Adiantamentos.Any() && Model.Adiantamentos[0].DataAdiantamento.HasValue ? Model.Adiantamentos[0].DataAdiantamento.Value.ToString("d") : String.Empty;}
+                <input type="text" name="dataAdiantamento" class="info-data" value="@dataAditamento" />
+            </div>
+            <div class="form-line inf-particularidades-2">
+                <label>Particularidades do aditamento:</label>
+                <textarea name="particularidadesAdiantamento">@(Model.Adiantamentos != null && this.Model.Adiantamentos.Any() ? Model.Adiantamentos[0].Particularidades : String.Empty)</textarea>
+                @if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInformacoesContrato, Acao.Adicionar))
+                {
+                    <a class="form-bt-add" href="javascript:void(0);" id="adicionarAdiantamento">Adicionar</a>
+                }
+            </div>
+        </div>
+        @if (Model.Adiantamentos != null)
+        {
+            for (var i = 1; i < Model.Adiantamentos.Count(); i++)
+            {
+                <div class="sep-line-form" id="@String.Format("adiantamento_{0}", (i))">
+                    <div class="form-line inf-seq">
+                        <label>
+                            Seq.:</label>
+                        <input type="text" name="sequencia" value="@(Model.Adiantamentos[i].Sequencia.HasValue ? Model.Adiantamentos[i].Sequencia.Value.ToString() : String.Empty)" class="campo-inteiro" />
+                    </div>
+                    <div class="form-line inf-data">
+                        <label>Data aditamento:</label>
+                        @{var aditamentoData = Model.Adiantamentos[i].DataAdiantamento.HasValue ? Model.Adiantamentos[i].DataAdiantamento.Value.ToString("d") : String.Empty;}
+                        <input type="text" name="dataAdiantamento" class="info-data"  value="@aditamentoData"/>
+                    </div>
+                    <div class="form-line inf-particularidades-2">
+                        <label>Particularidades do aditamento:</label>
+                        <textarea name="particularidadesAdiantamento">@Model.Adiantamentos[i].Particularidades</textarea>
+                        @if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInformacoesContrato, Acao.Remover, Model.IdProjeto))
+                        {
+                            <a class="form-bt-remove" href="javascript:void(0);" name="remover_adiantamento">Remover</a>
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </fieldset>
+    </form>
+    <div>
+        @if (Model.PermitidoAlteracao && Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInformacoesContrato, Acao.Editar, Model.IdProjeto))
+        {
+            <a class="bt-padrao" href="javascript:void(0);" id="botaoSalvarInformacoesContrato">Salvar</a>
+        }
+    </div>
+</div>

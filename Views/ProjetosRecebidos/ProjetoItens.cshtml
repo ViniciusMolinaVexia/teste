@@ -1,0 +1,78 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ProjetoDto>
+
+@{ 
+    var sessaoSistema = new Gafisa.AlphaBook.Componentes.Sessao.SessaoSistema(ViewData);
+    var sessaoUsuario = new Gafisa.AlphaBook.Componentes.Sessao.SessaoUsuario(sessaoSistema);
+}
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Projetos Recebidos")</p>
+}
+else
+{
+    foreach (var projeto in Model)
+    {
+        var cidadeAlvo = projeto.CidadeAlvo ? "Sim" : "Não";
+    <tr data-id="@projeto.Id">
+        <td class="colun-1">
+            @projeto.Codigo
+        </td>
+        <td class="colun-2">
+            <a class="lnkProjetoRecebido" data-id="@projeto.Id" href="javascript:void(0);">@projeto.Nome</a>
+        </td>
+        <td class="colun-3">
+            <a href="javascript:void(0);" class="ico-atribuir-projeto atribuirProjeto" title="Atribuir responsável">Atribuir responsável</a>
+        </td>
+        <td class="colun-4">
+            @projeto.UfId
+            @if (!String.IsNullOrWhiteSpace(projeto.EstadoSecundarioId))
+            {
+                <br />
+                @projeto.EstadoSecundarioId
+            }
+        </td>
+        <td class="colun-5">
+            @projeto.Cidade
+            @if (!String.IsNullOrWhiteSpace(projeto.CidadeSecundaria))
+            {
+                <br />
+                @projeto.CidadeSecundaria
+            }
+        </td>
+        <td class="colun-6">
+            @cidadeAlvo
+        </td>
+        <td class="colun-7">
+            @projeto.NomeStatus
+        </td>
+        <td class="colun-8">
+            @if (projeto.Localizacao)
+            {
+                <a href="javascript:void(0)" class="ico-localizacao navegar-mapa" title="Localização"  data-id="@projeto.Id" data-tipo="projeto" data-idProjeto="@projeto.Id">Localização</a>
+            }
+            else
+            {
+                <a href="javascript:void(0)" class="ico-localizacao-inativo">Localização</a>
+            }
+        </td>
+        <td class="colun-9">
+            @(projeto.AreaTotal.HasValue ? projeto.AreaTotal.Value.ToString("N2") : null)
+        </td>
+        <td class="colun-10">
+            @Html.Conditional(!String.IsNullOrWhiteSpace(projeto.NomeContatoPrincipal), projeto.NomeContatoPrincipal, projeto.NomeOfertante)
+        </td>
+        <td class="colun-11">
+            @if (sessaoUsuario.Id != projeto.UsuarioResponsavelId)
+            {
+                <a href="javascript:void(0)" class="@Html.Conditional(projeto.Favorito, "ico-seguir bt-seguir" , "ico-seguir-inativo bt-seguir")" data-id="@projeto.Id" data-favorito="@projeto.Favorito">Seguir</a>
+            }
+            else
+            {
+                <a href="javascript:void(0)" class="ico-seguir-inativo bt-seguidores" data-id="@projeto.Id">Seguir</a>
+            }
+        </td>
+    </tr>
+    }
+}

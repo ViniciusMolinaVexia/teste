@@ -1,0 +1,213 @@
+﻿.inner {
+    height: 375px !important;
+}
+.wrap
+{
+    height: 417px !important;
+}
+
+.form-container
+{
+    background: #FFF !important;
+    padding: 30px !important;
+    height: 410px;
+}
+
+#form .form-status {
+    width: 400px;
+}
+
+#form .form-departamento {
+    width: 400px;
+    margin-left: 20px;
+}
+
+#form .form-cor {
+    width: 400px;
+}
+
+#form .form-ordem {
+    width: 80px;
+    margin-left: 20px;
+}
+
+#form .form-inicial {
+    width: 150px;
+}
+
+#form .form-final {
+    width: 150px;
+}
+
+#form .form-lancado {
+    width: 150px;
+}
+
+#form .form-visivel {
+    width: 150px;
+}
+
+#form .form-cobranca {
+    width: 270px;
+}
+
+.div-acoes 
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#filtros .div-filtro 
+{
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 735px;
+}
+
+#filtros .div-filtro-arquivosmanuais {
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 735px;
+}
+
+#tabela th {
+    border-right: none;
+}
+
+#tabela th.colun-1
+{
+    width: 55px;
+}
+
+#tabela th.colun-2
+{
+    width: 55px;
+}
+
+#tabela th.colun-3
+{
+    width: 220px;
+}
+
+#tabela th.colun-4
+{
+    width: 130px;
+}
+
+#tabela th.colun-5
+{
+   width: 42px;
+}
+
+#tabela th.colun-6
+{
+    width: 55px;
+}
+
+#tabela th.colun-7
+{
+    width: 70px;
+}
+
+#tabela th.colun-8
+{
+    width: 60px;
+}
+
+#tabela th.colun-9
+{
+    width: 60px;
+}
+
+#tabela th.colun-10
+{
+    width: 60px;
+}
+
+#tabela th.colun-11
+{
+    width: 70px;
+}
+
+#tabela th.colun-12
+{
+    width: 84px;
+}
+
+#tabela td.colun-1
+{
+    width: 55px;
+}
+
+#tabela td.colun-2
+{
+    width: 55px;
+}
+
+#tabela td.colun-3
+{
+    width: 220px;
+}
+
+#tabela td.colun-4
+{
+    width: 130px;
+}
+
+#tabela td.colun-5
+{
+    width: 42px;
+}
+
+#tabela td.colun-6
+{
+    width: 55px;
+}
+
+#tabela td.colun-7
+{
+    width: 70px;
+}
+
+#tabela td.colun-8
+{
+    width: 60px;
+}
+
+#tabela td.colun-9
+{
+    width: 60px;
+}
+
+#tabela td.colun-10
+{
+    width: 60px;
+}
+
+#tabela td.colun-11
+{
+    width: 70px;
+}
+
+#tabela td.colun-12
+{
+    width: 70px;
+}
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 20px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+table .ic-excluir {
+    background: url("../img/icons/ico-excluir.png") no-repeat scroll 20px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}

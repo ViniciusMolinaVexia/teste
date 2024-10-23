@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicoAgenda" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IServicoAgenda_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Gafisa.AlphaBook.Dominio.DTO" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Gafisa.AlphaBook.Dominio" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Gafisa.AlphaBook.Dominio.BuscaGeral" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Gafisa.AlphaBook.Dominio.Localizacao" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicoAgenda.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Resource.Services.FaultContracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicoAgenda_ListarCompromissos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarCompromissos" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ListarCompromissos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarCompromissosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ExcluirCompromisso_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExcluirCompromisso" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ExcluirCompromisso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExcluirCompromissoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ObterCompromisso_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObterCompromisso" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ObterCompromisso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObterCompromissoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_AssumirCompromisso_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssumirCompromisso" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_AssumirCompromisso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssumirCompromissoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_SalvarCompromisso_InputMessage">
+    <wsdl:part name="parameters" element="tns:SalvarCompromisso" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_SalvarCompromisso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SalvarCompromissoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_SalvarCompromisso_DomainFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Resource.Services.FaultContracts" name="detail" element="q1:DomainFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_InserirOuAtualizarNotificacao_InputMessage">
+    <wsdl:part name="parameters" element="tns:InserirOuAtualizarNotificacao" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_InserirOuAtualizarNotificacao_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InserirOuAtualizarNotificacaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ExcluirNotificacao_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExcluirNotificacao" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ExcluirNotificacao_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExcluirNotificacaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ListarConvidadosPorTermo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarConvidadosPorTermo" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ListarConvidadosPorTermo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarConvidadosPorTermoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ListarConvidadosPorCompromisso_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarConvidadosPorCompromisso" />
+  </wsdl:message>
+  <wsdl:message name="IServicoAgenda_ListarConvidadosPorCompromisso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarConvidadosPorCompromissoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicoAgenda">
+    <wsdl:operation name="ListarCompromissos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/ListarCompromissos" message="tns:IServicoAgenda_ListarCompromissos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/ListarCompromissosResponse" message="tns:IServicoAgenda_ListarCompromissos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirCompromisso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/ExcluirCompromisso" message="tns:IServicoAgenda_ExcluirCompromisso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/ExcluirCompromissoResponse" message="tns:IServicoAgenda_ExcluirCompromisso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObterCompromisso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/ObterCompromisso" message="tns:IServicoAgenda_ObterCompromisso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/ObterCompromissoResponse" message="tns:IServicoAgenda_ObterCompromisso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssumirCompromisso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/AssumirCompromisso" message="tns:IServicoAgenda_AssumirCompromisso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/AssumirCompromissoResponse" message="tns:IServicoAgenda_AssumirCompromisso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SalvarCompromisso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/SalvarCompromisso" message="tns:IServicoAgenda_SalvarCompromisso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/SalvarCompromissoResponse" message="tns:IServicoAgenda_SalvarCompromisso_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServicoAgenda/SalvarCompromissoDomainFaultContractFault" name="DomainFaultContractFault" message="tns:IServicoAgenda_SalvarCompromisso_DomainFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InserirOuAtualizarNotificacao">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/InserirOuAtualizarNotificacao" message="tns:IServicoAgenda_InserirOuAtualizarNotificacao_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/InserirOuAtualizarNotificacaoResponse" message="tns:IServicoAgenda_InserirOuAtualizarNotificacao_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirNotificacao">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/ExcluirNotificacao" message="tns:IServicoAgenda_ExcluirNotificacao_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/ExcluirNotificacaoResponse" message="tns:IServicoAgenda_ExcluirNotificacao_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarConvidadosPorTermo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/ListarConvidadosPorTermo" message="tns:IServicoAgenda_ListarConvidadosPorTermo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/ListarConvidadosPorTermoResponse" message="tns:IServicoAgenda_ListarConvidadosPorTermo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarConvidadosPorCompromisso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicoAgenda/ListarConvidadosPorCompromisso" message="tns:IServicoAgenda_ListarConvidadosPorCompromisso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicoAgenda/ListarConvidadosPorCompromissoResponse" message="tns:IServicoAgenda_ListarConvidadosPorCompromisso_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicoAgenda" type="tns:IServicoAgenda">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IServicoAgenda_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarCompromissos">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/ListarCompromissos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirCompromisso">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/ExcluirCompromisso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterCompromisso">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/ObterCompromisso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssumirCompromisso">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/AssumirCompromisso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalvarCompromisso">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/SalvarCompromisso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DomainFaultContractFault">
+        <soap:fault use="literal" name="DomainFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="InserirOuAtualizarNotificacao">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/InserirOuAtualizarNotificacao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirNotificacao">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/ExcluirNotificacao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarConvidadosPorTermo">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/ListarConvidadosPorTermo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarConvidadosPorCompromisso">
+      <soap:operation soapAction="http://tempuri.org/IServicoAgenda/ListarConvidadosPorCompromisso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicoAgenda">
+    <wsdl:port name="BasicHttpBinding_IServicoAgenda" binding="tns:BasicHttpBinding_IServicoAgenda">
+      <soap:address location="http://localhost:8080/ServicoAgenda.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

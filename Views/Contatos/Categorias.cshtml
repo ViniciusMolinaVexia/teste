@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.Categoria>
+
+@foreach(var item in Model)
+{
+    <li id="@item.Id" data-categoriaId="@item.Id" data-categoriaNome="@item.Nome">
+        <a class="itemCategoria" href="javascript:void(0);" data-categoriaId="@item.Id" >@item.Nome</a>
+        @if (item.TipoCategoriaFilhas != null && item.TipoCategoriaFilhas.Any())
+        {
+            <ul>
+                @Html.Partial("~/Views/Contatos/Categorias.cshtml", item.TipoCategoriaFilhas)
+            </ul>
+        }
+    </li>
+}

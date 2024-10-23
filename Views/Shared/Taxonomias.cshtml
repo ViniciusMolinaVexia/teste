@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.Taxonomia>
+
+@foreach(var item in Model)
+{
+    var idli = "rhtml_" + item.Id;
+    
+    <li id="@idli" data-taxonomiaid="@item.Id" data-taxonomianome="@item.Nome">
+        <a href="javascript:void(0);" data-idtaxonomia="@item.Id" >@item.Nome</a>
+        @if (item.Filhas.Count() > 0)
+        {
+            <ul>
+                @Html.Partial("Taxonomias", item.Filhas)
+            </ul>
+        }
+    </li>
+}

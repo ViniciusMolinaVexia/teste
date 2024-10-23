@@ -1,0 +1,30 @@
+﻿@using Gafisa.AlphaBook.Dominio.DTO
+@model Gafisa.AlphaBook.Dominio.Clima
+<div class="brand" id="dadosClima">
+   @if(Model.TemPermissao)
+   {
+       if (Model.Cidade == null)
+       {
+            <span class="nome-tile" id="falhaClima">@Gafisa.AlphaBook.Dominio.Mensagens.Clima.NaoHaDadosDisponiveisParaEstaCidade</span>
+       }
+       else
+       {
+        
+                <span class="top-tile">@String.Format("{0}º", Model.Temperatura) </span><span class="city-tile">
+                    @Model.Cidade</span> <span class="text-tile">@Model.TipoClima.GetDescription()</span>
+                <span class="nome-tile">Tempo</span>
+                <div class="section-right">
+                    <div class="linha-clima-hoje bd-right">
+                        @Html.Partial("DiaClima", new DiaClimaDTO { Data = DateTime.Now, TipoClima = Model.TipoClima })
+                    </div>
+                    <div class="linha-clima bd-right">
+                        @Html.Partial("DiaClima", new DiaClimaDTO { Data = DateTime.Now.AddDays(1), TipoClima = Model.Dia2.TipoClima, Temperatura = Model.Dia2.Temperatura })
+                    </div>
+                    <div class="linha-clima">
+                        @Html.Partial("DiaClima", new DiaClimaDTO { Data = DateTime.Now.AddDays(2), TipoClima = Model.Dia3.TipoClima, Temperatura = Model.Dia3.Temperatura })
+                    </div>
+                </div>
+        
+       }
+   }
+</div>

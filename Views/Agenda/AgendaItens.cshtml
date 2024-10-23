@@ -1,0 +1,93 @@
+﻿@using System.Web.Mvc.Html
+@using Gafisa.AlphaBook.Componentes.Permissao
+@model IEnumerable<Gafisa.AlphaBook.Models.Home.AgendaModel>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Agenda e Compromissos")</p>
+}
+else
+{
+    foreach (var compromisso in Model)
+    {
+        {
+            var projetoId = compromisso.HomeProjeto == true ? (long?)compromisso.ProjetoId : null;
+            var classe = @compromisso.Status == "Concluído" ? "agn-concluida" : @compromisso.Status == "Pendente" ? "agn-pendente" : "agn-agendado";
+                        
+            var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.AgendaCompromisso, idProjeto: projetoId, idCompromisso:compromisso.Id);
+            
+    <tr data-id="@compromisso.Id" data-responsavel="@compromisso.UsuarioResponsavelId">
+        <td class="@classe">
+            @compromisso.Status
+        </td>
+        <td class="colun-2">@compromisso.DataInicio<br />@compromisso.HoraInicio
+        </td>
+        <td class="colun-3">@compromisso.DataTermino<br />@compromisso.HoraTermino
+        </td>
+        <td class="table-left colun-4">
+           <div class="convidados-lista"> 
+               @Html.ProfilePhoto((int)compromisso.UsuarioResponsavelId, new { @class = "table-img-usuario" })@compromisso.UsuarioResponsavelNome
+               
+               @if (compromisso.ConvidadosNomes.HasItems())
+               {
+                   <a class="ico-convidados-agend-list" href="javascript:void(0);">Convidados</a>
+
+                   <div class="box-lista-convidados hide">
+                       <h3>Convidados</h3>
+                       <ul>
+                           @foreach (var convidado in compromisso.ConvidadosNomes)
+                           {
+                               <li>@convidado</li>
+                           }
+                       </ul>
+                   </div>
+               }
+           </div>
+        </td>
+        <td class="nomeProjeto colun-5" data-id="@compromisso.ProjetoId">@compromisso.NomeProjeto
+        </td>
+        <td class="dsAssunto colun-6">@compromisso.Assunto
+        </td>
+        <td class="colun-7">@compromisso.Cidade
+        </td>
+        <td class="colun-8">@compromisso.Uf
+        </td>
+        <td class="colun-9">
+            <a @Html.Conditional(@String.IsNullOrWhiteSpace(compromisso.ComentariosGerais), "class=\"ico-comentario-inativo ico\"", "class=\"ico-comentario ico\"")  href="javascript:void(0);" title="@compromisso.ComentariosGerais.Truncate(100)">
+                Comentário</a>
+        </td>
+        <td class="colun-10">
+            <a class="ico-atribuir-responsavel ico btAtribuirResponsavel" data-compromissoid="@compromisso.Id" data-id="@compromisso.UsuarioResponsavelId" href="javascript:void(0);" title="Assumir Compromisso">
+                Atribuir Responsável</a>
+        </td>
+        <td class="colun-11">
+            @if (compromisso.ContatoId.HasValue)
+            {
+                <a href="javascript:void(0)" class="ico-pin ico navegar-mapa" title="Localização"   data-id="@compromisso.ContatoId" data-tipo="contato" data-idProjeto="@compromisso.ProjetoId">
+                    Localização</a>     
+            }
+            else
+            {
+                <a class="ico-pin-inativo ico" href="javascript:void(0);">pin</a>
+            }
+        </td>
+        <td class="colun-12">
+            <a @Html.Conditional(@compromisso.Lembrete == Gafisa.AlphaBook.Dominio.Lembrete.ZeroMinutos, "class=\"ico-lembrete-inativo ico\"", "class=\"ico-lembrete ico\"") href="javascript:void(0);" title="@(compromisso.ConfigurarLembrete().HasValue ? "LEMBRETE: " + @compromisso.ConfigurarLembrete().ToString() : "")">
+                lembrete</a>
+        </td>
+        <td class="colun-13">
+            @if (comportamentoVisual.PodeEditar)
+            {
+                <a class="ico-editar ico btEditar" href="javascript:void(0);" data-id="@compromisso.Id" data-responsavel="@compromisso.UsuarioResponsavelId">editar</a>
+            }
+            
+        </td>
+        <td class="colun-14">
+            @if (comportamentoVisual.PodeRemover) 
+            { 
+                <a class="ico-excluir ico btExcluirCompromisso" href="javascript:void(0);">excluir</a>    
+            }
+        </td>
+    </tr>
+        }
+    }
+}

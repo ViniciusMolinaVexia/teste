@@ -1,0 +1,32 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.CompromissoDto>
+@if (!Model.IsNullOrEmptyCollection())
+{
+    foreach (var compromisso in Model)
+    {
+    <tr>
+        @if (compromisso.Status == StatusCompromisso.Realizada)
+        {
+                <td data-id="@compromisso.Id" class="linha-1 linha-concluidos">@compromisso.DataInicio.ToLocalTime().ToString("dd/MM/yyyy HH:mm") - @compromisso.Assunto</td>
+        }
+        else
+        {
+            if (compromisso.DataInicio < DateTime.Now || compromisso.Status == StatusCompromisso.NaoRealizada)
+            {
+            <td data-id="@compromisso.Id" class="linha-1 linha-nao-concluidos">@compromisso.DataInicio.ToLocalTime().ToString("dd/MM/yyyy HH:mm") - @compromisso.Assunto</td>
+            }
+            else
+            {
+                <td data-id="@compromisso.Id" class="linha-1 linha-todos">@compromisso.DataInicio.ToLocalTime().ToString("dd/MM/yyyy HH:mm") - @compromisso.Assunto</td>
+            }
+        }
+        <td id="editarCompromisso" class="linha-2"><a href="javascript:void(0)" title="Editar compromisso" class="ico-editar-compromisso">Editar</a></td>
+        <td id="excluirCompromisso" class="linha-3"><a href="javascript:void(0)" title="Excluir compromisso" class="ico-excluir-compromisso">Excluir</a></td>
+
+    </tr>
+    }
+}
+else
+{
+    <p>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+}

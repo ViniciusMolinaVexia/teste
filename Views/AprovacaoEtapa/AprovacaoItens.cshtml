@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.AprovacaoEtapa.EtapaPendenteDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "etapas pendentes")</p>
+}
+else
+{
+    foreach (var etapaPendente in Model)
+    {
+    <tr data-id="@etapaPendente.IdPost">
+        <td class="colun-1">
+            <a class="lnkPostAprovacao" data-id="@etapaPendente.IdPost" data-etapaId="@etapaPendente.EtapaId" data-conclusao="@etapaPendente.DataConclusao.ToString("dd/MM/yyyy")" href="javascript:void(0);">@etapaPendente.NomeEtapa</a>
+        </td>
+        <td class="colun-2">
+            @etapaPendente.NomeProjeto
+        </td>
+        <td class="colun-3">
+            @Html.ProfilePhoto(etapaPendente.UsuarioResponsavelId, new { @class = "img-responsavel", @data_id = etapaPendente.UsuarioResponsavelId, @style = "width: 27px; height: 27px" }, etapaPendente.UsuarioResponsavelId != 0)
+            @etapaPendente.ResponsavelProjeto
+        </td>
+        <td class="colun-4">
+            @etapaPendente.DataConclusao.ToString("dd/MM/yyyy")
+        </td>
+    </tr>
+    }
+}

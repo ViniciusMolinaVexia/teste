@@ -1,0 +1,489 @@
+.page
+{
+    width: 195mm;
+    height: 270mm;
+    page-break-after: always;
+    overflow: hidden;
+}
+
+    .page .landscape
+    {
+        position: relative;
+        margin: 270mm 0;
+        width: 270mm;
+        height: 195mm;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    }
+
+body
+{
+    background-color: transparent;
+}
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Trebuchet MS';
+}
+
+/* Menu da Linha do Tempo */
+.box-menu-lt
+{
+    display: table;
+    width: 100%;
+}
+
+.menu-lt
+{
+    width: 560px;
+    display: table;
+    float: left;
+}
+
+    .menu-lt ul li
+    {
+        display: inline;
+        text-decoration: none;
+    }
+
+        .menu-lt ul li a
+        {
+            display: block;
+            float: left;
+            padding: 8px 17px;
+            background: #f2f2f2;
+            color: #a6a6a6;
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+            .menu-lt ul li a:hover
+            {
+                background: #606360;
+                color: #e1e1e1;
+            }
+
+            .menu-lt ul li a.active
+            {
+                background: #606360 !important;
+                color: #e1e1e1 !important;
+            }
+
+/* END Menu da Linha do Tempo */
+
+
+/* Filtro de Datas */
+.box-datas-lt
+{
+    float: left;
+    width: 330px;
+    margin-top: 11px;
+}
+
+.seg-check-lt
+{
+    float: left;
+    margin-left: 20px;
+    font-size: 12px;
+    color: #a7a7a7;
+}
+/* END Filtro de Datas */
+
+/* Linha do Tempo */
+.box-lt
+{
+    clear: both;
+    margin-top: 50px;
+    width: 885px;
+    height: auto !important;
+    overflow: visible !important;
+    display: block;
+}
+/* Estrutura */
+.lt-estrutura
+{
+    width: 200px;
+    float: left;
+    margin-right: 2px;
+    display: table;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+    .lt-estrutura:hover
+    {
+        background: #f9f9f9;
+    }
+
+.lt-titulo
+{
+    width: 200px;
+    height: 45px;
+    font-size: 18px;
+    color: #d7d7d7;
+    text-align: center;
+    border-bottom: 13px solid #d6d6d6;
+    overflow: hidden;
+}
+
+.lt-icone
+{
+    position: relative;
+}
+
+    .lt-icone a.ico-status-lt
+    {
+        display: block;
+        margin: 0 auto;
+        width: 36px;
+        height: 62px;
+        overflow: hidden;
+        text-decoration: none;
+        background: url(../img/linha-tempo-vertical/ico-lt-normal.png) no-repeat;
+    }
+
+.ico-post-lt
+{
+    position: absolute;
+    display: block;
+    width: 28px;
+    height: 25px;
+    background: url(../img/linha-tempo-vertical/ico-post-lt.png) no-repeat;
+    top: 15px;
+    right: 35px;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.lt-datas
+{
+    width: 200px;
+    margin-top: 8px;
+}
+
+    .lt-datas span
+    {
+        display: block;
+        text-align: center;
+    }
+
+.lt-dt-1
+{
+    font-size: 14px;
+    font-weight: bold;
+    color: #999;
+    height: 23px;
+}
+
+.lt-dt-2
+{
+    font-size: 12px;
+    height: 20px;
+}
+
+    .lt-dt-2 a
+    {
+        color: #737373;
+    }
+
+.lt-dt-3
+{
+    font-size: 12px;
+    color: #959595;
+    height: 20px;
+}
+
+/* Classificação por Status */
+
+.lt-nao-aplica .lt-icone a.ico-status-lt
+{
+    background: url(../img/linha-tempo-vertical/ico-lt-na.png) no-repeat !important;
+}
+
+.lt-concluido:hover
+{
+    background: #eff6da !important;
+}
+
+.lt-concluido .lt-titulo
+{
+    color: #b1d445 !important;
+    font-weight: bold !important;
+    border-bottom: 13px solid #b1d445;
+}
+
+.lt-concluido .lt-icone a.ico-status-lt
+{
+    background: url(../img/linha-tempo-vertical/ico-lt-verde.png) no-repeat !important;
+}
+
+.lt-concluido .lt-dt-1, .lt-concluido .lt-dt-2 a
+{
+    color: #89a13f !important;
+}
+
+.lt-concluido-apos:hover
+{
+    background: #daf0f6 !important;
+}
+
+.lt-concluido-apos .lt-titulo
+{
+    color: #45b4d4 !important;
+    font-weight: bold !important;
+    border-bottom: 13px solid #45b4d4;
+}
+
+.lt-concluido-apos .lt-icone a.ico-status-lt
+{
+    background: url(../img/linha-tempo-vertical/ico-lt-azul.png) no-repeat !important;
+}
+
+.lt-concluido-apos .lt-dt-1, .lt-concluido-apos .lt-dt-2 a
+{
+    color: #5092a5 !important;
+}
+
+.lt-iniciado:hover
+{
+    background: #fef0d3 !important;
+}
+
+.lt-iniciado .lt-titulo
+{
+    color: #f9b522 !important;
+    font-weight: bold !important;
+    border-bottom: 13px solid #f9b522;
+}
+
+.lt-iniciado .lt-icone a.ico-status-lt
+{
+    background: url(../img/linha-tempo-vertical/ico-lt-laranja.png) no-repeat !important;
+}
+
+.lt-iniciado .lt-dt-1, .lt-iniciado .lt-dt-2 a
+{
+    color: #c89526 !important;
+}
+/* END Classificação por Status */
+/* END Estrutura */
+/* END Linha do Tempo */
+
+/* Legenda */
+.box-legenda
+{
+    clear: both;
+    margin-top: 30px;
+}
+
+    .box-legenda ul li
+    {
+        font-size: 12px;
+        font-weight: bold;
+        list-style: none;
+        text-indent: 28px;
+        color: #b7b7b7;
+        padding: 4px 0;
+        margin-bottom: 8px;
+    }
+
+.leg-nao-iniciado
+{
+    background: url(../img/linha-tempo-vertical/leg-ico-normal.png) no-repeat;
+}
+
+.leg-na
+{
+    background: url(../img/linha-tempo-vertical/leg-ico-na.png) no-repeat;
+}
+
+.leg-concluido
+{
+    background: url(../img/linha-tempo-vertical/leg-ico-concuido.png) no-repeat;
+}
+
+.leg-concluido-apos
+{
+    background: url(../img/linha-tempo-vertical/leg-ico-concluido-apos.png) no-repeat;
+}
+
+.leg-iniciado
+{
+    background: url(../img/linha-tempo-vertical/leg-ico-iniciado.png) no-repeat;
+}
+/* END Legenda */
+
+
+/* Linha do Tempo Print */
+/* Estrutura */
+.box-linha-tempo-print
+{
+}
+
+    .box-linha-tempo-print .lt-estrutura
+    {
+        width: 295px;
+        float: none !important;
+        margin-right: 2px;
+        display: table;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+    }
+
+        .box-linha-tempo-print .lt-estrutura:hover
+        {
+            background: none !important;
+        }
+
+    .box-linha-tempo-print .lt-titulo
+    {
+        width: 200px;
+        height: 45px;
+        font-size: 18px;
+        color: #d7d7d7;
+        text-align: center;
+        border-bottom: 0px !important;
+        overflow: hidden;
+        float: left;
+        margin-top: 50px;
+    }
+
+    .box-linha-tempo-print .lt-icone
+    {
+        float: right;
+        width: 75px;
+        height: 200px;
+    }
+
+        .box-linha-tempo-print .lt-icone a.ico-status-lt
+        {
+            display: block;
+            margin: 0 auto;
+            width: 75px;
+            height: 200px;
+            overflow: hidden;
+            text-decoration: none;
+            background: url(../img/linha-tempo-vertical/proj-lt-normal.png) no-repeat;
+        }
+
+
+    .box-linha-tempo-print .lt-datas
+    {
+        width: 200px;
+        margin-top: 8px;
+        float: left;
+    }
+
+        .box-linha-tempo-print .lt-datas span
+        {
+            display: block;
+            text-align: center;
+        }
+
+    .box-linha-tempo-print .lt-dt-1
+    {
+        font-size: 14px;
+        font-weight: bold;
+        color: #999;
+        height: 23px;
+    }
+
+    .box-linha-tempo-print .lt-dt-2
+    {
+        font-size: 12px;
+        height: 20px;
+    }
+
+        .box-linha-tempo-print .lt-dt-2 a
+        {
+            color: #737373;
+        }
+
+    .box-linha-tempo-print .lt-dt-3
+    {
+        font-size: 12px;
+        color: #959595;
+        height: 20px;
+    }
+
+
+    /* Status LT */
+    .box-linha-tempo-print .lt-nao-aplica .lt-icone a.ico-status-lt
+    {
+        background: url(../img/linha-tempo-vertical/proj-lt-na.png) no-repeat !important;
+    }
+
+    .box-linha-tempo-print .lt-concluido:hover
+    {
+        background: none !important;
+    }
+
+    .box-linha-tempo-print .lt-concluido .lt-titulo
+    {
+        color: #b1d445 !important;
+        font-weight: bold !important;
+        border-bottom: 13px solid #b1d445;
+    }
+
+    .box-linha-tempo-print .lt-concluido .lt-icone a.ico-status-lt
+    {
+        background: url(../img/linha-tempo-vertical/proj-lt-verde.png) no-repeat !important;
+    }
+
+    .box-linha-tempo-print .lt-concluido .lt-dt-1, .lt-concluido .lt-dt-2 a
+    {
+        color: #89a13f !important;
+    }
+
+    .box-linha-tempo-print .lt-concluido-apos:hover
+    {
+        background: none !important;
+    }
+
+    .box-linha-tempo-print .lt-concluido-apos .lt-titulo
+    {
+        color: #45b4d4 !important;
+        font-weight: bold !important;
+        border-bottom: 13px solid #45b4d4;
+    }
+
+    .box-linha-tempo-print .lt-concluido-apos .lt-icone a.ico-status-lt
+    {
+        background: url(../img/linha-tempo-vertical/proj-lt-azul.png) no-repeat !important;
+    }
+
+    .box-linha-tempo-print .lt-concluido-apos .lt-dt-1, .lt-concluido-apos .lt-dt-2 a
+    {
+        color: #5092a5 !important;
+    }
+
+    .box-linha-tempo-print .lt-iniciado:hover
+    {
+        background: none !important;
+    }
+
+    .box-linha-tempo-print .lt-iniciado .lt-titulo
+    {
+        color: #f9b522 !important;
+        font-weight: bold !important;
+        border-bottom: 13px solid #f9b522;
+    }
+
+    .box-linha-tempo-print .lt-iniciado .lt-icone a.ico-status-lt
+    {
+        background: url(../img/linha-tempo-vertical/proj-lt-laranja.png) no-repeat !important;
+    }
+
+    .box-linha-tempo-print .lt-iniciado .lt-dt-1, .lt-iniciado .lt-dt-2 a
+    {
+        color: #c89526 !important;
+    }
+/* END Status LT*/
+/* END Linha do Tempo Print */

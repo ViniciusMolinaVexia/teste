@@ -1,0 +1,38 @@
+﻿@model Gafisa.AlphaBook.Models.Home.TimelineModel
+<div class="container-fluid">
+    <div class="container">
+        <form action="" id="subirArquivos">
+            <div class="modalSubirArquivo">
+                <div class="ico-subir-arquivos">
+                    <h1>Subir Arquivos</h1>
+                </div>
+
+                <div class="div-esq">
+                    <div class="div-esq-interna">
+                        <div id="container">
+                            <a id="selecionarArquivos" href="javascript:void(0)" class="btn-azul btn-ad-arquivo">Clique para adicionar arquivos</a>
+                        </div>
+                        <br />
+                        <div id="arquivos" class="rolagem">
+                            <table>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div-direita">
+                    <div class="div-direita-interna">
+                        <label class="label">Digite a(s) taxonomia(s) para o(s) arquivos(s) selecionado(s):</label>
+                        <select class="" name="taxonomias" id="taxonomias"></select>
+                    </div>
+                    <div id="componentePostagemSubirArquivo" class="div-direita-interna">
+                        
+                    </div>
+                </div>
+                <div class="div-btn">
+                    <a class="btn-modal" data-dismiss="modal" href="javascript:void(0)">Fechar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

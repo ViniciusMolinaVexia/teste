@@ -1,0 +1,150 @@
+﻿@using Gafisa.AlphaBook.Componentes.Sessao
+@model Gafisa.AlphaBook.Models.Home.HomeModel
+@{
+	var sessaoSistema = new SessaoSistema(ViewData);
+	var sessaoUsuario = new SessaoUsuario(sessaoSistema);
+}
+
+			<div class="barra-sup-carrossel">
+				<div class="meus-projetos">
+					<h2>Meus Projetos <span>(@Model.Projetos.Count)</span></h2>
+				</div>
+                @if (Model.Projetos.Count > 0)
+                {
+                    <div class="filtro-carrossel">
+                        <span>Filtros</span>
+                        @Html.DropDownList("Status",
+                                             (IEnumerable<SelectListItem>) Model.StatusProjetos,
+                                             "Todos os Status", new {id = "status", @class = "campo-status filtro-carrossel-status"})
+
+                        @Html.DropDownList("Estado",
+                                             (IEnumerable<SelectListItem>) Model.UFs,
+                                             "Todos os Estados", new {id = "estados", @class = "campo-estados filtro-carrossel-uf"})
+
+                        <div class="div-busca-projetos">
+                            <input type="text" value="" id="campoBuscaProjetos" class="watermark-font  filtro-carrossel-nome" watermark="Digite o nome do projeto"/>
+                            <a href="javascript:void(0)" id="botaoBuscaProjetos" class="btn-busca-projetos"></a>
+                        </div>
+                    </div>
+                }
+			</div>
+
+			<div id="carrosselProjetos" class="carrossel" data-blocoexibido ='0' data-idprojeto ='0'> 
+				<div id="carregandoCarrossel" class="hide loading-circulo loading-carrossel"></div>
+				<div class="section-project" id="section1">
+					
+					<div id="listaProjetos">
+						@Html.Partial("~/Views/Home/CarrosselProjetos.cshtml", Model)
+					</div>
+					
+                    <a class="bt-padrao bt-ocultar" id="ocultarProjetos" style="display: none;" href="javascript:void(0)">Ocultar</a>
+                    @if (Model.Projetos.Count > 4)
+                    {
+                        <a class="bt-exibir bt-adicionar" id="exibirMaisProjetos" href="javascript:void(0)">Exibir</a>    
+                    }
+					
+				</div>
+			</div>
+
+			<div class="section-middle">
+				<div class="tiles-my-panel">
+					<h2>Meu Painel</h2>
+					<a id="tileAgenda" href="javascript:void(0)" class="tile-triple dark-green ico-agenda">
+						<span class="nome-tile">Agenda</span>
+                        <span class="numero-tile" style="display: none;"></span>
+                        <div id="carregandoCompromissos" class="loading-circulo" style=" width: 120% !important; height: 140px !important;"></div>
+						<div class="section-right">
+						</div>
+					</a>
+					
+					<a href="javascript:void(0)" class="tile ico-contatos tile-contatos">
+						<span class="nome-tile">Contatos</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+					
+					<a href="#modalAssocProjetoPost" data-toggle="modal" role="button" class="tile ico-relatorios tile-home tile-relatorios">
+						<span class="nome-tile">Relatórios</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+
+					<a id="documentos" href="javascript:void(0)" class="tile ico-documentos tile-projeto tile-documentos"  style="display: none;">
+						<span class="nome-tile">Documentos</span>
+						<span class="numero-tile"  style="display: none"></span>
+					</a>
+
+					<a href="javascript:void(0)" id="tileInteligenciaMercado" class="tile ico-inteligencia-mercado tile-home last tile-inteligenciamercado">
+						<span class="nome-tile">Inteligência de Mercado</span>
+						<span class="numero-tile"  style="display: none"></span>
+					</a>
+
+					<a href="javascript:void(0)" id="tileMapas" class="tile ico-mapas tile-projeto last tile-mapas"  style="display: none;">
+						<span class="nome-tile">Mapas</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+
+					<a id="templates" href="javascript:void(0)" class="tile ico-modelos-padroes tile-home tile-modelopadroes">
+						<span class="nome-tile">Modelos e Padrões</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+					
+					<a href="javascript:void(0)" class="tile ico-linha-tempo tile-projeto tile-linhatempo"  style="display: none;">
+						<span class="nome-tile">Linha do Tempo</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+					
+					<a href="javascript:void(0)" id="tileProjetosRecebidos" class="tile ico-projetos-recebidos tile-home tile-projetosrecebidos">
+						<span class="nome-tile">Projetos Recebidos</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+
+					<a href="javascript:void(0)" id="tileProtocolos" class="tile ico-protocolos tile-projeto tile-protocolos"  style="display: none;">
+						<span class="nome-tile">Protocolos</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+					
+					<a href="javascript:void(0)" id="tileProjetosDepartamento" class="tile ico-projetos-depto tile-home last tile-projetosdepartamento">
+						<span class="nome-tile">Projetos do Departamento</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+
+					<a href="javascript:void(0);" id="tileDadosProjeto" class="tile ico-dados-projeto tile-projeto last tile-dadosprojeto" style="display: none;">
+						<span class="nome-tile">Dados do Projeto</span>
+						<span class="numero-tile" style="display: none"></span>
+					</a>
+
+					<div class="tile-triple-links">
+						<div class="links">
+							<a href="javascript:void(0);" class="ico-checkin-tam" title="Checkin TAM">Ícone 1</a>
+							<a href="javascript:void(0);" class="ico-checkin-gol" title="Checkin GOL">Ícone 2</a>
+							<a href="javascript:void(0);" class="ico-checkin-azul" title="Checkin Azul">Ícone 3</a>
+							<a href="javascript:void(0);" class="ico-jetstream" title="Jetstream">Ícone 4</a>
+							<a href="javascript:void(0);" class="ico-automidia" title="Automídia">Ícone 5</a>
+							<a href="javascript:void(0);" class="ico-suprimentos" title="Suprimentos">Ícone 6</a>
+							<a href="javascript:void(0);" class="ico-fundacao" title="Fundação">Ícone 7</a>
+							<a href="javascript:void(0);" class="ico-google last" title="Google">Ícone 8</a>
+						</div>
+						<span class="nome-tile">Links</span>
+					</div>
+
+					<div class="tile-triple clima-tempo">
+						<div id="carregandoClima" class="loading-circulo"></div>
+						<div id="conteudoClima" class="hide"></div>
+					</div>
+				</div>
+
+				<div class="div-posts">
+					<div class="top">
+					    <h2>Posts <span class="contagem"></span></h2>
+						<a href="javascript:void(0);"  class="bt-adicionar" id="criarPost" style="display: none !important;">Adicionar Post</a>
+					</div>
+                    <div class="" id="criarPostHome">
+                    </div>
+				    <div class="div-search">
+				        <input type="text" id="campoBuscaTimeline" value="" />
+				        <a class="btn-busca-posts" id="botaoBuscaTimeline" href="javascript:void(0);"></a>
+				    </div>
+                    <div id="carregandoTimeline" class="loading-circulo" style="float: left"></div>    
+				    <div class="posts">
+				    </div>
+				</div>
+			</div>

@@ -1,0 +1,76 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.SelecaoContatoDto
+@if (Model.Contatos.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@Gafisa.AlphaBook.Dominio.Mensagens.Contatos.NenhumEncontrato</p>
+}
+else
+{
+    for (var i = 0; i < Model.Contatos.Count(); i++)
+    {
+        var item = Model.Contatos[i];
+        var colorRating = "cinza";
+        if (item.MediaAvaliacao.HasValue)
+        {
+            colorRating = item.MediaAvaliacao < 2 ? "pessimo" : (item.MediaAvaliacao < 4 ? "ruim" : (item.MediaAvaliacao < 6 ? "neutro" : (item.MediaAvaliacao < 8 ? "bom" : "excelente")));
+        }
+
+        var nomeContato = (!item.NomeContato.IsNullOrWhiteSpace() && item.NomeContato.Length > 20) ? item.NomeContato.Substring(0, 20) + "..." : item.NomeContato;
+        var empresa = (!item.NomeEmpresa.IsNullOrWhiteSpace() && item.NomeEmpresa.Length > 20) ? item.NomeEmpresa.Substring(0, 20) + "..." : item.NomeEmpresa;
+        var email = (!item.Email.IsNullOrWhiteSpace() && item.Email.Length > 20) ? item.Email.Substring(0, 20) + "..." : item.Email;
+        var enderecoCompleto = string.Format("{0}{1}{2}", !String.IsNullOrEmpty(item.Endereco) ? item.Endereco : String.Empty, item.Numero.HasValue ? String.Concat(",", item.Numero.Value) : String.Empty, !String.IsNullOrEmpty(item.Complemento) ? String.Concat(" - ", item.Complemento) : String.Empty);
+        var enderecoReduzido = (!enderecoCompleto.IsNullOrWhiteSpace() && enderecoCompleto.Length > 20) ? enderecoCompleto.Substring(0, 20) + "..." : enderecoCompleto;
+        var bairroCidadeUfCompleto = String.Format("{0}{1}{2}", !String.IsNullOrEmpty(item.Bairro) ? String.Concat(item.Bairro, " - ") : String.Empty, !String.IsNullOrEmpty(item.Cidade) ? String.Concat(item.Cidade, " - ") : String.Empty, item.Estado);
+        var bairroCidadeUfReduzido = (!bairroCidadeUfCompleto.IsNullOrWhiteSpace() && bairroCidadeUfCompleto.Length > 20) ? bairroCidadeUfCompleto.Substring(0, 20) + "..." : bairroCidadeUfCompleto; 
+        
+    <div class="item-contatos @(i % 2 == 1   ? "last" : String.Empty)">
+        <div class="box-contato">
+            <div class="box-nota @colorRating">
+                <span class="nota">NOTA</span> <span class="valor-nota">@(item.MediaAvaliacao.HasValue ? item.MediaAvaliacao.Value.ToString() : "n/d")</span>
+            </div>
+            <div class="box-dados-contato">
+                @if (Model.Tipo == "contato")
+                {        
+                    <div title="@string.Format("{0}", item.NomeContato)" class="nome-dados-contato">
+                        @string.Format("{0}", nomeContato)
+                    </div>
+                    <div title="@string.Format("{0}", item.NomeEmpresa)">
+                        @string.Format("Empresa: {0}", empresa.IsNullOrEmpty() ? "n/d" : empresa)
+                    </div>
+                    <div title="@string.Format("{0}", item.Email)">
+                        @string.Format("E-mail: {0}", email.IsNullOrEmpty() ? "n/d" : email)
+                    </div>
+                    <div>
+                        Tel. Com.: @(!String.IsNullOrEmpty(item.TelefoneComercial) ? item.TelefoneComercial.ToPhoneFormat(item.DDDComercial) : "n/d")</div> 
+                    <div>
+                        Tel. Res.: @(!String.IsNullOrEmpty(item.TelefoneResidencial) ? item.TelefoneResidencial.ToPhoneFormat(item.DDDResidencial) : "n/d")</div>    
+                    <div>
+                        Tel. Cel.: @(!String.IsNullOrEmpty(item.TelefoneCelular) ? item.TelefoneCelular.ToPhoneFormat(item.DDDCelular) : "n/d")</div>                            
+                    <div>
+                        Categoria: @(!String.IsNullOrEmpty(item.NomeTipoContato) ? item.NomeTipoContato : "n/d")</div>
+                }
+                else
+                {
+                    <div class="nome-dados-contato" title="@item.NomeContato">@nomeContato</div>
+                    <div>@(string.IsNullOrEmpty(item.NomeTipoContato) ? "n/d" : item.NomeTipoContato) </div>
+                    <div title="@enderecoCompleto">
+                        @string.Format("Endereço: {0}", (string.IsNullOrEmpty(enderecoReduzido) ? "n/d" : enderecoReduzido))
+                    </div>
+                    <div title="@bairroCidadeUfCompleto">@(bairroCidadeUfReduzido.IsNullOrEmpty() ? "n/d" : bairroCidadeUfReduzido)</div>
+                    <div>@string.Format("CEP: {0}", item.CEP.IsNullOrEmpty() ? "n/d" : item.CEP) </div>
+                }
+            </div>
+            @if(item.Latitude.HasValue)
+            {
+                <a href="javascript:void(0)" class="box-pin-mapa-contato-ativo navegar-mapa" title="Localização"  data-id="@item.Id" data-tipo="contato">Localização</a>     
+            }
+            else
+            {
+                <a class="box-pin-mapa-contato-inativo" href="javascript:void(0)">Pin Mapa</a>    
+            }
+
+            <a href="javascript:void(0);" data-id="@item.Id" class="bt-padrao selecionarContato">Selecionar</a>
+
+        </div>
+    </div>
+    }
+}

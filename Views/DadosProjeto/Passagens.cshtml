@@ -1,0 +1,79 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.PassagemModel
+<h3>Histórico de passagens entre departamentos:</h3>
+<div class="seg-passagem">
+    <div>
+        @if (Model.IdDonoProjeto.HasValue)
+        {
+            if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoPassagens, Acao.Adicionar) && (Model.UsuarioEhSuperior || Model.IdDonoProjeto == Model.IdUsuarioAtual))
+            {
+        <a class="bt-adicionar" href="javascript:void(0);" id="botaoEfetuarPassagem">Efetuar Passagem</a>
+            }
+        }
+    </div>
+
+    <div class="contato-principal-tooltip" style="display: none; top: 146px; left: 306px; width: 235px;">
+        <span class="seta" style="top: 28px;"></span>
+        <div class="box-contato">
+            <div class="box-nota">
+                @Html.ProfilePhoto(Model.IdUsuarioAtual)
+            </div>
+            <div class="box-dados-contato">
+                <div style="margin: 15px 0 10px 0;">
+                    <strong>RENATO MAGALHÃES</strong>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    <div class="box-tabela table-passagem" style="display: none;">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabelaPassagem">
+                    <thead>
+                        <tr>
+                            <th class="table-title colun-1" colspan="2">
+                                &nbsp;
+                            </th>
+                            <th class="table-title colun-2">
+                                Passagem
+                            </th>
+                            <th class="table-title colun-3">
+                                Status
+                            </th>
+                            <th class="table-title colun-4">
+                                Data/Hora
+                            </th>
+                            <th class="table-title colun-5">
+                                Depto.
+                            </th>
+                            <th class="table-title colun-6">
+                                Responsável
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="seg-box-pendencias">
+        <h4>
+            Histórico de pendências e considerações gerais:</h4>
+        <div class="box-pendencias-scroll">
+            @foreach (var consideracoes in Model.Consideracoes)
+            {
+                <div class="box-pendencias">
+                    <span>@consideracoes.DataInclusao.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                    <p>
+                        Pendências:</p>
+                    <span>@consideracoes.Pendencias</span>
+                    <p>
+                        Considerações gerais:</p>
+                    <span>@consideracoes.Consideracoes</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

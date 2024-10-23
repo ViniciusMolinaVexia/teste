@@ -1,0 +1,42 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao;
+
+@model Gafisa.AlphaBook.Models.Templates.TemplateModel
+
+@{
+    var permissaoAdicionar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrõesPastas, Acao.Adicionar);
+}
+          
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close voltar">x</a>
+    <h3>Adicionar Pasta</h3>
+</div>
+<div class="modal-body">
+    <form id="formIncluirTaxonomia" class="forms" method="post" action="">
+    <fieldset>
+        <div class="sep-line-form add-pasta-dept">
+            <label>Departamento:</label>
+            <span>@Model.NomeDepartamento</span>
+        </div>
+        <div class="sep-line-form add-pasta-nome">
+            <label>* Nome:</label>
+            <input id="TaxonomiaNome" name="TaxonomiaNome" type="text" />
+        </div>
+        <div class="sep-line-form add-pasta-nome">
+			<label>* Pasta Pai:</label>
+			<select id="TaxonomiaPaiId" name="Pasta" class="campo-pasta"></select>
+            <div id="ListaPasta" class="hide">
+                <ul>
+                    @Html.Partial("Taxonomias", Model.Taxonomias)
+                </ul>
+            </div>
+        </div>
+    </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    @if (permissaoAdicionar)
+    {
+        <a id="incluirTaxonomia" class="bt-padrao" href="javascript:void(0)">Salvar</a> 
+    }
+    <a id="voltarTaxonomiaTemplate" class="bt-padrao" href="javascript:void(0)">Voltar</a>
+</div>

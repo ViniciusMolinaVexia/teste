@@ -1,0 +1,26 @@
+﻿@using Gafisa.AlphaBook.Dominio.DTO
+@model IEnumerable<OfertaDto>
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var oferta in Model)
+        {
+            var corFarol = "vermelho";
+            if (oferta.Nota.HasValue && oferta.Nota.Value >= 8)
+            {corFarol = "verde";}
+            else if (oferta.Nota.HasValue && oferta.Nota.Value <= 7 && oferta.Nota.Value >= 4)
+            {corFarol = "amarelo";}
+            <li class="ico-lista-@corFarol oferta"><a href="javascript:void(0);" data-id="@oferta.Id">-
+                @oferta.Estado – @oferta.Cidade@Html.Conditional(!String.IsNullOrEmpty(oferta.NomeContato), String.Format(" – Contato: {0} ", oferta.NomeContato))
+                @if (oferta.DataResposta.HasValue)
+                {
+                    <span> - Aguardando documentos a @oferta.DiasAguardados.Value dias.</span>
+                }
+            </a></li>
+        }
+    </ul>
+}
+else
+{
+    <span>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</span>    
+}

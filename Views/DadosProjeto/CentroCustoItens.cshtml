@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.CentroCusto>
+@if (Model.IsNullOrEmptyCollection())
+{
+<p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "centro de custo")</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+<tr>
+    <td class="col-1">
+        @item.Codigo
+    </td>
+    <td class="col-2">
+        @item.Ordem
+    </td>
+    <td class="col-3">
+        @item.DataCriacao.ToStringFormat()
+    </td>
+    <td class="col-4">
+        @item.CNPJ.FormatarCNPJ()
+    </td>
+    <td class="col-6">
+        @item.CodigoEmpresa
+    </td>
+    <td class="col-5">
+        @item.RazaoSocial
+    </td>
+    <td class="col-7">
+        @item.ContratoSocial
+    </td>
+    <td class="col-8">
+        @(item.Ativo ? "Ativo" : "Inativo")
+    </td>
+    <td class="col-9" title="@item.Observacoes">
+        <div class="content-wrapper">@item.Observacoes.Truncate(50)</div>
+    </td>
+    <th class="col-10">
+        <a class="ico-editar ico botaoEditarCentroCusto" href="javascript:void(0);" data-id="@item.Id" title="Editar">Editar</a>
+    </th>
+</tr>
+    }
+}

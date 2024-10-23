@@ -1,0 +1,23 @@
+﻿@using Gafisa.AlphaBook.Dominio.DTO
+@model IEnumerable<UsuarioDto>
+@if (!Model.IsNullOrEmptyCollection())
+{
+    foreach (var usuario in Model)
+    {
+    <tr>
+        <td class="linha-1" data-id="@Model.Select(x=>x.Id).Max()">@usuario.Login - @usuario.Nome @usuario.Sobrenome
+            - @usuario.Cargo - @usuario.Departamento
+        </td>
+        <td id="usuarioInativo" class="linha-2">
+            <span>@Html.Conditional(@usuario.Inativo, "inativo")</span>
+        </td>
+        <td data-id="@usuario.Id" id="editarUsuario" class="linha-3">
+            <a href="javascript:void(0)" title="Editar usuário" class="ico-editar-compromisso">Editar</a>
+        </td>
+    </tr>
+    }
+}
+else
+{
+    <p>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+}

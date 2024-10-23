@@ -1,0 +1,102 @@
+﻿@using System.Text.RegularExpressions
+@using Gafisa.AlphaBook.Dominio
+@using Gafisa.AlphaBook.Models.Home
+@model IEnumerable<PostagemModel>  
+    
+@{
+    var permissaoPostAnexo = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.PostsAnexos, Acao.Visualizar);
+}
+
+@foreach (var item in Model)
+{
+    var classNotificacao = item.Notificacao ? "ico-post-notificacao" : "ico-post-notificacao-inativo";
+    var classCurtir = item.Curtiu ? "ico-post-like post-like" : "ico-post-like-inativo post-like";
+    var classLembrete = item.DataLembrete.HasValue ? "ico-post-lembrete" : "ico-post-lembrete-inativo";
+    var lembrete = item.DataLembrete.HasValue ? string.Format("Lembrete: {0:d}", item.DataLembrete): "Lembrete";
+    var linhaTempo = item.LinhaTempo ? "ico-post-linha-tempo" : "ico-post-linha-tempo-inativo";
+    var areaPrivacidade = item.DepartamentoPrivacidade.IsNullOrEmpty() ? "" : item.DepartamentoPrivacidade;
+    var dataPublicacao = string.Format("{0}", item.DataPublicacao);
+    var texto = Regex.Replace(Html.Raw(HttpUtility.HtmlDecode(item.Postagem)).ToString(), @"<[^>]*>", String.Empty);
+    if (item.DataRetroativa.HasValue)
+    {
+        dataPublicacao += " | " + string.Format("{0}", item.DataRetroativa);
+    }
+    <div id="dados-post" data-id="@item.Id" style="width: 455px; float: left; margin: 0 10px 5px 0;">
+        <div class="box-post">
+            @if (item.DeveExibirIconeEtapa())
+            {
+            <div class="status-post @item.ObterClasseCssStatusEtapa()"></div>
+            }
+            @Html.ProfilePhoto(item.UsuarioDonoPostagemId)
+            <div class="dados-post">
+                <p class="nome-post">@item.Titulo</p>
+                <a data-projetoId="@item.ProjetoId" class="nome-projeto-post" href="javascript:void()">
+                    @item.NomeProjeto
+                </a>
+                <p class="usario-post">@string.Format("{0} | {1}", item.NomeCompleto, item.Departamento)</p>
+                <p class="data-post">@dataPublicacao</p>
+            </div>
+
+            <div class="msg-post">
+                @if (texto.Length <= 100)
+                {
+                    @Html.Raw(HttpUtility.HtmlDecode(item.Postagem))
+                }
+                else
+                {
+                    @texto.Substring(0,100)
+                    <a class="leiaMais" data-postagemId="@item.Id"  href="javascript:void(0);">... leia mais</a>    
+                }
+            </div>
+            
+            @Html.PostPhotos(item.Id)
+
+            <div class="icones-post">
+                @if (permissaoPostAnexo)
+                {
+                    if (item.Anexos > 0)
+                    {
+                <a href="javascript:void(0);" class="ico-post-anexo" title="Anexos" data-postagemid="@item.Id" id="visualizarAnexosPost">@item.Anexos</a>
+                    }
+                    else
+                    {
+                <a href="javascript:void(0);" class="ico-post-anexo-inativo" title="Anexos">0</a>
+                    }
+                }
+                
+                @if (!item.Latitude.IsNullOrEmpty())
+                {
+                <a href="javascript:void(0)" class="ico-post-pin navegar-mapa" title="Localização"  data-id="@item.Id" data-tipo="postagem" data-idProjeto="@item.ProjetoId">Localização</a>
+                }
+                else if (item.ContatoId.HasValue)
+                {
+                <a href="javascript:void(0)" class="ico-post-pin navegar-mapa" title="Localização"   data-id="@item.ContatoId" data-tipo="contato" data-idProjeto="@item.ProjetoId">Localização</a>     
+                }
+                else
+                {
+                <a href="javascript:void(0)" class="ico-post-pin-inativo" title="Localização">Localização</a>
+                }
+                <a href="javascript:void(0);" class="@classNotificacao" title="Notificação">Notificação</a>    
+                <a href="javascript:void(0);" class="@classLembrete" title="@lembrete">Lembrete</a>
+                <a href="javascript:void(0);" class="@linhaTempo linhaTempo" title="@Html.Conditional(item.EtapaId.HasValue, item.EtapaNome, "Linha do tempo")" data-podealterar="@item.PodeAlterar.ToString().ToLower()" data-id="@item.Id" data-marco="@item.LinhaTempo.ToString().ToLower()">Linha do tempo</a>
+                <a href="javascript:void(0);" class="ico-post-p-associados iconeProjetosAssociados" title="Projetos associados">@item.ProjetosAssociados</a>
+                <a href="javascript:void(0);" class="ico-post-mail" data-id="@item.Id" data-privacidade="@item.PrivacidadeId" data-postagem="@item.Postagem" data-titulo="@item.Titulo" >&nbsp;</a>
+                @if (item.PrivacidadeId == Privacidade.UsuariosEspecificos)
+                {
+                    <a href="javascript:void(0);" title="@item.UsuariosEspecificos" data-html-tooltip="true" class="ico-post-perfil-publicacao">@item.NomePrivacidade</a>
+                }
+                else
+                {
+                    <a href="javascript:void(0);" title="@areaPrivacidade" class="ico-post-perfil-publicacao">@item.NomePrivacidade</a>
+                }
+            </div>
+            
+            @if (item.PodeExcluir)
+            {
+                <a href="javascript:void(0);" id="btnExcluirPostTimeLine" class="ico-post-excluir post-excluir" title="Excluir">Excluir</a>
+            }
+            <a href="javascript:void(0)" data-id="@item.Id" data-postagemId="@item.Id" class="@classCurtir" title="Curtiram isso"></a>
+            <a href="javascript:void(0);" data-id="@item.Id" class="numero-seguir btn-curtidores">@item.Curtidas</a> 
+        </div>
+    </div>
+}

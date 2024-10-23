@@ -1,0 +1,45 @@
+﻿  @{
+     var permissaoEstrutura = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosEstrutura, Acao.Visualizar);
+     var permissaoLandBanking = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosLandBanking, Acao.Visualizar);
+     var permissaoPipeline = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosPipeline, Acao.Visualizar);
+     var permissaoAndamentoProjetos = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosAndamentoProjetos, Acao.Visualizar);
+
+     var count = 0;
+ }
+
+<div id="controleRelatorios">
+	<h2 class="title-relatorios">Relatórios</h2>
+
+	<div class="tiles-documents">
+		@if (permissaoEstrutura)
+        {
+            <a class="tile-ativo tile-estrutura">
+                <span class="nome-tile">Estrutura</span>
+            </a>
+            count++;
+        }
+        
+        @if (permissaoPipeline)
+        {
+            <a class="tile-ativo tile-pipeline">
+                <span class="nome-tile">Pipeline</span>
+            </a>
+            count++;
+        }
+        
+        @if (permissaoLandBanking)
+        {
+            <a class="tile-ativo @Html.Conditional(count == 2, "last") tile-landbanking">
+                <span class="nome-tile">Landbank</span>
+            </a>
+            count++;
+        }
+
+        @if (permissaoAndamentoProjetos)
+        {
+            <a class="tile-ativo @Html.Conditional(count == 2, "last") tile-andamento-projetos">
+                <span class="nome-tile">Andamento de Projetos</span>
+            </a>
+        }
+	</div>
+</div>

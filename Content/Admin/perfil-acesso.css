@@ -1,0 +1,94 @@
+﻿.inner {
+    height: 375px !important;
+}
+.wrap
+{
+    height: 417px !important;
+    width: 928px !important;
+}
+
+#tabelaPerfilAcesso
+{
+    width: 912px;
+    clear: both;
+}
+#tabelaPerfilAcesso th
+{
+    border-right: none;
+}
+
+#tabelaPerfilAcesso th.colun-1, #tabelaPerfilAcesso td.colun-1
+{
+    width: 592px;
+}
+
+#tabelaPerfilAcesso th.colun-2, #tabelaPerfilAcesso td.colun-2
+{
+    width: 70px;
+}
+
+#tabelaPerfilAcesso th.colun-3, #tabelaPerfilAcesso td.colun-3
+{
+    width: 110px;
+}
+
+#tabelaPerfilAcesso th.colun-4, #tabelaPerfilAcesso td.colun-5
+{
+    width: 70px;
+}
+
+#tabelaPerfilAcesso th.colun-5, #tabelaPerfilAcesso td.colun-5
+{
+    width: 70px;
+}
+
+.div-acoes
+{
+    margin-top: 11px;
+    margin-bottom: 11px;
+    float: right;
+}
+
+#corpo
+{
+    width: 928px;
+}
+
+.box-bts-modal-confirmacao a
+{
+    margin-right: 5px !important;
+    margin-left: 0px !important;
+}
+
+#modalSelecaoTripla
+{
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#modalSelecaoTripla .modal-header
+{
+    display: none !important;
+}
+
+.box-modal-confirmacao
+{
+    margin: 0 0 0 0 !important;
+}
+
+.modal
+{
+    width: 354px;
+    left: 65%;
+}
+
+.modal-body
+{
+    padding: 1px !important;
+}
+
+.modal.fade.in
+{
+    top: 25%;
+}

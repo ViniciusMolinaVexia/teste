@@ -1,0 +1,18 @@
+﻿@model Gafisa.AlphaBook.Models.Home.PostagemModel
+        
+<div id="ListaTaxonomias" class="hide">
+    <ul>
+        @Html.Partial("Taxonomias", Model.Taxonomias)
+    </ul>
+</div>
+
+<div class="post-completo">
+
+    @Html.Partial("CriarPost", Model)
+
+    @Html.Partial("~/Views/Shared/UploadAnexos.cshtml", Model)
+
+    @Html.Partial("~/Views/Shared/AssociacaoProjetos.cshtml", Model)    
+
+    <a id="salvarPost" class="bt-padrao bt-salvar-inferior" href="javascript:void(0);">Salvar</a>
+</div>

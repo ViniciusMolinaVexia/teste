@@ -1,0 +1,150 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.DetalheDocumentoModel
+<link rel="stylesheet" href="@Url.Content("~/Content/css/detalhe-documento.css")" type="text/css" />
+<div id="controleTemplates" style="height: 950px">
+	<div id="hidden" class="hide">
+		@Html.HiddenFor(model => model.ArquivoId)
+		@Html.HiddenFor(model => model.Arquivo.NomeOriginal, new { id = "NomeOriginal" })
+		@Html.HiddenFor(model => model.Taxonomia.Id, new { id = "TaxonomiaAtual" })
+		@Html.HiddenFor(model => model.ClassificacaoTaxonomia.Id, new { id = "ClassificacaoAtual" })
+		@Html.HiddenFor(model => model.Arquivo.PostagemPrivacidadeId, new { id = "PrivacidadePostagem" })
+		@Html.HiddenFor(model => model.Arquivo.PostagemId, new { id = "postagemId" })
+		@Html.HiddenFor(model => model.ClassificacaoTaxonomia.Id, new { id = "classificacaoId" })
+	</div>
+	<h2 class="title-documentos">
+		Detalhe do Modelo / Padrão</h2>
+	<a class="bt-voltar-documento" href="javascript:void(0);">Voltar</a>
+	<div class="bg-branco">
+		<div class="detalhe-documento">
+			<div class="det-dados-doc">
+				<h4>@Model.Arquivo.NomeOriginal</h4>
+				<p>@Model.Arquivo.NomeAutor @Model.Arquivo.SobrenomeAutor</p>
+				<p>@Model.Arquivo.Data.ToString()</p>
+			</div>
+			<div class="det-upload">
+				<form class="forms" method="post" action="">
+				<fieldset>
+					<div class="sep-line-form">
+						<label>
+							* Arquivo:</label>
+						<div id="container" class="div-upload">
+							<a id="selecionarArquivos" href="javascript:void(0)" class="bt-padrao bt-procurar">Procurar</a>
+						</div>
+						<div class="hide versao">
+						</div>
+					</div>
+					<div class="sep-line-form">
+						<label>
+							* Observações:</label>
+						<textarea id="Observacao"></textarea>
+					</div>
+					@if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.EditarProprios))
+					{
+						<div>
+							<a id="enviarNovaVersao" class="bt-padrao" href="javascript:void(0);">Adicionar versão</a>
+						</div>
+					}
+				</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="detalhe-taxonomia">
+			<h4>
+				Taxonomia</h4>
+			<div class="det-form-taxonomia">
+				<form id="formTaxonomia" class="forms" method="post" action="">
+				<fieldset>
+					<div class="sep-line-form">
+						<label>
+							* Pasta:</label>
+						<select data-taxonomiaid="0" id="taxonomiaId" name="Pasta" class="campo-pasta">
+							<option value="@Model.Taxonomia.Id">@Model.Taxonomia.Nome</option>
+						</select>
+						<div id="ListaTaxonomias" class="hide">
+							<ul>
+								@Html.Partial("Taxonomias", Model.Taxonomias)
+							</ul>
+						</div>
+					</div>
+					<div class="sep-line-form">
+						<label>
+							* Classificação:</label>
+						@Html.DropDownListFor(model => model.ClassificacaoTaxonomia.Id, Model.Classificacoes.ToSelectList(text => text.Nome, value => value.Id), new { id = "ClassificacaoTaxonomiaId" })
+					</div>
+					@if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.EditarProprios))
+					{
+						<div>
+							<a id="alterarTaxonomia" class="bt-padrao" href="javascript:void(0);">Salvar</a>
+						</div>
+					}
+				</fieldset>
+				</form>
+			</div>
+			<div class="det-dados">
+				<div class="sep-line-form">
+					<label>
+						Para que serve:</label>
+					<span id="paraQueServe">@Model.ClassificacaoTaxonomia.ParaQueServe</span>
+				</div>
+				<div class="sep-line-form">
+					<label>
+						Palavras-chave:</label>
+					<span id="palavraChave">@Model.ClassificacaoTaxonomia.PalavrasChave</span>
+				</div>
+				<div class="sep-line-form">
+					<label>
+						Confidencialidade sugerida:</label>
+					<span id="privacidadeSugerida" class="span-publico">
+						@Model.ClassificacaoTaxonomia.Privacidade
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="detalhe-historico">
+			<h4>
+				Histórico</h4>
+			<div class="box-tabela">
+				<div class="wrap table2">
+					<div class="inner">
+						<table id="tabelaHistorico">
+							<thead>
+								<tr>
+									<th class="table-title table-left colun-1 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Arquivo</a>
+									</th>
+									<th class="table-title colun-2 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Versão</a>
+									</th>
+									<th class="table-title colun-3 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Data / Hora</a>
+									</th>
+									<th class="table-title colun-4 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Usuário</a>
+									</th>
+									<th class="table-title colun-5 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Área</a>
+									</th>
+									<th class="table-title colun-6 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Perfil Publicação</a>
+									</th>
+									<th class="table-title colun-7 table-title-ord-down">
+										<a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">Observações</a>
+									</th>
+									<th class="table-title colun-8">
+										Download
+									</th>
+									<th class="table-title colun-9">
+										Excluir
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a class="bt-voltar-documento" href="javascript:void(0);">Voltar</a>
+	</div>
+</div>

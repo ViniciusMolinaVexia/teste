@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ProtocoloDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Protocolos")</p>
+}
+else
+{
+    var classeAnexo = "";
+    var count = 0;
+
+    foreach (var protocolo in Model)
+    {
+        classeAnexo = protocolo.QuantidadeAnexos > 0 ? "ico-post-anexo" : "ico-post-anexo-inativo";
+        var classe = count % 2 == 1 ? "odd" : "even";
+        
+        <tr data-id="@protocolo.Id" class="@classe">
+            <td class="colun-1"><a href="javascript:void(0)" name="linkProtocolo" data-id="@protocolo.Id">@protocolo.NumeroProtocolo.Truncate(30)</a></td>
+            <td class="colun-2">@protocolo.DataAbertura.ToShortDateString()</td>
+            <td class="colun-3">@protocolo.Orgao.Truncate(30)</td>
+            <td class="colun-4">@protocolo.StatusProtocolo</td>
+            <td class="colun-5">@protocolo.Requerente</td>
+            <td class="colun-6">@protocolo.Assunto.Truncate(30)</td>
+            <td class="colun-7">@protocolo.Observacoes.Truncate(30)</td>
+            <td class="colun-8"><a name="anexos" class="@classeAnexo" href="javascript:void(0);" data-postagemid="@protocolo.PostagemId" id="visualizarAnexosPost">@protocolo.QuantidadeAnexos</a></td>
+                <td class="colun-8">                        
+                    @if (protocolo.PodeExcluir)
+                    {
+                        <a class="@Html.Conditional(protocolo.Filhos.Count() > 0, "ico-excluir-inativo ico", "ico-excluir ico btExcluirProtocolo")" href="javascript:void(0);">excluir</a>
+                    }
+                </td>
+        </tr>
+    
+        if (!protocolo.Filhos.IsNullOrEmptyCollection())
+        {
+            foreach (var filho in protocolo.Filhos)
+            {
+                classeAnexo = filho.QuantidadeAnexos > 0 ? "ico-post-anexo" : "ico-post-anexo-inativo";
+                <tr data-id="@filho.Id" class="@classe">
+                    <td class="colun-1"><a class="protocolo-filho" href="javascript:void(0)" name="linkProtocolo" data-id="@filho.Id">@filho.NumeroProtocolo.Truncate(30)</a></td>
+                    <td class="colun-2">@filho.DataAbertura.ToShortDateString()</td>
+                    <td class="colun-3">@filho.Orgao.Truncate(30)</td>
+                    <td class="colun-4">@filho.StatusProtocolo</td>
+                    <td class="colun-5">@filho.Requerente</td>
+                    <td class="colun-6">@filho.Assunto.Truncate(30)</td>
+                    <td class="colun-7">@filho.Observacoes.Truncate(30)</td>
+                    <td class="colun-8"><a name="anexos" class="@classeAnexo" href="javascript:void(0);" data-postagemid="@filho.PostagemId" id="visualizarAnexosPost">@filho.QuantidadeAnexos</a></td>
+                    
+                        <td class="colun-8">
+                            @if (filho.PodeExcluir)
+                            {
+                                <a class="ico-excluir ico btExcluirProtocolo" href="javascript:void(0);">excluir</a>
+                            }
+                        </td>
+                    
+                </tr>
+            }
+        }
+
+        count++;
+    }
+}
+
+

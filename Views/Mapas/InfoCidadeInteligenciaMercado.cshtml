@@ -1,0 +1,22 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.Localizacao.CidadeDto
+@{
+    var cidadeAlvo = (@Model.CidadeAlvo ? "sim" : "não");
+}
+
+<div class="div-inteligencia-mercado">
+    <h3>@Model.Nome</h3>
+    <span>Região Metropolitana: @Model.Regiao</span>
+    <span>Cidade Alvo: @cidadeAlvo</span>
+    <span class="mt12"><i>População:</i> @Model.Populacao.ToString("N0")</span>
+    <span><i>Taxa Cresc. Pop.:</i> @Model.TaxaCrescimento.ToString("P")</span>
+    <h4 class="mt12">Domicílios</h4>
+    <span><i>Classe A:</i> @Model.DomiciliosClasseA.ToString("N2")</span>
+    <span><i>Classe B:</i> @Model.DomiciliosClasseB.ToString("N2")</span>
+    <span><i>Classe C1:</i> @Model.DomiciliosClasseC1.ToString("N2")</span>
+    <span><i>Classe C2:</i> @Model.DomiciliosClasseC2.ToString("N2")</span>
+    <span><i>Classe C3:</i> @Model.DomiciliosClasseC3.ToString("N2")</span>
+    <span><i>Classe DE:</i> @Model.DomiciliosClasseDE.ToString("N2")</span>
+    <span><i>Total:</i> @Model.DomiciliosTotal.ToString("N2")</span>
+    <span class="mt12"><i>Índice de Desenv. Municipal:</i> @Model.IndiceDesenvolvimentoMunicipal.ToString("N0")</span>
+    <span><i>Índice de Violência Municipal:</i> @Model.IndiceViolenciaMunicipal.ToString("N0")</span>
+</div>

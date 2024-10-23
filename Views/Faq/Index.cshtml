@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.FaqDto>
+
+<link rel="stylesheet" href="@Url.Content("~/Content/css/faq.css")" type="text/css" />
+
+<div id="controleFaq">
+    <h2 class="title-faq">Perguntas Frequentes</h2>
+
+    <div class="box-busca-faq">
+	    <form action="" class="forms">
+		    <fieldset>
+			    <div class="form-line">
+				    <div class="box-input-busca faq-busca">
+					    <input type="text" name="termoBuscaFaq" id="termoBuscaFaq" />
+					    <a href="javascript:void(0);" id="buscarfaq">Buscar</a>
+				    </div>
+			    </div>
+		    </fieldset>
+	    </form>
+    </div>
+
+    <div id="faqListaConteudo" class="box-perguntas-faq">
+        <ul id="faqConteudoDiv">
+        </ul>
+    </div>
+</div>

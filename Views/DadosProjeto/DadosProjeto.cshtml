@@ -1,0 +1,73 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Dominio.DTO.Projeto.DadosProjetoDTO
+@{
+    var podeAlterar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoTileeCabeçalho, Acao.Editar, Model.Id);
+    <div class="seg-bts-acoes-projeto">
+        @if (Model.PermitidoAlteracao && podeAlterar)
+        {
+            <a class="ico-editar-projeto" href="javascript:void(0);" id="editarDadosProjeto">Editar
+            dados do projeto</a>
+        }
+        <a class="ico-exporta-dados-projeto" href="javascript:void(0);" id="exportarDadosProjeto">Exportar dados do projeto</a>
+    </div>
+    <div class="info-dados-projeto">
+        <label>Código do Projeto:</label>
+        <span class="linkCodigo">@Model.CodigoProjeto</span>
+    </div>
+    <div class="info-dados-projeto last">
+        <label><a href="javascript:void(0);" id="historicoResponsavelProjeto">Responsável:</a></label>
+        <span>@(Model.Responsavel ?? "Nenhum responsável foi atribuido.")</span>
+    </div>
+    <div class="info-dados-projeto">
+        <label><a href="javascript:void(0);" id="historicoNomeProjeto">Nome do Projeto:</a></label>
+        <a href="javascript:void(0);" class="linkCodigoProjeto" data-id="@Model.Id">@Model.Nome</a>
+    </div>
+    <div class="info-dados-projeto last">
+        <label><a href="javascript:void(0);" id="historicoStatusProjeto">Status:</a></label>
+        <span>@Model.Status</span>
+    </div>
+    <div class="info-dados-projeto">
+        <label>Cidade:</label>
+        <span class="info-dados-cidade">@Model.Cidade
+            @if (!String.IsNullOrWhiteSpace(Model.CidadeSecundaria))
+            {
+                <text> / @Model.CidadeSecundaria</text>
+            }
+        </span>
+        @*@if (podeAlterar)
+        {
+            <a class="pin-cidade editar-poligono" href="javascript:void(0)" id="editarPoligono">Pin</a>
+        }
+        else
+        {*@
+        <a href="javascript:void(0)" class="ico-localizacao navegar-mapa dadosProjeto" title="" data-id="@Model.Id" data-tipo="projeto" data-idprojeto="@Model.Id" aria-describedby="ui-tooltip-1">Localização</a>
+    </div>
+    <div class="info-dados-projeto last">
+        <label>
+            Comitê:</label>
+        <span class="sep-radio">
+            @(Model.Comite ? "Sim" : "Não")
+        </span>
+    </div>
+    <div class="info-dados-projeto">
+        <label>UF:</label>
+        <span>@Model.Estado
+            @if (!String.IsNullOrWhiteSpace(Model.CidadeSecundaria))
+            {
+                <text> / @Model.EstadoSecundarioId</text>
+            }
+        </span>
+    </div>
+    <div class="info-dados-projeto last">
+        <label>
+            Produto:</label>
+        <span>@Model.Produto</span>
+    </div>
+    if (Model.PermitidoAlteracao && Model.DepartamentoId == Departamento.Prospeccao)
+    {
+    <div class="bt-cobrar">
+        <a id="cobrarDocumentacao" class="bt-padrao" href="javascript:void(0);">Cobrar Documentação</a>
+    </div>
+    }
+}

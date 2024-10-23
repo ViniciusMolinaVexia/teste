@@ -1,0 +1,86 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Home.AtaReuniaoModel
+<form class="forms" id="formAtaReuniao">
+    <fieldset>
+        @Html.HiddenFor(model => model.Id)
+        <div class="sep-line-form">
+            <div class="form-line">
+                <label>Título:</label>
+                <input type="text" value="@Model.Titulo" id="Titulo" name="Titulo" maxlength="100" style="width:305px;" @Html.Disabled(Model.Edicao) />
+            </div>
+            <div class="form-line">
+                <label>Data da reunião:</label>
+                <input type="text" value="@Model.Data" id="Data" name="Data" class="campo-data" style="width:105px;" @Html.Disabled(Model.Edicao) />
+            </div>
+            <div id="divParticipantesAtaReuniao" class="form-line">
+                @if (Model.Edicao)
+                {
+                <div class="sep-line-form">
+                    <label>Participantes:</label>
+                    <span style="margin-top: 8px;display: block;">@String.Join(", ", Model.Participantes)</span>
+                </div>
+                }
+                else
+                {
+                <div class="sep-line-form textarea-usuarios-especificos" data-source="">
+                    <label>Participantes:</label>
+                    <select name="Participantes" id="participantesAtaReuniao" class="hide no-multiple-select"></select>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line">
+                <label>Confidencialidade:</label>
+                @if (Model.Edicao)
+                {
+                @Html.DropDownListFor(model => model.PrivacidadeId, Model.Privacidades.ToSelectList(text => text.Descricao, value => value.Id), new { disabled = "disabled" })    
+                }
+                else
+                {
+                @Html.DropDownListFor(model => model.PrivacidadeId, Model.Privacidades.ToSelectList(text => text.Descricao, value => value.Id, "Confidencialidade"))
+                }
+            </div>
+            <div id="divDepartamentoPrivacidade" class="form-line @Html.Conditional(Model.PrivacidadeId != Privacidade.Departamento, "hide")">
+                @if (Model.Edicao)
+                {
+                @Html.DropDownListFor(model => model.DepartamentoPrivacidadeId, Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), new { @class = "combo-area", disabled = "disabled" })    
+                }
+                else
+                {
+                @Html.DropDownListFor(model => model.DepartamentoPrivacidadeId, Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), new { @class = "combo-area" })
+                }
+            </div>
+            <div id="divUsuariosEspecificosAtaReuniao" class="form-line @Html.Conditional(Model.PrivacidadeId != Privacidade.UsuariosEspecificos, "hide")">
+                @if (Model.Edicao && !Model.UsuariosEspecificos.IsNullOrEmptyCollection())
+                {
+                <div class="sep-line-form">
+                    <label>Usuários:</label>
+                    <span style="margin-top: 8px;display: block;">@String.Join(", ", Model.UsuariosEspecificos)</span>
+                </div>
+                }
+                else
+                {
+                <div class="sep-line-form textarea-usuarios-especificos" data-source="">
+                    <label>Usuários:</label>
+                    <select name="UsuariosEspecificosIds" id="usuariosEspecificosAtaReuniao" class="hide no-multiple-select"></select>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line obs-observacoes">
+                <label>Conteúdo:</label>
+                <textarea maxlength="5000" id="Conteudo" name="Conteudo">@Model.Conteudo</textarea>
+            </div>
+        </div>
+        @if (Model.PodeAlterar)
+        {
+        <div class="sep-line-form" style="float: right; margin-right: 16px;">
+            <div class="form-line">
+                <a class="bt-padrao" href="javascript:void(0);" id="botaoSalvarAtaReuniao">Salvar</a>
+            </div>
+        </div>
+        }
+    </fieldset>
+</form>

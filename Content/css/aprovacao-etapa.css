@@ -1,0 +1,55 @@
+﻿.aprovacao-etapa {
+    position: relative;
+}
+
+.aprovacao-etapa .box-tabela .wrap {
+    height: 500px;
+    width: 952px;
+    padding: 45px 0 0;
+}
+
+.aprovacao-etapa .box-tabela .wrap .inner {
+    height: 500px;
+}
+
+/* THead */
+
+.aprovacao-etapa th.colun-1 {
+    width: 263px;
+}
+
+.aprovacao-etapa th.colun-2 {
+    width: 263px;
+}
+
+.aprovacao-etapa th.colun-3 {
+    width: 212px;
+}
+
+.aprovacao-etapa th.colun-4 {
+    width: 160px;
+}
+
+
+
+/* TBody */
+
+#tabelaAprovacaoEtapa td.colun-1 {
+    width: 250px;
+}
+
+#tabelaAprovacaoEtapa td.colun-2 {
+    width: 250px;
+}
+
+#tabelaAprovacaoEtapa td.colun-3 {
+    width: 200px;
+}
+
+#tabelaAprovacaoEtapa td.colun-4 {
+    width: 150px;
+}
+
+.modal-validar-post .box-post {
+    border-bottom: 1px solid #ccc !important;
+}

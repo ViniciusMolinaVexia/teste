@@ -1,0 +1,16 @@
+﻿@model Gafisa.AlphaBook.Models.Home.ContatoModel
+           
+@{
+    var colorRating = "cinza";
+    if (Model.MediaAvaliacao.HasValue)
+    {
+        colorRating = Model.MediaAvaliacao < 2 ? "pessimo" : (Model.MediaAvaliacao < 4 ? "ruim" : (Model.MediaAvaliacao < 6 ? "neutro" : (Model.MediaAvaliacao < 8 ? "bom" : "excelente")));    
+    }
+    
+}
+
+<label>Nota:</label>
+<div class="box-nota-contato @colorRating">
+	<span class="nota">NOTA</span>
+	<span class="valor-nota">@(Model.MediaAvaliacao.HasValue ? Model.MediaAvaliacao.Value.ToString() : "n/d")</span>
+</div>

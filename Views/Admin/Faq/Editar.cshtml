@@ -1,0 +1,58 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.Faq.FaqModel
+@{
+    ViewBag.Title = "Alphabook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Faq/faq-editar.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/faq.css")" />
+}
+
+<div class="container">
+    @if (Model.Id == 0)
+    {
+        <h2>Adicionar Faq</h2>
+    }
+    else
+    {
+        <h2>Editar Faq</h2>
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("Faq", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        <form action="@Url.Action("SalvarFaq", "Admin")" id="form" class="forms">
+            @Html.Hidden("Id", Model.Id, new { id = "Id" })
+            <div class="sep-line-form">
+                <div class="form-line form-pergunta">
+                    <label>@string.Format("Id: {0}", Model.Id == 0 ? "n/d" : Model.Id.ToString())</label>
+                </div>
+            </div>
+
+            <div class="sep-line-form">
+                <div class="form-line form-pergunta">
+                    <label>Pergunta: </label>
+                    <textarea rows="2" cols="2" id="pergunta" name="Titulo">@Model.Titulo</textarea>
+                </div>
+            </div>
+            <div class="sep-line-form">
+                <div class="form-line form-resposta">
+                    <label>Resposta: </label>
+                    <textarea rows="5" cols="2" id="resposta" name="Descricao">@Model.Descricao</textarea>
+                </div>
+            </div>
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.FAQ, Acao.Adicionar))
+            {
+                <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+            }
+        </form>
+    </div>
+</div>
+
+
+
+
+

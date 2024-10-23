@@ -1,0 +1,78 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.EmailModel
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Status.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Email/email-editar.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/email.css")" />
+}
+
+<div class="container">
+    @if (Model.StatusEdicao.Id == 0)
+    {
+        <h2>Adicionar E-mail</h2>
+    }
+    else
+    {
+        <h2>Editar E-mail</h2>
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("Email", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        
+        <form action="@Url.Action("SalvarEmail", "Admin")" id="form" class="forms">
+        
+        @Html.Hidden("Id", Model.StatusEdicao.Id, new { id = "Id" })
+        
+       
+        <div class="sep-line-form">
+            <div class="form-line form-id">
+                <label>Id: <strong>@Model.StatusEdicao.Id</strong></label>
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-id">
+                <label>Situação/Contexto: <strong>@Model.StatusEdicao.Situacao</strong></label>
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-ativo">
+                <label>Ativo:</label>
+                <input type="checkbox" id="Ativo" name="Ativo" @Html.Conditional(Model.StatusEdicao.Ativo, "checked=\"true\"") />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-assunto">
+                <label>
+                    Assunto:</label>
+                <input type="text" class="" id="assuntoNome" name="Assunto" maxlength="1000" value="@Model.StatusEdicao.Assunto" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-corpo">
+                <label>
+                    Corpo:</label>
+                <textarea type="text" class="" id="descricaoEmail" name="Descricao" maxlength="5000" rows="10">@Model.StatusEdicao.Descricao.Replace("<br />", Environment.NewLine)</textarea>
+            </div>
+            <div class="form-line form-variaveis">
+                <label>
+                    Variaveis disponíveis:</label>
+                @{
+                    foreach (var item in Model.StatusEdicao.Variaveis.Split(','))
+                    {
+                        <div>@item</div>
+                    }
+                }                
+            </div>
+        </div>
+        <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.ProjetosRecebidos.ProjetosRecebidosModel
+<h2 id="tituloProjetosDepartamento" style="height: 45px;">
+    Projetos do Departamento</h2>
+    
+<div class="projetos-depto projetosDepartamento" style="height :600px;">
+    <div class="forms">
+
+        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ProjetosMeuDepartamento, Acao.Adicionar))
+        {
+            <a class="bt-adicionar bt-adicionar-novo" href="javascript:void(0)" id="incluirProjeto">Adicionar Projeto</a>
+        }
+        
+        <div class="div-filtro">
+            <h4>
+                Filtros</h4>
+            <div class="input-block">
+                <input type="checkbox" id="chkFiltrosProjetosDepartamento" class="checkbox" />
+                <label>
+                    Todas</label>
+            </div>
+            <div class="input-block">
+                <input type="checkbox" id="cidadeAlvoProjetosDepartamento" class="checkbox" />
+                <label>
+                    Cidade Alvo</label>
+            </div>
+            <div class="input-block">
+                @Html.MultipleCheckList("Estado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 30, true)
+            </div>
+            <div class="input-block">
+                <input class="cidade cidadeProjetosDepartamento" watermark="Cidade" value="Cidade"
+                       type="text" />
+            </div>
+            <div class="input-block">
+                @Html.MultipleCheckList("Status", Model.ListaStatusProjeto.ToSelectList(text => text.Text, value => value.Value), null, 110, true)
+            </div>
+            <a class="bt-padrao-filtro btnFiltroProjetosDepartamento" href="javascript:void(0)">
+                Buscar</a>
+            <div class="div-busca-filtro">
+                <input type="text" watermark="Busca" class="watermark-font filtro-carrossel-nome filtroCarrousselProjetosDepartamento"
+                       id="" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="responsavel-tooltip responsavelToolTipProjetosDepartamento">
+    </div>
+    <div class="contato-principal-tooltip contatoPrincipalToolTipProjetosDepartamento">
+    </div>
+    <div class="box-tabela" style="display: none;">
+        <div class="wrap">
+            <div class="inner">
+                <table id="tabelaProjetosDepartamento">
+                    <thead>
+                        <tr class="even">
+                            <th class="table-title-ord-down colun-1">
+                                <a href="javascript:void(0)" data-ordenacao="1" data-tipo="1">Código do Projeto</a>
+                            </th>
+                            <th class="table-title-ord-down colun-2">
+                                <a href="javascript:void(0)" data-ordenacao="2" data-tipo="1">Nome do Projeto</a>
+                            </th>
+                            <th class="table-title colun-3">
+                                Responsável
+                            </th>
+                            <th class="table-title-ord-down colun-4">
+                                <a href="javascript:void(0)" data-ordenacao="3" data-tipo="1">UF</a>
+                            </th>
+                            <th class="table-title-ord-down colun-5">
+                                <a href="javascript:void(0)" data-ordenacao="4" data-tipo="1">Cidade</a>
+                            </th>
+                            <th class="table-title-ord-down colun-6">
+                                <a href="javascript:void(0)" data-ordenacao="5" data-tipo="1">Cidade Alvo</a>
+                            </th>
+                            <th class="table-title-ord-down colun-7">
+                                <a href="javascript:void(0)" data-ordenacao="6" data-tipo="1">Status</a>
+                            </th>
+                            <th class="table-title colun-8">
+                                Polig.
+                            </th>
+                            <th class="table-title-ord-down colun-9">
+                                <a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">m²</a>
+                            </th>
+                            <th class="table-title-ord-down colun-10">
+                                <a href="javascript:void(0);" data-ordenacao="8" data-tipo="1">Ofertante</a>
+                            </th>
+                            <th class="table-title colun-11">
+                                Seguir
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

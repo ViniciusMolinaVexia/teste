@@ -1,0 +1,9 @@
+﻿@model long
+<div class="seg-observacoes">
+    <div class="editar-ata-reuniao">
+        @Html.Action("EditarAtaReuniao", "Projeto", new { projetoId = Model })
+    </div>
+    <div class="listar-ata-reuniao" style="width:892px;">
+        @Html.Action("ListarAtasReunioes", "Projeto", new { projetoId = Model })
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@model Gafisa.AlphaBook.Models.Home.PostagemModel
+
+<div id="modalPostEtapaLinhaTempo" class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close fechar-postagem-linha-tempo">x</a>
+    </div>
+    <div class="modal-body">
+        @Html.Partial("~/Views/Postagem/CriarPost.cshtml", Model)
+    </div>
+</div>
+<script type="text/javascript">
+    gafisa.alphabook.home.postagem.etapaLinhaTempo = true;
+    setTimeout(function () { $('#postagemCriacao #marco').click().off('click'); }, 500);
+    gafisa.alphabook.home.postagem.registrarRichText();
+</script>

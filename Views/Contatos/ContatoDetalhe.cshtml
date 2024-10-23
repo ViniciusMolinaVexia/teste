@@ -1,0 +1,190 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Home.ContatoModel
+@Html.HiddenFor(x => x.IdAvaliacao)
+@Html.HiddenFor(x => x.IdContato)
+
+@{
+    var projetoId = (Model.Projeto != null && Model.Projeto.Id != 0) ? Model.Projeto.Id : (long?)null;
+    var contatoDados = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosDadosContato, idProjeto: projetoId);
+    var contatoAgenda = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosAgenda, idProjeto: projetoId);
+    var contatoAvaliacao = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosAvaliações, idProjeto: projetoId);
+    var contatoPost = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosPost, idProjeto: projetoId);
+    var contatoProjeto = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosProjetos, idProjeto: projetoId);
+    var podeExportar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Geral, Funcionalidade.ContatosExportar, Acao.ExportarImprimir);
+}
+
+<div id="cabecalhoProjeto">
+</div>
+<h2>Detalhes do Contato</h2>
+<div class="bg-branco header-dados-contato">
+    <div id="avaliacaoMedia" class="info-dados-contato">
+        @Html.Partial("AvaliacaoMedia", Model)
+    </div>
+    <div class="info-dados-contato last">
+        <label>
+            Nome:</label>
+        <span>@Model.NomeContato</span>
+    </div>
+    <div class="info-dados-contato">
+        <label>
+            Categoria de contato:</label>
+        <span>@Model.NomeTipoContato</span>
+    </div>
+    <div class="info-dados-contato last">
+        <label>
+            Empresa:</label>
+        <span>@Model.NomeEmpresa</span>
+    </div>
+    <div class="info-dados-contato">
+        <label>
+            Mapa:</label>
+        @if (Model.Latitude.HasValue)
+        {
+            <a class="pin-cidade navegar-mapa" href="javascript:void(0);" data-id="@Model.IdContato" data-tipo="contato" data-avaliacaoid="@Model.IdAvaliacao" data-editar="true">Pin</a>  
+        }
+        else
+        {
+            <a class="pin-cidade-inativo" href="javascript:void(0);">Pin</a>  
+        }
+    </div>
+    <div class="info-dados-contato last">
+        <label>Email:</label>
+        <span>@Html.Conditional(Model.PodeVerDadosConfidenciais, Model.Email, "------------")</span>
+    </div>
+    <div class="info-dados-contato">
+        <label>Criador do contato:</label>
+        <span>@String.Format("{0} {1}", Model.NomeUsuarioCriador, Model.SobrenomeUsuarioCriador)</span>
+    </div>
+    @if (Model.Telefones != null && Model.Telefones.Count() > 0)
+    {
+        <div class="info-dados-contato dados-contato-tel">
+            <label>@Model.Telefones[0].DescricaoTipoTelefone:</label>
+            <span>@Html.Conditional(Model.PodeVerDadosConfidenciais, String.IsNullOrEmpty(Model.Telefones[0].Numero) ? String.Empty : Model.Telefones[0].Numero.ToPhoneFormat(Model.Telefones[0].DDD), "------------")</span>
+        </div>    
+    }
+    @if (Model.Confidencialidade != ConfidencialidadeContato.Publico)
+    {
+        <a href="javascript:void(0)" class="box-confidencialidade-contato" title="@(Model.TextoConfidencialidade)" data-tipo="contato"></a>
+    }
+    @if (podeExportar)
+    {
+        <a class="ico-exporta-contato-detalhe" href="javascript:void(0);" id="exportarContato">Exportar contato</a>
+    }
+</div>
+<!-- Tabs -->
+<div id="tabs" class="detalhesContatoTab">
+    <ul class="list-tabs">
+        @if (contatoDados.PodeVisualizar)
+        {<li><a href="#aba-dados" id="abaDadosContato">Dados do<br />Contato</a></li>}
+        @if (contatoAgenda.PodeVisualizar)
+        {<li><a class="line1" aba="aba-agenda" href="#aba-agenda" id="abaAgenda">Agenda</a></li>}
+        @if (contatoAvaliacao.PodeVisualizar)
+        {<li><a id="abaAvaliacoes" aba="aba-avaliacoes" class="line1" href="#aba-avaliacoes">Avaliações</a></li>}
+        @if (contatoPost.PodeVisualizar)
+        {<li><a id="abaPosts" aba="aba-posts" class="line1" href="#aba-posts">Posts</a></li>}
+        @if (contatoProjeto.PodeVisualizar)
+        {<li><a class="line1" href="#aba-projetos" id="abaProjetos">Projetos</a></li>}        
+    </ul>
+    @if (contatoDados.PodeVisualizar)
+    {<div class="box-tabs" id="aba-dados">@Html.Partial("ContatoFormulario", Model)</div>}    
+    @if (contatoAgenda.PodeVisualizar)
+    {<div class="box-tabs" id="aba-agenda" style="height: 200px;"></div>}
+    @if (contatoAvaliacao.PodeVisualizar)
+    {<div class="box-tabs" id="aba-avaliacoes"></div>}
+    @if (contatoPost.PodeVisualizar)
+    {<div class="box-tabs" id="aba-posts"></div>}
+    
+    @if (contatoProjeto.PodeVisualizar)
+    {
+        <div class="box-tabs" id="aba-projetos">
+            <script language="javascript" type="text/javascript">
+
+                if (typeof gafisa.alphabook.home == 'undefined') {
+                    gafisa.alphabook.home = new Object();
+                }
+                if (typeof gafisa.alphabook.home.contatos == 'undefined') {
+                    gafisa.alphabook.home.contatos = new Object();
+                }
+
+                gafisa.alphabook.home.contatos.projetos = {
+                    inicializar: function () {
+                        gafisa.alphabook.home.contatos.projetos.registrarAcoes();
+                        gafisa.alphabook.home.contatos.projetos.carregarProjetos();
+                    },
+
+                    registrarAcoes: function () {
+                        $('#projetoContato').fcbkcomplete({
+                            json_url: gafisa.alphabook.rotas.contatos.listarProjetos,
+                            cache: true,
+                            maxitems: 999,
+                            newel: false,
+                            complete_text: "Digite o nome de um projeto",
+                            width: 892,
+                            bricket: false
+                        });
+
+                        $('#associarProjeto').click(gafisa.alphabook.home.contatos.projetos.aoAssociarProjeto);
+                    },
+
+                    carregarProjetos: function () {
+                        var projetos = $('#formContatoProjetos .textarea-projeto-contato').data('source');
+
+                        if (typeof (projetos) == 'string')
+                            projetos = JSON.parse(projetos);
+
+                        if (projetos != null && projetos != undefined && projetos != '') {
+                            $.each(projetos, function (index, value) {
+                                $('#projetoContato').trigger('addItem', [{ 'title': value.Nome, 'value': value.Id }]);
+
+                                $('.textarea-projeto-contato ul.holder li[rel=' + value.Id + ']').livequery(function () {
+                                    if (value.DonoOuSuperior === false || value.Principal === true) {
+                                        $(this).find('a.closebutton').remove();
+                                    }
+                                });
+                            });
+                        }
+                    },
+
+                    aoAssociarProjeto: function () {
+                        var data = { contatoId: $('#IdContato').val(), projetos: $('#projetoContato').val() };
+
+                        if (data.projetos == null || (data.projetos != null && data.projetos[0] == 0)) {
+                            gafisa.alphabook.mensagens.exibirMensagemErro(gafisa.mensagens.comum.selecionePeloMenosUm.format('projeto'));
+                            return;
+                        }
+
+                        $.post(gafisa.alphabook.rotas.contatos.associarProjetos, data, gafisa.alphabook.home.contatos.projetos.aposAssociar);
+                    },
+
+                    aposAssociar: function (json) {
+                        if (json.sucesso)
+                            gafisa.alphabook.mensagens.exibirMensagemConfirmacao(gafisa.mensagens.comum.salvosComSucesso.format('Projetos'));
+                        else
+                            gafisa.alphabook.mensagens.exibirMensagemErro(json.erros);
+                    }
+                };
+
+                $(document).ready(gafisa.alphabook.home.contatos.projetos.inicializar);
+
+            </script>
+            <div class="seg-aba-projetos">
+                <form id="formContatoProjetos" class="forms" action="" method="post">
+                    <fieldset>
+                        <div  class="sep-line-form textarea-projeto-contato" data-source="@Model.ItensProjetos">
+                            <label>
+                                Lista de projetos:</label>
+                            <select name="projetoContato" id="projetoContato" class="hide">
+                            </select>
+                            <span>*Não sera possível remover os projetos dos quais esse contato seja "Master".</span>
+                        </div>
+                    </fieldset>
+                </form>
+                @if (contatoProjeto.PodeSalvar)
+                {
+                    <a id="associarProjeto" class="bt-padrao" href="javascript:void(0);">Salvar</a>
+                }            
+            </div>
+        </div>
+    }
+</div>

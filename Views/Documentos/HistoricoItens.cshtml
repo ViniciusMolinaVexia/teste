@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.HistoricoArquivoDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Histórico")</p>
+}
+else
+{
+    foreach (var historico in Model)
+    {
+        <tr data-id="@historico.HistoricoId">
+			<td class="table-left colun-1">@historico.NomeArquivo</td>
+            <td class="colun-2">@historico.Versao</td>
+			<td class="colun-3">@historico.Data.ToString()</td>
+			<td class="colun-4">@historico.UsuarioNome @historico.UsuarioSobrenome</td>
+			<td class="colun-5">@historico.Departamento</td>
+			<td class="colun-6"><a class="ico-post" data-postagemid="@historico.PostagemId" href="javascript:void(0);" title="@historico.Observacao">post</a></td>
+			
+            <td class="colun-7">@historico.PerfilPublicacaoPostagem
+            @if (historico.ClassificacaoPrivacidadeId != historico.PostagemPrivacidadeId)
+            {
+                <a href="javascript:void(0)" class="ico-alerta" title="@Gafisa.AlphaBook.Dominio.Mensagens.Taxonomias.PerfilIncompativel">
+                    Alerta
+                </a>   
+            }
+            </td>
+			<td class="colun-8">
+                <a class="ico-download" data-referencia="@historico.Referencia" data-nome="@historico.NomeArquivo" data-idimagem="@historico.IdStream" href="javascript:void(0);">download</a>
+            </td>
+            
+            <th class="colun-9">
+            @if (historico.UsuarioAdministrador && historico.Versao != Model.Max(e => e.Versao))
+            {
+                <div style="width: 48px;">
+                    <a class="ico-excluir" data-postagemid="@historico.PostagemId" data-nome="@historico.NomeArquivo" data-referencia="@historico.Referencia" data-id="@historico.ArquivoId" data-historicoid="@historico.HistoricoId" href="javascript:void(0);">Excluir</a>
+                </div>
+            }
+            else
+            {
+                <div style="width: 48px;">&nbsp;</div>
+            }
+            </th>
+        </tr>
+    }
+}

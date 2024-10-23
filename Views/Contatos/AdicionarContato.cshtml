@@ -1,0 +1,12 @@
+﻿@model Gafisa.AlphaBook.Models.Home.ContatoModel
+
+
+@if (Model.Projeto.Id != 0)
+{
+    @*Html.Partial("~/Views/Home/HomeProjeto.cshtml", Model.Projeto)*@
+    <div id="cabecalhoProjeto" data-projetoid="@Model.Projeto.Id"></div>
+}
+<h2>Adicionar contato</h2>
+<div class="bg-branco-no-float form-add-contato-no-float" style="height:866px;">
+    @Html.Partial("ContatoFormulario", Model)
+</div>

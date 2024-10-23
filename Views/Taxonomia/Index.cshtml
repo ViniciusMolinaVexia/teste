@@ -1,0 +1,66 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.TaxonomiaDto>
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalTaxonomia">
+                <div class="topo-resultado-detalhe">
+                    <div class="div-1">
+                        <div class="ico-taxonomia">
+                            <h1>
+                                Taxonomia</h1>
+                        </div>
+                    </div>
+                    <div class="div-2">
+                        <a id="adicionarTaxonomia" class="btn-azul btn-ad-taxonomia">+ Adicionar taxonomia</a>
+                    </div>
+                </div>
+                <div class="rolagem" id="historicoArquivo">
+                    <table id="historicoArquivoModal">
+                        <tbody>
+                            <tr class="linha-topo">
+                                <td class="nome-arquivo">
+                                    <div class="div-3">
+                                        Taxonomia</div>
+                                </td>
+                                <td>
+                                    <div class="div-4">
+                                        Data de criação</div>
+                                </td>
+                                <td>
+                                    <div class="div-6">
+                                        &nbsp;</div>
+                                </td>
+                            </tr>
+                            @foreach (var taxonomia in Model)
+                            {
+                                var margem = (taxonomia.Margem * Taxonomia.Margem).ToString();
+                                margem = margem + "px";
+                                <tr data-id="@taxonomia.Id" @Html.Conditional(taxonomia.IdTaxonomiaPai == null, "class=\"taxonomia-pai\"", "class=\"taxonomia-filha\"")>
+                                    <td class="nome-arquivo">
+                                        <div class="div-3">
+                                            <a href="javascript:void(0)" id="lnkEditarTaxonomia" style="margin-left: @margem">@taxonomia.Nome</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="div-4">@taxonomia.Cadastro.ToString("dd/MM/yyyy HH:mm")</div>
+                                    </td>
+                                    <td>
+                                        <div class="div-6">
+                                            <a href="javascript:void(0)" id="lnkExcluirTaxonomia" title="Excluir" class="ico-excluir">
+                                                Excluir</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal" id="fechaModalCompromissos">
+                        Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

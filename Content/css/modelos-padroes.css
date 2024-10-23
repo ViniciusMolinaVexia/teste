@@ -1,0 +1,284 @@
+/* Titulo e Campo de Busca */
+.title-documentos{float: left; display: table;}
+
+.busca-docs{float: right; margin: 20px 0 0 20px;}	
+	.doc-busca{width: 305px !important;}
+
+.doc-tiles{display: table; width: 100%;}
+/* END Titulo e Campo de Busca */
+
+/* Lista de Documentos */
+.doc-documents{
+	border-top: 1px solid #cbcbcb;
+	display: table;
+	width: 100%;
+	padding-top: 20px;
+}
+	.sep-line-docs{
+		margin-bottom: 20px;
+		display: table;
+		width: 100%;
+	}
+		.seg-bt-adicionar-modelos{
+			padding:20px 20px 0 0;
+			margin-right:20px;
+		}
+
+		.box-doc{
+			width: 259px;
+			padding:5px 0 5px 45px;
+			margin-right: 20px;
+			float: left;
+			background: url(../img/ico-documentos.png) 0px 7px no-repeat;
+			position: relative;
+		}
+			
+			.box-doc-sel{background: #FFF url(../img/ico-documentos.png)  0px 7px no-repeat !important;}
+			
+			.sep-line-docs .last{margin-right: 0 !important;}
+			
+			.box-doc a{
+				display: block;
+				color: #006655;
+				text-decoration: none;
+				font-family: 'BreeRgRegular';
+				font-size: 12px;
+				font-weight: normal;
+			}
+			.box-doc p{
+				color: #a1a1a1;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			.box-doc span{
+				display: block;
+				color: #a1a1a1;
+				font-size: 12px;
+			}
+
+/* END Lista de Documentos */
+
+/* Pop Over Documento */
+.editar-doc{
+	position: absolute;
+	z-index: 99;
+	top: 12px;
+	background: #FFF;
+	padding:13px 25px;
+	border: 2px solid #9d9d9d;
+	border-radius: 6px;
+}
+	.ico-seta-doc{
+		position: absolute;
+		top: 16px;
+		left: -23px;
+		width: 23px;
+		height: 22px;
+		background: url(../img/ico-seta-doc.png) no-repeat;
+	}
+
+	.ico-download{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 0px;
+		background: url(../img/ico-download.png) 7px 5px no-repeat;
+	}
+	.ico-informacoes{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 20px;
+		background: url(../img/ico-informacao.png) 6px 5px no-repeat;
+	}
+	.ico-excluir-modelo{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 20px;
+		background: url(../img/ico-excluir.png) 6px 5px no-repeat;
+	}
+	
+	.ico-excluir 
+	{
+	    text-indent: -9999px;
+	    display: block;
+	}
+	
+	.removerAnexoTemplate, .removerAnexoVersao
+	{
+	    float: right;
+	}
+	
+/* END Pop Over Documento */
+
+
+/* Modal Adicionar Modelo/Padrão */
+.adicionar-esq{
+	width:350px;
+	float:left;
+}
+	.form-pasta{
+		width:100% !important;
+	}
+		.form-pasta select{
+			width:300px !important;
+		}
+		.form-pasta input{
+			width:100% !important;
+		}
+
+
+.adicionar-dir{
+	width:300px;
+	float:left;
+	margin:20px 0 0 65px;
+}
+	.adicionar-dir label{
+		display:block;
+		width:135px;
+		float:left;
+		color:#a1a1a1;
+		font-weight:bold;
+		font-size:14px;
+	}
+	.adicionar-dir span{
+		display:block;
+		width:135px;
+		margin-left:10px;
+		float:left;
+		color:#a1a1a1;
+		font-weight:normal;
+		font-size:14px;
+	}
+
+    .adicionar-dir.template-observacoes {
+        margin-top: 0;
+    }
+
+    .adicionar-dir.template-observacoes label {
+        font-weight:normal;
+    }
+
+    #templateObservacao {
+        width: 334px;
+        height: 90px;
+    }
+/* Modal Adicionar Modelo/Padrão */
+
+
+/* Modal Adiconar Pasta */
+.add-pasta-nome{
+	width:100%;
+}
+	.add-pasta-dept label{
+		display:block;
+		width:100px;
+		float:left;
+		color:#a1a1a1;
+		font-weight:bold;
+		font-size:14px;
+	}
+	.add-pasta-dept span{
+		display:block;
+		width:235px;
+		margin-left:10px;
+		float:left;
+		color:#a1a1a1;
+		font-weight:normal;
+	}
+/* END Modal Adiconar Pasta */
+
+
+/* Modal Adiconar Classificação */
+.adicionar-esq-classificacao{
+	width:350px;
+	float:left;
+}
+	.adicionar-esq-classificacao .add-pasta-dept label{width:45px !important;}
+	.adicionar-esq-classificacao select{width:100% !important;}
+
+.adicionar-dir-classificacao{
+	width:300px;
+	float:left;
+	margin:48px 0 0 65px;
+}
+	.adicionar-dir-classificacao label{
+		display:block;
+		width:100% !important;
+		color:#a1a1a1;
+		font-weight:bold;
+		font-size:14px;
+	}
+	.adicionar-dir-classificacao .sep-radio{
+		color:#a1a1a1;
+		font-weight:bold;
+		font-size:14px;
+		margin-right:20px;
+	}
+	.pra-que-serve, .pra-que-serve textarea{width:100% !important;}
+		.pra-que-serve textarea{height:115px;}
+	
+/* END Modal Adiconar Classificação */
+
+#modalConfirmacao 
+{
+    height: 429px !important;
+}
+
+#listaTemplateTaxonomias, #ListaPasta  {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    border: 1px solid #006655;
+    height: 90px;
+    overflow: auto;
+    padding: 0 30px 0 0;
+    position: absolute !important;
+    text-align: left;
+    z-index: 999;
+    left: inherit !important;
+    top: inherit !important;
+    width: 268px;
+}
+
+#ListaPasta
+{
+    width: 701px;
+}
+
+.modal-body 
+{
+    overflow: inherit;
+}
+
+.breadcrumb a.last
+{
+    background: none repeat scroll 0 0 #F2F2F2;
+    border: 1px solid #ACACAC;
+    border-radius: 3px 3px 3px 3px;
+    color: #000000;
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-right: 20px;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+}

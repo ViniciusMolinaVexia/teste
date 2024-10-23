@@ -1,0 +1,63 @@
+﻿@model Gafisa.AlphaBook.Dominio.BuscaGeral.ResultadoBuscaGeralDTO
+<link rel="stylesheet" href="@Url.Content("~/Content/css/resultado-busca.css")" type="text/css" />
+<h2 class="title-busca">Busca Geral</h2>
+<div class="resultado-tiles">
+    
+    @if (Model.IdsArquivos.IsNullOrEmptyCollection() && Model.IdsProjetos.IsNullOrEmptyCollection() && 
+         Model.IdsContatos.IsNullOrEmptyCollection() && Model.IdsCompromissos.IsNullOrEmptyCollection() && 
+         Model.IdsPostagem.IsNullOrEmptyCollection() && Model.IdsTemplates.IsNullOrEmptyCollection() &&
+         Model.IdsProtocolos.IsNullOrEmptyCollection())
+    {
+        <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.SuaPesquisaNaoEncontrouNenhumItemCorrespondente)</p>
+    }
+
+    @if (!Model.IdsProjetos.IsNullOrEmptyCollection())
+    {
+        <a class="tile-ativo" id="resultadoBuscaProjetos" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsProjetos)" >
+            <span class="nome-tile">Dados do projeto</span>
+            <span class="numero-tile">@Model.IdsProjetos.Count</span>
+        </a>
+    }
+    @if (!Model.IdsArquivos.IsNullOrEmptyCollection())
+    {
+        <a class="tile-ativo" id="resultadoBuscaDocumentos" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsArquivos)" >
+            <span class="nome-tile">Documentos</span>
+            <span class="numero-tile">@Model.IdsArquivos.Count</span>
+        </a>
+    }
+    @if (!Model.IdsContatos.IsNullOrEmptyCollection())
+    {
+        <a class="tile-ativo" id="resultadoBuscaContatos" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsContatos)" >
+            <span class="nome-tile">Contatos</span>
+            <span class="numero-tile">@Model.IdsContatos.Count</span>
+        </a>
+    }
+    @if (!Model.IdsCompromissos.IsNullOrEmptyCollection())
+    {
+        <a class="tile-ativo" id="resultadoBuscaCompromissos" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsCompromissos)" >
+            <span class="nome-tile">Compromissos</span>
+            <span class="numero-tile">@Model.IdsCompromissos.Count</span>
+        </a>
+    }
+     @if (!Model.IdsPostagem.IsNullOrEmptyCollection())
+    {
+        <a class="tile-ativo" id="resultadoBuscaPostagens" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsPostagem)" >
+            <span class="nome-tile">Posts</span>
+            <span class="numero-tile">@Model.IdsPostagem.Count</span>
+        </a>
+    }
+     @if (!Model.IdsTemplates.IsNullOrEmptyCollection())
+    {
+        <a class="tile-ativo" id="resultadoBuscaTemplates" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsTemplates)" >
+            <span class="nome-tile">Modelos e Padrões</span>
+            <span class="numero-tile">@Model.IdsTemplates.Count</span>
+        </a>
+    }
+     @if (!Model.IdsProtocolos.IsNullOrEmptyCollection())
+     {
+        <a class="tile-ativo" id="resultadoBuscaProtocolos" href="javascript:void(0);" data-ids="@String.Join(",", Model.IdsProtocolos)" >
+            <span class="nome-tile">Protocolos</span>
+            <span class="numero-tile">@Model.IdsProtocolos.Count</span>
+        </a>
+     }
+</div>

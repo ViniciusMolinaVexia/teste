@@ -1,0 +1,90 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Componentes.Sessao
+@using Gafisa.AlphaBook.Dominio.Permissao
+
+@model Gafisa.AlphaBook.Models.Home.ProtocoloModel
+@{
+    var permissaoCriarPost = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Posts, Acao.Adicionar);
+}
+
+<div class="modalEditarProtocolo">
+    <div class="modal-header">
+        <a style="" id="fecharSelecaoContato" href="javascript:void(0);" class="close fechar">x</a>
+        <h2 id="">Editar protocolo</h2>
+    </div>
+    <div class="adicionarProtocolo" id="modalEditarProtocolo" data-id="@Model.Id">
+        <div class="col-left">
+            <div class="forms">
+                <div class="sep-line-form">
+                    <div class="form-line form-status">
+                        <label>Associar a processo existente:</label>
+                        @Html.DropDownListFor(model => model.ProtocoloPaiId, Model.Protocolos.ToSelectList(x => x.NumeroProtocolo, x => x.Id), "Selecione", new { id = "ProtocoloPaiId" })
+                    </div>
+                </div>
+
+                <div class="sep-line-form">
+                    <div class="form-line form-protocolo">
+                        <label>Nº Protocolo:</label>
+                        <span>@Model.NumeroProtocolo</span>
+                    </div>
+                    <div class="form-line form-data">
+                        <label>* Data Abertura:</label>
+                        <input type="text" value="@Model.DataAbertura.ToShortDateString()"id="DataAbertura" />
+                        <a href="javascript:void(0);" id="icoDataInicio" class="filtro-calendario">calendário</a>
+                    </div>
+                </div>
+
+                <div class="sep-line-form">
+                    <div class="form-line form-orgao">
+                        <label>* Órgão:</label>
+                        <input type="text" value="@Model.Orgao" id="Orgao" />
+                    </div>
+                </div>
+
+                <div class="sep-line-form">
+                    <div class="form-line form-status">
+                        <label>* Status:</label>
+                        @Html.DropDownListFor(model => model.StatusProtocoloId, Model.ListaStatus, "Selecione", new { id = "StatusProtocolo" })
+                    </div>
+                </div>
+
+                <div class="sep-line-form">
+                    <div class="form-line form-requerente">
+                        <label>Requerente:</label>
+                        <input type="text" value="@Model.Requerente" name="" id="Requerente" />
+                    </div>
+                </div>
+
+                <div class="sep-line-form">
+                    <div class="form-line form-observacoes">
+                        <label>Observação:</label>
+                        <textarea rows="2" name="" id="Observacoes" cols="20">@Model.Observacoes</textarea>
+                    </div>
+                </div>
+                @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Protocolos, Acao.Editar, null, null, Model.Id))
+                {
+                    <a href="javascript:void(0);" class="bt-padrao" id="salvarProtocolo">Salvar</a>
+                }
+            </div>
+        </div>
+
+
+        <div class="col-right">
+            @if (permissaoCriarPost)
+            {
+                <div class="top">
+                    <a href="javascript:void(0);" class="bt-adicionar" id="criarPost">Adicionar Post</a>
+                    <input type="hidden" id="hddProtocolo" value="@Model.Id" />
+                </div>
+            }
+            <br /><br /><hr />
+            <div id="edicao-protocolo-container">
+                <div id="criarPostHome" style="display: none;"></div>
+                <div class="forms">
+                    @Html.Partial("~/Views/Home/Post.cshtml", Model.Posts)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

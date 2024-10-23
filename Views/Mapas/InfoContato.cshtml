@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ContatoDto>
+
+<div class="box-contato-mapa">
+
+    <div class="scroll-y">
+        @foreach (var contato in Model)
+        {
+            var colorRating = "cinza";
+            if (contato.MediaAvaliacao.HasValue)
+            {
+                colorRating = contato.MediaAvaliacao < 2 ? "pessimo" : (contato.MediaAvaliacao < 4 ? "ruim" : (contato.MediaAvaliacao < 6 ? "neutro" : (contato.MediaAvaliacao < 8 ? "bom" : "excelente")));
+            }
+            
+            <div class="linha-contatos" data-idContato="@contato.Id">
+
+                <div class="box-nota @colorRating">
+                    <span class="nota">NOTA</span> 
+                    <span class="valor-nota">@(contato.MediaAvaliacao.HasValue ? contato.MediaAvaliacao.Value.ToString() : "n/d")</span>
+                </div>
+
+                <div class="box-dados-contato">
+                    <div class="nome-dados-contato">@string.Format("NOME: {0}", contato.NomeContato)</div>
+                    <div class="empresa-dados-contato">@string.Format("EMPRESA: {0}", contato.NomeEmpresa)</div>
+                    <div>@string.Format("E-MAIL: {0}", contato.Email)</div>
+                    <div class="tel-dados-contato">
+                        Tel. Com.: @(!String.IsNullOrEmpty(contato.TelefoneComercial) ? contato.TelefoneComercial.ToPhoneFormat(contato.DDDComercial) : "n/d")
+                    </div> 
+                    <div class="tel-dados-contato">
+                        Tel. Res.: @(!String.IsNullOrEmpty(contato.TelefoneResidencial) ? contato.TelefoneResidencial.ToPhoneFormat(contato.DDDResidencial) : "n/d")</div>    
+                    <div class="tel-dados-contato">Tel. Cel.: @(!String.IsNullOrEmpty(contato.TelefoneCelular) ? contato.TelefoneCelular.ToPhoneFormat(contato.DDDCelular) : "n/d")</div>
+                    <div>CATEGORIA: @(!String.IsNullOrEmpty(contato.NomeTipoContato) ? contato.NomeTipoContato : "n/d")</div>
+                </div>
+
+            </div>
+        }
+    </div>
+    @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.MapasContato, Acao.Adicionar))
+    {
+        <div class="div-bt-criar-contato">
+            <a href="javascript:void(0);" id="" class="bt-adicionar bt-criar-contato">Adicionar contato</a>
+        </div>
+    }
+</div>

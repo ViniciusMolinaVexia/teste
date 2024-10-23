@@ -1,0 +1,77 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.InteligenciaMercado.DadosCidadeDto
+<div class="seg-cont-inteligencia">
+    <div class="int-indicadores">
+        <h4>
+            Indicadores:</h4>
+        <div class="sep-line-int">
+            <label>
+                Cidade Alvo:</label>
+            <span>@(Model.CidadeAlvo ? "Sim" : "Não")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                População:</label>
+            <span>@Model.Populacao.ToString("N0")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Taxa crescimento populacional:</label>
+            <span>@String.Format("{0}", Model.TaxaCrescimento.ToString("P"))</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Índice de desenvolvimento municipal:</label>
+            <span>@Model.IndiceDesenvolvimentoMunicipal.ToString("N0")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Índice de violência municipal:</label>
+            <span>@Model.IndiceViolenciaMunicipal.ToString("N0")</span>
+        </div>
+    </div>
+    <div class="int-domicilios">
+        <h4>
+            Domicílios:</h4>
+        <div class="sep-line-int">
+            <label>
+                Total:</label>
+            <span>@Model.TotalDomicilios.ToString("N2")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Classe A:</label>
+            <span>@Model.DomiciliosClasseA.ToString("N2")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Classe B:</label>
+            <span>@Model.DomiciliosClassB.ToString("N2")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Classe C1:</label>
+            <span>@Model.DomiciliosClassC1.ToString("N2")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Classe C2:</label>
+            <span>@Model.DomiciliosClassC2.ToString("N2")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Classe C3:</label>
+            <span>@Model.DomiciliosClassC3.ToString("N2")</span>
+        </div>
+        <div class="sep-line-int">
+            <label>
+                Classe DE:</label>
+            <span>@Model.DomiciliosClassDE.ToString("N2")</span>
+        </div>
+    </div>
+    <div class="int-regiao-metropolitana">
+        <h4>
+            Região metropolitana:</h4>
+        <p>
+            @Model.RegiaoMetropolitana</p>
+    </div>
+</div>

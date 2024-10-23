@@ -1,0 +1,551 @@
+/* Header Dados do Projeto */
+.header-dados-contato{
+	width: 912px !important;
+	padding: 20px !important;
+	display: table;
+	position: relative;
+    margin-bottom: 15px;
+}
+
+.info-dados-contato{
+	width: 45%;
+	float: left;
+	margin:0 4% 10px 0; 
+}
+	.header-dados-contato .last{
+		margin-right: 0 !important;
+	}
+
+    .header-dados-contato .box-confidencialidade-contato {
+        position: absolute;
+		top: 20px;
+		right: 10px;
+		border-radius: 5px;
+		border: 1px solid #b0b2b2;
+		background: #FFF url(../img/ico-confidencialidade.png) 5px 4px no-repeat;
+		text-indent: -9999px;
+		display: block;
+		width: 26px;
+		height: 26px;
+		cursor:default;
+    }
+
+    .header-dados-contato .ico-exporta-contato-detalhe {
+        position: absolute;
+		top: 20px;
+		right: 47px;
+		border-radius: 5px;
+		border: 1px solid #b0b2b2;
+		background: #FFF url(../img/seta-down.png) 9px 8px no-repeat;
+		text-indent: -9999px;
+		display: block;
+		width: 26px;
+		height: 26px;
+		cursor:pointer;
+    }
+
+	.info-dados-contato label{
+		color: #222;
+		font-size: 14px;
+		display: block;
+		float: left;
+		width: 160px;
+	}
+		.info-dados-contato label a{text-decoration: none; color:#006655;}
+
+	.info-dados-contato span{
+		color: #707070;
+		font-size: 14px;
+	}
+	
+	    .dados-contato-tel{ float: right; margin: 0 6% 10px 0;}
+		.info-dados-cidade{float: left;}
+		.pin-cidade{
+			display: block;
+			width: 20px;
+			height: 20px;
+			border: 1px solid #a9a9a9;
+			border-radius: 6px;
+			text-indent: -9999px;
+			overflow: hidden;
+			float: left;
+			background: url(../img/pin-contato-ativo.png) 4px 2px no-repeat;
+		}
+		
+		.pin-cidade-inativo{
+			display: block;
+			width: 20px;
+			height: 20px;
+			border: 1px solid #a9a9a9;
+			border-radius: 6px;
+			text-indent: -9999px;
+			overflow: hidden;
+			float: left;
+			background: url(../img/pin-contato-inativo.png) 4px 2px no-repeat;
+		}
+
+		.box-nota-contato{
+			width: 45px;
+			float: left;
+		}
+			.box-nota-contato .nota{
+				display: block;
+				width: 45px;
+				color: #FFF;
+				padding:3px 0; 
+				font-size: 13px;
+				text-align: center;
+			}
+			.box-nota-contato .valor-nota{
+				display: block;
+				width: 45px;
+				color: #FFF;
+				padding:3px 0; 
+				font-size: 21px;
+				text-align: center;
+			}
+/* END Header Dados do Projeto */
+
+.detalhesContatoTab#tabs{
+	margin-top: 222px;
+}
+
+/* Dados do Contato */
+	.form-add-contato{
+		padding: 30px;
+		width: 892px;
+		float: left;
+	}
+    .form-add-contato-no-float{
+		padding: 30px;
+		width: 892px;
+	}
+	
+	    .form-add-contato form fieldset {
+	        float: left;
+	    }
+
+		#formDadosTerreno .form-nome{width: 892px;}
+		#formDadosTerreno .form-tipo-contato{width: 250px;}
+		#formDadosTerreno .form-cpf-cnpj{width:325px; margin-left: 20px;}
+		#formDadosTerreno .form-categoria-contato{width:250px;}
+		#formDadosTerreno .form-nome-empresa{width:325px; margin-left: 20px;}
+		#formDadosTerreno .form-email{width:276px; margin-left: 20px;}
+		#formDadosTerreno .form-cep{width: 250px;}
+		#formDadosTerreno .form-logradouro{width: 500px;}
+		#formDadosTerreno .form-numero{width:100px; margin-left: 20px;}
+		#formDadosTerreno .form-complento{width:250px; margin-left: 20px;}
+		#formDadosTerreno .form-bairro{width: 380px;}
+		#formDadosTerreno .form-UF{width: 100px; margin-left: 0;}
+		#formDadosTerreno .form-cidade{width:370px; margin-left: 20px;}
+		#formDadosTerreno .form-matriculas, #formDadosTerreno .form-matriculas-unificadas{width: 251px;}
+		#formDadosTerreno .form-area{width: 230px; margin-left: 20px;}
+			#formDadosTerreno .form-area input{width: 180px !important;}
+		#formDadosTerreno .form-observacoes{width: 892px;}
+			#formDadosTerreno .form-observacoes textarea{height: 150px;}
+		#formDadosTerreno .form-area-total{width: 231px;}
+		#formDadosTerreno .form-area-total input {width: 230px !important;}
+		#formDadosTerreno .form-area-total, #formDadosTerreno .form-area-poligono{margin-left: 20px;}
+		#formDadosTerreno .form-area-poligono #areaPoligono{margin: 5px 0 0; float: left;}
+		#formDadosTerreno .pin-cidade { margin: 7px 0 0 50px; }
+		
+/* END Dados do Contato */
+
+
+.box-tabela .wrap { width: 100%; }
+
+#form-avaliacao label { display: inline-block;}
+
+/* Avaliações */
+.seg-avaliacoes{display:table; width:100%;}
+
+.visao-notas, .box-add-comentarios{
+	padding:20px 0;
+	border-bottom:1px solid #c1c1c1;
+	display:table;
+	width:100%;
+}
+
+.table-nota-votos{
+	width:255px !important;
+	float:left;
+}
+	.table-nota{
+		display:block;
+		width:135px;
+		padding:3px 0;
+		margin:0 auto;
+		text-align:center;
+		color:#FFF;
+		font-size:16px;
+		text-transform: capitalize !important;
+	}
+		span.nota-excelente{background:#2c9f00 !important;}
+		span.nota-bom{background:#7cc806 !important;}
+		span.nota-neutro{background:#ffde00 !important;}
+		span.nota-ruim{background:#ffae00 !important;}
+		span.nota-pessimo{background:#c80606 !important;}
+
+.box-grafico{
+	position:relative;
+	width:546px;
+	height:205px;
+	float:left;
+	margin:20px 0 0 80px;
+}
+	.box-grafico h4{
+		font-family: 'BreeRgRegular';
+		font-size: 18px;
+		font-weight: normal;
+		color: #6f6f6f;
+	}
+
+	.seg-nota{
+		position:absolute;
+		width:45px;
+		height:120px;
+		top:50px;
+		background:url(../img/line-nota.png) right bottom no-repeat;
+	}
+
+	.box-grafico img{
+		position:absolute;
+		bottom:0px;
+	}
+
+	.box-nota-cont{
+			width: 45px;
+			float: left;
+		}
+			.box-nota-cont .nota{
+				display: block;
+				width: 45px;
+				color: #FFF;
+				padding:3px 0; 
+				font-size: 13px;
+				text-align: center;
+			}
+			.box-nota-cont .valor-nota{
+				display: block;
+				width: 45px;
+				color: #FFF;
+				padding:3px 0; 
+				font-size: 21px;
+				text-align: center;
+			}
+
+	div.nota-excelente{right:45px;}
+	div.nota-bom{left:330px;}
+	div.nota-neutro{left:215px;}
+	div.nota-ruim{left:100px;}
+	div.nota-pessimo{left:0;}
+
+	.form-comentario-avaliacao{width:100%;}
+
+	.sep-radio{margin:10px 55px 0 0 ;}
+	.sep-radio input{width:auto !important;}
+
+
+.lista-avaliacao{
+	padding:20px 0;
+	display:table;
+	width:100%;
+}
+	.filtro-notas{
+		width: 868px;
+	}
+	
+	.div-filtro .nota {
+        width: 120px !important;
+    }
+	
+	.lista-avaliacao .bt-padrao-filtro{float: right !important;}
+	
+	
+	#tabelaAvaliacoes .ico-editar {
+        display: block;
+        text-indent: -9999px;
+        margin-left: 15px;
+    }
+
+	#tabelaAvaliacoes th.colun-1{width:17%;}
+	#tabelaAvaliacoes th.colun-2{width:11%;}
+	#tabelaAvaliacoes th.colun-3{width:29%;}
+	#tabelaAvaliacoes th.colun-4{width:19%;}
+	#tabelaAvaliacoes th.colun-5{width:3%;}
+	#tabelaAvaliacoes th.colun-6{width:7%;}
+	
+	#tabelaAvaliacoes td.colun-1{width:5%;}
+	#tabelaAvaliacoes td.colun-2{width:9%;}
+	#tabelaAvaliacoes td.colun-3{width:13%;}
+	#tabelaAvaliacoes td.colun-4{width:31%;}
+	#tabelaAvaliacoes td.colun-5{width:5%;}
+	#tabelaAvaliacoes td.colun-6{width:6%;}
+	
+	
+    #tabelaAvaliacoes .ico-excluir {
+        margin-left: 17px;
+    }
+	
+/* END Avaliações */
+
+
+/* Posts */
+	.sep-posts-contato{
+		width:100%;
+		display:table;
+		padding:15px 0;
+		border-bottom:1px solid #c1c1c1;
+	}
+/* END Posts */
+
+
+/* Projetos */
+.seg-aba-projetos{display:table; width:100%; }
+.textarea-projeto-contato{
+	width:100% !important;
+}	
+	.textarea-projeto-contato textarea{
+		height:250px;
+	}
+	
+	#aba-projetos ul.holder {
+		font-size: 14px;
+		color: #a1a1a1;
+		border: 1px solid #096b5b;
+		padding: 8px 5px;
+		font-weight: normal;
+		height:150px !important;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	}
+/* END Projetos */
+
+
+
+/* Tabela de Anexos */
+
+.tabela-anexos .wrap {
+    padding: 63px 0 0;
+    width: 934px;
+}
+
+#arquivos th.colun-1{width: 13%;}
+#arquivos th.colun-2{width: 12%;}
+#arquivos th.colun-3{width: 16%;}
+#arquivos th.colun-4{width: 19%;}
+#arquivos th.colun-5{width: 10%;}
+#arquivos th.colun-6{width: 5%;}
+
+#arquivos td.colun-1{width: 16%;}
+#arquivos td.colun-2{width: 18%;}
+#arquivos td.colun-3{width: 20%;}
+#arquivos td.colun-4{width: 24%;}
+#arquivos td.colun-5{width: 18%;}
+#arquivos td.colun-6{width: 10%;}
+
+/* Fim Tabela de Anexos */
+
+
+
+/* Projetos Associados */
+
+.modalProjetosAssociados {
+    top: 1% !important;
+    left: 44%;
+    width: 71%;
+}
+
+#postagemProjetosAssociados .modal-header .close {
+    right: 15px;
+}
+
+#divAccordionProjetosAssociados .div-filtro {
+    width: 908px;
+    margin-top: 10px;
+}
+
+#divAccordionProjetosAssociados .div-filtro h4 {
+    margin-right: 10px !important;
+}
+
+#divAccordionProjetosAssociados .div-filtro #Estado {
+    width: 70px;
+}
+
+#divAccordionProjetosAssociados .div-filtro .cidade {
+    width: 155px;
+}
+
+#divAccordionProjetosAssociados .div-filtro #Status {
+    width: 194px;
+}
+
+#divAccordionProjetosAssociados .div-busca-filtro {
+    width: 148px;
+}
+
+#divAccordionProjetosAssociados .box-tabela .wrap {
+    padding: 63px 0 0;
+    width: auto;
+}
+
+#divAccordionProjetosAssociados .box-tabela .wrap.table1 {
+    width: 675px;
+    height: 103px;
+}
+
+#divAccordionProjetosAssociados .box-tabela .wrap.table2 {
+    width: 865px;
+    height: 103px;
+}
+
+#divAccordionProjetosAssociados .box-tabela .wrap .inner {
+    height: 103px;
+}
+
+#divAccordionProjetosAssociados .box-tabela table .ajuste-ico {
+	margin-left: 5px;
+}
+
+#divAccordionProjetosAssociados .bt-desassociar,
+#divAccordionProjetosAssociados .bt-associar,
+#divAccordionProjetosAssociados .bt-salvar,
+#divAccordionProjetosAssociados .bt-voltar {
+    margin-top: 10px;
+}
+
+#divAccordionProjetosAssociados .bt-associar {
+    background: url("../img/icons/seta-baixo.png") no-repeat scroll 82px 50% #FFFFFF;
+    border: 1px solid #B0B2B2;
+    color: #096B5B;
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-left: 34%;
+    padding: 8px 30px 8px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#divAccordionProjetosAssociados .bt-desassociar {
+    background: url("../img/icons/seta-cima.png") no-repeat scroll 97px 50% #FFFFFF;
+    border: 1px solid #B0B2B2;
+    color: #096B5B;
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-left: 20px;
+    padding: 8px 30px 8px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#divAccordionProjetosAssociados .tabela-1 .wrap,
+#divAccordionProjetosAssociados .tabela-1 .inner {
+    height: 103px;
+}
+
+#divAccordionProjetosAssociados .tabela-2 .wrap {
+    width: 863px;
+    height: 103px;
+}
+
+#divAccordionProjetosAssociados .tabela-2 .inner {
+    height: 103px;
+}
+
+/* Tabela 1 */
+
+/* THead */
+
+#tabelaProjetosDisponiveis th.colun-1 {width: 89px;}
+#tabelaProjetosDisponiveis th.colun-2 {width: 123px;}
+#tabelaProjetosDisponiveis th.colun-3 {width: 97px;}
+#tabelaProjetosDisponiveis th.colun-4 {width: 124px;}
+#tabelaProjetosDisponiveis th.colun-5 {width: 80px;}
+#tabelaProjetosDisponiveis th.colun-6 {width: 152px;}
+#tabelaProjetosDisponiveis th.colun-7 {width: 118px;}
+#tabelaProjetosDisponiveis th.colun-8 {width: 63px;}
+
+
+/* TBody */
+
+#tabelaProjetosDisponiveis td.colun-1 {width: 54px;}
+#tabelaProjetosDisponiveis td.colun-2 {width: 81px;}
+#tabelaProjetosDisponiveis td.colun-3 {width: 104px;}
+#tabelaProjetosDisponiveis td.colun-4 {width: 116px;}
+#tabelaProjetosDisponiveis td.colun-5 {width: 37px;}
+#tabelaProjetosDisponiveis td.colun-6 {width: 130px;}
+#tabelaProjetosDisponiveis td.colun-7 {width: 106px;}
+#tabelaProjetosDisponiveis td.colun-8 {width: 34px;}
+
+/* Fim tabela 1 */
+
+
+
+/* Tabela 2 */
+
+/* THead */
+
+#tabelaProjetosAssociados th.colun-1 {width: 54px;}
+#tabelaProjetosAssociados th.colun-2 {width: 93px;}
+#tabelaProjetosAssociados th.colun-3 {width: 110px;}
+#tabelaProjetosAssociados th.colun-4 {width: 117px;}
+#tabelaProjetosAssociados th.colun-5 {width: 53px;}
+#tabelaProjetosAssociados th.colun-6 {width: 90px;}
+#tabelaProjetosAssociados th.colun-7 {width: 98px;}
+#tabelaProjetosAssociados th.colun-8 {width: 50px;}
+#tabelaProjetosAssociados th.colun-9 {width: 100px;}
+#tabelaProjetosAssociados th.colun-10 {width: 98px;}
+
+/* TBody */
+
+#tabelaProjetosAssociados td.colun-1 {width: 41px;}
+#tabelaProjetosAssociados td.colun-2 {width: 81px;}
+#tabelaProjetosAssociados td.colun-3 {width: 104px;}
+#tabelaProjetosAssociados td.colun-4 {width: 104px;}
+#tabelaProjetosAssociados td.colun-5 {width: 37px;}
+#tabelaProjetosAssociados td.colun-6 {width: 91px;}
+#tabelaProjetosAssociados td.colun-7 {width: 76px;}
+#tabelaProjetosAssociados td.colun-8 {width: 34px;}
+#tabelaProjetosAssociados td.colun-9 {width: 101px;}
+#tabelaProjetosAssociados td.colun-10 {width: 77px;}
+
+/* Fim Tabela 2 */
+
+
+
+
+/* Adicionar Contatos*/
+
+.adicionar-contatos .carrossel .tile-projeto {
+    height: 94px;
+}
+
+
+/* Modal Cobrar Documentação */
+
+
+.modal-cobrar-documentacao .sep-line-form {
+    clear: both;
+    display: table;
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.modal-cobrar-documentacao .sep-radio {
+    margin: 10px 0 0 0;
+    width: 20%;
+    float: left;
+}
+
+.modal-cobrar-documentacao .bt-padrao {
+    margin-top: 10px;
+}
+
+.modal-cobrar-documentacao textarea {
+    height: 200px;
+}

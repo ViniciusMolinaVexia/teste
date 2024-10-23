@@ -1,0 +1,203 @@
+﻿.inner {
+    height: 375px !important;
+}
+.wrap
+{
+    height: 417px !important;
+}
+
+#form .form-nome {
+    width: 471px;
+}
+
+#form .form-pastapai, #form #ListaPasta {
+    width: 400px;
+}
+
+#form #ListaPasta {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    border: 1px solid #006655;
+    height: 90px;
+    overflow: auto;
+    padding: 0 30px 0 0;
+    position: absolute !important;
+    text-align: left;
+    z-index: 999;
+    left: inherit !important;
+    top: inherit !important;
+}
+
+#form .form-pastapai 
+{
+    margin-left: 20px;
+}
+
+#form ul.holder {
+    font-size: 14px;
+    color: #a1a1a1;
+    border: 1px solid #096b5b;
+    padding: 8px 5px;
+    font-weight: normal;
+    height: 150px !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.textarea-departamento button
+{
+    display: none;
+}
+
+.textarea-departamento input 
+{
+    border: 0 !important;
+}
+
+.div-acoes 
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#filtros .div-filtro 
+{
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 952px;
+}
+
+#filtros .div-filtro-arquivosmanuais {
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 952px;
+}
+
+#filtros .div-filtro #termo
+{
+    width: 352px;
+}
+
+#filtros .div-filtro-arquivosmanuais #termo {
+    width: 352px;
+}
+
+#tabela th {
+    border-right: none;
+}
+
+#tabela td {
+    overflow: hidden;
+}
+
+#tabela th.colun-1
+{
+    width: 60px;    
+}
+
+#tabela th.colun-2
+{
+    width: 240px;
+}
+
+#tabela th.colun-3
+{
+    width: 205px;
+}
+
+#tabela th.colun-4
+{
+    width: 76px;
+}
+
+#tabela th.colun-5
+{
+    width: 100px;
+}
+
+#tabela th.colun-6
+{
+    width: 92px;
+}
+
+#tabela th.colun-7
+{
+    width: 84px;
+}
+
+#tabela th.colun-8
+{
+    width: 75px;
+}
+
+#tabela th.colun-9
+{
+    width: 53px;
+}
+
+
+#tabela td.colun-1
+{
+    width: 55px;
+}
+
+#tabela td.colun-2
+{
+    width: 200px;
+}
+
+#tabela td.colun-3
+{
+    width: 180px;
+}
+
+#tabela td.colun-4
+{
+    width: 75px;
+}
+
+#tabela td.colun-5
+{
+    width: 75px;
+}
+
+#tabela td.colun-6
+{
+    width: 75px;
+}
+
+#tabela td.colun-7
+{
+    width: 75px;
+}
+
+#tabela td.colun-8
+{
+    width: 50px;
+}
+
+#tabela td.colun-9
+{
+    width: 50px;
+}
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 15px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+table .ic-excluir {
+    background: url("../img/icons/ico-excluir.png") no-repeat scroll 15px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+.box-erro {
+    height: 180px;
+}

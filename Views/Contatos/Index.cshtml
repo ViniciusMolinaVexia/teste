@@ -1,0 +1,115 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.FiltroContatoModel
+
+@{
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.Contatos, Model.IdProjeto.HasValue);
+}
+
+<div id="cabecalhoProjeto"></div>
+<div class="contatos-geral" style="height: 700px;">
+    <h2 class="title-documentos">
+        Contatos</h2>
+    <div class="seg-filtro-contatos">
+        <div class="box-filtro-contato">
+        </div>
+        
+    </div>
+    <div id="categorias" class="hide">
+        <ul>
+            @Html.Partial("Categorias", Model.Categorias)
+        </ul>
+    </div>
+    <div class="forms">
+        <div class="div-filtro filtro-contatos">
+            <h4>Filtros</h4>
+            <div class="input-block">
+                <label>Categoria:</label>
+                <select id="tipocategoria" class="uf" style="width: 122px">
+                    <option id="opcaoCategoria">Selecione</option>
+                </select>
+            </div>
+            <div class="input-block">
+                <label>UF:</label>
+                @Html.MultipleCheckList("Estado", Model.UFs.ToSelectList(text => text.Value, value => value.Value), null, 100, true)
+            </div>
+            <div class="input-block">
+                <input class="cidade cidadeContato" watermark="Cidade" value="Cidade" type="text" disabled="disabled" />
+            </div>
+            @if (Model.IdProjeto.HasValue)
+            {
+                <div class="input-block">
+                    <input class="checkbox" type="checkbox" id="todoProjetos" />
+                    <label>TODOS OS PROJETOS</label>
+                </div>
+            }
+            else
+            {
+                <div class="input-block">
+                    <input class="checkbox" type="checkbox" id="meusProjetos" />
+                    <label>MEUS PROJETOS</label>
+                </div>
+                <div class="input-block">
+                    <input class="checkbox" type="checkbox" id="projetosSeguidos" />
+                    <label>PROJETOS SEGUIDOS</label>
+                </div>
+            }
+            <a id="btnBuscaContatoFiltro" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+        </div>
+        
+
+        @if (comportamentoVisual.PodeAdicionar && Model.IdProjeto.HasValue)
+        {
+            <a id="btnAdicionarContato" href="javascript:void(0);" class="bt-adicionar bt-add-contato">Adicionar<br />Contato</a>    
+        }
+
+        @if(Model.PodeImprimir)
+        {
+            <a href="javascript:void(0);" class="bt-padrao bt-print @(Model.HomeInicial ? "hide" : "")" id="imprimirContatos">Imprimir</a>
+        }
+    </div>
+    <div class="filtro-alfabetico" id="letrasContato">
+        <a class="letra" href="javascript:void(0);">[0-9]</a> 
+        <a class="letra" href="javascript:void(0);">A</a> 
+        <a class="letra" href="javascript:void(0);">B</a> 
+        <a class="letra" href="javascript:void(0);">C</a> 
+        <a class="letra" href="javascript:void(0);">D</a> 
+        <a class="letra" href="javascript:void(0);">E</a> 
+        <a class="letra" href="javascript:void(0);">F</a> 
+        <a class="letra" href="javascript:void(0);">G</a> 
+        <a class="letra" href="javascript:void(0);">H</a> 
+        <a class="letra" href="javascript:void(0);">I</a> 
+        <a class="letra" href="javascript:void(0);">J</a> 
+        <a class="letra" href="javascript:void(0);">K</a> 
+        <a class="letra" href="javascript:void(0);">L</a>
+        <a class="letra" href="javascript:void(0);">M</a> 
+        <a class="letra" href="javascript:void(0);">N</a> 
+        <a class="letra" href="javascript:void(0);">O</a> 
+        <a class="letra" href="javascript:void(0);">P</a> 
+        <a class="letra" href="javascript:void(0);">Q</a> 
+        <a class="letra" href="javascript:void(0);">R</a> 
+        <a class="letra" href="javascript:void(0);">S</a> 
+        <a class="letra" href="javascript:void(0);">T</a> 
+        <a class="letra" href="javascript:void(0);">U</a> 
+        <a class="letra" href="javascript:void(0);">V</a> 
+        <a class="letra" href="javascript:void(0);">W</a> 
+        <a class="letra" href="javascript:void(0);">X</a> 
+        <a class="letra" href="javascript:void(0);">Y</a>
+        <a class="letra" href="javascript:void(0);">Z</a>
+    </div>
+    <div class="seg-busca-contato">
+        <form action="" class="forms" onsubmit="return false;">
+        <fieldset>
+            <div class="form-line form-cep">
+                <div class="box-input-busca">
+                    <input id="termoBuscaGeral" type="text" value="" />
+                    <a id="btnBuscaGeral" href="javascript:void(0);">Buscar</a>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+    <div id="contatoConteudoDiv" class="bg-branco seg-contatos">
+    </div>
+    <div id="contatoConteudoDivImpressao" class="bg-branco seg-contatos" style="display:none;">
+    </div>
+</div>

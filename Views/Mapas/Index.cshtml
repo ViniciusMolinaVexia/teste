@@ -1,0 +1,142 @@
+﻿@model Gafisa.AlphaBook.Models.Home.MapaModel
+<div id="mapaProjeto" data-possui-coordenadas="@Model.PossuiLocalizacao.ToJs()" class="@Html.Conditional(Model.HomeInicial, "mapaHome")">
+    <div id="cabecalhoProjeto"></div>
+
+    <h2 class="title-mapas">Mapa</h2>
+    @if (!Model.HomeInicial)
+    {
+        if (Model.Edicao && Model.DonoSuperiorOuAdministrador)
+        {
+        <div id="container">
+            <a class="bt-up" id="botaoImportarKml" href="javascript:void(0);">Importar KML</a>
+        </div>
+        }
+        if (Model.PossuiLocalizacao)
+        {
+        <a class="bt-down" id="botaoExportarKml" href="javascript:void(0);">Exportar KML</a>
+        }
+    }
+
+    <div class="mapa-geral" style="height: 700px;">
+        <a class="bt-padrao hide" href="javascript:void(0);" id="confirmarMarcacaoPonto" style="margin-top: 20px;">Continuar</a>
+        <a class="bt-padrao hide" href="javascript:void(0);" id="cancelarMarcacaoPonto" style="margin-top: 20px;">Cancelar</a>
+        <div id="mapa" style="height: 600px; width: 100%; clear: both;">
+        </div>
+
+        <div id="divPesquisaMapa" class="div-search">
+            <input type="text" id="campoBuscaMapa" watermark="Busca no mapa" class="watermark-font">
+            <a class="btn-busca-posts" id="botaoBuscaMapa" href="javascript:void(0);"></a>
+        </div>
+        @if (Model.Edicao && Model.DonoSuperiorOuAdministrador)
+        {
+            <a class="bt-padrao bt-limparPoligono" href="javascript:void(0);" id="botaoLimparPoligono">Limpar póligono</a>
+        }
+        <a class="bt-remover bt-filtros" id="botaoFiltrosMapa" href="javascript:void(0);">Filtros</a>
+        <div class="box-menu" id="filtrosMapa">
+            <div class="cont-menu">
+                @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.MapasContato, Acao.Visualizar))
+                {
+                    <div class="topo">
+                        <a href="javascript:void(0);" class="titulo" id="tituloContatos">Contatos</a>
+                        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.MapasContato, Acao.Adicionar) && !Model.HomeInicial)
+                        {
+                            <a class="bt-adicionar bt-criar-contato" id="criarContato" href="javascript:void(0);">Adicionar contato</a>
+                        }
+                    </div>
+
+                    <div class="scroll-y" id="filtrosContatos">
+
+                        @if (!Model.NomeProjeto.IsNullOrWhiteSpace() && !Model.HomeInicial)
+                        {
+                            <ul>
+                                <li class="destaque">
+                                    <input type="checkbox" value="" name="" id="checkContatosProjeto" />
+                                    <label for="">Contatos do projeto</label>
+                                </li>
+                            </ul>
+                        }
+                        <div id="categoriasContatosMapa">
+                            <ul>
+                                @Html.Partial("~/Views/Contatos/Categorias.cshtml", Model.CategoriasContatos)
+                            </ul>
+                        </div>
+                    </div>
+                }
+                @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.MapasPosts, Acao.Visualizar))
+                {
+                    <div class="topo menu-borda-cima">
+                        <a href="javascript:void(0);" class="titulo" id="tituloPosts">Posts</a>
+                    </div>
+                    <div id="filtroPosts" class="scroll-y">
+
+                        <div class="form-line form-data-inicial box-data-filtro">
+                            <label>Data e hora inicial:</label>
+                            <input type="text" name="" id="dataInicioFiltro" />
+                        </div>
+
+                        <div class="form-line form-data-inicial box-data-filtro">
+                            <label>Data e hora final:</label>
+                            <input type="text" name="" id="dataFimFiltro" />
+                        </div>
+
+                        @if (!Model.HomeInicial)
+                        {
+                            <div class="form-line box-post-projeto">
+                                <input type="checkbox" value="" name="" id="checkPostProjeto" />
+                                <label for="checkPostProjeto">Posts do Projeto</label>
+                            </div>
+                        }
+                        <a class="bt-padrao bt-filtrar-post" id="filtrarPostagens" href="javascript:void(0);">Exibir</a>
+
+                        <a class="bt-padrao bt-filtrar-post" id="limparPostagens" href="javascript:void(0);">Limpar</a>
+
+                    </div>
+                }
+                @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.MapasProjetos, Acao.Visualizar))
+                {
+                    <div class="topo menu-borda-cima">
+                        <a href="javascript:void(0);" class="titulo" id="tituloProjetos">Projetos</a>
+                    </div>
+                    <div class="scroll-y" id="filtroProjetos">
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="" name="" id="checkDepartamentoProjetos" />
+                                <label for="">@Model.Departamento</label>
+
+                            </li>
+                            @foreach (var status in Model.StatusProjetos)
+                            {
+                                <li class="sub">
+                                    <input type="checkbox" value="@status.Id" name="" id="filtroStatusProjeto" class="status-check" />
+                                    <span class="box-status-projeto" style="background-color: @status.Cor"></span>
+                                    @if (status.Nome.Length > 20)
+                                    {
+                                        <label class="status-tooltip" for="" title="@status.Nome">@status.Nome.Substring(0, 20) ...</label>
+                                    }
+                                    else
+                                    {
+                                        <label for="">@status.Nome</label>    
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+                @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.MapasInteligênciaMercado, Acao.Visualizar))
+                {
+                    <div class="topo menu-borda-cima">
+                        <a href="javascript:void(0);" class="titulo inteligencia" id="tituloInteligenciaMercado">INTELIGÊNCIA DE MERCADO</a>
+                    </div>
+                    <div id="filtroInteligenciaMercado" class="scroll-y">
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="" name="" id="indicadoresInteligenciaMercado" />
+                                <label for="">Indicadores</label>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

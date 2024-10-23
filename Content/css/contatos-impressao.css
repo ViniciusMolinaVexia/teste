@@ -1,0 +1,27 @@
+.page {
+  width:            195mm;
+  height:           270mm;
+  page-break-after: auto;
+  overflow:         hidden;
+}
+
+.page .landscape {
+  position:                  relative;
+  margin:                    270mm 0;
+  width:                     270mm;
+  height:                    195mm;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform:rotate(-90deg);
+  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+body
+{
+    background-color: transparent;
+}
+
+#contatoConteudoDiv
+{
+    overflow: hidden;
+    display:block;
+}

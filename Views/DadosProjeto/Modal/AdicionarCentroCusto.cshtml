@@ -1,0 +1,65 @@
+﻿@model Gafisa.AlphaBook.Models.Home.CentroCustoModel
+
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close fechar">x</a>
+        <h3>Adicionar Centro de Custo</h3>
+    </div>
+    <div class="modal-body">
+        <form class="forms" id="formCentroCusto">
+            <fieldset>
+                @Html.HiddenFor(model => model.Id)
+                <div class="sep-line-form">
+                    <div class="form-line">
+                        <label>Divisão:</label>
+                        <input type="text" value="@Model.Codigo" id="Codigo" name="Codigo" maxlength="4" style="width:140px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                    <div class="form-line">
+                        <label>Ordem:</label>
+                        <input type="text" value="@Model.Ordem" id="Ordem" name="Ordem" class="campo-ordem" style="width:140px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                    <div class="form-line">
+                        <label>Data de Criação:</label>
+                        <input type="text" value="@Model.DataCriacao" id="DataCriacao" name="DataCriacao" class="campo-data" style="width:140px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                    <div class="form-line">
+                        <label>Status:</label>
+                        <select id="Ativo" name="Ativo" style="width:140px;">
+                            <option value="true" @Html.Conditional(Model.Ativo, "selected=\"selected\"")>Ativo</option>
+                            <option value="false" @Html.Conditional(!Model.Ativo, "selected=\"selected\"")>Inativo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="sep-line-form">
+                    <div class="form-line">
+                        <label>Código da Empresa:</label>
+                        <input type="text" value="@Model.CodigoEmpresa" id="CodigoEmpresa" name="CodigoEmpresa" maxlength="4" style="width:140px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                    <div class="form-line">
+                        <label>Razão Social:</label>
+                        <input type="text" value="@Model.RazaoSocial" id="RazaoSocial" name="RazaoSocial" maxlength="100" style="width:460px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                </div>
+                <div class="sep-line-form">
+                    <div class="form-line">
+                        <label>CNPJ:</label>
+                        <input type="text" value="@Model.CNPJ" id="CNPJ" name="CNPJ" class="campo-cnpj" style="width:300px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                    <div class="form-line">
+                        <label>Inscrição Estadual:</label>
+                        <input type="text" value="@Model.ContratoSocial" id="ContratoSocial" name="ContratoSocial" maxlength="100" style="width:300px;" @Html.Disabled(Model.Edicao) />
+                    </div>
+                </div>
+                <div class="sep-line-form">
+                    <div class="form-line">
+                        <label>Observações:</label>
+                        <textarea id="Observacoes" name="Observacoes" maxlength="150" style="width: 620px;height: 50px;">@Model.Observacoes</textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="bt-padrao" href="javascript:void(0);" id="salvarCentroCusto">Salvar</a>
+    </div>
+</div>

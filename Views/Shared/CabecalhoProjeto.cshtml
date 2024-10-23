@@ -1,0 +1,16 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.Projeto.DadosProjetoDTO
+           
+<div class="tile-sup-interno">
+    <div class="tile-interno">
+        <div class="tile-projeto-interno">
+            <div class="tile-topo-interno">
+                <h2>@Model.Nome</h2>
+                <h3>@Model.Cidade - @Model.NomeEstado</h3>
+                @if (!String.IsNullOrWhiteSpace(Model.CidadeSecundaria))
+                {
+                <h4>@Model.CidadeSecundaria - @Model.EstadoSecundarioId</h4>
+                }
+            </div>
+        </div>
+    </div>
+</div>

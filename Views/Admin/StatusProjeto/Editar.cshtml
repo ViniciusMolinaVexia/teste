@@ -1,0 +1,118 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.StatusProjetoModel
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Status.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/StatusProjeto/status-projeto-editar.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/jquery.colorpicker.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/i18n/jquery.ui.colorpicker-nl.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/swatches/jquery.ui.colorpicker-pantone.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parts/jquery.ui.colorpicker-rgbslider.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parts/jquery.ui.colorpicker-memory.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parsers/jquery.ui.colorpicker-cmyk-parser.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/colorpicker/parsers/jquery.ui.colorpicker-cmyk-percentage-parser.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#cor').colorpicker({
+                altField: '.cor',
+                altProperties: 'background-color, color',
+                altAlpha: true,
+                alpha: true,
+                select: function (event, color) {
+                    $(this).val('#' + color.formatted);
+                }
+            });
+        });
+	</script>
+}
+
+@section css {
+    <link href="@Url.Content("~/Scripts/jquery/colorpicker/jquery.colorpicker.css")" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/status-projeto.css")" />
+}
+<div class="container">
+    @if (Model.StatusEdicao.Id == 0)
+    {
+        <h2>Adicionar Status</h2>
+    }
+    else
+    {
+        <h2>Editar Status</h2>
+    }
+        
+    <div class="form-container">
+        <a href="@Url.Action("StatusProjeto", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        
+        <form action="@Url.Action("SalvarStatusProjeto", "Admin")" id="form" class="forms">
+        
+        @Html.Hidden("Id", Model.StatusEdicao.Id, new { id = "Id" })
+        
+        @if (Model.StatusEdicao != null && Model.StatusEdicao.Id > 0)
+        {
+            <div class="sep-line-form">
+                <div class="form-line form-id">
+                    <label>Id: <strong>@Model.StatusEdicao.Id</strong></label>
+                </div>
+            </div>
+        }
+        <div class="sep-line-form">
+            <div class="form-line form-status">
+                <label>Nome:</label>
+                <input type="hidden" id="nomeAnterior" name="NomeAnterior" value="@Model.StatusEdicao.Nome" />
+                <input type="text" class="" id="statusNome" name="Nome" maxlength="50" value="@Model.StatusEdicao.Nome" />
+            </div>
+            <div class="form-line form-departamento">
+                <label>Departamento:</label>
+                @Html.DropDownListFor(model => model.StatusEdicao.DepartamentoId, Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), "Selecione", new { id = "Departamento", Name = "DepartamentoId" })
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-cor">
+                <label>Cor:</label>
+                <input type="hidden" id="cor" name="Cor" maxlength="7" value="@(Model.StatusEdicao.Id == 0 ? "#FFFFFF" : Model.StatusEdicao.Cor)" />
+                <div class="base-cor">
+                    <div class="cor">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="form-line form-ordem">
+                <label>Ordem:</label>
+                <input type="text" class="campo-inteiro" id="Ordem" name="Ordem" maxlength="100" value="@Model.StatusEdicao.Ordem" />
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-inicial">
+                <label>Inicial:</label>
+                <input type="checkbox" id="Inicial" name="Inicial" @Html.Conditional(Model.StatusEdicao.Inicial, "checked=\"true\"") @Html.Conditional(Model.StatusEdicao.Id > 0 && Model.StatusEdicao.Inicial, "disabled=\"disabled\"") />
+            </div>
+            <div class="form-line form-final">
+                <label>Final:</label>
+                <input type="checkbox" id="Final" name="Final" @Html.Conditional(Model.StatusEdicao.Final, "checked=\"true\"") />
+            </div>
+            <div class="form-line form-lancado">
+                <label>Lançado:</label>
+                <input type="checkbox" id="Lancado" name="Lancado" @Html.Conditional(Model.StatusEdicao.Lancado, "checked=\"true\"") />
+            </div>
+            <div class="form-line form-visivel">
+                <label>Visível:</label>
+                <input type="checkbox" id="Visivel" name="Visivel" @Html.Conditional(Model.StatusEdicao.Visivel, "checked=\"true\"") />
+            </div>
+            <div class="form-line form-cobranca">
+                <label>Cobrança de Documentação:</label>
+                <input type="checkbox" id="CobrancaDocumentacao" name="CobrancaDocumentacao" @Html.Conditional(Model.StatusEdicao.CobrancaDocumentacao, "checked=\"true\"") />
+            </div>
+        </div>
+        @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProjeto, Acao.Adicionar))
+        {
+            <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+        }
+        </form>
+    </div>
+</div>

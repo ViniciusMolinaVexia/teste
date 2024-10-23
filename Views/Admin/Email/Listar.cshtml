@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.EmailDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+	<p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Email")</p>
+}
+else
+{
+	foreach (var email in Model)
+	{
+		<tr data-id="@email.Id">
+			<td class="colun-1">@email.Id</td>
+			<td class="colun-2">@email.Situacao</td>
+			<td class="colun-3">@(email.Assunto.Length > 50 ? email.Assunto.Substring(0, 50) + "..." : email.Assunto)</td>
+			<td class="colun-4">@(email.Descricao.Length > 50 ? email.Descricao.Substring(0, 50) + "..." : email.Descricao)</td>
+			<td class="colun-5">
+			@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Email, Acao.EditarProprios))
+			{
+				<a class="ic-editar" href="@Url.Action("EditarEmail", "Admin", new { id = email.Id })">Editar</a>
+			}
+			</td>
+			<td class="colun-6">
+				@(email.Ativo ? "Ativo" : "Inativo")
+			</td>
+		</tr>
+	}
+}

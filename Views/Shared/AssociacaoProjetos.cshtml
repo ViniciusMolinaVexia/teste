@@ -1,0 +1,241 @@
+﻿@model Gafisa.AlphaBook.Models.Home.PostagemModel
+
+<div class="bg-branco seg-anexos-post" id="postagemProjetosAssociados">
+    @if (ViewBag.Modal != null)
+    { 
+                <div class="modal-header">
+                    <a href="javascript:void(0);" class="close" id="fecharAssociarProjeto">x</a>
+                    <h3 id="">
+                        Associar/Desassociar Post aos Projetos</h3>
+                </div>
+    }
+    else { 
+        <a href="javascript:void(0);" class="accordion-anexos" id="accordionProjetosAssociados">Associar projeto</a>
+    }
+    
+    <div class="forms" id="divAccordionProjetosAssociados">
+        
+        <div class="topo">
+            <div class="div-filtro">
+                <h4>
+                    Filtros</h4>
+                <div class="input-block">
+                <label>UF:</label>
+                    @Html.MultipleCheckList("Estado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 90, true)
+                </div>
+                <div class="input-block">
+                    <label>Cidade:</label>
+                    <input class="cidade" watermark="Cidade" value="Cidade" id="Cidade" type="text" data-preventOnPressEnter="true" />
+                </div>
+                <div class="input-block">
+                <label>Status:</label>
+                    @Html.MultipleCheckList("Status", Model.ListaStatusProjeto.ToSelectList(text => text.Text, value => value.Value), null, 194, true)
+                </div>
+                <div class="div-busca-filtro-associacao-projeto">
+                    <input type="text" watermark="Busca" id="nomeProjetoDisponiveis" class="watermark-font filtro-carrossel-nome" id="" value="" />
+                </div>
+                <a class="bt-padrao-filtro" id="buscaProjetosDisponiveisPost" href="javascript:void(0)">Buscar</a>
+            </div>
+        </div>
+        <h4>Selecionar Projeto:</h4>
+        <div class="box-tabela tabela-1">
+            <div class="wrap">
+                <div class="inner">
+                    <table id="tabelaProjetosDisponiveis" data-postid="@Model.Id">
+                        <thead>
+                            <tr>
+                                <th class="table-title colun-1">
+                                    <input value="" type="checkbox"  id="selecionarTodosDisponiveis" />
+                                </th>
+                                <th class="table-title table-title-ord-up colun-2">
+                                    <a href="javascript:void(0)" data-ordenacao="1" data-tipo="1">Código do Projeto</a>
+                                </th>
+                                <th class="table-title table-title-ord-up colun-3">
+                                    <a href="javascript:void(0)" data-ordenacao="2" data-tipo="1">Nome do Projeto</a>
+                                </th>
+                                <th class="table-title table-title-ord-up colun-4">
+                                    <a href="javascript:void(0)" data-ordenacao="3" data-tipo="1">Responsável</a>
+                                </th>
+                                <th class="table-title table-title-ord-up colun-5">
+                                    <a href="javascript:void(0)" data-ordenacao="4" data-tipo="1">UF</a>
+                                </th>
+                                <th class="table-title table-title-ord-up colun-6">
+                                    <a href="javascript:void(0)" data-ordenacao="5" data-tipo="1">Cidade</a>
+                                </th>
+                                <th class="table-title table-title-ord-up colun-7">
+                                    <a href="javascript:void(0)" data-ordenacao="6" data-tipo="1">Status</a>
+                                </th>
+                                <th class="table-title colun-8">
+                                    Polig.
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @{
+            var secao = ViewBag.Modal != null ? Secao.HomeInicial : Secao.HomeProjeto;
+            if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, secao, Funcionalidade.PostsAssociaçãoProjetos, Acao.Adicionar))
+            {
+                <a href="javascript:void(0)" class="bt-padrao bt-associar" id="associarProjeto">Associar</a>
+            }
+            if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, secao, Funcionalidade.PostsAssociaçãoProjetos, Acao.RemoverProprios) || Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, secao, Funcionalidade.PostsAssociaçãoProjetos, Acao.RemoverSubordinados, Model.ProjetoId))
+            {
+                <a href="javascript:void(0)" class="bt-padrao bt-desassociar" id="desassociarProjeto">Desassociar</a>
+            }
+
+        }
+        <h4>Projetos Associados:</h4> 
+        <div class="box-tabela tabela-2">
+            <div class="wrap">
+                <div class="inner">
+                    <table id="tabelaProjetosAssociados" data-usuarioLogadId="@Model.UsuarioId">
+                        <thead>
+                            <tr class="even">
+                                <th class="table-title colun-1">
+                                    <input value="" type="checkbox" id="selecionarTodosAssociados" />
+                                </th>
+                                <th class="table-title colun-2">
+                                    <a href="javascript:void(0)" class="table-title-double-ord-up">Código do Projeto</a>
+                                </th>
+                                <th class="table-title colun-3">
+                                    <a href="javascript:void(0)" class="table-title-double-ord-up">Nome do Projeto</a>
+                                </th>
+                                <th class="table-title colun-4">
+                                    <a href="javascript:void(0)" class="table-title-ord-up">Responsável</a>
+                                </th>
+                                <th class="table-title colun-5">
+                                    <a href="javascript:void(0)" class="table-title-ord-up">UF</a>
+                                </th>
+                                <th class="table-title colun-6">
+                                    <a href="javascript:void(0)" class="table-title-ord-up">Cidade</a>
+                                </th>
+                                <th class="table-title colun-7">
+                                    <a href="javascript:void(0)" class="table-title-ord-up">Status</a>
+                                </th>
+                                <th class="table-title colun-8">
+                                    Polig.
+                                </th>
+                                <th class="table-title colun-9">
+                                    <a href="javascript:void(0)" class="table-title-double-ord-up">Associado por</a>
+                                </th>
+                                <th class="table-title colun-10">
+                                    <a href="javascript:void(0)" class="table-title-double-ord-up">Associado em</a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Associados != null)
+                            {
+                                foreach (var projeto in Model.Associados)
+                                {
+                                    <tr id="linhaProjetosAssociados" data-id="@projeto.Id">
+                                        <td class="colun-1">
+                                            @if (projeto.Id != Model.ProjetoId)
+                                            {
+                                                if ((projeto.PodeDesassociar != null && (bool)projeto.PodeDesassociar))
+                                                {
+                                            <input value="" type="checkbox" name="checkProjeto" data-id="@projeto.Id" />
+                                                }
+                                            }
+                                        </td>
+                                        <td class="colun-2">@projeto.Codigo</td>
+						                <td class="colun-3">@projeto.Nome</td>
+                                        <td class="colun-4">
+                                            @Html.ProfilePhoto(projeto.UsuarioResponsavelId, new { @class = "ico-responsavel" }) 
+                                            <span class="nome-responsavel">@projeto.Responsavel</span>
+                                        </td>
+                                        <td class="colun-5">
+                                            @projeto.UfId
+                                            @if (!String.IsNullOrWhiteSpace(projeto.EstadoSecundarioId))
+                                            {
+                                                <br />
+                                                @projeto.EstadoSecundarioId
+                                            }
+                                        </td>
+                                        <td class="colun-6">
+                                            @projeto.Cidade
+                                            @if (!String.IsNullOrWhiteSpace(projeto.CidadeSecundaria))
+                                            {
+                                                <br />
+                                                @projeto.CidadeSecundaria
+                                            }
+                                        </td>
+						                <td class="colun-7">@projeto.NomeStatus</td>
+                                        <td class="colun-8">
+                                            @if (projeto.Localizacao)
+                                            {
+                                                <a href="javascript:void(0)" class="ico-localizacao navegar-mapa" title="Localização"  data-id="@projeto.Id" data-tipo="projeto" data-idProjeto="@projeto.Id">Localização</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="javascript:void(0)" class="ico-localizacao-inativo">Localização</a>    
+                                            }
+                                        </td>
+                                        <td class="colun-9">
+                                            @Html.ProfilePhoto((int)projeto.UsuarioResponsavelId, new { @class = "ico-responsavel" })
+                                            <span class="nome-responsavel">@projeto.Responsavel</span>
+                                        </td>
+                                        <td class="colun-10">@projeto.DataInclusao.ToShortDateString() @projeto.DataInclusao.ToShortTimeString()</td>
+                                    </tr>    
+                                }
+                            }
+                            else if (@Model.Projeto != null)
+                            { 
+                                <tr id="linhaProjetoFixo">
+						            <td class="colun-1"></td>
+                                    <td class="colun-2">@Model.Projeto.CodigoProjeto</td>
+						            <td class="colun-3">@Model.Projeto.Nome</td>
+						            <td class="colun-4">@Model.Projeto.Responsavel</td>
+                                    <td class="colun-5">
+                                        @Model.Projeto.EstadoId
+                                        @if (!String.IsNullOrWhiteSpace(Model.Projeto.EstadoId))
+                                        {
+                                            <br />
+                                            @Model.Projeto.EstadoSecundarioId
+                                        }
+                                    </td>
+                                    <td class="colun-6">
+                                        @Model.Projeto.Cidade
+                                        @if (!String.IsNullOrWhiteSpace(Model.Projeto.CidadeSecundaria))
+                                        {
+                                            <br />
+                                            @Model.Projeto.CidadeSecundaria
+                                        }
+                                    </td>
+						            <td class="colun-7">@Model.Projeto.Status</td>
+                                    <td class="colun-8">
+                                        @if (@Model.Projeto.Localizacao)
+                                        {
+                                            <a href="javascript:void(0)" class="ico-localizacao navegar-mapa" title="Localização"  data-id="@Model.Projeto.Id" data-tipo="projeto" data-idProjeto="@Model.Projeto.Id">Localização</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:void(0)" class="ico-localizacao-inativo">Localização</a>    
+                                        }
+                                    </td>
+                                    <td class="colun-9">
+                                        @Html.ProfilePhoto((int)Model.Projeto.ResponsavelId, new { @class = "ico-responsavel" })
+                                        <span class="nome-responsavel">@Model.NomeCompleto</span>
+                                    </td>
+                                    <td class="colun-10">@DateTime.Now.ToShortDateString() @DateTime.Now.ToShortTimeString()</td>
+					            </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        @if (ViewBag.Modal != null)
+        {
+            <a class="bt-padrao" href="javascript:void(0);" id="salvarProjetosAssociados">Salvar</a>
+            <a class="bt-voltar-modal" href="javascript:void(0);" id="voltarProjetosAssociados">Voltar</a>    
+        }
+    </div>
+</div>
+

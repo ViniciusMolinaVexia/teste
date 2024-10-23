@@ -1,0 +1,70 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.EmailArquivoDto
+
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+        <h3 id="tituloEmail">Enviar documento por email</h3>
+
+        @if (Model.Limite)
+        {
+            <div class="validacao">
+                O tamanho dos anexos excedeu o limite de 10MB e serão enviados via link para download.
+            </div>
+        }
+    </div>
+    <div class="modal-body">
+        <div class="forms">
+            <div class="sep-line-form">
+                <div class="form-line destinatario">
+                    <label>* Destinatários:</label>
+                    <input type="text" id="Destinatarios" name="Destinatarios" />
+                </div>
+                <div class="form-line cco">
+                    <label>CCO:</label>
+                    <input type="text" id="CCO" name="CCO" />
+                </div>
+            </div>
+            <div class="sep-line-form">
+                <div class="form-line assunto">
+                    <label>* Assunto:</label>
+                    <input type="text" id="Assunto" name="Assunto" />
+                </div>
+            </div>
+            <div class="sep-line-form">
+                <div class="form-line conteudo">
+                    <label>* Conteúdo:</label>
+                    <textarea cols="20" id="Conteudo" name="Conteudo" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="arquivos">
+            <div class="sep-line-form">
+                <div class="form-line arquivos">
+                    <ul>
+                        @for (int i = 0; i < Model.Arquivos.Count; i++)
+                        {
+                            var arquivo = Model.Arquivos[i];
+                                
+                            <li>
+                                <input id="@string.Concat("arquivo", i)" type="checkbox" name="ArquivosSelecionados" checked="checked" data-referencia="@arquivo.Referencia" data-nome="@arquivo.Nome" value="@string.Concat(arquivo.IdStream, "|", arquivo.Nome)" />
+                                <label for="@string.Concat("arquivo", i)">@arquivo.Nome - (@arquivo.Tamanho)</label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                @if (Model.Arquivos.Count > 0)
+                {
+                    <div id="Erro" class="form-line @(Model.Limite ? "erro" : "")">
+                        Tamanho Total: <span id="tamanhoTotal">@Model.Total</span>
+                    </div>
+                }
+            </div>
+        </div>
+        <input type="hidden" name="PostagemId" value="@Model.PostagemId" />
+        <input type="hidden" name="PrivacidadeId" value="@Model.PrivacidadeId" />
+
+        <a href="javascript:void(0);" class="bt-padrao" id="@(Model.PostagemId.HasValue ? "enviarPostEmail" : "enviarEmail")">ENVIAR</a>
+    </div>
+</div>

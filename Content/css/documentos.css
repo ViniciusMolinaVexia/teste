@@ -1,0 +1,179 @@
+/* Titulo e Campo de Busca */
+
+.title-documentos {
+    float: left;
+    display: table;
+    width: 45%;
+}
+
+.busca-docs{float: right; margin-top: 20px;}	
+	.doc-busca{width: 249px !important;}
+
+.doc-tiles{display: table; width: 100%;}
+/* END Titulo e Campo de Busca */
+
+/* Lista de Documentos */
+.doc-documents{
+	border-top: 1px solid #cbcbcb;
+	display: table;
+	width: 100%;
+	padding-top: 20px;
+}
+	.sep-line-docs{
+		margin-bottom: 20px;
+		display: table;
+		width: 100%;
+	}
+		
+		.box-doc{
+			width: 230px;
+			padding:5px 0 5px 45px;
+			margin-right: 20px;
+			float: left;
+			background: url(../img/ico-documentos.png) 0px 7px no-repeat;
+			position: relative;
+			cursor: pointer;
+		}
+			
+			.box-doc-sel{background: #FFF url(../img/ico-documentos.png)  0px 7px no-repeat !important;}
+			
+			.sep-line-docs .last{margin-right: 0 !important;}
+			
+			.box-doc a{
+				display: block;
+				color: #006655;
+				text-decoration: none;
+				font-family: 'BreeRgRegular';
+				font-size: 12px;
+				font-weight: normal;
+			}
+			
+			.box-doc a:hover
+			{
+			    text-decoration: underline;
+			}
+			
+			.box-doc p{
+				color: #a1a1a1;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			.box-doc span{
+				display: block;
+				color: #a1a1a1;
+				font-size: 12px;
+			}
+
+/* END Lista de Documentos */
+
+/* Pop Over Documento */
+.editar-doc{
+	position: absolute;
+	z-index: 99;
+	/*top: 12px;*/
+	/*right: -156px;*/
+	background: #FFF;
+	padding:13px 25px;
+	border: 2px solid #9d9d9d;
+	border-radius: 6px;
+}
+	.ico-seta-doc{
+		position: absolute;
+		top: 16px;
+		left: -23px;
+		width: 23px;
+		height: 22px;
+		background: url(../img/ico-seta-doc.png) no-repeat;
+	}
+
+	.ico-download{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 0px;
+		background: url(../img/ico-download.png) 5px 3px no-repeat !important;
+	}
+
+	.ico-download-manuais {
+	display: block;
+	width: 19px;
+	height: 19px;
+	text-indent: -9999px;
+	overflow: hidden;
+	border: 1px solid #c1c1c1;
+	border-radius: 6px;
+	padding: 5px;
+	float: left;
+	margin-left: 0px;
+	background: url(../img/ico-download.png) 6px 5px no-repeat !important;
+	}
+
+	.ico-informacoes{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 20px;
+		background: url(../img/ico-informacao.png) 6px 5px no-repeat;
+	}
+	.ico-excluir-documento{
+		display: block;
+		width: 19px;
+		height: 19px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: 1px solid #c1c1c1;
+		border-radius: 6px;
+		padding:5px;
+		float: left;
+		margin-left: 20px;
+		background: url(../img/ico-excluir.png) 6px 5px no-repeat;
+	}
+/* END Pop Over Documento */
+.breadcrumb a.last
+{
+    background: none repeat scroll 0 0 #F2F2F2;
+    border: 1px solid #ACACAC;
+    border-radius: 3px 3px 3px 3px;
+    color: #000000;
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-right: 20px;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#controleDocumentos .bg-branco {
+    margin-bottom: 20px;
+}
+
+#controleDocumentos .bt-voltar {
+    margin-top: 20px;
+}
+
+.removerAnexoVersao
+{
+	float: right;
+}
+
+.doc-documents .check-email
+{
+    position: relative;
+    float: left;
+    left: 28px;
+    top: 58px;
+    z-index: 1;
+}

@@ -1,0 +1,39 @@
+.form-add-contato{
+	padding: 30px;
+	width: 892px;
+}
+
+	.form-nome{width: 892px;}
+	.form-tipo-contato{width: 250px;}
+	.form-cpf-cnpj{width:281px; margin-left: 20px;}
+	.form-categoria-contato{width:250px;}
+	.form-nome-empresa{width:325px; margin-left: 20px;}
+	.form-email{width:276px; margin-left: 20px;}
+	.form-cep{width: 315px;}
+	.form-logradouro{width: 500px;}
+	.form-numero{width:100px; margin-left: 20px;}
+	.form-complento{width:250px; margin-left: 20px;}
+	.form-bairro{width: 380px;}
+	.form-UF{width: 100px; margin-left: 20px;}
+	.form-cidade{width:370px; margin-left: 20px;}
+	.form-tipo-tel{width: 155px;}
+	    .form-tipo-tel select{ width: 150px;}
+	.form-ddd{width: 75px; margin-left: 20px;}
+		.form-ddd input{width: 70px !important;}
+	.form-tel{width: 230px; margin-left: 20px;}
+		.form-tel input{width: 180px !important;}
+	.form-observacoes{width: 892px;}
+		.form-observacoes textarea{height: 150px;}
+    .form-confidencialidade{width: 250px;}
+    .form-confidencialidade-detalhe{ width: 622px; margin-left: 20px;}
+	
+	.form-confidencialidade-detalhe ul.holder {
+		font-size: 14px;
+		color: #a1a1a1;
+		border: 1px solid #096b5b;
+		padding: 4px 5px;
+		font-weight: normal;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	}

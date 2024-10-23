@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.FaqDto>
+
+@{
+    var podeEditar = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.FAQ, Acao.EditarProprios);
+    var podeExcluir = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.FAQ, Acao.RemoverProprios);
+}
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Faq")</p>
+}
+else
+{
+    foreach (var faq in Model)
+    {
+        <tr data-id="@faq.Id">
+            <td class="table-left colun-1">@faq.Id</td>
+			<td class="colun-2">@faq.Titulo</td>
+            <td class="colun-3">
+                @if (podeEditar)
+                {
+                    <a class="ic-editar" data-id="@faq.Id" href="@Url.Action("EditarFaq", "Admin", new {id = faq.Id})">Editar</a>
+                }
+            </td>
+            <td class="colun-4">
+                @if (podeExcluir)
+                {
+                    <a class="ic-excluir-faq" data-id="@faq.Id" href="javascript:void()">Excluir</a>
+                }
+            </td>
+        </tr>
+    }
+}

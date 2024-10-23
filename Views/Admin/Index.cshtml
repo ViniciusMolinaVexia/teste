@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="metro span12">
+    @{ var permissaoCategoriaContato = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.CategoriaContato, Acao.Visualizar);
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoCategoriaContato, "inativo")" id="tileCategoriaContatos" href="@(permissaoCategoriaContato ? Url.Action("CategoriaContato", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper contatos">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Categoria de Contatos
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoEmail = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Email, Acao.Visualizar);
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoEmail, "inativo")" id="tileEmail" href="@(permissaoEmail ? Url.Action("Email", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper email">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            E-mail
+        </div>
+    </div>
+</a> }
+    @{ var permissaoFaq = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.FAQ, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoFaq, "inativo")" id="tileFaq" href="@(permissaoFaq ? Url.Action("Faq", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper faq">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            FAQ
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoLink = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Links, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoLink, "inativo") last" id="tileLinks" href="@(permissaoLink ? Url.Action("Link", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper links">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Links
+        </div>
+    </div>
+</a> }
+    @{ var permissaoPerfilAcesso = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.PerfilAcesso, Acao.Visualizar);
+
+<a class="tile wide imagetext admin  @Html.Conditional(!permissaoPerfilAcesso, "inativo")" id="tilePerfilAcesso" href="@(permissaoPerfilAcesso ? Url.Action("PerfilAcesso", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper perfil">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Perfil de Acesso
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoStatusProjeto = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProjeto, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoStatusProjeto, "inativo")" id="tileStatusDemanda" href="@(permissaoStatusProjeto ? Url.Action("StatusProjeto", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper status-demanda">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Status Projeto
+        </div>
+    </div>
+</a> }
+    @{ var permissaoStatusProtocolo = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProtocolo, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoStatusProtocolo, "inativo")" id="tileStatusProtocolo" href="@(permissaoStatusProtocolo ? Url.Action("StatusProtocolo", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper status-protocolo">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Status Protocolo
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoDocumentos = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoDocumentos, "inativo") last" id="tileTaxonomiaDocumentos" href="@(permissaoDocumentos ? Url.Action("Taxonomia", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper documentos">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Taxonomia Documentos
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoTemplate = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoTemplate, "inativo")" id="tileModeloPadroes" href="@(permissaoTemplate ? Url.Action("Taxonomia", "Admin", new { template = true }) : "javascript:void(0);")">
+    <div class="image-wrapper modelo-padroes">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Taxonomia Modelo / Padrões
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoCidade = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UFCidade, Acao.Visualizar);
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoCidade, "inativo")" id="tileUfCidade" href="@(permissaoCidade ? Url.Action("Cidade", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper uf-cidade">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            UF & Cidade
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoUsuarios = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Usuários, Acao.Visualizar);
+
+<a class="tile wide imagetext @Html.Conditional(!permissaoUsuarios, "inativo") admin" id="tileUsuarios" href="@(permissaoUsuarios ? Url.Action("Usuario", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper usuarios">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Usuários
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoUso = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UsoFinanceiro, Acao.Visualizar);
+
+<a class="tile wide imagetext @Html.Conditional(!permissaoUso, "inativo") admin last" id="tileUso" href="@(permissaoUso ? Url.Action("Uso", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper usos">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Cadastro de Usos
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoProduto = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Produto, Acao.Visualizar);
+
+<a class="tile wide imagetext @Html.Conditional(!permissaoProduto, "inativo") admin" id="tileProduto" href="@(permissaoProduto ? Url.Action("Produto", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper usos">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Cadastro de Produtos
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoTreinamento = new Gafisa.AlphaBook.Componentes.Sessao.SessaoSistema(ViewData).Usuario.Administrador;
+
+<a class="tile wide imagetext @Html.Conditional(!permissaoTreinamento, "inativo") admin" id="tileMaterialTreinamento" href="@(permissaoTreinamento ? Url.Action("Material", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper material-apoio">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Material de Apoio
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoArquivosManuais = new Gafisa.AlphaBook.Componentes.Sessao.SessaoSistema(ViewData).Usuario.Administrador;
+
+<a class="tile wide imagetext admin @Html.Conditional(!permissaoTemplate, "inativo")" id="tileModeloArquivosManuais" href="@(permissaoTemplate ? Url.Action("Taxonomia", "Admin", new { template = true }) : "javascript:void(0);")">
+    <div class="image-wrapper modelo-padroes">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Acesso Arquivos Manuais
+        </div>
+    </div>
+</a> }
+
+    @{ var permissaoPowerBI = Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UsoFinanceiro, Acao.Visualizar);
+
+<a class="tile wide imagetext @Html.Conditional(!permissaoUso, "inativo") admin last" id="tileUso" href="@(permissaoUso ? Url.Action("Uso", "Admin") : "javascript:void(0);")">
+    <div class="image-wrapper modelo-padroes">
+    </div>
+    <div class="column-text">
+        <div class="text-header3">
+            Permissões PowerBI
+        </div>
+    </div>
+</a> }
+</div>

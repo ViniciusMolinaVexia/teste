@@ -1,0 +1,42 @@
+﻿@using Gafisa.AlphaBook.Componentes.Sessao
+@model Gafisa.AlphaBook.Dominio.DTO.ProjetoDto
+
+@{
+    var sessaoSistema = new SessaoSistema(ViewData);
+    var sessaoUsuario = new SessaoUsuario(sessaoSistema);
+    var classFavorito = Model.Favorito ? "ico-seguir bt-seguir" : "ico-seguir-inativo bt-seguir";
+}
+
+<div class="div-inteligencia-mercado">
+    <div class="tile-topo" data-id="@Model.Id">
+        <h2 class="">@Model.Nome</h2>
+        <h3>@Model.Cidade - @Model.Estado</h3>
+        @if (!String.IsNullOrWhiteSpace(Model.NomeOfertante))
+        {
+            <span class="ofertante">Ofertante: @Model.NomeOfertante</span>
+        }
+        @if (Model.AreaTotal.HasValue)
+        {
+            <span class="terreno">Área: @Model.AreaTotal.ToStringFormat() m<sup>2</sup></span>
+        }
+    </div>
+    <div class="brand">
+        <span class="responsavel">@Model.Departamento - @Model.Responsavel</span>
+        <span class="status">@Model.NomeStatus.ToUpper()</span>
+        <span class="atualizado">Atualizado em: @Model.DataAtualizacao.ToShortDateString() @Model.DataAtualizacao.ToShortTimeString() </span>
+                                        
+        <div class="div-inferior">
+            <span class="codigo">@Model.Codigo</span>
+            <div class="icones-projeto">
+                @if(Model.ProjetoSuperiorId.HasValue)
+                {
+                    <span class="ico-projetos-pai">Projeto pai</span>
+                }                     
+                <span class="ico-localizacao">Localização</span>
+                <span class="ico-seguir" >Seguidores</span>
+                <span class="numero-seguir">@Model.Seguidores</span>
+           
+            </div>
+        </div>
+    </div>
+</div>

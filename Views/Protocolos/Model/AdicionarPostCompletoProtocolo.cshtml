@@ -1,0 +1,13 @@
+﻿@model Gafisa.AlphaBook.Models.Home.ProtocoloModel
+
+@section scripts{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/associarProjeto.js")"></script>
+}
+
+<div class="adicionarPostCompletoProtocolo" id="modalEditarProtocolo">
+    <div class="postCompletoProtocolo">
+        <div class="forms">
+            @Html.Partial("~/Views/Postagem/PostPadrao.cshtml", Model.Postagem)
+        </div>
+    </div>
+</div>

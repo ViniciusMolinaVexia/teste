@@ -1,0 +1,86 @@
+﻿@using Gafisa.AlphaBook.Dominio.DTO
+@model DetalheLinhaTempoDTO
+@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+{
+<a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirDetalheLinhaTempo">Imprimir</a>
+}
+
+<div id="detalhes">
+    <div class="linha-tempo-nome-projeto">Projeto: @Model.ProjetoNome</div>
+    <div class="linha-tempo-tipo-relatorio"><strong>Relatório de posts: </strong><span>@Model.Tipo.ToString()</span></div>
+    @if (Model.Tipo != TipoDetalheLinhaTempo.Detalhes)
+    {
+    <div class="linha-tempo-tipo-relatorio">
+        @if (Model.Tipo == TipoDetalheLinhaTempo.Etapa)
+        {
+        <strong>Etapa: </strong><span>@Model.EtapaNome</span>
+        }
+        else if (Model.Tipo == TipoDetalheLinhaTempo.Timeline)
+        {
+        <strong>Filtro por: </strong><span>@Model.Termo</span>
+        }
+    </div>   
+    }
+    @{
+    var detalhes = Model.Posts.Select(m => m.DataPublicacao).GroupBy(ma => ma.Month, ma => ma.Year).ToList();
+    foreach (var data in detalhes)
+    {
+        var cultura = new System.Globalization.CultureInfo("pt-BR");
+        var dtfi = cultura.DateTimeFormat;
+        var ano = data.FirstOrDefault();
+        var mes = data.Key;
+        var mesExtenso = cultura.TextInfo.ToTitleCase(dtfi.GetMonthName(data.Key));
+        <div class="container-mes">
+            <div class="titulo-mes">@mesExtenso de @ano</div>
+            <img class="imagem-fundo" src="@Url.Content("~/Content/img/fundo-impressao.jpg")" alt="@mesExtenso de @ano" />
+        </div>
+        foreach (var post in Model.Posts.Where(p => p.DataPublicacao.Month == mes && p.DataPublicacao.Year == ano))
+        {
+        <div style="width: 100%;">
+            <div class="box-post">
+                <div class="dados-post detalheNomePost" style="cursor: pointer;" data-id="@post.Id">
+                    <p class="nome-post">@post.TituloPostagem</p>
+                    <p class="lugar-post">@post.NomeProjeto</p>
+                    @if (post.EtapaId.HasValue)
+                    {
+                    <p class="lugar-post"><strong>Etapa: </strong>@post.EtapaNome</p>
+                    }
+                    <p class="usario-post">@post.NomeCompleto | @post.Departamento</p>
+                    <p class="data-post">
+                        @post.DataPublicacao.ToLongDateString()
+                        @if (post.Retroativa.HasValue && post.Retroativa.Value != DateTime.MinValue)
+                        {
+                             @(" | Ref.: " + post.Retroativa.Value.ToLongDateString())
+                        }
+                    </p>
+                    @if (post.EtapaId.HasValue && post.StatusEtapaDeId.HasValue && post.StatusEtapaParaId.HasValue)
+                    {
+                        if (post.StatusEtapaDeId != post.StatusEtapaParaId)
+                        {
+                    <br/><br/>
+                    <p class="usario-post">
+                        O Status da Etapa foi alterado de @post.StatusEtapaDeNome para @post.StatusEtapaParaNome            
+                    </p>
+                        }
+                        else
+                        {
+                    <br/><br/>
+                    <p class="usario-post">
+                        Status da Etapa: @post.StatusEtapaDeNome
+                    </p>
+                        }
+                    }
+                </div>
+                <div class="msg-post" style="margin-bottom: 0;">
+                    @Html.Raw(HttpUtility.HtmlDecode(post.Postagem))
+                </div>
+            </div>
+        </div>
+        }
+        if (detalhes.Last() != data)
+        {
+        <div class="page-break"></div>
+        }
+    }
+    }
+</div>

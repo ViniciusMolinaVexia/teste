@@ -1,0 +1,61 @@
+﻿@model Gafisa.AlphaBook.Models.Relatorios.RelatorioEstruturaModel
+
+<ul id="organograma" class="hide">
+    @if (Model.Pai != null && Model.Pai.Id > 0)
+    {
+        <li>
+            @CriarUsuario(Model.Pai)  
+            <ul>
+                <li class="central">
+                    @CriarUsuario(Model.Central, true)
+                    <ul>
+                        @foreach (var filho in Model.Filhos)
+                        {
+                            <li>
+                                @CriarUsuario(filho, false, true)
+                            </li>
+                        }
+                        </ul>
+                    </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+    <li class="central">
+        @CriarUsuario(Model.Central, true)
+        <ul>
+            @foreach (var filho in Model.Filhos)
+            {
+                <li>
+                    @CriarUsuario(filho, false, true)
+                </li>
+            }
+            </ul>
+        </li>
+    }    
+    </ul>
+<div id="grafico" class="grafico-organograma"></div>
+
+@helper CriarUsuario(Gafisa.AlphaBook.Dominio.DTO.UsuarioDto usuario, bool central = false, bool ultimoNivel = false)
+{
+    if (usuario.Id > 0)
+    {
+        <div class="box-relatorio-usuario @Html.Conditional(central, "central")">
+            <a href="javascript:void(0);" class="detalhar-usuario" data-id="@usuario.Id">
+                @Html.ProfilePhoto(usuario.Id, new { alt = "Imagem Perfil", title = "Imagem Perfil", @class = "img-foto-perfil" })
+            </a>
+            <div class="icones">
+                @if (!central)
+                {
+                    <a href="javascript:void(0);" data-id="@usuario.Id" data-ultimo="@ultimoNivel" title="Tornar central" class="ico-central">Central</a>
+                }
+                <a href="javascript:void(0);" data-id="@usuario.Id" data-ultimo="@ultimoNivel" title="Quantidade de Projetos" class="numero-projetos">@usuario.QuantidadeProjetos</a>
+            </div>
+            <div class="dados">
+                <span class="nome" title="@usuario.NomeCompleto">@(usuario.NomeCompleto.Length > 23 ? usuario.NomeCompleto.Substring(0, 20) + "..." : usuario.NomeCompleto)</span> <span class="cargo">@usuario.NomeCargo</span>
+                <span class="funcao">@usuario.Funcao</span>
+            </div>
+        </div>
+    }
+}

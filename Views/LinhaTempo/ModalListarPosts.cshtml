@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Models.Home.PostagemModel>
+
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+        <h1>Posts</h1>
+        <h2>@ViewBag.EtapaNome</h2>
+        @if (Model.Any() && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+        {
+        <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirTimeline" data-etapa-id="@ViewBag.EtapaId">Imprimir</a>    
+        }
+    </div>
+    <div class="modal-body">
+        @Html.Partial("~/Views/Home/Post.cshtml", Model)
+    </div>
+</div>
+<script type="text/javascript">
+    gafisa.alphabook.home.timeline.etapaLinhaTempo = true;
+</script>

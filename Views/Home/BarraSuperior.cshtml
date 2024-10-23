@@ -1,0 +1,57 @@
+﻿@model Gafisa.AlphaBook.Models.Home.HomeModel
+<header id="nav-bar" class="container">
+    <div class="row">
+        <div class="span12">
+            <div id="header-container">
+                <a class="alphabook-logo" href="javascript:void(0);">Alphabook</a>
+            </div>
+
+            <div class="input-control text" id="buscaSuperior">
+                <input type="text" id="campoBuscaSuperior" value="Busca geral" class="watermark-font" />
+                <button class="btn-search" id="botaoBuscaSuperior"></button>
+            </div>
+
+            <div id="top-info" class="pull-right">
+                <a id="logged-user" href="javascript:void(0);" class="pull-right">
+                    <div class="top-info-block">
+                        <h3>@Model.Nome</h3>
+                        <h4>@Model.Sobrenome</h4>
+                    </div>
+                    <div class="top-info-block">
+                        <b class="ico-usuario"></b>
+                    </div>
+                </a>
+            </div>
+            <div id="top-faq" class="pull-right">
+                <a id="lnkFaq" data-toggle="modal" href="#modalFaq">
+                    <div class="faq" title="FAQ">
+                        <div id="quantidadeAlertas"></div>
+                    </div>
+                </a>
+            </div>
+            <div id="top-notificacoes" class="pull-right">
+                <a id="lnkNotificacoes" href="javascript:void(0);" rel="tooltip" class="popover-link notificacoes" title="Notificações">
+                    <div id="quantidadeNotificacoes" class=""></div>
+                </a>
+            </div>
+            
+
+            <div style="width:810px; float:left;">
+                <div id="dropdownProjetos" class="dropdown dropdown-projetos">
+                    @Html.Partial("DropDownProjetos", Model)
+                </div>
+                <div id="dropdownFaseProjeto" class="dropdown dropdown-fase-projeto">
+                    <div class="seta-dir">></div>
+                    <a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="javascript:void(0);">
+                        <span>Todas</span>
+                        <b class="ico-seta"></b>
+                    </a>
+                    <ul id="fasesProjeto" class="dropdown-menu"></ul>
+                </div>
+            </div>
+            <a id="lnkFavoritar" href="javascript:void(0);">&nbsp;</a>
+        </div>
+    </div>
+    <div id="carregandoNotificacoes"><div id="loadingNotificacoes" class="loading-barra-cinza popover-carregando"></div></div>
+    <div id="conteudoPopoverNotificacoes"><div id="containerNotificacoes" class="antiscroll-inner" ><ul id="listaNotificacoes"></ul></div></div>
+</header>

@@ -1,0 +1,46 @@
+﻿@using Gafisa.AlphaBook.Componentes.Sessao
+@model Gafisa.AlphaBook.Dominio.DTO.Localizacao.PontoMapa
+
+@{
+    var sessaoSistema = new SessaoSistema(ViewData);
+    var sessaoUsuario = new SessaoUsuario(sessaoSistema);
+}
+<div id="modalPontoInteresse" data-id="@Model.Id">
+    
+    @if (Model.UsuarioId == sessaoUsuario.Id && !Model.Rating.HasValue)
+    {
+        <a id="lnkExcluirPontoInteresse" href="javascript:void(0);" title="Excluir Ponto de Interesse" data-id="@Model.Id" data-tipo-ponto-interesse="@Model.TipoPontoInteresseId" class="btn btn-warning ico-excluir-ponto">Excluir</a>    
+    }
+    
+    <h2 id="localCompromisso">@Model.Nome</h2>
+    
+        <p class="descricao-ponto">@Model.Descricao</p>
+        <small>@Model.NomeUsuario @Model.SobrenomeUsuario</small>
+    
+    <div id="avaliacao" data-rating="@(Model.Rating)" data-nota="@(Model.Nota)" data-avaliacaoId="@(Model.IdAvaliacao)">
+        <div class="rating small" data-role="rating"></div>
+        <a class="comentarios" href="javascript:void(0);" title="Comentários"></a>
+    </div>
+    <div id="conteudoPopoverAgenda">
+        <div>
+            <b>Agendar Visita:</b>
+        </div>
+        <div  id="divCompromissoDataInicial" >
+            <span class="data-hora">Assunto</span>
+            <input id="txtAssunto" maxlength="200" type="text" />
+        </div>
+        <div id="divCompromissoDataInicial" class="div-1 input-append date">
+            <span class="data-hora">Data e Hora Inicial</span>
+            <input type="text" class="campo-data" id="txtDataInicial" />
+            <input type="text" class="campo-hora-minuto" id="txtHoraInicial" />
+      
+        </div>
+        <div id="divCompromissoDataFinal" class="div-2 input-append date">
+            <span class="data-hora">Data e Hora Final</span>
+            <input type="text" class="campo-data" id="txtDataFinal" />
+            <input type="text" class="campo-hora-minuto" id="txtHoraFinal" />
+        </div>
+        <a id="lnkSalvarCompromisso" href="javascript:void(0);" title="Ok" class="btn-ok">Ok</a>
+        
+    </div>
+</div>

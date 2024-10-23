@@ -1,0 +1,190 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao;
+
+@model Gafisa.AlphaBook.Models.Home.ResultadoArquivosManuais
+
+@{
+    var permissaoAdicionar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.Adicionar);
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Content/css/modelos-padroes.css")" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<div id="controleArquivosManuais">
+    <input type="hidden" id="controleSessao" />
+
+    <div class="row">
+        <h2 class="title-documentos">Arquivos manuais</h2>
+    </div>
+
+
+
+
+    <!-- Lista fixa dos documentos -->
+
+    <div class="forms">
+        <div class="div-filtro-arquivosmanuais">
+            <h4>Filtros</h4>
+
+            <div class="input-block">
+
+            </div>
+            <div class="input-block">
+                <select id="dataFiltroCarga" class="cidade watermark-font" style="width: 110px; height: 30px;">
+                    @for (int year = DateTime.Now.Year - 10; year <= DateTime.Now.Year + 10; year++)
+                    {
+                        <option value="@year" @(year == DateTime.Now.Year ? "selected" : "")>@year</option>
+                    }
+                </select>
+                <a href="javascript:void(0)" style="height: 21px; margin-left: 5px !important" title="Buscar arquivos enviados" class="bt-padrao-filtro btnFiltroArquivosManuais">Buscar</a>
+            </div>
+
+
+
+            <div>
+                <a href="javascript:void(0)" style="height: 21px; padding-left: 24px !important; margin-right: 4px;" title="Baixar modelo do arquivo" class="bt-padrao-filtro btnBaixarArquivosManuais">Baixar Modelo</a>
+            </div>
+
+            <div class="input-block">
+                <select id="statusProjeto" href="javascript:void(0);" title="Selecionar modelo de arquivo" style="width: 161px; height: 30px; float: right;">
+                    @foreach (var arquivo in @Model.Documentos)
+                    {
+                        <option value="@arquivo.Id">@arquivo.NomeArquivo</option>
+                    }
+                </select>
+            </div>
+
+            <!--<div class="input-block" style="float: right;">-->
+            <!-- Campo para upload de arquivos Excel -->
+            <!--<input type="file"
+               id="uploadExcel"
+               accept=".xls,.xlsx,.csv"
+               style="width: 235px; height: 30px;" />
+
+        <a href="javascript:void(0)" style="height: 20px;" title="Enviar arquivo de carga" class="bt-padrao-filtro btnInserirArquivo">Enviar</a>
+    </div>-->
+
+
+        </div>
+
+    </div>
+
+    <div class="box-tabela table-pp-head-ArquivosManuais">
+        <div class="seg-table-pp">
+            <table id="tabelaRelatorioArquivosManuaisH" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th class="table-title-ord-down-manuais " style="padding-left:2% !important; text-align:center !important;" rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                        </th>
+                        <th class="table-title-ord-down-manuais " style="text-align: center !important; padding-left: 7% !important;" rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Nome do arquivo</a>
+                        </th>
+                        <th class="table-title-ord-down-manuais " style="padding-left: 9% !important; text-align: center !important; " rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Usuario carga</a>
+                        </th>
+                        <th class="table-title-ord-down-manuais " style="padding-left:0% !important; text-align:center !important;" rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Mês ref.</a>
+                        </th>
+                        <th class="table-title-ord-down-manuais " style="padding-left: -1% !important; text-align: center !important;" rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Data Carga</a>
+                        </th>
+                        <th class="table-title-ord-down-manuais " style="padding-left: 3.5% !important; text-align: center !important;" rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Status</a>
+                        </th>
+                        <th class="table-title-ord-down-manuais " style="text-align: center !important;" rowspan="2">
+                            <a href="javascript:void(0);" data-ordenacao="5" data-tipo="3">Ação</a>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="relatorio-ArquivosManuais" tabela-scroll="true" style="width: 100%;">
+        <div class="box-tabela hide" style="@(ViewBag.OcultarColunas == true ? "width: 3296px;" : "width: 4456px;")">
+            <div class="table2">
+                <div>
+                    <table id="tabelaRelatorioArquivosManuais">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-ArquivosManuais" class="modal-ArquivosManuais">
+        <div class="modal-content-ArquivosManuais">
+            <span class="close-button-ArquivosManuais" href="javascript:void(0)">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+
+    <!-- Modal de Confirmação -->
+    <div id="modalConfirmacaoArquivos" class="modal fade" style="display:none" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir arquivo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza de que deseja excluir este item?</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" id="confirmarExclusao" class="btn btn-confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalConfirmacaoArquivosEdicao" class="modal fade" tabindex="-1" style="display:none" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar arquivo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-block">
+                        <input title="Selecionar data da carga" style="width: 110px; height: 30px;"
+                               id="dataFiltroCargaEdicao"
+                               type="date"
+                               value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                               class="cidade watermark-font"
+                               disabled />
+
+                    </div>
+                    <div class="input-block" style="float: right; padding-top: 10%">
+                        <!-- Campo para upload de arquivos Excel -->
+                        <input type="file"
+                               id="uploadExcelEdicao"
+                               accept=".xls,.xlsx,.csv"
+                               style="width: 235px; height: 30px;" />
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" id="confirmarEdicao" class="btn btn-confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" style="display:none;">
+        <div id="spinner">Aguarde, processando...</div>
+    </div>
+
+
+
+
+
+</div>

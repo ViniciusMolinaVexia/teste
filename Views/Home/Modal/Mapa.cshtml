@@ -1,0 +1,28 @@
+﻿<div id="modalMapa" class="modal message hide fade mapa" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="Mapa" aria-hidden="true">
+    <div id="mapa" style="height: 500px; width: 100%;clear: both;">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Fechar</button>
+    </div>
+    <a href="javascript:void(0);" id="verEstabelecimentos" class="btn">- Pontos de Interesse</a>
+    
+    <div id="pontosinteresse">
+    </div>
+</div>
+<div id="modalComentarioAvaliacaoPonto">
+    <h4>@(Gafisa.AlphaBook.Dominio.Mensagens.Contatos.ComenteSuaAvaliacao)</h4>
+    <textarea id="txtComentarioAvaliacao"></textarea>
+    <span id="lnkCancelarComentarioPonto">Cancelar</span>
+    <span id="lnkSalvarComentarioPonto">Salvar</span>
+</div>
+<div id="modalComentariosPonto">
+    <h4>Comentários</h4>
+    <div id="comentariosWrap" class="antiscroll-wrap">
+        <div id="comentarios" class="antiscroll-inner">
+            <div id="loadComentarios" class="loading-circulo-cinza hide"></div>
+            <ul id="listacomentarios">
+            </ul>
+        </div>
+    </div>
+    <span id="lnkFecharComentariosPonto">Fechar</span>
+</div>

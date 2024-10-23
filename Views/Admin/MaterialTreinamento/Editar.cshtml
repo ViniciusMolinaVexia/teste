@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Status.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.full.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Material/material-editar.js")"></script>
+}
+
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/material-treinamento.css")" />
+}
+
+<div class="container">
+
+    <h2>Adicionar Material</h2>
+
+    <div class="form-container">
+        <a href="@Url.Action("Material", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+
+        <form action="@Url.Action("SalvarMaterial", "Admin")" id="form" class="forms" method="POST" enctype="multipart/form-data">
+
+            <div class="sep-line-form">
+                <div class="form-line form-titulo">
+                    <label for="Titulo">Título do material:</label>
+                    <input type="text" class="" id="Titulo" name="Titulo" maxlength="200" />
+                </div>
+            </div>
+
+            <div class="sep-line-form">
+                <label>Arquivo:</label>
+                <div id="container" class="div-upload">
+                    <a id="selecionarArquivos" href="javascript:void(0)" class="bt-padrao bt-procurar">Procurar</a>
+                </div>
+                <div id="nomeArquivo"></div>
+            </div>
+
+
+            @if (new Gafisa.AlphaBook.Componentes.Sessao.SessaoSistema(ViewData).Usuario.Administrador)
+            {
+                <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+            }
+        </form>
+    </div>
+</div>

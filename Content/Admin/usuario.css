@@ -1,0 +1,162 @@
+﻿.form-container
+{
+    height: 547px;
+}
+
+#form .form-login {
+    width: 400px;
+}
+
+#form .form-nome {
+    width: 400px;
+}
+
+#form .form-sobrenome {
+    width: 470px;
+    margin-left: 20px;
+}
+
+#form .form-email {
+    width: 400px;
+}
+
+#form .form-dominio {
+    width: 470px;
+    margin-left: 20px;
+}
+
+#form .form-area {
+    width: 280px;
+}
+
+#form .form-cargo {
+    width: 280px;
+    margin-left: 20px;
+}
+
+#form .form-funcao
+{
+    width: 290px;
+    margin-left: 20px;
+}
+
+#form .form-superior {
+    width: 280px;
+}
+
+#form .form-administrador {
+    width: 280px;
+    margin-left: 20px;
+}
+
+#form .form-inativo {
+    width: 280px;
+    margin-left: 20px;
+}
+
+.div-acoes 
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#filtros .div-filtro 
+{
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+}
+
+#filtros .div-filtro-arquivosmanuais {
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+}
+
+#tabela th {
+    border-right: none;
+}
+
+#tabela td {
+    overflow: hidden;
+}
+
+#tabela th.colun-1
+{
+    width: 48px;    
+}
+
+#tabela th.colun-2
+{
+    width: 176px;
+}
+
+#tabela th.colun-3
+{
+    width: 301px;
+}
+
+#tabela th.colun-4
+{
+    width: 133px;
+}
+
+#tabela th.colun-5
+{
+    width: 151px;
+}
+
+#tabela th.colun-6
+{
+    width: 73px;
+}
+
+#tabela th.colun-7
+{
+    width: 72px;
+}
+
+#tabela td.colun-1
+{
+    width: 48px;
+}
+
+#tabela td.colun-2
+{
+    max-width: 176px;
+}
+
+#tabela td.colun-3
+{
+    width: 309px;
+}
+
+#tabela td.colun-4
+{
+    width: 134px;
+}
+
+#tabela td.colun-5
+{
+    width: 152px;
+}
+
+#tabela td.colun-6
+{
+    width: 73px;
+}
+
+#tabela td.colun-7
+{
+    width: 58px;
+}
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 15px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}

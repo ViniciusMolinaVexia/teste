@@ -1,0 +1,322 @@
+﻿.box-inteligencia-mercado {
+    float: left;
+    height: 680px;
+    width: 952px;
+}
+
+.box-inteligencia-mercado h2 {
+    width: 50%;
+    float: left;
+}
+
+.box-inteligencia-mercado .bt-excel {
+    margin-top: 20px;
+}
+
+.box-inteligencia-mercado .botao-importar {
+    top: 85px;
+    left: 840px;
+}
+
+.box-inteligencia-mercado .filtro-alfabetico {
+    border: medium none;
+    clear: none;
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.box-inteligencia-mercado .filtro-alfabetico a {
+    color: #006655;
+    float: left;
+    font-size: 15px;
+    margin-top: 4px;
+    padding: 0 1.7px;
+    text-decoration: none;
+}
+
+.box-inteligencia-mercado .div-filtro .bt-padrao-filtro {
+    margin-top: 0;
+}
+
+.box-inteligencia-mercado button.ui-multiselect {
+    max-width: 235px;
+}
+
+.inteligenciaMercado {
+    float: left;
+    height: 435px;
+    overflow-y: scroll;
+    padding-bottom: 30px;
+    position: relative;
+    width: 969px;
+}
+
+.inteligenciaMercado .box-tabela {
+    width: 1665px;
+    display: block;
+    overflow: hidden;
+}
+
+.inteligenciaMercado .div-filtro {
+    width: 929px;
+}
+
+.inteligenciaMercado .div-filtro .status {
+    margin-left: 10px;
+    width: 100px;
+}
+
+.inteligenciaMercado .div-filtro .div-busca-filtro {
+    float: right;
+    margin: 0;
+}
+
+.inteligenciaMercado .filtro-alfabetico {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #FFFFFF;
+    clear: none;
+    display: table;
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+.inteligenciaMercado .filtro-alfabetico a,
+.inteligenciaMercado .filtro-alfabetico a:hover {
+    float: left;
+    padding: 2.3px;
+}
+
+.inteligenciaMercado .filtro-alfabetico a.selecionada {
+    background-color: #006655;
+    color: #FFFFFF;
+    padding: 3px;
+}
+
+
+.inteligenciaMercado .filtro-alfabetico label {
+    color: #006655;
+    float: left;
+    margin-right: 10px;
+}
+
+.bt-add-protocolo {
+    line-height: 12px !important;
+    margin-left: 0 !important;
+}
+
+.inteligenciaMercado .box-tabela .wrap {
+    height: 396px;
+    width: 952px;
+}
+
+
+.inteligenciaMercado .box-tabela .wrap .inner {
+    height: 396px;
+}
+
+.inteligenciaMercado .box-tabela .ico-post-anexo {
+    text-decoration: none !important;
+    padding-top: 2px;
+    margin-left: 12px;
+}
+
+/* Tabela */
+
+/* THead */
+
+#tabelaInteligenciaMercado th.table-title-ord-down {background: url("../img/table-seta-down.jpg") no-repeat scroll 10% 50% #FFFFFF !important;}
+#tabelaInteligenciaMercado th a{ display: block; text-align: center;}
+#tabelaInteligenciaMercadoH th a{ display: block;}
+
+#tabelaInteligenciaMercado th.colun-1 a {width: 50px;}
+#tabelaInteligenciaMercado th.colun-2 a {width: 117px;}
+#tabelaInteligenciaMercado th.colun-3 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-4 a {width: 66px;}
+#tabelaInteligenciaMercado th.colun-5 a {width: 105px;}
+#tabelaInteligenciaMercado th.colun-6 a {width: 118px;}
+#tabelaInteligenciaMercado th.colun-7 a {width: 497px;}
+#tabelaInteligenciaMercado th.colun-8 a {width: 70px;}
+#tabelaInteligenciaMercado th.colun-9 a {width: 70px;}
+
+#tabelaInteligenciaMercadoH th.colun-1 a {width: 50px;}
+#tabelaInteligenciaMercadoH th.colun-2 a {width: 117px;}
+#tabelaInteligenciaMercadoH th.colun-3 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-4 a {width: 66px;}
+#tabelaInteligenciaMercadoH th.colun-5 a {width: 105px;}
+#tabelaInteligenciaMercadoH th.colun-6 a {width: 118px;}
+#tabelaInteligenciaMercadoH th.colun-7 a {width: 497px;}
+#tabelaInteligenciaMercadoH th.colun-8 a {width: 70px;}
+#tabelaInteligenciaMercadoH th.colun-9 a {width: 70px;}
+
+
+
+.tabelaInteligenciaMercado tbody tr td.colun-1 {width: 53px;}
+.tabelaInteligenciaMercado tbody tr td.colun-2 {width: 120px;}
+.tabelaInteligenciaMercado tbody tr td.colun-3 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-4 {width: 69px;}
+.tabelaInteligenciaMercado tbody tr td.colun-5 {width: 109px;}
+.tabelaInteligenciaMercado tbody tr td.colun-6 {width: 122px;}
+.tabelaInteligenciaMercado tbody tr td.colun-7 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-8 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-9 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-10 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-11 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-12 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-13 {width: 107px;}
+.tabelaInteligenciaMercado tbody tr td.colun-14 {width: 82px;}
+.tabelaInteligenciaMercado tbody tr td.colun-15 {width: 73px;}
+
+
+/* TBody */
+
+
+
+#tabelaInteligenciaMercado th.colun-7-1 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-7-2 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-7-3 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-7-4 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-7-5 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-7-6 a {width: 104px;}
+#tabelaInteligenciaMercado th.colun-7-7 a {width: 104px;}
+
+#tabelaInteligenciaMercadoH th.colun-7-1 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-7-2 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-7-3 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-7-4 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-7-5 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-7-6 a {width: 104px;}
+#tabelaInteligenciaMercadoH th.colun-7-7 a {width: 104px;}
+
+.contato-principal-tooltip {
+    width: 300px;
+    position: absolute;
+    top: 57px;
+    right: 105px;
+    z-index: 1000;
+}
+
+    .contato-principal-tooltip span.seta {
+        background: url("../img/seta-box-direita.png") no-repeat scroll 0 0 transparent;
+        display: block;
+        height: 21px;
+        position: absolute;
+        right: -11px;
+        top: 42px;
+        width: 10px;
+        z-index: 1001;
+    }
+
+    .inteligenciaMercado .box-dados-contato {
+        width: 73%;
+    }
+
+        .inteligenciaMercado .box-dados-contato div {
+            line-height: 13px;
+        }
+
+            .inteligenciaMercado .box-dados-contato div strong {
+                font-size: 12px;
+            }
+            
+.box-inteligencia-mercado .atualizado
+{
+    color: #a1a1a1;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: normal;
+    display: block;
+    margin-left: 8px;
+    float:right;
+}
+            
+            
+/* Modal Confirmação */
+.modal-confirmacao-mercado {
+    width: 470px;
+    top: 17% !important;
+    left: 61%;
+}
+
+.modal-confirmacao-mercado .titulo {
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    font-weight: bold;
+    color: #222222;
+}
+
+.box-modal-confirmacao-mercado {
+    border-radius: 5px 5px 5px 5px;
+    color: #8B8B8B;
+    display: table;
+    font-size: 14px;
+    line-height: 28px;
+    margin: 0 auto 0;
+    text-align: center;
+    width: 318px;
+}
+
+.div-resultado ul li,
+.txt-pergunta {
+    color: #616161;
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    float: left;
+    display: block;
+}
+
+.div-resultado ul li {
+    text-align: left;
+}
+
+.txt-pergunta {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.div-resultado ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.div-resultado ul li {
+    line-height: 16px;
+    margin-bottom: 10px;
+}
+
+.div-resultado ul li.ico-negativo {
+    background-image: url("../img/icons/ico-negativo.png");
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 35px;
+    padding-left: 23px;
+}
+
+.div-resultado ul li.ico-positivo {
+    background-image: url("../img/icons/ico-positivo.png");
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 35px;
+    padding-left: 23px;
+}
+
+
+
+.table-im-head {
+    width:951px;
+    height:61px;
+    overflow:hidden;
+}
+    .table-im-head div {
+        width:3664px !important;
+    }
+    .table-im-head div table{
+        width:1664px !important;
+    }

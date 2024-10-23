@@ -1,0 +1,30 @@
+﻿@model Gafisa.AlphaBook.Models.Relatorios.RelatorioEstruturaModel
+<div class="box-relatorio-landbanking">
+    <h2>
+        Relatório Estrutura</h2>
+    <div class="relatorio-estrutura">
+        <div class="legenda">
+            <span id="filtro" class="titulo">Filtros</span>
+            <div id="filtroProjetos" class="scroll-y">
+                <ul>
+                    <li>
+                        <input id="todos" type="checkbox" name="statusProjeto" value="0" data-id="@Model.Central.Id" checked="checked" />
+                        <label for="todos">
+                            Todos</label>
+                    </li>
+                    @foreach (var status in Model.Filtros)
+                    {
+                        <li class="sub">
+                            <input id="@string.Format("check_{0}", status.Id)" type="checkbox" class="status-check" name="statusProjeto" value="@status.Id" data-id="@Model.Central.Id" @Html.Conditional(!status.Final, "checked=\"checked\"") />
+                            <span style="background-color: @status.Cor" class="box-status-projeto"></span>
+                            <label for="@string.Format("check_{0}", status.Id)" title="@status.Nome">@(status.Nome.Length > 26 ? status.Nome.Substring(0, 23) + "..." : status.Nome)</label>
+                        </li>   
+                    }
+                </ul>
+            </div>
+        </div>
+        <div id="containerOrganograma">
+            @Html.Partial("Organograma", Model)
+        </div>
+    </div>
+</div>

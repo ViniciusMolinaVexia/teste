@@ -1,0 +1,169 @@
+﻿@model Gafisa.AlphaBook.Models.Relatorios.RelatorioModel
+<script type="text/javascript">
+    gafisa.alphabook.home.relatorios.pipeline.ocultarColunas = @(ViewBag.OcultarColunas ? "true" : "false");
+</script>
+<div class="box-relatorio-pipeline" style="height: 800px">
+    <h2 id="">
+        Relatório Pipeline</h2>
+    @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosPipeline, Acao.ExportarImprimir))
+    {
+        <div class="bt-excel">
+            <a href="javascript:void(0)" class="bt-padrao" id="btnExportarRelatorioPipeline">Exportar
+                excel</a>
+        </div>
+    }
+    <div id="ListaUsuarios" class="hide">
+        <ul>
+            @Html.Partial("HierarquiaUsuario", Model.Usuarios)
+        </ul>
+    </div>
+    @Html.Partial("HierarquiaStatusProjeto", Model.ListaStatusProjeto)
+    <div class="forms">
+        <div class="div-filtro">
+            <h4>Filtros</h4>
+            
+            <div class="input-block">
+                @Html.MultipleCheckList("FiltroEstado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 30, true)
+            </div>
+            <div class="input-block">
+                <input style="width: 110px;" type="text" value="" watermark="Cidade" class="cidade watermark-font ui-autocomplete-input" autocomplete="off" />
+            </div>
+            <div class="input-block">
+                <select id="statusProjeto" style="width: 125px">
+                    <option id="opcaoStatusProjeto">Status</option>
+                </select>
+            </div>
+            <div class="input-block">
+                <select id="responsavel" style="width: 125px">
+                    <option id="opcaoResponsavel">Responsável</option>
+                </select>
+            </div>
+            <a href="javascript:void(0)" class="bt-padrao-filtro btnFiltroPipeline">Buscar</a>
+        </div>
+    </div>
+
+<div class="box-tabela table-pp-head">
+   <div class="seg-table-pp">
+        <table id="tabelaRelatorioPipelineH">
+            <thead>
+                <tr>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">UF</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Cidade</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">ID</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Produto</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Nome Projeto</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">Área
+                            <br />
+                            Total m²</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="30" data-tipo="1">Tipo</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="8" data-tipo="1">ALV m²</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="9" data-tipo="1">Número Unidades</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="10" data-tipo="1">% Parceria</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="11" data-tipo="1">% Sociedade (consórcio)</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="12" data-tipo="1">Estimativa Preço / m²</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="13" data-tipo="1">VGV Total R$</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="14" data-tipo="1">VGV Prop. R$</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="15" data-tipo="1">VGV Sócio (AUSA) R$</a>
+                    </th>
+                    <th class="negocios-colspan" colspan="5">
+                        <div>
+                            VGV AUSA R$</div>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="17" data-tipo="1">Lucro R$</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="18" data-tipo="1">Receita R$</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="19" data-tipo="1">% Geração Caixa</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="21" data-tipo="1">Comitê</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="20" data-tipo="1">Status</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="27" data-tipo="1">Ano Maturação</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="28" data-tipo="1">Etapa</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="31" data-tipo="1">Responsável</a>
+                    </th>
+                    <th class="table-title-ord-down colun-3" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="29" data-tipo="1">Observação</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2">
+                        <a href="javascript:void(0);" data-ordenacao="32" data-tipo="1">Divisão ativa</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2" rowspan="2" >
+                        <a href="javascript:void(0);" data-ordenacao="33" data-tipo="1">Divisão inativa</a>
+                    </th>  
+                </tr>
+                <tr>
+                    <th class="table-title-ord-down colun-2">
+                        <a href="javascript:void(0);" data-ordenacao="22" data-tipo="1">Total</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar">
+                        <a href="javascript:void(0);" data-ordenacao="23" data-tipo="1">Imediato (Ano)</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar">
+                        <a href="javascript:void(0);" data-ordenacao="24" data-tipo="1">Curto Prazo (Ano+1)</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar">
+                        <a href="javascript:void(0);" data-ordenacao="25" data-tipo="1">Médio Prazo (Ano+2)</a>
+                    </th>
+                    <th class="table-title-ord-down colun-2 negocios-ocultar">
+                        <a href="javascript:void(0);" data-ordenacao="26" data-tipo="1">Longo Prazo</a>
+                    </th>
+                                      
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+    <div class="relatorio-pipeline" tabela-scroll="true">
+        <div class="box-tabela hide" style="@(ViewBag.OcultarColunas == true ? "width: 3296px;" : "width: 4456px;")">
+            <div class="table2">
+                <div>
+                    <table id="tabelaRelatorioPipeline">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

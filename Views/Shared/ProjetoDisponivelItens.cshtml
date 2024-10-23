@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ProjetoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    @*<p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Projetos Disponíveis")</p>*@
+    <tr style="background-color: #FFF">
+            <td class="colun-1">
+            </td>
+            <td class="colun-2">
+            </td>
+            <td class="colun-3">
+            </td>
+            <td class="colun-4">
+            </td>
+            <td class="colun-5">
+            </td>
+            <td class="colun-6">
+            </td>
+            <td class="colun-7">
+            </td>
+            <td class="colun-8">
+            </td>
+        </tr>
+}
+else
+{
+    foreach (var projeto in Model)
+    {
+        <tr data-id="@projeto.Id">
+            <td class="colun-1">
+                <input data-id="@projeto.Id" value="" type="checkbox" class="checkProjeto" name="checkProjeto" />
+            </td>
+            <td class="colun-2">
+                @projeto.Codigo
+            </td>
+            <td class="colun-3">
+                @projeto.Nome
+            </td>
+            <td class="colun-4">
+                @Html.ProfilePhoto((int)projeto.UsuarioResponsavelId, new { @class = "ico-responsavel" })
+                <span class="nome-responsavel">@projeto.Responsavel</span>
+            </td>
+            <td class="colun-5">
+                @projeto.UfId
+                @if (!String.IsNullOrWhiteSpace(projeto.EstadoSecundarioId))
+                {
+                    <br />
+                    @projeto.EstadoSecundarioId
+                }
+            </td>
+            <td class="colun-6">
+                @projeto.Cidade
+                @if (!String.IsNullOrWhiteSpace(projeto.CidadeSecundaria))
+                {
+                    <br />
+                    @projeto.CidadeSecundaria
+                }
+            </td>
+            <td class="colun-7">
+                @projeto.NomeStatus
+            </td>
+            <td class="colun-8">
+                <a href="javascript:void(0)" class="ico-localizacao-inativo">Localização</a>
+            </td>
+        </tr>
+    }
+
+}

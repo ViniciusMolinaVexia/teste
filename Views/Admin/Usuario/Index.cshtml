@@ -1,0 +1,88 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.UsuarioModel 
+
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Usuario/usuario-pesquisa.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/usuario.css")" />
+}
+
+<h2>
+    Cadastro de Usuários</h2>
+
+<div id="filtros">
+    <div class="div-filtro">
+        <h4>
+            Filtros</h4>
+        <div class="input-block">
+            <input type="checkbox" id="chkTodos" class="checkbox" checked="checked" />
+            <label>Todas</label>
+        </div>
+        <div class="input-block">
+            @Html.DropDownList("departamentoId", Model.Departamentos.ToSelectList(text => text.Nome, value => value.Id), "Departamento", new { id = "departamentoId", disabled = "disabled" })
+        </div>
+        <div class="input-block">
+            @Html.DropDownList("perfilId", Model.Perfis.ToSelectList(text => text.Nome, value => value.Id), "Perfil", new { id = "perfilId", disabled = "disabled" })
+        </div>
+        <div class="input-block">
+            <select class="" id="ativo"  name="ativo" disabled="disabled">
+                <option value="">Situação</option>
+                <option value="true">Ativo</option>
+                <option value="false">Inativo</option>
+            </select>
+        </div>
+        <a id="buscar" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+        <div class="div-busca-filtro">
+            <input type="text" watermark="Busca" class="watermark-font" id="termo" name="termo" value="" disabled="disabled">
+        </div>
+    </div>
+</div>
+ @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Usuários, Acao.Adicionar))
+ {
+    <div class="div-acoes">
+	    <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarUsuario", "Admin")">Adicionar novo Usuário</a>
+    </div>
+ }
+<div class="div-listar">
+    <div class="box-tabela">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th class="table-title table-left colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title table-left colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Login</a>
+                            </th>
+                            <th class="table-title table-left colun-3 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Nome Completo</a>
+                            </th>
+                            <th class="table-title table-left colun-4 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Departamento</a>
+                            </th>
+                            <th class="table-title table-left colun-5 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Perfil</a>
+                            </th>
+                            <th class="table-title table-left colun-6 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Situação</a>
+                            </th>
+                            <th class="table-title colun-7">
+                                Editar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

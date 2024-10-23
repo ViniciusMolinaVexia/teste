@@ -1,0 +1,317 @@
+
+/* Config Linha do Tempo */
+.config-lt{
+	font-size:16px;
+	color:#a0a0a0;
+	margin:30px 0;
+}
+	.config-lt a{
+		color:#288b60;
+		text-decoration:underline;
+	}
+/* END Config Linha do Tempo */
+
+
+/* Menu da Linha do Tempo */
+.box-menu-lt{
+	display:table;
+	width:100%;
+}
+.menu-lt{
+	/*width:560px;*/
+	display:table;
+	float:left;
+}
+
+.menu-lt ul li{
+	display:inline;
+	text-decoration:none;
+}
+	.menu-lt ul li a{
+		display:block;
+		float:left;
+		padding:8px 17px;
+		background:#f2f2f2;
+		color:#a6a6a6;
+		text-align:center;
+		text-transform:uppercase;
+		text-decoration:none;
+		border-radius:12px;
+		font-size:14px;
+		margin-right:10px;
+	}
+		.menu-lt ul li a:hover{
+			background:#606360;
+			color:#e1e1e1;
+		}
+		.menu-lt ul li a.active{background:#606360 !important; color:#e1e1e1 !important;}
+
+/* END Menu da Linha do Tempo */
+
+
+/* Filtro de Datas */
+.box-datas-lt{
+	float:left;
+	/*width:330px;*/
+	margin-top:11px;
+}
+.seg-check-lt{
+		float: left;
+		margin-left:20px;
+		font-size:12px;
+		color:#a7a7a7;
+}
+/* END Filtro de Datas */
+
+/* Linha do Tempo */
+.box-lt{
+	clear:both;
+	margin-top:50px;
+	width:885px;
+	overflow-x:auto;
+	padding-bottom:20px;
+    height: 260px !important;
+}
+	/* Estrutura */
+	.lt-estrutura{
+		width:145px;
+		float:left;
+		margin-right:2px;
+		display:table;
+		padding-top:30px;
+		padding-bottom:20px;
+	}
+		.lt-estrutura:hover{background:#f9f9f9;}
+
+		.lt-titulo{
+			width:145px;
+			height:45px;
+			font-size:15px;
+			color:#d7d7d7;
+			text-align:center;
+			border-bottom:5px solid #d6d6d6;
+			overflow:hidden;
+			line-height:23px;
+			font-weight:bolder;
+		}
+
+		.lt-icone{position:relative;width: 145px;}
+		.lt-icone a.ico-status-lt{
+			display:block;
+			margin:0 auto;
+			width:36px;
+			height:62px;
+			overflow:hidden;
+			text-decoration:none;
+			background:url(../img/ico-lt-normal.png) no-repeat;
+		}
+
+		.ico-post-lt{
+			position:absolute;
+			display:none;
+			width:28px;
+			height:25px;
+			background:url(../img/ico-post-lt.png) no-repeat;
+			top:15px;
+			right:35px;
+			text-indent:-9999px;
+			overflow:hidden;
+		}
+
+		.lt-datas{
+			width:145px;
+			margin-top:8px;
+		}
+			.lt-datas span{
+				display:block;
+				text-align:center;
+			}
+				.lt-dt-1{font-size:14px; font-weight:bold; color:#999; height:23px;}
+				.lt-dt-2{font-size:12px; height:20px;}
+					.lt-dt-2 a{color:#737373;}
+				.lt-dt-3{font-size:12px; color:#959595; height:20px; }
+
+		/* Classificação por Status */
+
+			.lt-nao-aplica .lt-icone a.ico-status-lt{background:url(../img/ico-lt-na.png) no-repeat !important;}
+
+			.lt-concluido:hover{background:#eff6da !important;}
+			.lt-concluido .lt-titulo{color:#b1d445 !important;font-weight:bold !important;border-bottom:5px solid #b1d445;}
+			.lt-concluido .lt-icone a.ico-status-lt{background:url(../img/ico-lt-verde.png) no-repeat !important;}
+			.lt-concluido .lt-dt-1, .lt-concluido .lt-dt-2 a{color:#89a13f !important;}
+
+			.lt-concluido-apos:hover{background:#daf0f6 !important;}
+			.lt-concluido-apos .lt-titulo{color:#45b4d4 !important;font-weight:bold !important;border-bottom:5px solid #45b4d4;}
+			.lt-concluido-apos .lt-icone a.ico-status-lt{background:url(../img/ico-lt-azul.png) no-repeat !important;}
+			.lt-concluido-apos .lt-dt-1, .lt-concluido-apos .lt-dt-2 a{color:#5092a5 !important;}
+
+			.lt-iniciado:hover{background:#fef0d3 !important;}
+			.lt-iniciado .lt-titulo{color:#f9b522 !important;font-weight:bold !important;border-bottom:5px solid #f9b522;}
+			.lt-iniciado .lt-icone a.ico-status-lt{background:url(../img/ico-lt-laranja.png) no-repeat !important;}
+			.lt-iniciado .lt-dt-1, .lt-iniciado .lt-dt-2 a{color:#c89526 !important;}
+		/* END Classificação por Status */
+	/* END Estrutura */
+/* END Linha do Tempo */
+
+/* Legenda */
+.box-legenda-status-etapa{
+	clear:both;
+	margin-top:30px;
+}
+	.box-legenda-status-etapa ul li{
+		font-size:12px;
+		font-weight:bold;
+		list-style:none;
+		text-indent:28px;
+		color:#b7b7b7;
+		padding:4px 0;
+		margin-bottom:8px;
+	}
+
+	.leg-nao-iniciado{background:url(../img/leg-ico-normal.png) no-repeat;}
+	.leg-na{background:url(../img/leg-ico-na.png) no-repeat;}
+	.leg-concluido{background:url(../img/leg-ico-concuido.png) no-repeat;}
+	.leg-concluido-apos{background:url(../img/leg-ico-concluido-apos.png) no-repeat;}
+	.leg-iniciado{background:url(../img/leg-ico-iniciado.png) no-repeat;}
+/* END Legenda */
+
+
+/* Modal Configurar Baseline */
+	#modalConfigurarLinhaTempo{width:750px !important;}
+	#modalConfigurarLinhaTempo .modal-body{max-height:320px !important;}
+	#modalConfigurarLinhaTempo .modal-header span span{
+		font-size:14px !important;
+		font-weight:bold !important;
+		display:block !important;
+	}
+		#modalConfigurarLinhaTempo .modal-header span{font-size:12px !important;}
+
+	#modalConfigurarLinhaTempo .form-line{margin-right:20px;}
+
+	.seg-itens-form-lt{
+		width:270px;
+		float:left;
+	}
+
+	.modal .seg-check-lt{width:55px !important; padding-top:27px;margin-left:5px !important;}
+	.modal .seg-check-lt input{
+		float:left !important;
+		margin-top:3px !important;
+		width:25px;
+	}
+/* END Modal Configurar Baseline */
+
+/* Modal Add Data Prevista */
+#modalPrevisao{width:400px !important;margin-left: -205px;}
+
+#modalPrevisao .modal-header span {
+    font-size: 14px !important;
+    color: #a1a1a1;
+    font-weight: bold;
+    margin-left: 15px;
+margin-top: 10px;
+display: block;
+}
+
+#modalPrevisao .form-line {
+    margin-left: 15px;
+}
+
+#modalPrevisao .form-line input {
+    width: 170px;
+}
+
+/* END Modal Add Data Prevista */
+
+#modalPostEtapaLinhaTempo a.close {
+    right: 15px;
+}
+
+#modalPostEtapaLinhaTempo .modal-body {
+    max-height: 475px;
+}
+
+#modalPostEtapaLinhaTempo .seg-modal-post {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#modalPostEtapaLinhaTempo .box-post {
+    padding-bottom: 0;
+}
+
+.abas-linha-tempo .ui-tabs-panel {
+    padding: 0 !important;
+}
+
+#modalPostsEtapa {
+    width: 500px !important;
+    margin-left: -251px;
+    /*z-index: 1048 !important;*/
+}
+
+#modalPostsEtapa h1 {
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+#modalPostsEtapa h2 {
+    color: #6f6f6f;
+    font-size: 18px;
+    padding: 0 !important;
+}
+
+#modalPostsEtapa .bt-padrao {
+    padding: 8px 18px;
+    position: absolute;
+    right: 35px;
+    top: 40px;
+}
+
+#modalPostsEtapa .box-post {
+    border-bottom: solid 5px #e2e2e2;
+}
+
+/* Filhos - Aba Fases */
+.box-show-filhos {
+    position: absolute;
+    display: none;
+    width: 300px;
+    z-index: 1001;
+}
+
+.box-show-filhos ul li{
+    list-style:none;
+    background:#F4F4F4;
+    border:1px solid #c2c2c2;
+}
+    .box-show-filhos ul li a {
+        display:block;
+        padding:8px 45px 8px 10px;
+        font-size:14px;
+        color:#7c7c7c;
+        width:245px;
+        text-decoration:none;
+        cursor: default;
+    }
+    .box-show-filhos ul li a span{
+        display:block;
+        font-size:11px;
+        color:#9c9c9c;
+    }
+
+.filho-n-iniciado {background:url(../img/ico-status-naoiniciado.png) 260px center no-repeat;}
+.filho-na {background:url(../img/ico-status-na.png) 260px center no-repeat;}
+.filho-iniciado {background:url(../img/ico-status-iniciado.png) 260px center no-repeat;}
+.filho-concluido {background:url(../img/ico-status-concluido.png) 260px center no-repeat;}
+/* END Filhos - Aba Fases */
+
+input:disabled {
+    background-color: rgb(235, 235, 228);
+}
+
+/*input[disabled], input[disabled="disabled"], input[disabled=""] {*/
+input[disabled="disabled"]{
+    background-color: rgb(235, 235, 228);
+}

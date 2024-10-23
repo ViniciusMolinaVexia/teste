@@ -1,0 +1,65 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@using Notificacao = Gafisa.AlphaBook.Dominio.Mensagens.Notificacao
+@model Gafisa.AlphaBook.Models.Home.NotificacoesModel
+<span class="seta"></span>
+@foreach (var notificacao in Model.Notificacoes)
+{
+    <div data-id="@notificacao.Id" class="div-notificacao" @Html.Conditional(@notificacao.Curtir, "data-curtir=\"true\"", "data-curtir=\"false\"") style="width: 450px; float: left; margin: 0 10px 10px 0;">
+        <div class="box-post post-notificacoes">
+            <div class="div-checkbox">
+                <input type="checkbox" id="@notificacao.Id" @Html.Conditional(@notificacao.Lida, "checked=\"checked\"") />
+            </div>
+            @Html.ProfilePhoto(notificacao.IdUsuario)
+            <div @Html.Conditional(@notificacao.IdPostagem != null,
+            "class=\"dados-post\" data-id=\"" + @notificacao.IdPostagem + "\" data-post=\"true\""
+                                                   , "class=\"dados-post btEditar\" data-id=\"" + @notificacao.IdCompromisso + "\" data-post=\"false\"")  @Html.Conditional(notificacao.IdStatusEtapa.HasValue && notificacao.IdStatusEtapa.Value == StatusEtapa.AguardandoValidacao, "data-pendenteAprovacao=\"true\"", "data-pendenteAprovacao=\"false\"") >
+                <p class="nome-post">@notificacao.Descricao</p>
+                @if (notificacao.EtapaId > 0)
+                {
+                    <p class="etapa-post">@notificacao.EtapaNome</p>
+                }
+                <p class="lugar-post">@notificacao.NomeProjeto</p>
+                @if (notificacao.StatusProjetoId == StatusProjeto.Oferta && notificacao.IdCidade > 0)
+                {
+                    <p class="lugar-post">
+                        @notificacao.NomeCidade - @notificacao.UF
+                        @if (notificacao.IdCidadeSecundaria > 0)
+                        {
+                            <br />
+                            @(notificacao.NomeCidadeSecundaria + " - " + notificacao.UFSecundaria)
+                        }
+                    </p>
+                }
+                <p class="usario-post">@notificacao.NomeCompletoUsuario | @notificacao.Departamento</p>
+                <p class="data-post">@notificacao.DataInclusao.ToString("dd/MM/yyyy HH:mm:ss")</p>
+            </div>
+            @if (!notificacao.Compromisso)
+            {
+                <div class="icones-post">
+                    <a href="javascript:void(0);" title="Anexos" @Html.Conditional(@notificacao.Anexos > 0, "class=\"ico-post-anexo\"", "class=\"ico-post-anexo-inativo\"")>@notificacao.Anexos</a>
+                    <a href="javascript:void(0);" title="Localização" @Html.Conditional(@notificacao.Localizacao, "class=\"ico-post-pin\"", "class=\"ico-post-pin-inativo\"")>Pin</a>
+                    <a href="javascript:void(0);" title="Notificação" class="ico-post-notificacao">Notificação</a>
+                    <a href="javascript:void(0);" title="Lembrete" @Html.Conditional(@notificacao.Lembrete, "class=\"ico-post-lembrete\"", "class=\"ico-post-lembrete-inativo\"")>Lembrete</a>
+                    <a href="javascript:void(0);" title="@Html.Conditional(notificacao.EtapaId > 0, notificacao.EtapaNome, "Linha do tempo")" @Html.Conditional(@notificacao.LinhaTempo, "class=\"ico-post-linha-tempo\"", "class=\"ico-post-linha-tempo-inativo\"")>Linha do tempo</a>
+                    @if (notificacao.Descricao != Notificacao.BemVindoAlphabook)
+                    {
+                        <a href="javascript:void(0);" title="Projetos associados" @Html.Conditional(@notificacao.ProjetosAssociados > 0, "class=\"ico-post-p-associados\"", "class=\"ico-post-p-associados-inativo\"") >@notificacao.ProjetosAssociados</a>
+                    }
+                    <a href="javascript:void(0);" class="ico-post-perfil-publicacao">@notificacao.PerfilPublicacao</a>
+                </div>
+            }
+            else
+            {
+                <div class="icones-post">
+                    <span class="ico-calendario-inativo">Agenda</span>
+                </div>
+            }
+            <a href="javascript:void(0)" data-id="@notificacao.Id" class="ico-post-excluir bt-excluir" title="Excluir" >Excluir</a>
+            @if (notificacao.IdPostagem.HasValue)
+            {
+                <a href="javascript:void(0);" data-id="@notificacao.IdPostagem" data-curtir="@notificacao.Curtir" @Html.Conditional(@notificacao.Curtir, "class=\"ico-post-like bt-curtir\"", "class=\"curtir ico-post-like-inativo bt-curtir\"") title="Curtiram isso">
+                    @notificacao.QuantidadeCurtir</a>
+            }
+        </div>
+    </div>
+}

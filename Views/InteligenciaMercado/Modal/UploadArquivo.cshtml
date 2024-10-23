@@ -1,0 +1,12 @@
+﻿<div class="modal-header">
+    <a class="close fechar" href="javascript:void(0);">x</a>
+</div>
+<div class="modal-body">
+    @using (Html.BeginForm("ValidarImportacao", "InteligenciaMercado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    { 
+
+        <input type="file" name="FileUpload" />
+        <input type="submit" name="Submit" id="Submit" value="Upload" />
+        <input type="submit" name="Submit" id="Confirm" value="Confirm" />
+    }
+</div>

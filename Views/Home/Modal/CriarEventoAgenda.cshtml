@@ -1,0 +1,76 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Home.AgendaModel
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <form action="" id="salvarCompromissoAgenda" data-usuarioid="@Model.UsuarioId">
+            <div class="modalCriarEventoAgenda" data-id="@Model.Id">
+                <div class="ico-agenda">
+                    <div class="txt-agenda">
+                        <a href="javascript:void(0);" title="Voltar" class="ico-voltar" id="compromissoVoltar">
+                            Voltar</a>
+                    </div>
+                    <h1>
+                        Agenda</h1>
+                </div>
+                <h2>
+                    Adicionar compromisso</h2>
+                    
+                <div class="div-secao">
+                
+                    <div id="compromissoDataInicial" class="div-1 input-append date">
+                        <label class="label" id="labelDatainicial">Data e hora inicial:</label>
+                        <input id="DataInicio"  class="obrigatorio campo-data"  type="text" name="DataInicio" value="@Model.DataInicio"/>
+                        <input id="HoraInicio" type="text" name="HoraInicio" value="@Model.HoraInicio" class="obrigatorio campo-hora-minuto"/>
+                    </div>
+                    <div id="compromissoDataFinal" class="div-2 input-append date">
+                        <label class="label" id="labelDataFinal">Data e hora final:</label>
+                        <input id="DataFinal" class="obrigatorio campo-data" type="text" name="DataTermino" value="@Model.DataTermino" />
+                        <input id="HoraFinal" type="text" name="HoraTermino" value="@Model.HoraTermino"  class="obrigatorio campo-hora-minuto"/>
+                    </div>
+                    <div class="div-3">
+                        <input type="checkbox" @Html.Conditional(Model.DiaTodo, "checked=checked") class="span2" name="Dia" id="diaTodo" />
+                        <label class="label">
+                            Dia todo</label>
+                    </div>
+                </div>
+                <div class="div-secao">
+                    <div class="div-4">
+                        <label class="label">
+                            Lembrete (outlook):</label>
+                        @Html.EnumDropDownListFor(model => model.Lembrete, "Selecione")
+                    </div>
+                </div>
+                <div class="div-secao">
+                    <div class="div-5">
+                        <label class="label">
+                            Assunto:</label>
+                        <input type="text" class="span2 obrigatorio" name="Assunto" maxlength="300" id="compromissoAssunto" value="@Model.Assunto" />
+                    </div>
+                </div>
+                <div class="div-secao">
+                    <div class="div-6">
+                        <label class="label">
+                            Local:
+                        </label>
+                        <input type="text" class="span2" name="Local" maxlength="300" id="compromissoLocal" value="@Model.Local" />
+                    </div>
+                </div>
+                <div class="div-secao">
+                    <div class="div-7" id="componentePostagemCompromisso">
+                    </div>
+                    <input type="hidden" value="@Model.Mensagem" id="txtMensagem" />
+                    <input type="hidden" data-id="@Model.ProjetoId" id="txtProjetoId" />
+                    <input type="hidden" value="@Model.NomeProjeto" id="txtNomeProjeto" />
+                    <input type="hidden" value="@Model.ExchangeId" id="txtExchangeId"/>
+                </div>
+                <div class="div-btn">
+                    <a id="salvarCompromisso" href="javascript:void(0)" class="btn btn-verde">Incluir</a>
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal" id="fechaModalCompromissos">
+                        Fechar</a>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

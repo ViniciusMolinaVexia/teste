@@ -1,0 +1,51 @@
+﻿@model Gafisa.AlphaBook.Models.LinhaTempo.LinhaTempoModel
+
+@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+{
+    <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirLinhaTempoPadrao">Imprimir</a>
+}
+
+@if (!Model.ExibirLinhaTempo && Model.PodeAlterar)
+{
+<div id="container-baseline" class="config-lt">
+	Sua linha do tempo não possui baseline.<br />
+	Deseja configurar agora? <a href="#modalConfigurarLinhaTempo" data-toggle="modal">Clique aqui</a>
+</div>
+}
+<div class="etapas-linha-tempo" data-carregado="true">
+    @Html.Partial("~/Views/LinhaTempo/EtapasLinhaTempo.cshtml", Model)
+</div>
+
+@if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.ExportarImprimir))
+{
+<div class="etapas-linha-vertical hide">
+    <div class="conteudo-linha-impressao">
+        <div class="box-menu-lt" @Html.Conditional(!Model.ExibirLinhaTempo, "style=\"display:none !important;\"")>
+            <div class="menu-lt">
+                <ul>
+                    @foreach (var passagem in Model.PassagensEtapa)
+                    {
+                    <li>
+                        <a class="passagem-etapa @Html.Conditional(Model.PassagensEtapa.First().Id == passagem.Id, "active")" data-id="@passagem.Id" href="javascript:void(0);">
+                            @passagem.Nome
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="box-linha-tempo-print">
+            @Html.Partial("~/Views/LinhaTempo/EtapasLinhaTempo.cshtml", Model)
+</div>
+        <div class="box-legenda-status-etapa" style="display: block;">
+          <ul>
+            <li class="leg-nao-iniciado">- Não iniciada</li>
+            <li class="leg-na">- Não se aplica</li>
+            <li class="leg-concluido">- Concluída</li>
+            <li class="leg-concluido-apos">- Concluída após fechamento da próxima</li>
+            <li class="leg-iniciado">- Iniciada / Aguardando validação</li>
+          </ul>
+        </div>
+    </div>
+</div>
+}

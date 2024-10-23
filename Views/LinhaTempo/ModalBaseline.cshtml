@@ -1,0 +1,44 @@
+﻿@model Gafisa.AlphaBook.Models.LinhaTempo.LinhaTempoModel
+
+<div id="modalConfigurarLinhaTempo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="seg-modal">
+        <div class="modal-header">
+            <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+            <h3>Configurar Baseline</h3>
+            <span>
+                <span>@Model.DepartamentoNome</span>
+                Preencha os campos com as datas previstas de conclusão.
+            </span>
+        </div>
+        <div class="modal-body">
+            <form id="form-baseline" class="forms">
+                <fieldset>
+                    @for (int i = 0; i < Model.EtapasLinhaTempo.Count(); i++)
+                    {
+                        var etapaLinhaTempo = Model.EtapasLinhaTempo.ElementAt(i);
+               
+                        @Html.Conditional((i % 2 == 0),"<div class=\"sep-line-form\">")
+                                
+                        <div class="form-line">
+                            <div class="seg-itens-form-lt">
+                                @Html.Hidden(String.Format("linhaTempo.EtapasLinhaTempo[{0}].Etapa.Id", i), etapaLinhaTempo.Etapa.Id)
+                                <label class="nome-etapa">@etapaLinhaTempo.Etapa.Nome:</label>
+                                @Html.TextBox(String.Format("linhaTempo.EtapasLinhaTempo[{0}].DataBaseline", i), etapaLinhaTempo.DataBaseline, new { @class = "campo-data"})
+                            </div>
+                            <div class="seg-check-lt">
+                                @{ var id = String.Concat("checkBoxNA_", i);}
+                                <input id="@id" type="checkbox" class="nao-se-aplica">
+                                <label for="@id">NA</label>
+                            </div>
+                        </div>      
+
+                        @Html.Conditional((i % 2 != 0),"</div>")
+                    }
+                </fieldset>	
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a id="salvarBaseline" class="bt-padrao" href="javascript:void(0);">Salvar</a>
+        </div>
+    </div>
+</div>

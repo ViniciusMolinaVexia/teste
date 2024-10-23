@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.TaxonomiaDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Documentos")</p>
+}
+else
+{
+    foreach (var taxonomia in Model)
+    {
+        <tr data-id="@taxonomia.Id">
+            <td class="colun-1">@taxonomia.Id</td>
+			<td class="colun-2">@taxonomia.Nome</td>
+            <td class="colun-3">@taxonomia.PastaPai</td>
+            <td class="colun-4">@Html.CheckBox("PadraoPortal", @taxonomia.PadraoPortal, new { disabled = true, @checked = @taxonomia.PadraoPortal })</td>
+			<td class="colun-5">@Html.CheckBox("PadraoProtocolo", @taxonomia.PadraoProtocolo, new { disabled = true, @checked = @taxonomia.PadraoProtocolo })</td>
+			
+            @if(taxonomia.Departamentos.Where(x => x.Id == Gafisa.AlphaBook.Dominio.Departamento.Prospeccao).Count() > 0)
+            {
+                <td class="colun-6">
+                    @Html.CheckBox("Prospeccao", true, new { disabled = true, @checked = true })
+                </td>    
+            }else
+            {
+                <td class="colun-6">
+                    @Html.CheckBox("Prospeccao", false, new { disabled = true, @checked = false })
+                </td>
+            }
+
+            @if(taxonomia.Departamentos.Where(x => x.Id == Gafisa.AlphaBook.Dominio.Departamento.Negocios).Count() > 0)
+            {
+                <td class="colun-7">
+                    @Html.CheckBox("Negocios", true, new { disabled = true, @checked = true })
+                </td>    
+            }else
+            {
+                <td class="colun-7">
+                    @Html.CheckBox("Negocios", false, new { disabled = true, @checked = false })
+                </td>
+            }
+                       
+			<td class="colun-8">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.EditarProprios))
+            {
+                if(taxonomia.Template)
+                {
+                    <a class="ic-editar" href="@Url.Action("EditarTaxonomia", "Admin", new { id = taxonomia.Id, template = true })">Editar</a>
+                }
+                else
+                {
+                    <a class="ic-editar" href="@Url.Action("EditarTaxonomia", "Admin", new { id = taxonomia.Id })">Editar</a>
+                }
+            }
+            </td>
+            
+            <td class="colun-9">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.TaxonomiaPastas, Acao.RemoverProprios))
+            {
+                <a class="ic-excluir" data-id="@taxonomia.Id" href="javascript:void(0);">Excluir</a>
+            }
+            </td>
+        </tr>
+    }
+}

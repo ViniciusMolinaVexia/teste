@@ -1,0 +1,55 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Admin.PerfilAcesso.AutorizacaoDTO>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Permissões")</p>
+}
+else
+{
+    var permissaoEdicao = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.PerfilAcesso, Acao.EditarProprios);
+    foreach (var autorizacao in Model)
+    {
+    <tr data-id="@((int)autorizacao.Funcionalidade)">
+        <td class="table-left colun-1">
+            @autorizacao.NomeFuncionalidade
+        </td>
+        <td class="colun-2">
+            @{
+                var perfilAnalista = autorizacao.Perfis.FirstOrDefault(p => p.CargoId == Cargo.Analista);
+                if (perfilAnalista != null)
+                {
+                <input type="checkbox" name="PerfilAnalistaId" data-valororiginal="@(perfilAnalista.Autorizado ? "1" : "0")" value="@perfilAnalista.Id" @(perfilAnalista.Autorizado ? "checked" : string.Empty) @(!permissaoEdicao ? "disabled=\"disabled\"" : String.Empty) />
+                }
+            }
+        </td>
+        <td class="colun-3">
+            @{
+                var perfilCoordernador = autorizacao.Perfis.FirstOrDefault(p => p.CargoId == Cargo.Coordenador);
+                if (perfilCoordernador != null)
+                {
+                <input type="checkbox" name="PerfilAnalistaId" data-valororiginal="@(perfilCoordernador.Autorizado ? "1" : "0")" value="@perfilCoordernador.Id" @(perfilCoordernador.Autorizado ? "checked" : string.Empty) @(!permissaoEdicao ? "disabled=\"disabled\"" : String.Empty) />
+                }
+            }
+        </td>
+        <td class="colun-4">
+            @{
+                var perfilGerente = autorizacao.Perfis.FirstOrDefault(p => p.CargoId == Cargo.Gerente);
+                if (perfilGerente != null)
+                {
+                <input type="checkbox" name="PerfilAnalistaId" data-valororiginal="@(perfilGerente.Autorizado ? "1" : "0")" value="@perfilGerente.Id" @(perfilGerente.Autorizado ? "checked" : string.Empty) @(!permissaoEdicao ? "disabled=\"disabled\"" : String.Empty) />
+                }
+            }
+        </td>
+        <td class="colun-5">
+            @{
+                var perfilDiretor = autorizacao.Perfis.FirstOrDefault(p => p.CargoId == Cargo.Diretor);
+                if (perfilDiretor != null)
+                {
+                <input type="checkbox" name="PerfilAnalistaId" data-valororiginal="@(perfilDiretor.Autorizado ? "1" : "0")" value="@perfilDiretor.Id" @(perfilDiretor.Autorizado ? "checked" : string.Empty) @(!permissaoEdicao ? "disabled=\"disabled\"" : String.Empty) />
+                }
+            }
+        </td>
+    </tr>
+    }
+}

@@ -1,0 +1,74 @@
+﻿
+.form-container
+{
+    background: #FFF !important;
+    padding: 30px !important;
+    height: 700px;
+}
+
+#form .form-pergunta {
+    width: 600px
+}
+
+#form .form-resposta {
+    width: 600px
+}
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 15px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+table .ic-excluir-faq {
+    background: url("../img/icons/ico-excluir.png") no-repeat scroll 15px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+#tabela{
+    width: 935px !important;
+    clear: both;
+}
+
+
+#tabela th.colun-1
+{
+    width: 58px;   
+}
+
+#tabela th.colun-2
+{
+    width: 765px;
+}
+
+#tabela th.colun-3
+{
+    width: 57px;
+}
+
+#tabela th.colun-4
+{
+    width: 57px;
+}
+
+#tabela td.colun-1
+{
+    width: 60px;  
+}
+
+#tabela td.colun-2
+{
+    width: 800px;
+    text-align: left
+}
+
+#tabela td.colun-3
+{
+    width: 58px;
+}
+
+#tabela td.colun-4
+{
+    width: 58px;
+}

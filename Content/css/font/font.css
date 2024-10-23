@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'BreeRgRegular';
+    src: url('breeregular-webfont.eot');
+    src: url('breeregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('breeregular-webfont.woff') format('woff'),
+         url('breeregular-webfont.ttf') format('truetype'),
+         url('breeregular-webfont.svg#BreeRgRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.embedBree{
+     font-family: 'BreeRgRegular'; 
+} 

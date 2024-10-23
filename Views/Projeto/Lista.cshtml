@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ProjetoDto>
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalProjetosLista">
+                <div class="topo-resultado-detalhe">
+                    <div class="div-1">
+                        <div class="ico-projetos">
+                            <h1>Projetos</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="rolagem" id="historicoArquivo">
+                    @if (!Model.IsNullOrEmptyCollection())
+                    {
+                        <table id="historicoArquivoModal">
+                            <tr class="linha-topo">
+                                <td class="nome-arquivo">Projeto</td>
+                                <td>Cidade</td>
+                                <td>Status</td>
+                            </tr>
+                            @{var x = 0;}
+                            @foreach (var projeto in Model)
+                            {
+                                <tr class="@Html.Conditional(x % 2 == 0, "linha-destaque")">
+                                    <td class="nome-arquivo"><a href="javascript:void(0);" id="lnkNavegarProjeto" data-id="@projeto.Id" data-nome="@projeto.Nome" data-cidade="@projeto.CidadeId">@projeto.Nome</a></td>
+                                    <td>@projeto.Cidade - @projeto.UfId</td>
+                                    <td>@projeto.NomeStatus</td>
+                                </tr>
+                                x++;
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <p>@Gafisa.AlphaBook.Dominio.Mensagens.Comum.ResultadoZero</p>
+                    }
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

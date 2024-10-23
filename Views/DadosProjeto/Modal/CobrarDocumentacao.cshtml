@@ -1,0 +1,41 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.Projeto.CobrancaDocumentacaoDTO
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close fechar" id="fecharModalCobrancaDocumentacao">x</a>
+    <h3>Cobrar Documentação</h3>
+</div>
+@if (Model.Email != null && !String.IsNullOrEmpty(Model.Email.EmailDestinatario))
+{
+    <div class="modal-body">
+        <div class="forms">
+            <div class="modal-cobrar-documentacao">
+                @{ var contador = 0; }
+                @foreach (var opcao in Model.Opcoes)
+                {
+                    contador++;
+
+                    if (contador == 1)
+                    {
+                        @:<div class="sep-line-form">
+                    }
+                    <span class="sep-radio"><input type="checkbox" value="@opcao.Descricao" name="opcaoDocumento" texto="@opcao.Nome" />@opcao.Nome</span>
+                    if (contador == 5)
+                    {
+                        @:</div >
+                        contador = 0;
+                    }
+                }
+                @if (contador % 5 != 0)
+                {
+                    @:</div>
+                }
+                <textarea rows="2" name="conteudoCobranca" id="conteudoCobranca" cols="20" data-email="@Model.Email.EmailDestinatario" data-assunto="@Model.Email.Assunto" data-conteudo="@Model.Email.Descricao.Replace("<br />", Environment.NewLine)">@Model.Email.Descricao.Replace("<br />", Environment.NewLine)</textarea>
+                <span>@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Email.EsteConteudoSeraEnviadoParaOEmail ,Model.Email.EmailDestinatario)</span>
+                <a href="javascript:void(0);" class="bt-padrao" id="botaoEnviarDocumentacao">Enviar</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p class="msg-sem-retorno">@(Gafisa.AlphaBook.Dominio.Mensagens.Email.ContatoMasterNaoPossuiEmailCadastrado)</p>
+}

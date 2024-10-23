@@ -1,0 +1,616 @@
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$(".bt-msg-sucesso").click(function () {
+				gafisa.alphabook.mensagens.exibirMensagemConfirmacao('Deu tudo certo!');
+			});
+
+			$(".bt-msg-erro").click(function () {
+				gafisa.alphabook.mensagens.exibirMensagemErro('Erro!');
+			});
+		});
+	</script>
+}
+<div>
+			<h2>Breadcrumb</h2>
+			<div class="breadcrumb">
+				<a href="javascript:void(0);">Todos</a>
+				<a href="javascript:void(0);">Nível 1</a>
+				<span>Subnível 2</span>
+				<span>Subsubnível 3</span>
+			</div>
+		</div>
+
+		<div>
+			<h2>Tiles Documentos - Modelos / Padrões</h2>
+			<div class="tiles-documents">
+				<a class="tile-ativo" href="javascript:void(0);">
+					<span class="nome-tile">Levantamentos</span>
+					<span class="numero-tile">03</span>
+				</a>
+				<a class="tile-ativo" href="javascript:void(0);">
+					<span class="nome-tile">Levantamentos</span>
+					<span class="numero-tile">03</span>
+				</a>
+				<a class="tile-ativo last" href="javascript:void(0);">
+					<span class="nome-tile">Levantamentos</span>
+					<span class="numero-tile">03</span>
+				</a>
+
+				<a class="tile-ativo" href="javascript:void(0);">
+					<span class="nome-tile">Levantamentos</span>
+					<span class="numero-tile">03</span>
+				</a>
+				<a class="tile-ativo" href="javascript:void(0);">
+					<span class="nome-tile">Levantamentos</span>
+					<span class="numero-tile">03</span>
+				</a>
+			</div>
+		</div>
+
+		<div>
+			<h2>Botões</h2>
+			<div>
+				<a class="bt-padrao" href="javascript:void(0);">Salvar</a>
+				<a class="bt-adicionar" href="javascript:void(0);">Adicionar modelo</a>
+				<a class="bt-voltar" href="javascript:void(0);">Voltar</a>
+			</div>
+		</div>
+
+		<div>
+			<h2>Formulario</h2>
+			<div class="bg-branco">
+			<form class="forms">
+				<fieldset>
+					<div class="form-line form-cep">
+						<label>CEP:</label>
+						<div class="box-input-busca">
+							<input type="text">
+							<a class="" href="javascript:void(0);">Buscar</a>
+						</div>
+					</div>	
+					<div class="sep-line-form">
+						<label>Input text</label>
+						<input type="text">
+					</div>
+
+					<div class="sep-line-form">
+						<label>Input select</label>
+						<select>
+							<option>Selecione um dos itenns</option>
+							<option>Item 1</option>
+							<option>Item 2</option>
+							<option>Item 3</option>
+						</select>
+					</div>
+
+					<div class="sep-line-form">
+						<label>Options</label>
+						<span class="sep-radio"><input type="radio" name="group1" value="Milk">Item 1</span>
+						<span class="sep-radio"><input type="radio" name="group1" value="Butter" checked>Item 2</span>
+					</div>
+
+					<div class="sep-line-form">
+						<label>Check Box</label>
+						<span class="sep-radio"><input type="checkbox" name="OPCAO" value="op1">Item 1</span>
+						<span class="sep-radio"><input type="checkbox" name="OPCAO" value="op1">Item 2</span>
+						<span class="sep-radio"><input type="checkbox" name="OPCAO" value="op1">Item 3</span>
+					</div>
+
+					<div class="sep-line-form">
+						<label>Input text</label>
+						<textarea></textarea>
+					</div>
+
+					<div class="sep-line-form">
+						<label>Input text</label>
+						<input type="text">
+						<a class="form-bt-add" href="#">Adicionar</a>
+					</div>
+
+					<div class="sep-line-form">
+						<label>Input text</label>
+						<input type="text">
+						<a class="form-bt-remove" href="#">Remover</a>
+					</div>
+
+				</fieldset>
+			</form>
+			</div>
+		</div>
+
+		<div>
+			<h2>BG Fundo Branco</h2>
+			<div class="bg-branco">
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				</p>
+			</div>
+		</div>
+
+		<!-- Tabs -->
+		<h2 class="demoHeaders">Tabs</h2>
+		<div id="tabs">
+			<ul class="list-tabs">
+				<li><a href="#tabs-1">Dados do<br />Terreno</a></li>
+				<li><a class="line1" href="#tabs-2">Fases</a></li>
+				<li><a class="line1" href="#tabs-3">Passagens</a></li>
+				<li><a href="#tabs-1">Contatos<br />Principais</a></li>
+				<li><a href="#tabs-2">Dados<br />Financeiros</a></li>
+				<li><a href="#tabs-3">Inteligencia<br />de Mercado</a></li>
+				<li><a href="#tabs-1">Informações<br />do Contrato</a></li>
+				<li><a class="line1" href="#tabs-2">Observações</a></li>
+			</ul>
+			<div class="box-tabs" id="tabs-1">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+			</div>
+			<div class="box-tabs" id="tabs-2">
+				Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+			</div>
+			<div class="box-tabs" id="tabs-3">
+				Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				v
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				v
+			</div>
+		</div>
+
+		<h2>Tooltip</h2>
+		<div>
+			<p>
+				<a href="javascript:void(0);" title="That's what this widget is">Tooltips</a>
+			</p>
+			<p>Hover the field to see the tooltip.</p>
+		</div>	
+
+		<h2>Mensagens</h2>
+		<div>
+			<a class="bt-padrao bt-msg-sucesso" href="javascript:void(0);">Confirmação</a>
+			<a class="bt-padrao bt-msg-erro" href="javascript:void(0);">Erro</a>
+		</div>
+
+
+		<div class="box-confirmacao">
+			<div class="msg-confirmacao">
+				<p>Dados salvos com sucesso!</p>
+				<a class="bt-padrao bt-msg-fechar" href="javascript:void(0);">Ok</a>
+			</div>
+		</div>
+	
+		<div class="box-erro">
+			<div class="msg-erro">
+				<p>EXISTEM CAMPOS NÃO PREENCHIDOS.</p>
+				<a class="bt-padrao bt-msg-fechar-erro" href="javascript:void(0);">Voltar</a>
+			</div>
+		</div>
+
+
+		<h2>Tabela</h2>
+		<div class="box-tabela">
+			<table>
+				<thead>
+					<tr>
+						<th class="table-title colun-1" rowspan="2">&nbsp;</th>
+						<th class="table-title colun-2" rowspan="2">Área total m</th>
+						<th class="table-title colun-3" rowspan="2"><a class="table-title-ord-up" href="#">ALV m </a></th>
+						<th class="table-title colun-4" rowspan="2">Número unidade S</th>
+						<th class="table-title colun-5" rowspan="2"><a class="table-title-ord-down" href="#">Estimativa preço m</a></th>
+						<th class="table-title colun-6" rowspan="2">VGV Total R$</th>
+						<th class="table-title colun-7" rowspan="2">VGV Parceiro R$</th>
+						<th class="table-title colun-8" rowspan="2">VGV Sócio R$</th>
+						<th class="table-title-title colun-9" colspan="5">VGV AUSA R$</th>
+						<th class="table-title colun-10" rowspan="2">Lucro R$</th>
+						<th class="table-title colun-11" rowspan="2">Receita R$</th>
+						<th class="table-title colun-12" rowspan="2">% Geração caixa</th>
+					</tr>
+					<tr>
+						<th class="table-title colun-9-1">Total</th>
+						<th class="table-title colun-9-2">Imediato (ano)</th>
+						<th class="table-title colun-9.3">Curto prazo (ano+1)</th>
+						<th class="table-title colun-9.4">Médio prazo (ano+2)</th>
+						<th class="table-title colun-9.5">Longo prazo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					  <td class="table-sub-title table-left" colspan="16">Pipeline / Comitê</td>
+					</tr>
+					<tr>
+						<td class="table-left">Total</td>
+						<td><input type="text" id="" /></td>
+						<td><input type="text" id="input" /></td>
+						<td><input type="text" id="input2" /></td>
+						<td><input type="text" id="input3" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input4" /></td>
+						<td><input type="text" id="input5" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input6" /></td>
+						<td><input type="text" id="input7" /></td>
+						<td><input type="text" id="input8" /></td>
+						<td><input type="text" id="input9" /></td>
+						<td><input type="text" id="input10" /></td>
+						<td><input type="text" id="input11" /></td>
+						<td>62.892,00</td>
+					</tr>
+					<tr>
+						<td class="table-sub-title table-left" colspan="16">Landbank</td>
+					</tr>
+					<tr>
+						<td class="table-left">Total</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+						<td>62.892,00</td>
+					</tr>
+					<tr>
+						<td class="table-left">Residencial</td>
+						<td><input type="text" id="input12" /></td>
+						<td><input type="text" id="input15" /></td>
+						<td><input type="text" id="input20" /></td>
+						<td><input type="text" id="input21" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input26" /></td>
+						<td><input type="text" id="input27" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input30" /></td>
+						<td><input type="text" id="input33" /></td>
+						<td><input type="text" id="input36" /></td>
+						<td><input type="text" id="input39" /></td>
+						<td><input type="text" id="input42" /></td>
+						<td><input type="text" id="input45" /></td>
+						<td>62.892,00</td>
+					</tr>
+					<tr>
+						<td class="table-left">Comercial</td>
+						<td><input type="text" id="input13" /></td>
+						<td><input type="text" id="input16" /></td>
+						<td><input type="text" id="input19" /></td>
+						<td><input type="text" id="input22" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input25" /></td>
+						<td><input type="text" id="input28" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input31" /></td>
+						<td><input type="text" id="input34" /></td>
+						<td><input type="text" id="input37" /></td>
+						<td><input type="text" id="input40" /></td>
+						<td><input type="text" id="input43" /></td>
+						<td><input type="text" id="input46" /></td>
+						<td>62.892,00</td>
+					</tr>
+					<tr>
+						<td class="table-left">Multiuso</td>
+						<td><input type="text" id="input14" /></td>
+						<td><input type="text" id="input17" /></td>
+						<td><input type="text" id="input18" /></td>
+						<td><input type="text" id="input23" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input24" /></td>
+						<td><input type="text" id="input29" /></td>
+						<td>62.892,00</td>
+						<td><input type="text" id="input32" /></td>
+						<td><input type="text" id="input35" /></td>
+						<td><input type="text" id="input38" /></td>
+						<td><input type="text" id="input41" /></td>
+						<td><input type="text" id="input44" /></td>
+						<td><input type="text" id="input47" /></td>
+						<td>62.892,00</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h2>Contatos</h2>
+		<div style="width:300px; float:left; margin:0 10px 20px 0px;">
+			<div class="box-contato">
+				<div class="box-nota pessimo">
+					<span class="nota">NOTA</span>
+					<span class="valor-nota">0.9</span>
+				</div>
+
+				<div class="box-dados-contato">
+					<div class="nome-dados-contato">NOME: Renato Magalhães</div>
+					<div>EMPRESA: Nome da Empresa</div>
+					<div>E-MAIL: rmagalhaes@amb.com.br</div>
+					<div>FONE 1: (11) 95523-4291</div>
+					<div>FONE 2: (11) 95523-4291</div>
+					<div>CATEGORIA: Prefeitura</div>
+				</div>
+
+				<a class="box-pin-mapa-contato-ativo" href="#">Pin Mapa</a>
+			</div>
+		</div>
+
+		<div style="width:300px; float:left; margin:0 10px 20px 0px;">
+			<div class="box-contato">
+				<div class="box-nota ruim">
+					<span class="nota">NOTA</span>
+					<span class="valor-nota">2.9</span>
+				</div>
+
+				<div class="box-dados-contato">
+					<div class="nome-dados-contato">NOME: Renato Magalhães</div>
+					<div>EMPRESA: Nome da Empresa</div>
+					<div>E-MAIL: rmagalhaes@amb.com.br</div>
+					<div>FONE 1: (11) 95523-4291</div>
+					<div>FONE 2: (11) 95523-4291</div>
+					<div>CATEGORIA: Prefeitura</div>
+				</div>
+
+				<a class="box-pin-mapa-contato-inativo" href="#">Pin Mapa</a>
+			</div>
+		</div>
+
+		<div style="width:300px; float:left; margin:0 10px 20px 0px;">
+			<div class="box-contato">
+				<div class="box-nota neutro">
+					<span class="nota">NOTA</span>
+					<span class="valor-nota">4.9</span>
+				</div>
+
+				<div class="box-dados-contato">
+					<div class="nome-dados-contato">NOME: Renato Magalhães</div>
+					<div>EMPRESA: Nome da Empresa</div>
+					<div>E-MAIL: rmagalhaes@amb.com.br</div>
+					<div>FONE 1: (11) 95523-4291</div>
+					<div>FONE 2: (11) 95523-4291</div>
+					<div>CATEGORIA: Prefeitura</div>
+				</div>
+
+				<a class="box-pin-mapa-contato-ativo" href="#">Pin Mapa</a>
+			</div>
+		</div>
+
+		<div style="width:300px; float:left; margin:0 10px 20px 0px;">
+			<div class="box-contato">
+				<div class="box-nota bom">
+					<span class="nota">NOTA</span>
+					<span class="valor-nota">6.9</span>
+				</div>
+
+				<div class="box-dados-contato">
+					<div class="nome-dados-contato">NOME: Renato Magalhães</div>
+					<div>EMPRESA: Nome da Empresa</div>
+					<div>E-MAIL: rmagalhaes@amb.com.br</div>
+					<div>FONE 1: (11) 95523-4291</div>
+					<div>FONE 2: (11) 95523-4291</div>
+					<div>CATEGORIA: Prefeitura</div>
+				</div>
+
+				<a class="box-pin-mapa-contato-ativo" href="#">Pin Mapa</a>
+			</div>
+		</div>
+
+		<div style="width:300px; float:left; margin:0 10px 20px 0px;">
+			<div class="box-contato">
+				<div class="box-nota excelente">
+					<span class="nota">NOTA</span>
+					<span class="valor-nota">10</span>
+				</div>
+
+				<div class="box-dados-contato">
+					<div class="nome-dados-contato">NOME: Renato Magalhães</div>
+					<div>EMPRESA: Nome da Empresa</div>
+					<div>E-MAIL: rmagalhaes@amb.com.br</div>
+					<div>FONE 1: (11) 95523-4291</div>
+					<div>FONE 2: (11) 95523-4291</div>
+					<div>CATEGORIA: Prefeitura</div>
+				</div>
+
+				<a class="box-pin-mapa-contato-ativo" href="#">Pin Mapa</a>
+			</div>
+		</div>
+
+		
+		<h2>Posts</h2>
+		<div style="width:455px; float:left; margin:0 10px 10px 0;">
+			<div class="box-post">
+				<img src="images/usuario.jpg" alt="usuario" />
+
+				<div class="dados-post">
+					<p class="nome-post">Novo código Florestal</p>
+					<p class="lugar-post">ESTRADA ECOLÓGICA</p>
+					<p class="usario-post">Humberto Santana | Prospecção</p>
+					<p class="data-post">16/04/2013 11:34 | Ref.: 28/04/2013 11:34</p>
+				</div>
+
+				<div class="msg-post">
+					O que muda com o novo Código Florestal? Pequenos produtores ficam livres de recompor reservas legais que desmataram e plantações podem continuar em áreas
+					<a class="leia-mais-post" href="#">...leia mais</a>
+				</div>
+
+				<div class="icones-post">
+					<a class="ico-post-anexo" href="#">12</a>
+					<a class="ico-post-pin" href="#">Pin</a>
+					<a class="ico-post-notificacao" href="#">Notificação</a>
+					<a class="ico-post-lembrete" href="#">Lembrete</a>
+					<a class="ico-post-linha-tempo" href="#">Linha do tempo</a>
+					<a class="ico-post-p-associados" href="#">18</a>
+
+					<a class="ico-post-perfil-publicacao" href="#">Outro Departamento</a>
+				</div>
+
+				<a class="ico-post-excluir" href="#">Excluir</a>
+				<a class="ico-post-like" href="#">14</a>
+			</div>
+		</div>
+
+		<div style="width:455px; float:left; margin:0 10px 10px 0;">
+			<div class="box-post">
+				<img src="images/usuario.jpg" alt="usuario" />
+
+				<div class="dados-post">
+					<p class="nome-post">Novo código Florestal</p>
+					<p class="lugar-post">ESTRADA ECOLÓGICA</p>
+					<p class="usario-post">Humberto Santana | Prospecção</p>
+					<p class="data-post">16/04/2013 11:34 | Ref.: 28/04/2013 11:34</p>
+				</div>
+
+				<div class="msg-post">
+					O que muda com o novo Código Florestal? Pequenos produtores ficam livres de recompor reservas legais que desmataram e plantações podem continuar em áreas
+					<a class="leia-mais-post" href="#">...leia mais</a>
+				</div>
+
+				<div class="icones-post">
+					<a class="ico-post-anexo ico-post-anexo-inativo" href="#">12</a>
+					<a class="ico-post-pin ico-post-pin-inativo" href="#">Pin</a>
+					<a class="ico-post-notificacao ico-post-notificacao-inativo" href="#">Notificação</a>
+					<a class="ico-post-lembrete ico-post-lembrete-inativo" href="#">Lembrete</a>
+					<a class="ico-post-linha-tempo ico-post-linha-tempo-inativo" href="#">Linha do tempo</a>
+					<a class="ico-post-p-associados ico-post-p-associados-inativo" href="#">18</a>
+
+					<a class="ico-post-perfil-publicacao ico-post-perfil-publicacao-inativo" href="#">Outro Departamento</a>
+				</div>
+
+				<a class="ico-post-excluir" href="#">Excluir</a>
+				<a class="ico-post-like" href="#">14</a>
+			</div>
+		</div>
+
+		<div style="width:655px; float:left; margin:0 10px 10px 0;">
+			<div class="box-post">
+				<img src="images/usuario.jpg" alt="usuario" />
+
+				<div class="dados-post">
+					<p class="nome-post">Novo código Florestal</p>
+					<p class="lugar-post">ESTRADA ECOLÓGICA</p>
+					<p class="usario-post">Humberto Santana | Prospecção</p>
+					<p class="data-post">16/04/2013 11:34 | Ref.: 28/04/2013 11:34</p>
+				</div>
+
+				<div class="msg-post">
+					O que muda com o novo Código Florestal? Pequenos produtores ficam livres de recompor reservas legais que desmataram e plantações podem continuar em áreas
+					<a class="leia-mais-post" href="#">...leia mais</a>
+				</div>
+
+				<div class="icones-post">
+					<a class="ico-post-anexo" href="#">12</a>
+					<a class="ico-post-pin" href="#">Pin</a>
+					<a class="ico-post-notificacao" href="#">Notificação</a>
+					<a class="ico-post-lembrete" href="#">Lembrete</a>
+					<a class="ico-post-linha-tempo" href="#">Linha do tempo</a>
+					<a class="ico-post-p-associados" href="#">18</a>
+
+					<a class="ico-post-perfil-publicacao" href="#">Outro Departamento</a>
+				</div>
+
+				<a class="ico-post-excluir" href="#">Excluir</a>
+				<a class="ico-post-like" href="#">14</a>
+			</div>
+		</div>
+
+		<div style="width:952px; float:left;">
+			<div class="box-post">
+				<img src="images/usuario.jpg" alt="usuario" />
+
+				<div class="dados-post">
+					<p class="nome-post">Novo código Florestal</p>
+					<p class="lugar-post">ESTRADA ECOLÓGICA</p>
+					<p class="usario-post">Humberto Santana | Prospecção</p>
+					<p class="data-post">16/04/2013 11:34 | Ref.: 28/04/2013 11:34</p>
+				</div>
+
+				<div class="msg-post">
+					O que muda com o novo Código Florestal? Pequenos produtores ficam livres de recompor reservas legais que desmataram e plantações podem continuar em áreas
+					<a class="leia-mais-post" href="#">...leia mais</a>
+				</div>
+
+				<div class="icones-post">
+					<a class="ico-post-anexo" href="#">12</a>
+					<a class="ico-post-pin" href="#">Pin</a>
+					<a class="ico-post-notificacao" href="#">Notificação</a>
+					<a class="ico-post-lembrete" href="#">Lembrete</a>
+					<a class="ico-post-linha-tempo" href="#">Linha do tempo</a>
+					<a class="ico-post-p-associados" href="#">18</a>
+
+					<a class="ico-post-perfil-publicacao" href="#">Outro Departamento</a>
+				</div>
+
+				<a class="ico-post-excluir" href="#">Excluir</a>
+				<a class="ico-post-like" href="#">14</a>
+			</div>
+		</div>
+
+		<h2>Modais</h2>
+		<a href="#modalPadrao" role="button" class="btn" data-toggle="modal">Modal Padrão</a>
+
+		<a href="#modalConfirm" role="button" class="btn" data-toggle="modal">Modal Confirmação</a>
+		 
+		<!-- Modal Padrão-->
+		<div id="modalPadrao" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="seg-modal">
+				<div class="modal-header">
+					<a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+					<h3 id="">Título da Modal Padrão</h3>
+				</div>
+				<div class="modal-body">
+					<p>Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				</div>
+				<div class="modal-footer">
+					<a class="bt-padrao" href="#">Salvar</a>
+					<a class="bt-adicionar" href="#">Adicionar modelo</a>
+					<a class="bt-voltar" href="#">Voltar</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Confirmação-->
+		<div id="modalConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="seg-modal">
+				<div class="modal-header">
+					<a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+					
+				</div>
+				<div class="modal-body">
+					<div class="box-modal-confirmacao">
+						<p>O usuário responsável será notificado.<br> Deseja realmente atribuir novo responsável a esse projeto?</p>
+
+						<div class="box-bts-modal-confirmacao">
+							<a class="bt-padrao" href="#">Sim</a>
+							<a class="bt-padrao" href="#">Não</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

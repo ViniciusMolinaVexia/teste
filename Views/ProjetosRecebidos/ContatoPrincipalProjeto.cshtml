@@ -1,0 +1,35 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.ContatoDto
+@if ((Model != null))
+{
+    var dsAvaliacao = "cinza";
+    if (Model.MediaAvaliacao.HasValue)
+    {
+        dsAvaliacao = Model.MediaAvaliacao < 2 ? "pessimo" : (Model.MediaAvaliacao < 4 ? "ruim" : (Model.MediaAvaliacao < 6 ? "neutro" : (Model.MediaAvaliacao < 8 ? "bom" : "excelente")));
+    }
+    
+    <span class="seta"></span>
+    <div class="box-contato">
+        <div class="box-nota @dsAvaliacao">
+            <span class="nota">NOTA</span> <span class="valor-nota">@(Model.MediaAvaliacao.HasValue ? Model.MediaAvaliacao.Value.ToString() : "n/d")</span>
+        </div>
+        <div class="box-dados-contato">
+            <div class="nome-dados-contato">
+                @Model.NomeContato</div>
+            <div>
+                <strong>EMPRESA:</strong> @Model.NomeEmpresa</div>
+            <div>
+                <strong>E-MAIL:</strong> @Model.Email</div>
+            @if ((@Model.Telefones != null))
+            {
+                foreach (var telefone in @Model.Telefones)
+                {
+                <div>
+                    <strong>Fone:</strong> (@telefone.DDD) @telefone.Numero
+                </div>
+                }
+            }
+            <div>
+                <strong>CATEGORIA:</strong> @Model.NomeTipoContato</div>
+        </div>
+    </div>    
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fe7751bb-ad97-4ae5-9150-3928285fee32" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/ServicoAgenda.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicoAgenda.xsd" MetadataType="Schema" ID="73129adc-5552-4edf-83ec-8b437a02fec8" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicoAgenda1.xsd" MetadataType="Schema" ID="97821fc9-6057-4551-aeca-78708afa53bc" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServicoAgenda2.xsd" MetadataType="Schema" ID="d1f58195-f519-4e25-bbef-6298425a0450" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServicoAgenda3.xsd" MetadataType="Schema" ID="ba479cfa-8870-4872-a1b9-3e7322e42f76" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicoAgenda.disco" MetadataType="Disco" ID="f45cd10b-0e8d-4f87-b3c7-cf424adab4f8" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?disco" />
+    <MetadataFile FileName="ServicoAgenda4.xsd" MetadataType="Schema" ID="ff43b823-7557-4d7f-9904-1c949efe0da1" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServicoAgenda5.xsd" MetadataType="Schema" ID="4052139e-5410-4f76-838d-b39fd86e7ee9" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicoAgenda6.xsd" MetadataType="Schema" ID="51263d8e-7d30-46bc-9803-6c4eef06d489" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServicoAgenda.wsdl" MetadataType="Wsdl" ID="78c5b0ba-db6e-439a-9cf2-552ce9535319" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?wsdl" />
+    <MetadataFile FileName="ServicoAgenda7.xsd" MetadataType="Schema" ID="97423e69-259e-484c-8170-02a38abb2a4e" SourceId="1" SourceUrl="http://localhost:8080/ServicoAgenda.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

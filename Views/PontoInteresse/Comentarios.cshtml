@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.AvaliacaoPontoInteresseDto>
+
+@if (Model.Any())
+{
+    foreach (var avaliacao in Model)
+    {
+        <li>
+            <blockquote>
+                <p>@avaliacao.Comentario</p>
+                <small>@avaliacao.NomeUsuario @avaliacao.SobrenomeUsuario - Nota: @avaliacao.Nota</small>
+            </blockquote>
+        </li>
+    }
+}
+else
+{
+    <span>Não foram encontrados comentários.</span>
+}

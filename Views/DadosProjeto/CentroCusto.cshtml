@@ -1,0 +1,60 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+
+@if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoCentroCusto, Acao.Adicionar))
+{
+<div>
+    <a class="bt-adicionar" href="javascript:void(0);" id="botaoAdicionarCentroCusto">Adicionar Centro de Custo</a>
+</div>
+}
+<div>
+    <div class="box-tabela tabela-centro-custo" style="display: none;">
+        <div class="wrap">
+            <div class="inner">
+                <table id="tabelaCentroCusto">
+                    <thead>
+                        <tr>
+                            <th class="col-1">
+                                Divisão
+                            </th>
+                            <th class="col-2">
+                                Ordem
+                            </th>
+                            <th class="col-3">
+                                Dt. Criação
+                            </th>
+                            <th class="col-4">
+                                CNPJ
+                            </th>
+                            <th class="col-6">
+                                Cód. Empresa
+                            </th>
+                            <th class="col-5">
+                                Razão Social
+                            </th>
+                            <th class="col-7">
+                                Inscri. Estadual
+                            </th>
+                            <th class="col-8">
+                                Status
+                            </th>
+                            <th class="col-9">
+                                Obs.
+                            </th>
+                            <th class="col-10"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <ul class="ordem-centro-custo">
+        <li>Ordem <strong>230</strong> ou <strong>231</strong> – Legalização/Desenvolvimento de Produto</li>
+        <li>Ordem <strong>200</strong> ou <strong>201</strong> – Gastos Eventuais</li>
+        <li>Ordem <strong>250</strong> ou <strong>251</strong> – Despesas com terrenos/compensação (SNUC)</li>
+        <li>Ordem <strong>950</strong> ou <strong>951</strong> – Fundação Alphaville</li>
+    </ul>
+</div>

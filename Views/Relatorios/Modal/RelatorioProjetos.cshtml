@@ -1,0 +1,30 @@
+﻿@model List<Gafisa.AlphaBook.Dominio.DTO.ProjetoDto>
+
+<div class="modal-header">
+    <a href="javascript:void(0);" class="close fechar-template">x</a>
+    <h3>PROJETOS E RESPONSÁVEIS</h3>
+</div>
+<div class="modal-body">
+    <div class="box-projeto">
+        <span class="seta"></span>
+        <div class="content-detalhe-projeto">
+            <div class="detalhe-line-2">
+                <div class="box-dados-inner">
+                    <div class="projetos">
+                        <ul>
+                            @foreach (var projeto in Model)
+                            {
+                                <li>
+                                    <span style="background-color: @projeto.CorStatus" class="box-status-projeto"></span>
+                                    <a href="@Url.Action("Index", "Home", new { id = @projeto.Id })">@projeto.Nome (@projeto.Responsavel)</a> 
+                                </li>
+                            }                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+</div>

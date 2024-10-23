@@ -1,0 +1,70 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.CategoriaContato.CategoriaContatoModel
+@{
+    ViewBag.Title = "AlphaBook - Administração - Categoria de contato";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/CategoriaContato/categoria-contato-editar.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/categoria-contato.css")" />
+}
+<div class="container">
+    @if (Model.Id == 0)
+    {
+        <h2>Adicionar Categoria de contato</h2>    
+    }
+    else
+    {
+        <h2>Editar Categoria de contato</h2>    
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("CategoriaContato", "Admin")" class="bt-padrao">Voltar</a>
+        <form id="form" class="forms">
+        @if (Model.Id.HasValue)
+        {
+            <div class="sep-line-form">
+                <div class="form-line form-id">
+                    <label>
+                        Id:</label>
+                    @Html.TextBoxFor(m => m.Id, new { disabled = "disabled" })
+                </div>
+            </div>
+        }
+        <div class="sep-line-form">
+            <div class="form-line">
+                <label>
+                    Categoria:</label>
+                @Html.TextBoxFor(m => m.Nome, new { maxlenght = 100, id = "nome" })
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line">
+                <label>
+                    Categoria Pai:</label>
+                <select id="categoriaPai" name="IdPai" class="uf" style="width: 100%">
+                    <option value="">Selecione</option>
+                    @if (Model.IdPai.HasValue)
+                    {
+                        <option selected="selected" value="@Model.IdPai.Value">@(Model.NomeCategoriaPai)</option>
+                    }
+                </select>
+                <div id="categoriasLista" class="hidden" style="width: 218px;">
+                <ul>
+                    <li id="0" data-categoriaId="0" data-categoriaNome="Selecione">
+                        <a class="itemCategoria" href="javascript:void(0);" data-categoriaId="0" >Selecione</a>
+                    </li>
+                    </ul>
+                    <ul>
+                        @Html.Partial("~/Views/Contatos/Categorias.cshtml", Model.Categorias)
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a id="salvar" href="javascript:void(0)" class="bt-padrao" @Html.Conditional(Model.Id.HasValue, "data-id=\"" + @Model.Id + "\"")>
+            Salvar</a>
+        </form>
+    </div>
+</div>

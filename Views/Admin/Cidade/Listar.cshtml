@@ -1,0 +1,43 @@
+﻿@using System.Globalization
+@using Gafisa.AlphaBook.Componentes.Permissao
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Localizacao.CidadeDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "cidades")</p>
+}
+else
+{
+    var podeEditar = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UFCidade, Acao.EditarProprios);
+    var podeExcluir = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UFCidade, Acao.RemoverProprios);
+    foreach (var cidade in @Model)
+    {
+    <tr>
+        <td class="colun-1">
+            @cidade.Id
+        </td>
+        <td class="colun-2">
+            @cidade.Nome
+        </td>
+        <td class="colun-3">
+            @(cidade.Latitude.HasValue ? cidade.Latitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") : String.Empty)
+        </td>
+        <td class="colun-4">
+            @(cidade.Longitude.HasValue ? cidade.Longitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") : String.Empty)
+        </td>
+        <td class="colun-6">
+            @if (podeExcluir)
+            {
+                <a href="javascript:void(0);" name="excluir" class="ico-post-excluir ico" data-id="@cidade.Id">
+                    Excluir</a>
+            }
+        </td>
+        <td class="colun-7">
+            @if (podeEditar)
+            {
+                <a class="ico-editar ico" href="@Url.Action("EditarCidade", "Admin", new { id = cidade.Id })" name="editar" data-id="@cidade.Id" >
+                    Editar</a>
+            }
+        </td>
+    </tr>
+    }
+}

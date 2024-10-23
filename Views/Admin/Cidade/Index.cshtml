@@ -1,0 +1,95 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Admin.Cidade.PesquisaCidadeModel
+@{
+    ViewBag.Title = "AlphaBook - Administração - UF & Cidade";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/Cidade/cidade-pesquisa.js")"></script>
+}
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/uf-cidade.css")" />
+}
+<h2>
+    UF e Cidade</h2>
+<div id="filtros">
+    <div class="div-filtro">
+        <div class="input-block">
+            <label>
+                UF:</label>
+            @Html.MultipleCheckList("Estado", Model.Ufs.ToSelectList(text => text.Value, value => value.Value), null, 110, true)
+        </div>
+        <div class="filtro-alfabetico">
+            <div class="input-block">
+                <label>
+                    Cidade:</label>
+            </div>
+            <a href="javascript:void(0);" class="letra" name="Letra">A</a> <a href="javascript:void(0);"
+                class="letra" name="Letra">B</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                    C</a> <a href="javascript:void(0);" class="letra" name="Letra">D</a> <a href="javascript:void(0);"
+                        class="letra" name="Letra">E</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                            F</a> <a href="javascript:void(0);" class="letra" name="Letra">G</a>
+            <a href="javascript:void(0);" class="letra" name="Letra">H</a> <a href="javascript:void(0);"
+                class="letra" name="Letra">I</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                    J</a> <a href="javascript:void(0);" class="letra" name="Letra">K</a> <a href="javascript:void(0);"
+                        class="letra" name="Letra">L</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                            M</a> <a href="javascript:void(0);" class="letra" name="Letra">N</a>
+            <a href="javascript:void(0);" class="letra" name="Letra">O</a> <a href="javascript:void(0);"
+                class="letra" name="Letra">P</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                    Q</a> <a href="javascript:void(0);" class="letra" name="Letra">R</a> <a href="javascript:void(0);"
+                        class="letra" name="Letra">S</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                            T</a> <a href="javascript:void(0);" class="letra" name="Letra">U</a>
+            <a href="javascript:void(0);" class="letra" name="Letra">V</a> <a href="javascript:void(0);"
+                class="letra" name="Letra">W</a> <a href="javascript:void(0);" class="letra" name="Letra">
+                    X</a> <a href="javascript:void(0);" class="letra" name="Letra">Y</a> <a href="javascript:void(0);"
+                        class="letra" name="Letra">Z</a>
+        </div>
+        <div class="input-block">
+            <div class="div-busca-filtro">
+                <input type="text" watermark="Busca" class="watermark-font" id="termo" name="Termo"
+                    value="" />
+            </div>
+        </div>
+        <a id="buscar" class="bt-padrao-filtro" href="javascript:void(0)">Buscar</a>
+    </div>
+</div>
+@if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.UFCidade, Acao.Adicionar))
+{
+    <div class="div-acoes">
+        <a id="incluir" class="bt-adicionar" href="@Url.Action("EditarCidade", "Admin")">Adicionar
+            Cidade</a>
+    </div>
+}
+<div id="corpo">
+    <p class="msg-sem-retorno" id="nenhumaInformacaoSelecionada">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.NenhumaInformacaoSelecionada</p>
+    <div class="box-tabela hide">
+        <div class="wrap table2">
+            <div class="inner">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th class="table-title colun-1 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Id</a>
+                            </th>
+                            <th class="table-title colun-2 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Cidade</a>
+                            </th>
+                            <th class="table-title colun-3 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Latitude</a>
+                            </th>
+                            <th class="table-title colun-4 table-title-ord-down">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Longitude</a>
+                            </th>
+                            <th class="table-title colun-6">
+                            </th>
+                            <th class="table-title colun-7">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

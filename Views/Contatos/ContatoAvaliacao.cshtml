@@ -1,0 +1,94 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model Gafisa.AlphaBook.Models.Home.AvaliacaoContatoModel
+
+@{
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosAvaliações, idProjeto: Model.ProjetoId, idContato: Model.ContatoId);
+    var cssBotaoSalvar = comportamentoVisual.PodeSalvar ? "block" : "none";
+}
+
+<div class="seg-avaliacoes">
+    <a name="anchor" id="anchor"></a>
+    <div id="avaliacaoNotas" class="visao-notas">
+        @Html.Partial("AvaliacaoNotas", Model)
+    </div>
+    <div class="box-add-comentarios">
+        <form id="form-avaliacao" class="forms" action="">
+            <fieldset>
+                <div class="sep-line-form form-comentario-avaliacao">
+                    <label>* Comentários:</label>
+                    @Html.TextAreaFor(model => Model.MinhaAvaliacao.Comentario, new { id = "txtComentarioAvaliacaoContato" })
+                </div>
+                <div class="sep-line-form">
+                    <label>* Selecione uma nota:</label>
+                    <span class="sep-radio">
+                        <input type="radio" id="pessimo" name="notas" value="0" />
+                        <label for="pessimo">Péssimo</label>
+                    </span> 
+                    <span class="sep-radio">
+                        <input type="radio" id="ruim" name="notas" value="1" />
+                        <label for="ruim">Ruim</label>
+                    </span> 
+                    <span class="sep-radio">
+                        <input type="radio" id="neutro" name="notas" value="2" checked="checked" />
+                        <label for="neutro">Neutro</label>
+                    </span> 
+                    <span class="sep-radio">
+                                <input type="radio" id="bom" name="notas" value="3" />
+                                <label for="bom">Bom</label>
+                    </span> 
+                    <span class="sep-radio">
+                        <input type="radio" id="excelente" name="notas" value="4" />
+                        <label for="excelente">Excelente</label>
+                    </span>
+                </div>
+            </fieldset>
+        </form>
+            <a id="avaliarContato" class="bt-padrao" href="javascript:void(0);" style="display: @cssBotaoSalvar">Salvar</a>        
+    </div>
+    <div class="lista-avaliacao forms">
+        <div id="filtroAvaliacoes" class="div-filtro filtro-notas">
+            <h4>Filtros</h4>
+            <div class="input-block">
+                <label>Nota:</label>
+                @Html.MultipleCheckList("tipoNota", Model.TiposNota.ToSelectList(text => text.Texto, value => value.Valor), null, 150, true, null)
+                
+            </div>
+            <div class="div-busca-filtro">
+                <input type="text" watermark="Busca" class="watermark-font filtro-carrossel-nome" id="texto" name="texto" value="" />
+            </div>
+            <a id="listarAvaliacoes" href="javascript:void(0)" class="bt-padrao-filtro">Buscar</a>
+        </div>
+        <div class="box-tabela table-lista-notas">
+            <div class="wrap table2">
+                <div class="inner">
+                    <table id="tabelaAvaliacoes">
+                        <thead>
+                            <tr>
+                                <th class="table-title-ord-down colun-1">
+                                    <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Nota</a>
+                                </th>
+                                <th class="table-title-ord-down colun-2">
+                                    <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Usuário</a>
+                                </th>
+                                <th class="table-title-ord-down colun-3">
+                                    <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">Data / Hora </a>
+                                </th>
+                                <th class="table-title colun-4 table-left">
+                                    Comentário
+                                </th>
+                                <th class="table-title colun-5">
+                                    Editar
+                                </th>
+                                <th class="table-title colun-6">
+                                    Excluir
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

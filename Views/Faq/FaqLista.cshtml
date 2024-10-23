@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.FaqDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@Gafisa.AlphaBook.Dominio.Mensagens.Comum.NenhumRegistroEncontrado</p>
+}
+else
+{
+    foreach (var faq in Model)
+    {
+        <li class="fechada">
+            <a data-faqId="@faq.Id" data-numeroLinha="@faq.NumeroLinha" class="faq-titulo" href="javascript:void();">@faq.Titulo</a>
+        </li>
+        <div data-id="@faq.Id" style="display: none">@faq.Descricao</div>
+    }
+}        
+            

@@ -1,0 +1,63 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.StatusProtocoloModel
+@{
+    ViewBag.Title = "AlphaBook - Administração";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section scripts {
+    
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Status.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/StatusProtocolo/status-protocolo-editar.js")"></script>
+}
+
+@section css {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Admin/status-projeto.css")" />
+}
+
+<div class="container">
+    
+    @if (Model.StatusEdicao.Id == 0)
+    {
+        <h2>Adicionar Status de Protocolo</h2>
+    }
+    else
+    {
+        <h2>Editar Status de Protocolo</h2>
+    }
+    
+    <div class="form-container">
+        <a href="@Url.Action("StatusProtocolo", "Admin")" class="bt-padrao" id="usuarioVoltar">Voltar</a>
+        
+        <form action="@Url.Action("SalvarStatusProtocolo", "Admin")" id="form" class="forms">
+        
+        @Html.Hidden("Id", Model.StatusEdicao.Id, new { id = "Id" })
+        
+        @if (Model.StatusEdicao != null && Model.StatusEdicao.Id > 0)
+        {
+            <div class="sep-line-form">
+                <div class="form-line form-id">
+                    <label>Id: <strong>@Model.StatusEdicao.Id</strong></label>
+                </div>
+            </div>
+        }
+        <div class="sep-line-form">
+            <div class="form-line form-status">
+                <label>
+                    Nome:</label>
+                <input type="hidden" id="nomeAnterior" name="NomeAnterior" value="@Model.StatusEdicao.Nome" />
+                <input type="text" class="" id="statusNome" name="Nome" maxlength="50" value="@Model.StatusEdicao.Nome" />
+            </div>
+            <div class="form-line form-ordem">
+                <label>
+                    Ordem:</label>
+                <input type="text" class="campo-inteiro" id="Ordem" name="Ordem" maxlength="100" value="@Model.StatusEdicao.Ordem" />
+            </div>
+        </div>
+        @if ((Model.StatusEdicao.Id == 0 && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProtocolo, Acao.Adicionar))
+            || (Model.StatusEdicao.Id > 0 && Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.StatusProtocolo, Acao.EditarProprios)))
+        {
+            <a id="salvar" href="javascript:void(0)" class="bt-padrao">Salvar</a>
+        }
+        </form>
+    </div>
+</div>

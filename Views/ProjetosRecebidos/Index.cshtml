@@ -1,0 +1,86 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.ProjetosRecebidos.ProjetosRecebidosModel
+<h2 id="tituloDadosProjeto">
+    Projetos Recebidos</h2>
+<div class="projetos-recebidos projetosRecebidos" style="height: 550px;">
+    <div class="forms">
+        <div class="div-filtro">
+            <h4>
+                Filtros</h4>
+            <div class="input-block">
+                <input type="checkbox" id="chkFiltrosProjetosRecebidos" class="checkbox" />
+                <label>
+                    Todas</label>
+            </div>
+            <div class="input-block">
+                <input type="checkbox" id="cidadeAlvoProjetosRecebidos" class="checkbox" />
+                <label>
+                    Cidade Alvo</label>
+            </div>
+            <div class="input-block">
+                @Html.MultipleCheckList("Estado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 30, true)
+            </div>
+            <div class="input-block">
+                <input class="cidade cidadeProjetosRecebidos" watermark="Cidade" value="Cidade" type="text" />
+            </div>
+            <div class="input-block">
+                @Html.MultipleCheckList("Status", Model.ListaStatusProjeto.ToSelectList(text => text.Text, value => value.Value), null, 110, true)
+            </div>
+            <a class="bt-padrao-filtro btnFiltroProjetosRecebidos" href="javascript:void(0)">Buscar</a>
+            <div class="div-busca-filtro">
+                <input type="text" watermark="Busca" class="watermark-font filtro-carrossel-nome filtroCarrousselProjetosRecebidos"
+                    id="" value="" />
+                <a class="btn-busca-filtro" id="" href="javascript:void(0)"></a>
+            </div>
+        </div>
+    </div>
+    <div class="contato-principal-tooltip contatoPrincipalToolTipProjetosRecebidos">
+    </div>
+    <div class="box-tabela">
+        <div class="wrap">
+            <div class="inner">
+                <table id="tabelaProjetosRecebidos">
+                    <thead>
+                        <tr>
+                            <th class="table-title-ord-down colun-1">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Código do Projeto</a>
+                            </th>
+                            <th class="table-title-ord-down colun-2">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Nome do Projeto</a>
+                            </th>
+                            <th class="table-title colun-3">
+                                Atribuir
+                            </th>
+                            <th class="table-title-ord-down colun-4">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">UF</a>
+                            </th>
+                            <th class="table-title-ord-down colun-5">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Cidade</a>
+                            </th>
+                            <th class="table-title-ord-down colun-6">
+                                <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Cidade Alvo</a>
+                            </th>
+                            <th class="table-title-ord-down colun-7">
+                                <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Status</a>
+                            </th>
+                            <th class="table-title colun-8">
+                                Polig.
+                            </th>
+                            <th class="table-title-ord-down colun-9">
+                                <a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">m²</a>
+                            </th>
+                            <th class="table-title-ord-down colun-10">
+                                <a href="javascript:void(0);" data-ordenacao="8" data-tipo="1">Ofertante</a>
+                            </th>
+                            <th class="table-title colun-11">
+                                Seguir
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

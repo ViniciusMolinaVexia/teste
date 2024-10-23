@@ -1,0 +1,253 @@
+﻿.modalEditarProtocolo #dados-post {
+    width: 415px !important;
+}
+
+.modalEditarProtocolo .sep-line-form {
+    margin-bottom: 10px !important;
+}
+
+.protocolos {
+    position: relative;
+}
+
+.protocolos .div-filtro {
+    width: 790px;
+}
+
+.protocolos .div-filtro .status {
+    margin-left: 10px;
+    width: 100px;
+}
+
+.protocolos .div-filtro .div-busca-filtro {
+    float: left;
+    margin: 0;
+}
+
+.bt-add-protocolo {
+    line-height: 12px !important;
+    margin-left: 0 !important;
+}
+
+.protocolos .box-tabela .wrap {
+    height: 396px;
+    width: 952px;
+}
+
+.protocolos .box-tabela .wrap .inner {
+    height: 396px;
+}
+
+.protocolos .box-tabela .ico-post-anexo .ico-post-anexo-inativo {
+    text-decoration: none !important;
+    padding-top: 2px;
+    margin-left: 12px;
+}
+
+/* Tabela */
+
+/* THead */
+
+#tabelaProtocolos th.colun-1 {
+    width: 155px;
+}
+
+#tabelaProtocolos  th.colun-2 {
+    width: 100px;
+}
+
+#tabelaProtocolos  th.colun-3 {
+    width: 83px;
+}
+
+#tabelaProtocolos  th.colun-4 {
+    width: 88px;
+}
+
+#tabelaProtocolos  th.colun-5 {
+    width: 85px;
+}
+
+#tabelaProtocolos  th.colun-6 {
+    width: 111px;
+}
+
+#tabelaProtocolos  th.colun-7 {
+    width: 215px;
+}
+
+#tabelaProtocolos  th.colun-8 {
+    width: 68px;
+}
+
+
+/* TBody */
+
+.protocolos td.colun-1 {
+    width: 159px;
+    text-align: left !important;
+}
+
+    .protocolos td.colun-1 a.protocolo-filho {
+        margin-left: 20px;
+    }
+
+.protocolos td.colun-2 {
+    width: 106px;
+}
+
+.protocolos td.colun-3 {
+    width: 77px;
+}
+
+.protocolos td.colun-4 {
+    width: 92px;
+}
+
+.protocolos td.colun-5 {
+    width: 95px;
+}
+
+.protocolos td.colun-6 {
+    width: 104px;
+}
+
+.protocolos td.colun-7 {
+    width: 224px;
+}
+
+.protocolos td.colun-8 {
+    width: 50px;
+}
+
+
+
+.contato-principal-tooltip {
+    width: 300px;
+    position: absolute;
+    top: 57px;
+    right: 105px;
+    z-index: 1000;
+}
+
+    .contato-principal-tooltip span.seta {
+        background: url("../img/seta-box-direita.png") no-repeat scroll 0 0 transparent;
+        display: block;
+        height: 21px;
+        position: absolute;
+        right: -11px;
+        top: 42px;
+        width: 10px;
+        z-index: 1001;
+    }
+
+    .protocolos .box-dados-contato {
+        width: 73%;
+    }
+
+        .protocolos .box-dados-contato div {
+            line-height: 13px;
+        }
+
+            .protocolos .box-dados-contato div strong {
+                font-size: 12px;
+            }
+            
+            
+/* Adicionar Protocolo */
+
+.adicionarProtocolo {
+    background-color: #FFFFFF;
+    float: left;
+    padding: 10px;
+    width: 97%;
+}
+
+.adicionarProtocolo .col-left{
+    float: left;
+    width: 46%;
+    border-right: 1px solid #006655;
+}
+
+.adicionarProtocolo .col-right{
+    float: right;
+    width: 53%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.adicionarProtocolo .form-protocolo,
+.adicionarProtocolo .form-data {
+    margin-left: 20px;
+    width: 145px;
+}
+
+.adicionarProtocolo .form-data .filtro-calendario {
+    float: right;
+}
+
+.adicionarProtocolo .form-data input {
+    width: 85%;
+}
+
+.adicionarProtocolo .form-orgao,
+.adicionarProtocolo .form-status,
+.adicionarProtocolo .form-requerente,
+.adicionarProtocolo .form-observacoes {
+    margin-left: 20px;
+    width: 310px;
+}
+
+.adicionarProtocolo .msg-post-criar-post {
+    width: 100%;
+}
+
+.adicionarProtocolo .form-observacoes textarea {
+    height: 75px;
+}
+
+.adicionarProtocolo .col-left .bt-padrao {
+    margin: 0 18px 0 0;
+}
+
+.adicionarProtocolo .seg-combos-privacidade-criar {
+    width: 139px;
+    margin-left: 0px;
+}
+
+.adicionarProtocolo .icones-post-criar {
+    margin-top: 26px;
+}
+
+.adicionarProtocolo .seg-combos-privacidade-criar .combo-privacidade {
+    margin: 0 !important;
+    width: 138px !important;
+}
+
+    .adicionarProtocolo .seg-combos-privacidade-criar .combo-area {
+        width: 138px !important;
+    }
+
+.adicionarProtocolo #incluirProtocolo {
+    margin: 5px 16px 0 0;
+}
+
+
+/* Editar Protocolo */
+
+#modalEditarProtocolo .icones-post a {
+    margin: 0 3% 0 0;
+}
+
+#modalEditarProtocolo #edicao-protocolo-container {
+    overflow:auto;
+    height: 503px;
+    width: 432px;
+}
+
+#protocoloCompleto .adicionarProtocolo {
+    width: 98% !important;
+}
+.adicionarProtocolo .icones-post-criar {
+    min-height: 30px;
+}

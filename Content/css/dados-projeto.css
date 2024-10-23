@@ -1,0 +1,1002 @@
+/* Header Dados do Projeto */
+.header-dados-projeto
+{
+	width: 912px !important;
+	padding: 20px !important;
+	display: table;
+	position: relative;
+	margin-bottom: 15px;
+	float: left;
+}
+.seg-bts-acoes-projeto {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.ico-editar-projeto
+{
+    margin-bottom: 10px;
+	display: block;
+	width: 25px;
+	height: 25px;
+	border: 1px solid #a9a9a9;
+	border-radius: 6px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../img/icons/ico-editar.png) 6px 5px no-repeat;
+}
+
+.ico-exporta-dados-projeto
+{
+	display: block;
+	width: 25px;
+	height: 25px;
+	border: 1px solid #a9a9a9;
+	border-radius: 6px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../img/seta-down.png) 8px 8px no-repeat;
+}
+
+.info-dados-projeto
+{
+	width: 45%;
+	float: left;
+	margin: 0 5% 10px 0;
+}
+
+.info-dados-projeto .linkCodigoProjeto {
+	color: #006655;
+	font-size: 14px;
+}
+
+.header-dados-projeto .last
+{
+	margin-right: 0 !important;
+}
+
+.info-dados-projeto label
+{
+	color: #222;
+	font-size: 14px;
+	display: block;
+	float: left;
+	width: 140px;
+}
+.info-dados-projeto label a
+{
+	text-decoration: none;
+	color: #006655;
+	font-weight: bold;
+}
+
+.info-dados-projeto span
+{
+	color: #707070;
+	font-size: 14px;
+	margin-right: 10px;
+}
+.info-dados-cidade
+{
+	float: left;
+}
+.pin-cidade
+{
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #a9a9a9;
+	border-radius: 6px;
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	background: url(../img/pin-contato-ativo.png) 4px 2px no-repeat;
+	margin: 0 0 0 20px;
+}
+
+#botaoAdicionarCidadeSecundaria {
+    width: 33px;
+    height: 33px;
+    padding: 0;
+    background-position: 11px;
+    margin-left: 9px;
+}
+
+.ico-localizacao.dadosProjeto
+{
+	display: block;
+	width: 16px;
+	height: 20px;
+	border: 1px solid #a9a9a9;
+	border-radius: 6px;
+	text-indent: -9999px;
+	overflow: hidden;
+	float: left;
+	background: url(../img/icons/ico-localizacao.png) no-repeat 0 1px;
+	margin: 0 0 0 20px;
+}
+
+.bt-cobrar a
+{
+	margin-top: 10px;
+}
+/* END Header Dados do Projeto */
+/* tabs */
+.tabDadosProjeto#tabs {
+	margin-top: 237px !important;
+}
+.tabDadosProjeto#tabs ul li a {
+    padding: .5em 7px;
+}
+/* FIM */
+
+/* Dados do Terreno */
+	.contatos-geral .form-cep{width: 240px;}
+	.contatos-geral .form-logradouro{width: 500px;}
+	.contatos-geral .form-numero{width:100px; margin-left: 20px;}
+	.contatos-geral .form-complento{width:250px; margin-left: 20px;}
+	.contatos-geral .form-bairro{width: 380px;}
+	.contatos-geral .form-UF{width: 100px; margin-left: 20px;}
+	.contatos-geral .form-cidade{width:370px; margin-left: 20px;}
+	.contatos-geral .form-matriculas{width: 251px;}
+	.contatos-geral .form-area{width: 240px; margin-left: 20px;}
+		.contatos-geral .form-area input{width: 190px !important;}
+	.contatos-geral .form-matriculas-unificadas{width: 250px;}
+	.contatos-geral .form-area-total{width: 230px; margin-left: 20px;}
+	.contatos-geral .form-area-poligono{width: 250px; margin-left: 20px;}
+		.contatos-geral .form-area-poligono span{float: left;padding-top: 6px;}
+		.contatos-geral .form-area-poligono a{margin-top: 6px;}
+/* END Dados do Terreno */
+
+/* Fases do Projeto */
+.seg-passagem
+{
+	display: table;
+	width: 100%;
+}
+
+.tabela-fases
+{
+	padding-top: 35px;
+}
+
+.tabela-fases th.colun-1
+{
+	width: 10%;
+}
+.tabela-fases th.colun-2
+{
+	width: 22%;
+}
+.tabela-fases th.colun-3
+{
+	width: 23%;
+}
+.tabela-fases th.colun-4
+{
+	width: 15%;
+}
+.tabela-fases th.colun-5
+{
+	width: 12%;
+}
+.tabela-fases th.colun-6
+{
+	width: 18%;
+}
+.tabela-fases th.colun-7
+{
+	width: 5%;
+}
+
+.tabela-fases td.colun-1
+{
+	width: 8%;
+}
+.tabela-fases td.colun-2
+{
+	width: 17%;
+}
+.tabela-fases td.colun-3
+{
+	width: 28%;
+}
+.tabela-fases td.colun-4
+{
+	width: 15%;
+}
+.tabela-fases td.colun-5
+{
+	width: 12%;
+}
+.tabela-fases td.colun-6
+{
+	width: 18%;
+}
+.tabela-fases td.colun-7
+{
+	width: 5%;
+}
+
+.tabela-fases a
+{
+	text-decoration: none;
+	color: #006655;
+}
+.tabela-fases img
+{
+	width: 27px;
+	height: 27px;
+	vertical-align: middle;
+}
+/* END Fases do Projeto */
+
+/* Passagens */
+
+.table-passagem .wrap, .table-passagem .wrap .inner {
+	height: 275px !important;
+	width: 100%;
+}
+.table-passagem
+{
+	padding-top: 35px;
+	float: left !important;
+	width: 571px !important;
+}
+.table-passagem table
+{
+	width: 571px !important;
+}
+
+.table-passagem table thead tr th.colun-1{width: 0px;}
+.table-passagem table thead tr th.colun-2{width: 119px;}
+.table-passagem table thead tr th.colun-3{width: 118px;}
+.table-passagem table thead tr th.colun-4{width: 181px;}
+.table-passagem table thead tr th.colun-5{width: 78px;}
+.table-passagem table thead tr th.colun-6{width: 83px;}
+
+.table-passagem table tbody tr td.colun-6{width: 55px;}
+
+.table-passagem img
+{
+	width: 27px;
+	height: 27px;
+	vertical-align: middle;
+}
+.table-passagem .bola
+{
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	vertical-align: middle;
+	border-radius: 30px;
+}
+.table-passagem .verde
+{
+	background: #3da64c !important;
+}
+.table-passagem .vermelha
+{
+	background: #d41414 !important;
+}
+.table-passagem .table-sub-title
+{
+	padding: 0 !important;
+}
+
+.seg-box-pendencias
+{
+	float: right;
+	width: 305px;
+	display: table;
+	padding-top: 42px;
+}
+.box-pendencias-scroll
+{
+	width: 300px;
+	height: 265px;
+	background: #FFF;
+	border: 1px solid #006655;
+	overflow: auto;
+}
+
+.seg-box-pendencias h4
+{
+	font-size: 14px;
+	color: #8f8d8d;
+	font-weight: normal !important;
+	margin-bottom: 10px;
+}
+
+.box-pendencias
+{
+	margin: 0 0 20px 10px;
+	font-size: 12px;
+	color: #8f8d8d;
+}
+.box-pendencias p
+{
+	margin-top: 5px;
+	font-weight: bold;
+}
+/* END Passagens */
+
+/* Contatos Principais */
+.box-legenda
+{
+	font-size: 18px;
+	color: #787878;
+	float: left;
+}
+.box-legenda span
+{
+	background: #f2f2f2;
+	padding: 5px 10px;
+	text-align: center;
+	border: 1px solid #b0b2b2;
+	border-radius: 6px;
+	display: block;
+	float: left;
+	margin-right: 5px;
+}
+.header-contatos-principais
+{
+	display: table;
+	width: 100%;
+}
+.seg-contatos-principais
+{
+	display: table;
+	width: 100%;
+	clear: both;
+	margin-top: 30px;
+}
+.seg-box-contato-principais
+{
+	width: 430px;
+	float: left;
+	margin: 0 20px 25px 0;
+}
+.seg-box-contato-principais-direita
+{
+	width: 430px;
+	float: right;
+	margin: 0 0px 25px 0 !important;
+}
+.seg-bt-contatos
+{
+	display: table;
+	width: 100%;
+}
+/* END Contatos Principais */
+
+/* Dados Financeiros */
+.header-dados-financeiros
+{
+	display: table;
+	width: 100%;
+	border-bottom: 1px solid #c1c1c1;
+}
+.dados-parceria
+{
+	background: #FFF;
+	border-radius: 6px;
+	padding: 10px 20px;
+    padding-right: 0;
+	float: left;
+}
+.dados-parceria input, .dados-consorcio input
+{
+	text-align: right;
+    width: 125px;
+}
+
+.dados-parceria .form-line, .dados-consorcio .form-line
+{
+    margin-bottom: 0;
+}
+
+.form-total
+{
+	color: #000;
+	float: right;
+}
+.label-ausa
+{
+	color: #62bb46 !important;
+}
+.input-ausa
+{
+	border: 2px solid #62bb46 !important;
+}
+#totalParceria, #totalConsorcio {
+	font-weight: bold;
+}
+
+
+.dados-consorcio
+{
+	background: #FFF;
+	border: 2px solid #62bb46;
+	border-radius: 6px;
+	padding: 10px 20px;
+	float: left;
+	margin: 40px;
+	position: relative;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.dados-consorcio input
+{
+	
+}
+
+.dados-consorcio h4
+{
+	color: #62bb46 !important;
+}
+
+.dados-consorcio hr
+{
+	position: absolute;
+	top: 109px;
+	left: -65px;
+	border: 2px solid #62bb46;
+	width: 65px; /* IE8+9 */ width: 61px\0/;
+}
+
+.header-dados-financeiros .seta {
+    float: left;
+height: 71px;
+border-bottom: 4px solid #62bb46;
+width: 50px;
+}
+
+.dados-consorcio #totalConsorcio {
+	float: right;
+	margin-top: 10px;
+}
+
+.dados-maturacao
+{
+	float: right;
+}
+
+#aba-dados-financeiros .box-tabela
+{
+	min-height: 360px;
+	margin: 20px 0 !important;
+    margin-bottom: auto !important;
+}
+#aba-dados-financeiros .seg-botoes
+{
+	display: table;
+	width: 100%;
+}
+
+#aba-dados-financeiros .botao-salvar 
+{
+    margin-left: 810px; 
+	width: 82px;
+    float: right;
+}
+
+#aba-dados-financeiros .botao-exportar 
+{
+    margin-left: 690px; 
+	width: 100px;
+}
+
+#aba-dados-financeiros .bt-padrao {
+    display: block;
+	padding: 8px 20px;
+	background: #FFF;
+	border: 1px solid #b0b2b2;
+	float: right;
+	font-size: 12px;
+	color: #096b5b;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: "Trebuchet MS",Helvetica,Jamrul,sans-serif;
+}
+
+#aba-dados-financeiros #botaoAdicionarUso {
+    width: 25px; 
+    height: 25px; 
+    background-position: center center; 
+    margin-left: 2px;
+    float: left;
+}
+
+/* END Dados Financeiros */
+
+/* Inteligencia de Mercado */
+.seg-cont-inteligencia
+{
+	display: table;
+	width: 100%;
+}
+
+#aba-inteligencia
+{
+	color: #8f8d8d;
+	font-size: 14px;
+}
+
+#aba-inteligencia h4
+{
+	font-family: 'BreeRgRegular';
+	font-size: 18px;
+	font-weight: normal;
+	color: #6f6f6f !important;
+}
+
+.int-indicadores
+{
+	width: 360px;
+	float: left;
+}
+.int-indicadores label
+{
+	display: block;
+	float: left;
+	width: 250px;
+	text-align: left;
+}
+.int-indicadores span
+{
+	display: block;
+	float: left;
+	width: 100px;
+	text-align: left;
+}
+
+.sep-line-int
+{
+	display: table;
+	clear: both;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.int-domicilios
+{
+	width: 205px;
+	float: left;
+	margin-left: 10px;
+}
+.int-domicilios label
+{
+	display: block;
+	float: left;
+	width: 85px;
+	text-align: left;
+}
+.int-domicilios span
+{
+	display: block;
+	float: left;
+	width: 115px;
+	text-align: right;
+}
+
+.int-regiao-metropolitana
+{
+	width: 265px;
+	float: left;
+	margin-left: 45px;
+}
+/* END Inteligencia de Mercado */
+
+
+/* Informações do Contrato */
+.seg-informacoes-contrato
+{
+	display: table;
+	width: 100%;
+}
+
+.inf-particularidades
+{
+	width: 620px;
+	margin-left: 20px;
+}
+.inf-particularidades textarea
+{
+	height: 320px !important;
+}
+
+.inf-seq
+{
+	width: 50px;
+}
+.inf-data
+{
+	width: 142px;
+	margin-left: 10px;
+}
+.inf-particularidades-2
+{
+	width: 670px;
+	margin-left: 20px;
+}
+.inf-particularidades-2 textarea
+{
+	width: 620px !important;
+	height: 80px !important;
+}
+.inf-particularidades-2 a
+{
+	margin-top: 20px !important;
+}
+/* END Informações do Contrato */
+
+/* Observações */
+
+#formAtaReuniao .form-line {
+    margin-left: 20px;
+}
+
+#formAtaReuniao ul.holder a.closebutton {
+    padding: 0;
+}
+
+.seg-observacoes
+{
+	display: table;
+	width: 100%;
+}
+
+.seg-observacoes .editar-ata-reuniao {
+    border-bottom: solid 1px #e2e2e2;
+    margin-bottom: 15px;
+}
+
+.seg-observacoes .listar-ata-reuniao {
+    height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    font-size: 14px;
+    color: #707070;
+}
+
+.seg-observacoes .listar-ata-reuniao strong {
+    margin-right: 3px;
+}
+
+.seg-observacoes .listar-ata-reuniao .botaoEditarAtaReuniao {
+    border: 1px solid #a9a9a9;
+    border-radius: 6px;
+    padding: 4px;
+    background-position: center center;
+}
+
+.seg-observacoes .listar-ata-reuniao .item-ata-reuniao {
+    margin-bottom: 10px;
+    border-bottom: solid 1px #e2e2e2;
+    padding-bottom: 10px;
+}
+
+.obs-observacoes
+{
+	width: 855px !important;
+}
+.obs-observacoes textarea
+{
+	height: 200px;
+}
+/* END Observações */
+
+/* Modal de Editar Dados do Projeto */
+#editarDadosProjeto
+{
+}
+
+.modal-editar-nome
+{
+	width: 500px;
+}
+.modal-editar-status
+{
+	width: 225px;
+	margin-left: 20px;
+}
+.modal-editar-comite
+{
+	width: 225px;
+}
+.modal-editar-comite label
+{
+	margin-bottom: 8px;
+}
+.modal-editar-comite input
+{
+	width: auto !important;
+}
+.modal-editar-produto
+{
+	width: 500px;
+	margin-left: 20px;
+}
+
+.modal-editar-responsavel
+{
+}
+.modal-editar-responsavel img
+{
+	width: 28px;
+	height: 28px;
+	margin-top: 5px;
+}
+.modal-editar-responsavel .bt-trocar-responsavel
+{
+	display: block;
+	width: 20px;
+	height: 22px;
+	float: right;
+	padding: 3px 10px;
+	text-indent: -9999px;
+	overflow: hidden;
+	border: 1px solid #a9a9a9;
+	border-radius: 7px;
+	background: url(../img/icons/ico-trocar-responsavel.png) 10px 3px no-repeat;
+	margin: 15px 0 0 15px;
+}
+
+/* END Modal de Editar Dados do Projeto */
+
+/* Modal Selecione Novo Responsável */
+
+.box-busca-responsavel
+{
+	position: absolute;
+	top: 15px;
+	right: 65px;
+}
+
+.box-scroll-resp
+{
+	max-height: 240px;
+	width: 750px;
+	overflow: auto;
+}
+
+.box-sel-resp
+{
+	display: table;
+	width: 125px;
+	padding: 13px 15px;
+	border: 1px solid #408c80;
+	border-radius: 6px;
+	background: #FFF;
+	color: #408c80;
+	text-decoration: none;
+	line-height: 15px;
+	font-size: 13px;
+	margin: 10px 20px 10px 0;
+	float: left;
+}
+.box-sel-resp img
+{
+	float: left;
+	margin-right: 10px;
+}
+.box-sel-resp div {
+	width: 73px;
+	height: 43px;
+	float: left;
+	overflow: hidden;
+}
+
+/* END Modal Selecione Novo Responsável */
+
+/* Modal histórico de Nome do Projeto */
+.table-historico-nome-projeto
+{
+	max-height: 330px;
+	overflow: auto;
+}
+.table-historico-nome-projeto table{width: 100%;}
+
+#tableHistoriconomeProjeto .colun-1{width: 12%;}
+#tableHistoriconomeProjeto .colun-2{width: 14%;}
+#tableHistoriconomeProjeto .colun-3{width: 10%;}
+
+#tableHistoricoResponsavelProjeto .colun-1{width: 15%;}
+#tableHistoricoResponsavelProjeto .colun-2{width: 16%;}
+#tableHistoricoResponsavelProjeto .colun-3{width: 10%;}
+
+#tableHistoricoStatusProjeto .colun-1{width: 165px;}
+#tableHistoricoStatusProjeto .colun-2{width: 168px;}
+#tableHistoricoStatusProjeto .colun-3{width: 233px;}
+#tableHistoricoStatusProjeto .colun-4{width: 184px;}
+
+#tableHistoricoStatusProjeto .colun-1-conteudo{width: 100px;}
+#tableHistoricoStatusProjeto .colun-2-conteudo{width: 101px;}
+#tableHistoricoStatusProjeto .colun-3-conteudo{width: 142px;}
+#tableHistoricoStatusProjeto .colun-4-conteudo{width: 112px;}
+
+
+/* END Modal histórico de Nome do Projeto */
+
+/* Modal Alterar imagem usuário */
+
+/* END Modal Alterar imagem usuário */
+
+/* Modal Adicionar Fase do Projeto */
+.modal-fases-nome
+{
+	width: 750px;
+}
+.modal-fases-responsavel
+{
+}
+.modal-fases-responsavel img
+{
+	width: 28px;
+	height: 28px;
+	margin-top: 5px;
+}
+.modal-fases-responsavel .bt-trocar-responsavel
+{
+	display: block;
+	width: 20px;
+	height: 22px;
+	float: right;
+	padding: 3px 10px;
+	text-indent: -9999px;
+	overflow: hidden;
+	border: 1px solid #a9a9a9;
+	border-radius: 7px;
+	background: url(../img/ico-trocar-responsavel.png) 10px 3px no-repeat;
+	margin: 15px 0 0 15px;
+}
+
+.table-historico-nome-projeto.box-tabela .wrap
+{
+	height: 95px;
+}
+.table-historico-nome-projeto.box-tabela .wrap .inner
+{
+	height: 95px;
+}
+/* END Modal Adicionar Fase do Projeto */
+
+/* Modal Efetuar Passagem */
+.modal-passagem-departamento
+{
+	width: 305px;
+}
+.modal-passagem-pendencias, .modal-passagem-consideracoes
+{
+	width: 750px;
+}
+/* END Modal Efetuar Passagem */
+
+#categorias
+{
+	background: none repeat scroll 0 0 #FFFFFF !important;
+	border: 1px solid #006655;
+	height: 90px;
+	max-width: 300px;
+	overflow: auto;
+	padding: 0 30px 0 0;
+	position: absolute;
+	text-align: left;
+	z-index: 999;
+}
+
+.seg-box-contato-principais .bt-padrao, .seg-box-contato-principais-direita .bt-padrao
+{
+	position: absolute;
+	right: 9px;
+	bottom: 8px;
+}
+
+.ordem-centro-custo {
+    list-style-type: none;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+#formCentroCusto .form-line {
+    margin-left: 20px;
+}
+
+#tabelaCentroCusto th {
+    text-align: center;
+}
+
+.tabela-centro-custo .wrap {
+    padding-top: 62px;
+}
+
+/* cabeçalho */
+#tabelaCentroCusto th.col-1 {
+    width: 65px;
+}
+
+#tabelaCentroCusto th.col-2 {
+    width: 56px;
+}
+
+#tabelaCentroCusto th.col-3 {
+    width: 100px;
+}
+
+#tabelaCentroCusto th.col-4 {
+    width: 152px;
+}
+
+#tabelaCentroCusto th.col-5 {
+    width: 80px;
+}
+
+#tabelaCentroCusto th.col-6 {
+    width: 55px;
+    
+}
+
+#tabelaCentroCusto th.col-7 {
+    width: 70px;
+
+}
+
+#tabelaCentroCusto th.col-8 {
+    width: 55px;
+}
+
+#tabelaCentroCusto th.col-9 {
+    width: 246px;
+}
+
+#tabelaCentroCusto th.col-10 {
+    width: 15px;
+}
+
+/*Tabela*/
+
+#tabelaCentroCusto td.col-1 {
+    width: 51px;
+}
+
+#tabelaCentroCusto td.col-2 {
+    width: 45px;
+}
+
+#tabelaCentroCusto td.col-3 {
+    width: 87px;
+}
+
+#tabelaCentroCusto td.col-4 {
+    width: 140px;
+}
+
+#tabelaCentroCusto td.col-5 {
+   width: 68px;
+}
+
+#tabelaCentroCusto td.col-6 {
+  width: 43px;
+}
+
+#tabelaCentroCusto td.col-7 {
+   width: 60px;
+}
+
+#tabelaCentroCusto td.col-8 {
+width: 40px;
+}
+
+#tabelaCentroCusto td.col-9 {
+    width: 235px;
+}
+#tabelaCentroCusto td.col-9 .content-wrapper {
+    width:235px; 
+    word-wrap: break-word;
+}
+
+#tabelaCentroCusto td.col-10 {
+    width: 15px;
+}

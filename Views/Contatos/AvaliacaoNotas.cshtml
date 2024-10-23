@@ -1,0 +1,71 @@
+﻿@model Gafisa.AlphaBook.Models.Home.AvaliacaoContatoModel
+<div class="box-tabela table-nota-votos">
+    <table id="tabelaNotas">
+        <thead>
+            <tr>
+                <th class="table-title colun-1">
+                    Nota
+                </th>
+                <th class="table-title colun-2">
+                    N° Votos
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="table-nota nota-excelente">Excelente</span>
+                </td>
+                <td>@Model.NotasExcelente
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="table-nota nota-bom">Bom</span>
+                </td>
+                <td>@Model.NotasBom
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="table-nota nota-neutro">Neutro</span>
+                </td>
+                <td>@Model.NotasNeutro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="table-nota nota-ruim">Ruim</span>
+                </td>
+                <td>@Model.NotasRuim
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="table-nota nota-pessimo">Péssimo</span>
+                </td>
+                <td>@Model.NotasPessimo
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="box-grafico">
+    <h4>
+        Visão consolidada</h4>
+
+    @{
+        var colorRating = "cinza";
+        if (Model.MediaAvaliacao.HasValue)
+        {
+            colorRating = Model.MediaAvaliacao < 2 ? "pessimo" : (Model.MediaAvaliacao < 4 ? "ruim" : (Model.MediaAvaliacao < 6 ? "neutro" : (Model.MediaAvaliacao < 8 ? "bom" : "excelente")));
+        }
+    }
+    <div class="seg-nota @String.Concat("nota-", @colorRating)">
+        <div class="box-nota-cont @colorRating">
+            <span class="nota">NOTA</span> 
+            <span class="valor-nota">@(Model.MediaAvaliacao.HasValue ? Model.MediaAvaliacao.Value.ToString() : "n/d")</span>
+        </div>
+    </div>
+    <img src="@Url.Content("~/Content/img/grafico-nota.png")" alt="grafico de nota" />
+</div>

@@ -1,0 +1,49 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ContatoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "contatos do projeto")</p>
+}
+else
+{
+    var posicaoEsquerda = true;
+    foreach (var contato in Model)
+    {
+        var principal = contato.Principal.HasValue && contato.Principal.Value;
+        var colorRating = "cinza";
+        if (contato.MediaAvaliacao.HasValue)
+        {
+            colorRating = contato.MediaAvaliacao.Value < 2 ? "pessimo" : (contato.MediaAvaliacao.Value < 4 ? "ruim" : (contato.MediaAvaliacao.Value < 6 ? "neutro" : (contato.MediaAvaliacao.Value < 8 ? "bom" : "excelente")));
+        }
+        <div class="@(posicaoEsquerda ? "seg-box-contato-principais" : "seg-box-contato-principais-direita")">
+            <div class="box-contato-sel">
+                <div class="box-radio">
+                    <input type="radio" name="contato" value="@contato.Id" @(principal ? "checked" : String.Empty) />
+                </div>
+                <div class="box-nota @colorRating">
+                    <span class="nota">NOTA</span> 
+                    <span class="valor-nota">@(contato.MediaAvaliacao.HasValue ? contato.MediaAvaliacao.Value.ToString() : "n/d")</span>
+                </div>
+                <div class="box-dados-contato">
+                    <div class="nome-dados-contato">NOME: @contato.NomeContato</div>
+                    <div>EMPRESA: @contato.NomeEmpresa</div>
+                    <div>E-MAIL: @Html.Conditional(contato.PodeVerDadosConfidenciais, contato.Email, "------------")</div>
+                    <div>Telefone: @Html.Conditional(contato.PodeVerDadosConfidenciais, (!String.IsNullOrEmpty(contato.TelefoneComercial) ? contato.TelefoneComercial.ToPhoneFormat(contato.DDDComercial) : String.Empty), "------------")</div>
+                    <div>Celular: @Html.Conditional(contato.PodeVerDadosConfidenciais, (!String.IsNullOrEmpty(contato.TelefoneCelular) ? contato.TelefoneCelular.ToPhoneFormat(contato.DDDCelular) : String.Empty), "------------")</div>
+                    <div>CATEGORIA: @contato.NomeTipoContato</div>
+                </div>
+                <a class="box-pin-mapa-contato-ativo" href="javascript:void(0);">Pin Mapa</a>
+                @if (contato.Confidencialidade != ConfidencialidadeContato.Publico)
+                {
+                    <a href="javascript:void(0)" class="box-confidencialidade-contato" title="@(contato.TextoConfidencialidade)" data-id="@contato.Id" data-tipo="contato"></a>
+                }
+                @if (!principal && Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoContatosPrincipais, Acao.Remover, contato.IdProjeto))
+                {
+                    <a href="javascript:void(0);" data-id="@contato.Id" class="bt-padrao" name="botaoDissociarContatoProjeto">Desassociar</a>
+                }
+            </div>
+        </div>
+        posicaoEsquerda = !posicaoEsquerda;
+    }
+}

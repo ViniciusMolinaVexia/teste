@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.Localizacao.TipoPontoInteresse>
+<div style="width: 300px;">
+    <form method="post" id="formPontoInteresse">
+        
+        <div class="">
+            <span class="label dropdown">Tipo:</span>
+        </div>
+        <div class="" style="margin-bottom: 13px;">
+            @Html.DropDownList("TipoPontoInteresseId", Model.ToSelectList(x => x.Nome, x => x.Id, "Selecione"), new { @class = "span3", style = "width: 250px;overflow:scroll;" })
+        </div>
+
+        <div>
+            <span class="label">Nome:</span>
+        </div>
+        <div>
+            <input type="text" name="Nome" id="Nome" class="span3" maxlength="50" style="width: 250px;" />
+        </div>
+        <div>
+            <span class="label">Descrição:</span>
+        </div>
+        <div class="input-control textarea ">
+            <textarea style="width: 250px;" maxlength="200" id="Descricao"></textarea>
+        </div>
+    </form>
+    <a href="javascript:void(0)" class="btn" id="salvarPontoInteresse">Salvar</a>
+    <a href="javascript:void(0)" class="btn btn-warning" id="cancelarCadastroPontoInteresse">Cancelar</a>
+</div>

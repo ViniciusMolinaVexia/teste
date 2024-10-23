@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Test Upload";
+    Layout = "~/Views/Shared/_LayoutBasic.cshtml";
+}
+
+@System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro.css")
+@System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro-icons.css")
+@System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro-icons-ie7.css")
+
+@{
+    var listImgExtension = new System.Collections.Generic.List<string>() {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".svg",
+            ".webp",
+            ".tif"
+            };
+
+
+   var file = (Gafisa.AlphaBook.Dominio.DTO.ImageStreamFileMigracaoDto)ViewBag.imageStream;
+}
+
+
+@section script
+    {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SharepointMigration/sharepointMigration.js")"></script>
+}
+<div class="row">
+    <div class="span12">
+        &nbsp;
+    </div>
+</div>
+<a type="submit" class="btn btn-primary" href="/SharepointMigration">
+    <i class="icon-arrow-left"></i>Voltar
+</a>
+
+<div class="row">
+    <div class="span12">
+        <hr />
+    </div>
+</div>
+
+<div class="alert">
+    <button type="button" class="close" data-dismiss="alert"></button>
+    <strong>@ViewBag.Message</strong>
+</div>
+
+@if (file.SaveResult)
+{
+    <div class="row">
+        <div class="span12">
+            @if (listImgExtension.Contains(file.ImagemExtensao))
+            {
+            <img src="http://alphaville.alphabook.ef5.local/SharepointMigration/Arquivo?idArquivo=@file.ImagemId" />
+            }
+            else
+            {
+                <a href="/SharepointMigration/Arquivo?idArquivo=@file.ImagemId" target="_blank">@file.ImagemOriginalNome</a>
+            }
+        </div>
+    </div>
+}

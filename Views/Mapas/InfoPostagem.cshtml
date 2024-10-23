@@ -1,0 +1,40 @@
+﻿@using System.Text.RegularExpressions
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Projeto.PostagemDto>
+           
+<div class="div-post-mapa" id="dados-post">
+    <div class="scroll-y">
+    @foreach (var post in Model)
+    {
+        var dataPublicacao = string.Format("{0}", post.DataPublicacao);
+        if (post.Retroativa.HasValue)
+        {
+            dataPublicacao += " | " + string.Format("{0}", post.Retroativa);
+        }
+        var texto = Regex.Replace(Html.Raw(HttpUtility.HtmlDecode(post.Postagem)).ToString(), @"<[^>]*>", String.Empty);
+        
+        <div class="box-post">
+            @Html.ProfilePhoto(post.UsuarioDonoPostagemId)
+
+            <div class="dados-post">
+                <p class="nome-post-mapa contato-leiaMais" data-postagemId="@post.Id" >@post.TituloPostagem </p>
+                <p class="lugar-post">@post.NomeProjeto</p>
+                <p class="usario-post">@post.NomeCompleto | @post.Departamento</p>
+                <p class="data-post">@dataPublicacao</p>
+            </div>
+
+            <div class="msg-post">
+             @if (texto.Length <= 50)
+                {
+                    @Html.Raw(HttpUtility.HtmlDecode(post.Postagem))
+                }
+                else
+                {
+                    @texto.Substring(0,50)
+                    <a class="contato-leiaMais" data-postagemId="@post.Id"  href="javascript:void(0);">... leia mais</a>    
+                }
+
+            </div>           
+        </div>
+    }
+    </div>
+</div>

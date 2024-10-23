@@ -1,0 +1,41 @@
+﻿@model Gafisa.AlphaBook.Models.Home.StatusProjetoModel
+<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalDescartarArea">
+                <form action="" id="salvarProjeto">
+                <div class="topo">
+                    <div class="txt-agenda">
+                        <a href="javascript:void(0);" class="" id="lnkVoltarModalDescartarArea">Voltar</a>
+                    </div>
+                    <h1>
+                        Descartar área</h1>
+                </div>
+                <div class="div-secao">
+                    <h2>
+                        Escolha o motivo do descarte:</h2>
+                </div>
+                <div class="div-secao">
+                    @foreach (var motivo in Model.MotivosDescarte)
+                    {
+                        <input type="checkbox" value="@motivo.Descricao" data-id="@motivo.MotivoId" id="@motivo.MotivoId" />
+                        <label for="@motivo.MotivoId" class="label">@motivo.Motivo</label>
+                    }
+                </div>
+                <input type="hidden" id="corpoEmail" data-assunto="@Model.Email.Assunto" />
+                <div class="div-secao">
+                    <div class="div-6">
+                        <label class="label">
+                            Descrição:</label>
+                        <textarea class="" rows="1" cols="2" id="txtDescricaoEmail">@Model.Email.Descricao</textarea>
+                    </div>
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal">Fechar</a> 
+                    <a class="btn-modal btn-cadastrar" href="javascript:void(0)" id="botaoEnviar">Enviar</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

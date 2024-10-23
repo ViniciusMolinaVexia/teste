@@ -1,0 +1,156 @@
+﻿@using System.Globalization
+@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Dominio.DTO.DiaClimaDTO
+@{ var cultureInfo = new CultureInfo("pt-BR"); }
+<span class="titulo">@(Model.Data.Day == DateTime.Now.Day ? "HOJE" : cultureInfo.DateTimeFormat.GetAbbreviatedDayName(Model.Data.DayOfWeek) + "  " + Model.Temperatura + "º")
+</span>
+@switch (Model.TipoClima)
+{
+    case TipoClima.NeveForteComTrovoadas:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteComTrovoadas.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveFracaComTrovoadas:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteComTrovoadas.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaForteComTrovoadas:
+    <text><img class="icone" src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteComTrovoadas.png")" class="place-right"></text>
+                             break;
+    case TipoClima.ChuvaFracaComTrovoadas:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFracaComTrovoadas.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaForteDeGelo:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteDeGelo-ChuvaGeladaModeradaOuPesada.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaFracaDeGelo:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFracaDeGelo-ChuvaGeladaLeve.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveForte:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveFraca:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaForteDeGranizo:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteDeGranizo-GranizoModeradoOuPesado.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaFracaDeGranizo:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFracaDeGranizo-GranizoLeve.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaTorrencial:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaTorrencial-ChuvaPesada.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaForte:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaFraca:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFraca-ChuvaLeve-ChuvaLeveNasProximidades.png")" class="place-right"></text>
+                              break;
+    case TipoClima.PelotasDeGelo:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveForteIrregular:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NevePesada:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveModerada:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveModeradaIrregular:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.Neve:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveIrregular:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GranizoModeradoOuPesado:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteDeGranizo-GranizoModeradoOuPesado.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GranizoLeve:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFracaDeGranizo-GranizoLeve.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaGeladaModeradaOuPesada:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaTorrencial-ChuvaPesada.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaGeladaLeve:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFracaDeGelo-ChuvaGeladaLeve.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaPesada:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaTorrencial-ChuvaPesada.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaForteItermitente:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForte-ChuvaForteItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaModerada:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaModerada-ChuvaModeradaItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaModeradaItermitente:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaModerada-ChuvaModeradaItermitente.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaLeve:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFraca-ChuvaLeve-ChuvaLeveNasProximidades.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaLeveIrregular:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaLeveIrregular.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GaroaGeladaForte:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/GaroaGeladaForte-GaroaCongelanteIrregular.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GaroaGelada:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/GaroaGelada.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GaroaLeve:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/GaroaLeve.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GaroaLeveIrregular:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/GaroaLeveIrregular.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NevoeiroGelado:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/NevoeiroGelado.png")" class="place-right"></text>
+                              break;
+    case TipoClima.Nevoeiro:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/Nevoeiro-Nevoa.png")" class="place-right"></text>
+                              break;
+    case TipoClima.Nevasca:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteDeGranizo.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveVentania:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteDeGranizo.png")" class="place-right"></text>
+                              break;
+    case TipoClima.TrovoadasLocalizadas:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/TrovoadasLocalizadas.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GaroaCongelanteIrregular:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/GaroaGelada.png")" class="place-right"></text>
+                              break;
+    case TipoClima.GranizoIrregularLocalizado:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/GranizoIrregularLocalizado.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NeveIrregularLocalizado:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaForteDeGranizo.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ChuvaLeveNasProximidades:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ChuvaFraca-ChuvaLeve-ChuvaLeveNasProximidades.png")" class="place-right"></text>
+                              break;
+    case TipoClima.Nevoa:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/Nevoeiro-Nevoa.png")" class="place-right"></text>
+                              break;
+    case TipoClima.NuvensCarregadas:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/NuvensCarregadas.png")" class="place-right"></text>
+                              break;
+    case TipoClima.Nublado:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/Nublado.png")" class="place-right"></text>
+                              break;
+    case TipoClima.ParcialmenteNublado:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/ParcialmenteNublado.png")" class="place-right"></text>
+                              break;
+    case TipoClima.CeuLimpoSol:
+    <text><img class="icone"  src="@Url.Content("~/Content/img/weatherIcons/CeuLimpoSol.png")" class="place-right"></text>
+                              break;
+    default:
+                              throw new ArgumentOutOfRangeException();
+}
+<span class="data">@Model.Data.ToString("dd/MM/yyyy")</span> 

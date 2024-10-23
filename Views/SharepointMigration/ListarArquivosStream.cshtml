@@ -1,0 +1,183 @@
+﻿@model  System.Collections.Generic.IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ImageStreamFileMigracaoDto>
+
+    @{
+        ViewBag.Title = @ViewBag.title;
+        Layout = "~/Views/Shared/_LayoutBasic.cshtml";
+    }
+
+    @System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro.css")
+    @System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro-icons.css")
+    @System.Web.Optimization.Styles.Render("~/Content/css/bootmetro/bootmetro-icons-ie7.css")
+
+    @{
+        var listImgExtension = new System.Collections.Generic.List<string>() {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".svg",
+            ".webp",
+            ".tif"
+            };
+
+
+        var pages = (int)ViewBag.pages;
+        var range = (int)ViewBag.range;
+        var inicial = (int)ViewBag.inicial;
+        var final = (int)ViewBag.final;
+        var total = (int)ViewBag.total;
+
+        var init = 1;
+        var f = range;
+
+        var atualPage = final / range;
+
+    }
+
+
+    @section script
+        {
+        <script type="text/javascript" src="@Url.Content("~/Scripts/SharepointMigration/sharepointMigration.js")"></script>
+    }
+
+    <div class="container" style="height: 100%">
+
+        <div class="page-header">
+            <h1>@ViewBag.title</h1>
+        </div>
+
+        <a type="submit" class="btn btn-primary" href="/SharepointMigration">
+            <i class="icon-arrow-left"></i>Voltar
+        </a>
+
+        <div class="well">
+            <form action="/SharepointMigration/ListarArquivosStream" method="get">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <label for="inicial">inicial:</label>
+                        <input type="number" id="inicial" name="inicial" value="1" />
+                    </div>
+                    <div class="span3">
+                        <label for="final">final:</label>
+                        <input type="number" id="final" name="final" value="50" />
+                    </div>
+                    <div class="span3">
+                        <br />
+                        <input type="submit" value="Listar" />
+                    </div>
+                </div>
+                <div class="row-fluid">
+
+                </div>
+            </form>
+        </div>
+
+        @if (Model == null)
+        {
+            <p>Nenhum arquivo carregado</p>
+        }
+        else
+        {
+            var count = inicial;
+
+            <div class="well">
+                <div class="row">
+                    <div class="span4">Página atual: @atualPage</div>
+                    <div class="span4">Range: @range</div>
+                    <div class="span3">Total de imagens: @total</div>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>ID</th>
+                        <th>Imagem Nome</th>
+                        <th>Hash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in Model)
+                    {
+                    <tr>
+                        <td>@count</td>
+                        <td>@file.ImagemId</td>
+                        @if (listImgExtension.Contains(file.ImagemExtensao))
+                        {
+                            <td><a href="/SharepointMigration/ArquivoPage?idArquivo=@file.ImagemId" target="_blank">@file.ImagemOriginalNome</a></td>
+                        }
+                        else
+                        {
+                            <td><a href="/SharepointMigration/Arquivo?idArquivo=@file.ImagemId" target="_blank">@file.ImagemOriginalNome</a></td>
+                        }
+                        <td>@file.Hash</td>
+                    </tr>
+
+                        count++;
+                    }
+                </tbody>
+            </table>
+
+
+            <ul class="pager">
+                    @{
+                        var classDisabled = "";
+                        var classDisabledFinal = "";
+                        if (atualPage == 1) { classDisabled = "disabled"; }
+                        if (atualPage == pages) { classDisabledFinal = "disabled"; }
+
+
+                        //var nextInit = ((range * pages) - range) + 1;
+                        //var nextFinal = range * pages;
+
+
+
+                        var nextInit = init + (range * atualPage);
+                        var nextFinal = f + (range * atualPage);
+
+
+                        var previousInit = (nextInit - range) - range;
+                        var previousFinal = (nextFinal - range) - range;
+
+                        var urlNext = classDisabledFinal == ""? "/SharepointMigration/ListarArquivosStream?inicial=" + nextInit+ "&final=" + nextFinal : "#";
+
+                    }
+                <li class="previous @classDisabled">
+                    <a href="/SharepointMigration/ListarArquivosStream?inicial=@previousInit&final=@previousFinal">Previous</a>
+                </li>
+                <li class="next @classDisabledFinal">
+                    <a href="@urlNext">Next</a>
+                </li>
+            </ul>
+            <div class="pagination pagination-centered">
+                <ul>
+                    @for (int i = 1; i <= pages; i++)
+                                {
+                                    var atual = final / range;
+
+                                    if (i == atual)
+                                    {
+                            <li class="disabled">
+                                <a href="/SharepointMigration/ListarArquivosStream?inicial=@init&final=@f">
+                                    @i
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="active">
+                                <a href="/SharepointMigration/ListarArquivosStream?inicial=@init&final=@f">
+                                    @i
+                                </a>
+                            </li>
+                        }
+
+                    init = init + range;
+                    f = f + range;
+                    }
+                </ul>
+            </div>
+        }
+
+
+    </div>

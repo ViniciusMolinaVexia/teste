@@ -1,0 +1,1241 @@
+﻿.section-project
+{
+    padding-top: 3px;
+    margin-left: 0;
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.section-project .bt-exibir
+{
+    position: absolute;
+    bottom: -17px;
+    left: 410px;
+}
+
+.section-project .bt-exibir-aberto
+{
+    position: absolute;
+    bottom: -17px;
+    left: 457px;
+}
+
+.section-project .bt-ocultar
+{
+    position: absolute;
+    bottom: -17px;
+    left: 360px;
+}
+
+.section-project .tile-content
+{
+    bottom: 0;
+    display: inline-block;
+    height: auto;
+    left: 0;
+    line-height: 24px;
+    margin-bottom: 31px;
+    position: absolute;
+    right: 0;
+}
+
+.barra-sup-carrossel
+{
+    margin: 0;
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.barra-sup-carrossel .meus-projetos
+{
+    float: left;
+}
+
+.barra-sup-carrossel .meus-projetos h2
+{
+    float: left;
+    padding: 15px 0 0 0 !important;
+}
+
+.titulo
+{
+    font-family: Bree;
+    font-size: 30px;
+    font-weight: normal;
+    width: 300px;
+    float: left;
+}
+
+.barra-sup-carrossel .meus-projetos span
+{
+    font-family: Bree;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.barra-sup-carrossel .filtro-carrossel
+{
+    float: right;
+    padding-top: 27px;
+}
+
+.barra-sup-carrossel .filtro-carrossel span
+{
+    font-family: Trebuchet MS;
+    font-size: 20px;
+    font-weight: normal;
+    color: #6f6f6f;
+    margin: 0 10px 0 0;
+    float: left;
+}
+
+.barra-sup-carrossel .filtro-carrossel .campo-status, .barra-sup-carrossel .filtro-carrossel .campo-estados, .div-busca-projetos input
+{
+    font-size: 12px;
+    color: #a1a1a1;
+    border: 1px solid #096b5b;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.barra-sup-carrossel .filtro-carrossel .campo-status, .barra-sup-carrossel .filtro-carrossel .campo-estados
+{
+    margin-right: 8px;
+}
+
+.barra-sup-carrossel .filtro-carrossel .campo-status, .barra-sup-carrossel .filtro-carrossel .campo-estados, .div-busca-projetos input
+{
+    width: 183px;
+    min-width: 183px;
+}
+
+.div-busca-projetos
+{
+    position: relative;
+    display: inline-block;
+    margin: 0px !important;
+    width: 194px;
+}
+
+.div-busca-projetos input
+{
+    margin-bottom: 1px;
+    padding: 6px 5px;
+}
+
+.btn-busca-projetos
+{
+    background: url("../img/icons/ico-busca-campo.png") 0 0 no-repeat !important;
+    height: 27px !important;
+    line-height: 20px;
+    margin: 0;
+    min-height: 27px !important;
+    min-width: 27px !important;
+    position: absolute;
+    right: 0;
+    top: 1px;
+    width: 27px !important;
+}
+
+
+#projetos
+{
+    overflow: hidden;
+}
+
+.carrossel
+{
+    display: block;
+    float: left;
+    padding-top: 15px;
+}
+
+.carrossel .tile-projeto
+{
+    width: 235px;
+    height: 205px;
+    border-top: 3px solid #006655;
+    border-right: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    box-shadow: 0 0 1px #FFFFCC inset;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-family: 'Segoe UI Semilight' , 'Open Sans' ,Verdana,Arial,Helvetica,sans-serif;
+    font-size: 11pt;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    margin: 0;
+    /*overflow: hidden;*/
+    position: relative;
+    text-decoration: none;
+}
+
+.carrossel .tile-projeto.no-bd-left
+{
+    border-left: none !important;
+}
+
+.carrossel .tile-projeto .tile-topo
+{
+    background-color: #FFFFFF;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.carrossel .tile-projeto .tile-topo h2
+{
+    color: #006655;
+    font-family: BreeRgRegular;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 15px;
+    margin: 0 !important;
+}
+
+.carrossel .tile-projeto .tile-topo h3, .carrossel .tile-projeto .tile-topo h4
+{
+    color: #6f6f6f;
+    font-family: BreeRgRegular;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 !important;
+}
+
+.carrossel .tile-projeto .tile-topo h4 {
+    font-size: 16px;
+}
+
+.carrossel .tile-projeto .responsavel, .carrossel .tile-projeto .status, .carrossel .tile-projeto .atualizado
+{
+    color: #a1a1a1;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: normal;
+    display: block;
+    margin-left: 8px;
+}
+
+.carrossel .tile-projeto .div-inferior
+{
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.carrossel .tile-projeto .codigo
+{
+    color: #6f6f6f !important;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 8px;
+    float: left;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto
+{
+    width: 90px;
+    float: right;
+    position: relative;
+    z-index: 99;
+}
+
+.box-seguidores {
+    position: absolute;
+    top: 20px;
+    right: -150px;
+    z-index: 9999;
+    width: 200px;
+    max-height: 120px;
+    overflow: auto;
+    background: #FFF;
+    color: #c1c1c1;
+    padding: 5px;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto .ico-projetos-pai, .carrossel .tile-projeto .div-inferior .icones-projeto .ico-localizacao
+{
+    width: 16px;
+    height: 17px;
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto .ico-projetos-pai
+{
+    background: url(../img/icons/ico-projeto-pai.png) no-repeat 0 1px;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto .ico-localizacao
+{
+    background: url(../img/icons/ico-localizacao.png) no-repeat 0 1px;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto .ico-seguir
+{
+    background: url(../img/icons/ico-seguir.png) no-repeat 0 1px;
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto .ico-seguir-inativo
+{
+    background: url(../img/icons/ico-seguir-inativo.png) no-repeat 0 1px;
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.carrossel .tile-projeto .div-inferior .icones-projeto .numero-seguir
+{
+    color: #006655;
+    font-family: Trebuchet MS;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.section-middle
+{
+    float: left;
+    display: block;
+}
+
+.tiles-my-panel
+{
+    width: 52%;
+    float: left;
+}
+
+.tiles-my-panel .tile
+{
+    background-color: #62bb46;
+    border: 3px solid #62bb46;
+    display: block;
+    float: left;
+    height: 140px;
+    margin: 0 13px 13px 0;
+    position: relative;
+    width: 140px;
+}
+
+.tiles-my-panel .tile .nome-tile, .tiles-my-panel .tile-triple .nome-tile, .tiles-my-panel .tile-triple-links .nome-tile
+{
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    font-weight: normal;
+    width: 92px;
+    line-height: 13px;
+}
+.tiles-my-panel .tile .numero-tile
+{
+    position: absolute;
+    top: 102px;
+    right: 3px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    width: 36px;
+}
+.tiles-my-panel .tile:hover
+{
+    border: 3px solid #006655;
+}
+
+.tiles-my-panel .tile-triple
+{
+    background-color: #62bb46;
+    border: 3px solid #62bb46;
+    display: block;
+    float: left;
+    height: 140px;
+    margin: 0 0 13px 0;
+    position: relative;
+    width: 458px;
+}
+
+.tiles-my-panel .tile-triple .numero-tile
+{
+    position: absolute;
+    top: 102px;
+    left: 80px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    width: 36px;
+}
+
+.tiles-my-panel .tile-triple.dark-green
+{
+    background-color: #006655;
+    border: 3px solid #006655;
+}
+
+.tiles-my-panel .tile-triple.dark-green:hover
+{
+    border: 3px solid #62bb46;
+}
+
+.tiles-my-panel .tile-triple-links
+{
+    background-color: #62bb46;
+    border: 3px solid #62bb46;
+    display: block;
+    float: left;
+    min-height: 97px !important;
+    margin: 0 0 13px 0;
+    position: relative;
+    width: 458px;
+}
+
+.tiles-my-panel .tile-triple.clima-tempo .top-tile
+{
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 30px;
+    font-weight: normal;
+    width: 115px;
+    line-height: 13px;
+}
+
+.tiles-my-panel .tile-triple.clima-tempo .city-tile
+{
+    position: absolute;
+    top: 40px;
+    left: 8px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    font-weight: normal;
+    width: 115px;
+    line-height: 13px;
+}
+
+.tiles-my-panel .tile-triple.clima-tempo .text-tile
+{
+    position: absolute;
+    top: 56px;
+    left: 8px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    font-weight: normal;
+    width: 115px;
+    line-height: 13px;
+}
+
+/* --------- Ícones - Tiles --------- */
+
+.tiles-my-panel .ico-agenda
+{
+    background-image: url("../img/icons/ico-agenda.png");
+    background-repeat: no-repeat;
+    background-position: 30px 30px;
+}
+
+.tiles-my-panel .ico-contatos
+{
+    background-image: url("../img/icons/ico-contatos.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-relatorios
+{
+    background-image: url("../img/icons/ico-relatorios.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-documentos
+{
+    background-image: url("../img/icons/ico-documentos.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-inteligencia-mercado
+{
+    background-image: url("../img/icons/ico-inteligencia-mercado.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-mapas
+{
+    background-image: url("../img/icons/ico-mapas.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-modelos-padroes
+{
+    background-image: url("../img/icons/ico-modelos-padroes.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-linha-tempo
+{
+    background-image: url("../img/icons/ico-linha-tempo.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-projetos-recebidos
+{
+    background-image: url("../img/icons/ico-projetos-recebidos.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-protocolos
+{
+    background-image: url("../img/icons/ico-protocolos.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-projetos-depto
+{
+    background-image: url("../img/icons/ico-projetos-depto.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.tiles-my-panel .ico-dados-projeto
+{
+    background-image: url("../img/icons/ico-dados-projeto.png");
+    background-repeat: no-repeat;
+    background-position: 30px 20px;
+}
+
+.section-right
+{
+    float: right;
+    padding: 9px 0;
+    margin-right: 20px;
+}
+
+.section-right .linha-agenda
+{
+    width: 290px;
+    background: url("../img/icons/ico-localizacao-wsmall.png") 278px 19px no-repeat;
+    padding-bottom: 4px;
+}
+
+.section-right .linha-agenda span
+{
+    color: #FFFFFF;
+    display: block;
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    font-weight: bold;
+    height: 19px;
+    overflow: hidden;
+    text-decoration: none;
+    width: 275px;
+}
+
+.section-right .linha-agenda:hover span {
+    color: #62BB46 !important;
+}
+
+.section-right .linha-agenda.bd-bottom
+{
+    border-bottom: 1px solid #4D9488;
+}
+
+.links
+{
+    display: block;
+    padding: 20px;
+}
+
+.links a:first-child
+{
+    margin-left: 5px;
+}
+
+.links a
+{
+    margin-right: 10px;
+}
+
+.links .ico-checkin-tam
+{
+    background-image: url(../img/icons/ico-checkin.png);
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-checkin-tam:hover
+{
+    background-image: url(../img/icons/ico-checkin-tam.png);
+}
+
+.links .ico-checkin-gol
+{
+    background-image: url(../img/icons/ico-checkin.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-checkin-gol:hover
+{
+    background-image: url(../img/icons/ico-checkin-gol.png);
+}
+
+.links .ico-checkin-azul
+{
+    background-image: url(../img/icons/ico-checkin.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-checkin-azul:hover
+{
+    background-image: url(../img/icons/ico-checkin-azul.png);
+}
+
+.links .ico-jetstream
+{
+    background-image: url(../img/icons/ico-jetstream.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-jetstream:hover
+{
+    background-image: url(../img/icons/ico-jetstream-over.png);
+}
+
+.links .ico-automidia
+{
+    background-image: url(../img/icons/ico-automidia.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-automidia:hover
+{
+    background-image: url(../img/icons/ico-automidia-over.png);
+}
+
+.links .ico-suprimentos
+{
+    background-image: url(../img/icons/ico-suprimentos.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-suprimentos:hover
+{
+    background-image: url(../img/icons/ico-suprimentos-over.png);
+}
+
+.links .ico-fundacao
+{
+    background-image: url(../img/icons/ico-fundacao.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-fundacao:hover
+{
+    background-image: url(../img/icons/ico-fundacao-over.png);
+}
+
+.links .ico-google
+{
+    background-image: url(../img/icons/ico-google.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 38px;
+    height: 38px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.links .ico-google:hover
+{
+    background-image: url(../img/icons/ico-google-over.png);
+}
+
+.clima-tempo .section-right
+{
+    padding: 0;
+    margin-right: 0;
+}
+
+.clima-tempo .section-right .linha-clima-hoje
+{
+    width: 115px;
+    text-align: center;
+    float: left;
+    height: 125px;
+    padding-top: 15px;
+}
+
+.section-right .linha-clima-hoje.bd-right, .section-right .linha-clima.bd-right
+{
+    border-right: 1px solid #91d07e;
+}
+
+.section-right .linha-clima-hoje .titulo
+{
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    font-weight: normal;
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+.clima-tempo .section-right .linha-clima .icone
+{
+    width: 100%;
+    display: block;
+    width: 70px;
+    height: 60px;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+
+.section-right .linha-clima-hoje .data
+{
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+.clima-tempo .section-right .linha-clima
+{
+    width: 115px;
+    text-align: center;
+    float: left;
+    height: 115px;
+    padding-top: 25px;
+}
+
+.section-right .linha-clima .titulo
+{
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+.section-right .linha-clima-hoje .icone
+{
+    width: 100%;
+    display: block;
+    width: 70px;
+    height: 60px;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.section-right .linha-clima .data
+{
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    font-weight: normal;
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+
+.div-posts
+{
+    float: right;
+    width: 48%;
+}
+
+.div-posts .top
+{
+    float: left;
+    display: block;
+    width: 100%;
+}
+.div-posts .top h2
+{
+    width: 200px;
+    float: left;
+}
+
+.div-posts .top a
+{
+    display: inline-block !important;
+    margin-top: 23px;
+}
+
+.div-posts .posts   
+{
+    display: block;
+    float: left;
+    max-height: 680px;
+    overflow-y: scroll;
+}
+
+.div-search
+{
+    display: block;
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.div-search input
+{
+    margin-bottom: 1px;
+    min-width: 445px;
+    width: 445px;
+    font-size: 14px;
+    color: #a1a1a1;
+    border: 1px solid #096b5b;
+    padding: 8px 5px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.div-search .btn-busca-posts
+{
+    background: url("../img/icons/ico-busca-post.png") no-repeat scroll 0 0 transparent !important;
+    height: 32px !important;
+    line-height: 20px;
+    margin: 0;
+    min-height: 32px !important;
+    min-width: 32px !important;
+    position: absolute;
+    right: 0;
+    top: 1px;
+    width: 27px !important;
+}
+
+.post-notificacoes
+{
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.post-notificacoes .div-checkbox
+{
+    width: 7%;
+    float: left;
+}
+
+.post-notificacoes .dados-post
+{
+    float: left;
+    line-height: 18px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.post-notificacoes .ico-calendario-inativo
+{
+    background: url("../img/icons/ico-calendario-inativo.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 17px;
+    position: absolute;
+    right: 10px;
+    text-indent: -9999px;
+    top: 73px;
+    width: 17px;
+}
+
+.post-notificacoes .nome-post
+{
+    color: #006655;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+
+.post-notificacoes .usario-post
+{
+    color: #6F6F6F;
+    font-size: 12px;
+}
+
+.post-notificacoes .ico-post-like
+{
+    top: 36px;
+}
+
+.nome-projeto-post {
+    color: #006655; 
+    font-size: 14px;
+    text-decoration: none
+}
+
+/* *********** MODAIS *********** */
+
+/* Modal Visualizar Post */
+
+#modalVisPost .ico-post-excluir
+{
+    right: 30px;
+    top: -14px;
+}
+
+#modalVisPost .nome-post
+{
+    font-size: 18px;
+}
+
+#modalVisPost .msg-post
+{
+    clear: both;
+    color: #A1A1A1;
+    font-size: 13px;
+    margin: 0 0 20px;
+    width: 100%;
+    overflow-y: scroll;
+    height: 200px;
+}
+
+/* Fim Modal Visualizar Post */
+
+
+
+/* Modal Criar Post */
+
+#modalCriarPost .dados-post
+{
+    width: 92%;
+}
+
+#modalCriarPost .nome-post
+{
+    font-size: 18px;
+    width: 100%;
+}
+
+#modalCriarPost .data-post
+{
+    width: 38%;
+    float: left;
+}
+
+#modalCriarPost .ico-calendario
+{
+    background: url("../img/icons/ico-calendario.png") no-repeat scroll 0 0 transparent;
+    color: #006655;
+    display: inline-block;
+    text-indent: -9999px;
+    height: 17px;
+    width: 40px;
+}
+
+#modalCriarPost .box-text-editor
+{
+    margin-bottom: 5px;
+    float: left;
+}
+
+#modalCriarPost .box-text-editor img
+{
+    display: block;
+    float: left;
+    height: 30px;
+    margin: 0 10px 0 0;
+    width: 79px;
+}
+
+#modalCriarPost .msg-post
+{
+    width: 99%;
+}
+
+#modalCriarPost .msg-post textarea
+{
+    height: 150px;
+}
+
+#modalCriarPost .bt-padrao
+{
+    margin-right: 5px;
+    margin-left: 0;
+}
+
+#modalCriarPost .icones-post a
+{
+    margin: 10px 5% 0 0;
+}
+
+#modalCriarPost select
+{
+    background: url("../img/ico-publicacao.png") no-repeat scroll 3px 7px transparent;
+    padding-left: 20px;
+    width: 200px;
+    color: #006655;
+}
+
+#modalCriarPost .ico-post-perfil-publicacao
+{
+    color: #006655;
+    display: block;
+    float: left;
+    font-size: 13px;
+    height: 18px;
+    margin-left: 2% !important;
+    text-decoration: none;
+    text-indent: 18px;
+    width: 145px;
+}
+
+/* Fim Modal Criar Post */
+
+
+
+
+/* Modal Visualizar Anexo Post */
+
+#modalVisAnexoPost .topo {
+    display: block;
+    float: left;
+    margin-bottom: 30px;
+}
+
+#modalVisAnexoPost .topo .col-esq {
+    width: 50%;
+    float: left;
+}
+
+#modalVisAnexoPost .topo .col-dir {
+    width: 50%;
+    float: right;
+}
+
+#modalVisAnexoPost .forms .form-line {
+    float: left;
+    width: 100%;
+}
+
+#modalVisAnexoPost .forms label {
+    display: inline-block !important;
+    width: 130px;
+    font-size: 13px;
+}
+
+#modalVisAnexoPost .forms span {
+    font-size: 12px;
+}
+
+.box-tabela table .ajuste-ico-download {
+	margin-left: 13px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-1 {
+    width: 98px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-2 {
+    width: 93px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-3 {
+    width: 116px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-4 {
+    width: 117px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-5 {
+    width: 169px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-6 {
+    width: 135px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-7 {
+    width: 70px;
+}
+
+/*   */
+
+#modalVisAnexoPost .box-tabela td.colun-1 {
+    width: 129px;
+}
+
+#modalVisAnexoPost .box-tabela td.colun-2 {
+    width: 176px;
+}
+
+#modalVisAnexoPost .box-tabela td.colun-3 {
+    width: 100px;
+}
+
+#modalVisAnexoPost .box-tabela td.colun-4 {
+    width: 217px;
+}
+
+#modalVisAnexoPost .box-tabela td.colun-5 {
+    width: 471px;
+}
+
+#modalVisAnexoPost .box-tabela td.colun-6 {
+    width: 347px;
+}
+
+#modalVisAnexoPost .box-tabela td.colun-7 {
+    width: 56px;
+}
+    
+/* Fim Modal Visualizar Anexo Post */
+
+
+
+
+/* Modal Inserir Anexo Post */
+
+#modalInserirAnexoPost .topo {
+    display: block;
+    float: left;
+    margin-bottom: 30px;
+}
+
+#modalInserirAnexoPost .topo .col-esq {
+    width: 50%;
+    float: left;
+}
+
+#modalInserirAnexoPost .topo .col-dir {
+    width: 50%;
+    float: right;
+}
+
+#modalInserirAnexoPost .forms .form-line {
+    float: left;
+    width: 100%;
+}
+
+#modalInserirAnexoPost .forms label {
+    display: inline-block !important;
+    width: 130px;
+    font-size: 13px;
+}
+
+#modalInserirAnexoPost .forms span {
+    font-size: 12px;
+}
+
+
+
+#modalInserirAnexoPost .box-tabela th.colun-1 {
+    width: 98px;
+}
+
+#modalInserirAnexoPost .box-tabela th.colun-2 {
+    width: 93px;
+}
+
+#modalInserirAnexoPost .box-tabela th.colun-3 {
+    width: 116px;
+}
+
+#modalInserirAnexoPost .box-tabela th.colun-4 {
+    width: 117px;
+}
+
+#modalInserirAnexoPost .box-tabela th.colun-5 {
+    width: 169px;
+}
+
+#modalVisAnexoPost .box-tabela th.colun-6 {
+    width: 135px;
+}
+
+#modalInserirAnexoPost .box-tabela th.colun-7 {
+    width: 70px;
+}
+
+/*   */
+
+#modalInserirAnexoPost .box-tabela td.colun-1 {
+    width: 129px;
+}
+
+#modalInserirAnexoPost .box-tabela td.colun-2 {
+    width: 176px;
+}
+
+#modalInserirAnexoPost .box-tabela td.colun-3 {
+    width: 100px;
+}
+
+#modalInserirAnexoPost .box-tabela td.colun-4 {
+    width: 217px;
+}
+
+#modalInserirAnexoPost .box-tabela td.colun-5 {
+    width: 471px;
+}
+
+#modalInserirAnexoPost .box-tabela td.colun-6 {
+    width: 347px;
+}
+
+#modalInserirAnexoPost .box-tabela td.colun-7 {
+    width: 56px;
+}
+    
+/* Fim Modal Inserir Anexo Post */

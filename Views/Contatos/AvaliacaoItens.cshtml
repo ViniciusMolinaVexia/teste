@@ -1,0 +1,39 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.AvaliacaoContatoDto>
+
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Avaliações")</p>
+}
+else
+{
+    var idProjeto = (Model != null && Model.First().ProjetoId > 0) ? Model.First().ProjetoId : null;
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.ContatosAvaliações, idProjeto: idProjeto);
+    foreach (var avaliacao in Model)
+    {
+        var valor = avaliacao.Nota == 0 ? "pessimo" : (avaliacao.Nota > 0 && avaliacao.Nota <= 1 ? "ruim" : (avaliacao.Nota > 1 && avaliacao.Nota <= 2 ? "neutro" : (avaliacao.Nota > 2 && avaliacao.Nota <= 3 ? "bom" : "excelente")));
+        var descricaoNota = string.Format("{0}{1}", valor.Substring(0, 1).ToUpper(), valor.Substring(1, valor.Length - 1).ToLower());
+        if (valor == "pessimo"){descricaoNota = "Péssimo";}
+            
+        
+        <tr data-id="@avaliacao.AvaliacaoContatoId">
+            <td class="colun-1"><span class="table-nota @string.Concat("nota-", @valor)">@descricaoNota</span></td>
+            <td class="colun-2">@avaliacao.NomeUsuario @avaliacao.SobrenomeUsuario</td>
+            <td class="colun-3">@avaliacao.DataAvaliacao</td>
+            <td class="colun-4 table-left">@avaliacao.Comentario</td>
+            <td class="colun-5">
+            @if (comportamentoVisual.PodeEditar && (avaliacao.UsuarioId == avaliacao.UsuarioLogadoId))
+            {
+                <a href="javascript:void(0)" class="ico-editar editar-avaliacao" data-avaliacaoId="@avaliacao.AvaliacaoContatoId">Editar</a>
+            }
+            </td>
+            <td class="colun-6">
+            @if (comportamentoVisual.PodeRemover && (avaliacao.UsuarioId == avaliacao.UsuarioLogadoId || avaliacao.Administrador))
+            {
+                <a href="javascript:void(0)" class="ico-excluir excluir-avaliacao" data-avaliacaoId="@avaliacao.AvaliacaoContatoId">Excluir</a>
+            }
+            </td>
+        </tr>
+    }
+}

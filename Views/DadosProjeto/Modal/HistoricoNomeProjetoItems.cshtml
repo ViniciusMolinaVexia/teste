@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.Projeto.HistoricoNomeProjetoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "histórico de nomes do projeto.")</p>
+}
+else
+{
+    foreach (var historicoNome in Model)
+    {
+        <tr data-id="@historicoNome.Id">
+            <td class="table-left">
+                @historicoNome.Nome
+            </td>
+            <td>
+                @historicoNome.Usuario
+            </td>
+            <td>
+                @historicoNome.Data
+            </td>
+        </tr>
+    }
+}

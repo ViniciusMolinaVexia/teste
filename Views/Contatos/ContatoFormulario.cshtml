@@ -1,0 +1,201 @@
+﻿@using System.Globalization
+@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@model Gafisa.AlphaBook.Models.Home.ContatoModel
+@{
+    long? projetoId = Model.Projeto == null ? 0 : Model.Projeto.Id;
+    var edicao = Model.IdContato.HasValue && Model.IdContato != 0;
+
+    var comportamentoVisual = ComportamentoVisual.ObterComportamentoVisual(ViewData, Funcionalidade.Contatos, edicao, projetoId, idContato: Model.IdContato);
+}
+
+<form class="forms" id="formSalvarContato" onsubmit="return false;">
+    <fieldset>
+        <input type="hidden" id="hddLatitude" name="Lat" value="" />
+        <input type="hidden" id="hddLongitude" name="Long" value="" />
+        <div class="sep-line-form">
+            <div class="form-line form-nome">
+                <label>
+                    * Nome:</label>
+                @Html.TextBoxFor(model => model.NomeContato)
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-tipo-contato">
+                <label>Tipo de contato:</label>
+                @Html.EnumDropDownListFor(model => model.TipoPessoa)
+            </div>
+            <div class="form-line form-cpf-cnpj">
+                <label>
+                    CPF / CNPJ:</label>
+                @Html.TextBoxFor(model => model.CpfCnpj)
+            </div>
+            <div class="form-line form-cpf-cnpj">
+                <label>CRECI:</label>
+                @Html.TextBoxFor(model => model.CRECI, new { maxlength = 6 })
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-categoria-contato">
+                <label>
+                    * Categoria de contato:</label>
+                <select id="tipoCategoriaFormulario" class="uf" style="width: 100%">
+                    <option value="">Selecione</option>
+                    @if (!String.IsNullOrWhiteSpace(Model.NomeTipoContato))
+                    {
+                        <option selected="selected" value="@Model.IdTipoContato">@(Model.NomeTipoContato)</option>
+                    }
+                </select>
+                <div id="categoriasFormulario" class="hidden" style="width: 218px;">
+                    <ul>
+                        @Html.Partial("Categorias", Model.Categorias)
+                    </ul>
+                </div>
+            </div>
+            <div class="form-line form-nome-empresa">
+                <label>
+                    Nome da empresa:</label>
+                @Html.TextBoxFor(model => model.NomeEmpresa)
+            </div>
+            <div class="form-line form-email">
+                @if (Model.PodeVerDadosConfidenciais)
+                {
+                    <label>Email:</label>
+                    @Html.TextBoxFor(model => model.Email)
+                }
+            </div>
+        </div>
+        @if (Model.PodeVerDadosConfidenciais)
+        {
+            <div class="sep-line-form">
+                <div class="form-line form-cep">
+                    <label>
+                        CEP:</label>
+                    <div class="box-input-busca">
+                        <input id="CEP" name="CEP" type="text" data-preventonpressenter="true" value="@Model.CEP">
+                        <a id="btnBuscarCep" href="javascript:void(0);">Buscar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sep-line-form">
+                <div class="form-line form-logradouro">
+                    <label>
+                        Logradouro:</label>
+                    @Html.TextBoxFor(model => model.Endereco)
+                </div>
+                <div class="form-line form-numero">
+                    <label>
+                        Número:</label>
+                    @Html.TextBoxFor(model => model.Numero)
+                </div>
+                <div class="form-line form-complento">
+                    <label>
+                        Complemento:</label>
+                    @Html.TextBoxFor(model => model.Complemento)
+                </div>
+            </div>
+            <div class="sep-line-form">
+                <div class="form-line form-bairro">
+                    <label>
+                        Bairro:</label>
+                    @Html.TextBoxFor(model => model.Bairro)
+                </div>
+                <div class="form-line form-UF">
+                    <label>
+                        UF:</label>
+                    @Html.DropDownListFor(model => model.Estado, Model.UFs, "Selecione", new { @class = "uf" })
+                </div>
+                <div class="form-line form-cidade">
+                    <label>
+                        Cidade:</label>
+                    <input id="cidade" name="cidade" data-id="@Model.CidadeId" type="text" value="@Model.Cidade" data-preventOnPressEnter="true"/>
+                </div>
+            </div>
+            <div data-idTelefone="@(Model.Telefones != null && Model.Telefones.Length > 0 ? Model.Telefones[0].Id : 0)" class="sep-line-form" id="ddd_telefone_0">
+                <div class="form-line form-tipo-tel">
+                    <label>
+                        Tipo Telefone:
+                    </label>
+                    <select id="tipoTelefone_0">
+                        @foreach (var item in Model.TiposTelefone)
+                        {
+                            var itemSelecionado = Model.Telefones != null && Model.Telefones.Any() ? Model.Telefones[0].IdTipoTelefone.ToString(CultureInfo.InvariantCulture) : string.Empty;
+                            <option @Html.Conditional(item.Value.Equals(itemSelecionado), "selected='selected'") value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-line form-ddd">
+                    <label>
+                        DDD:</label>
+                    <input type="text" id="ddd_0" value="@(Model.Telefones != null && Model.Telefones.Length > 0 && !Model.Telefones[0].DDD.IsNullOrEmpty() ? Model.Telefones[0].DDD : string.Empty)" />
+                </div>
+                <div class="form-line form-tel">
+                    <label>
+                        Telefone:</label>
+                    <input class="campo-telefone" type="text" id="telefone_0" value="@(Model.Telefones != null && Model.Telefones.Length > 0 && !Model.Telefones[0].Numero.IsNullOrEmpty() ? Model.Telefones[0].Numero : string.Empty)" />
+                    <a id="adicionarTelefoneContato" class="form-bt-add" href="javascript:void(0);">Adicionar</a>
+                </div>
+            </div>
+                        if (Model.Telefones != null)
+                        {
+                            for (var i = 1; i < Model.Telefones.Length; i++)
+                            {
+                                var telefone = Model.Telefones[i];
+                                var idDdlTelefone = string.Format("tipoTelefone_{0}", i);
+            <div class="sep-line-form" id="@string.Format("ddd_telefone_{0}", i)">
+                <div class="form-line form-tipo-tel">
+                    <select id="@idDdlTelefone">
+                        @foreach (var item in Model.TiposTelefone)
+                        {
+                            <option @Html.Conditional(item.Value.Equals(telefone.IdTipoTelefone.ToString(CultureInfo.InvariantCulture)), "selected='selected'")  value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-line form-ddd">
+                    <input type="text" id="@string.Format("ddd_{0}", i)" value="@(!telefone.DDD.IsNullOrEmpty() ? telefone.DDD : string.Empty)" />
+                </div>
+                <div class="form-line form-tel">
+                    <input class="campo-telefone" type="text" id="@string.Format("telefone_{0}", i)" value="@(!telefone.Numero.IsNullOrEmpty() ? telefone.Numero : string.Empty)" />
+                    <a class="form-bt-remove" href="javascript:void(0);" id="@string.Format("remover_{0}", i)" >Remover</a>
+                </div>
+            </div>
+                            }
+                        }
+        }
+        <div class="sep-line-form">
+            <div class="form-line form-confidencialidade">
+                <label>Confidencialidade:</label>
+                @Html.EnumDropDownListFor(model => model.Confidencialidade, null, Model.PodeVerDadosConfidenciais ? null : new { disabled = "disabled" })
+            </div>
+            <div id="confidencialidadeDepartamento" class="form-line form-confidencialidade-detalhe @Html.Conditional(Model.Confidencialidade != ConfidencialidadeContato.Departamento, "hide")">
+                <label>Departamento:</label>
+                @Html.DropDownListFor(model => model.IdDepartamentoConfidencialidade, Model.DepartamentosConfidencialidade, Model.PodeVerDadosConfidenciais ? null : new { disabled = "disabled" })
+            </div>
+            <div id="confidencialidadeUsuarios" data-source="@Model.ItensUsuariosConfidencialidade" class="form-line form-confidencialidade-detalhe @Html.Conditional(Model.Confidencialidade != ConfidencialidadeContato.UsuariosEspecificos, "hide")">
+                <label>Usuários:</label>
+                @if (Model.PodeVerDadosConfidenciais)
+                {
+                    <script language="javascript" type="text/javascript"> gafisa.alphabook.home.contatos.configurarAutoCompleteUsuarios(); </script>
+                    <select name="usuariosConfidencialidade" id="usuariosConfidencialidade" class="hide no-multiple-select"></select>
+                }
+                else if (Model.UsuariosConfidencialidade.HasItems())
+                {
+                    <span>@String.Join(", ", Model.UsuariosConfidencialidade.Select(u => u.NomeCompleto))</span>
+                }
+            </div>
+        </div>
+        <div class="sep-line-form">
+            <div class="form-line form-observacoes">
+                <label>
+                    Observações do contato:</label>
+                @Html.TextAreaFor(model => model.Observacao)
+            </div>
+        </div>
+        <div>
+            @if (comportamentoVisual.PodeSalvar)
+            {
+                <a id="btnSalvarContato" class="bt-padrao" href="javascript:void(0);">Salvar</a>    
+            }
+        </div>
+    </fieldset>
+</form>

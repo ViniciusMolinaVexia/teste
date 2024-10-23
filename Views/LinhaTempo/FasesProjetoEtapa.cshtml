@@ -1,0 +1,33 @@
+﻿@using Gafisa.AlphaBook.Dominio
+@model System.Collections.Generic.IEnumerable<Gafisa.AlphaBook.Dominio.DTO.EtapasLinhaTempoDto>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        var classe = String.Empty;
+
+        switch (item.StatusEtapaId)
+        {
+            case StatusEtapa.NaoSeAplica:
+                classe = "filho-na";
+                break;
+            case StatusEtapa.NaoIniciada:
+                classe = "filho-n-iniciado";
+                break;
+            case StatusEtapa.Iniciada:
+            case StatusEtapa.AguardandoValidacao:
+                classe = "filho-iniciado";
+                break;
+            case StatusEtapa.Concluida:
+            case StatusEtapa.ConcluidaAposFechamentoProxima:
+                classe = "filho-concluido";
+                break;
+        }
+    <li>
+        <a href="javascript:void(0);" class="@classe">
+            @item.ProjetoSequencia - @item.ProjetoNome <br />
+            <span>@item.DataBaseline.ToStringFormat()</span>
+        </a>
+    </li>
+    }
+</ul>

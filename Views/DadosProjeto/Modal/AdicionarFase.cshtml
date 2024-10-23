@@ -1,0 +1,29 @@
+﻿@model Gafisa.AlphaBook.Models.Admin.UsuarioModel
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close fechar">x</a>
+        <h3 id="">
+            Adicionar Fase do Projeto</h3>
+    </div>
+    <div class="modal-body">
+        <form class="forms">
+        <fieldset>
+            <div class="sep-line-form">
+                <div class="form-line modal-fases-nome">
+                    <label>* Nome da Fase/Projeto:</label>
+                    <input type="text" id="nomeFaseProjeto" maxlength="50" />
+                </div>
+            </div>
+            <div class="sep-line-form modal-fases-responsavel" id="dadosResponsavel" data-id="@Model.Usuario.Id">
+                <span>* Responsável:</span>
+                @Html.ProfilePhoto((int)Model.Usuario.Id, new { @class = "imagemResponsavel", alt = Model.Usuario.Nome })
+                <span id="nomeResponsavel">@string.Format("{0} {1}", Model.Usuario.Nome, Model.Usuario.Sobrenome) </span><a class="bt-trocar-responsavel" id="editarResponsavelFase"
+                    href="javascript:void(0);">Selecionar Responsável</a>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="bt-padrao" href="javascript:void(0);" id="salvarFase">Salvar</a>
+    </div>
+</div>

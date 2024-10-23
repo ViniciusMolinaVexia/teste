@@ -1,0 +1,309 @@
+﻿@using Gafisa.AlphaBook.Componentes.Configuration
+@using Gafisa.AlphaBook.Componentes.Sessao
+@using Gafisa.AlphaBook.Controllers
+@using Gafisa.AlphaBook.Dominio
+@using Gafisa.AlphaBook.Componentes.Permissao;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/font/font.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/Automplete/style.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/padroes.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui/jquery.multiselect.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui/jquery-te-1.4.0.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui/jquery-ui-1.10.3.custom.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/auto-suggest.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui/jqtree.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/orgchart/jquery.jOrgChart.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/home.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/projetos-recebidos.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/projetos-departamento.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/mapas.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/contatos-inserir.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/detalhes-contato.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/protocolos.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/inteligencia-mercado.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/contatos.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/dados-projeto.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/agenda.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/linha-tempo.css")" type="text/css" />
+    <link rel="stylesheet" media="print" href="@Url.Content("~/Content/css/linha-tempo-impressao-detalhe.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/relatorios.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/documentos.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/linhaTempo.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/aprovacao-etapa.css")" type="text/css" />
+    @RenderSection("styles", false)
+    <!-- Fim Estilos CSS -->
+    <!-- Script's -->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.livequery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.animate-colors-min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.watermark.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.maxlength-min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.meio.mask.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.mousewheel.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.touchSwipe.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.clickOutside.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.contentModal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.loading.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.gears.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.silverlight.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.flash.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.browserplus.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.html4.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/upload/plupload.html5.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.fcbkcomplete.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.KeyEvents.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.navegacao.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.dialogo.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tabela.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.tabela.header.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.jstree.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.PrintArea.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.ba-hashchange.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-1.10.3.custom.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery-te-1.4.0.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery.multiselect.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap/bootstrap.custom.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-sliderAccess.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui/jquery-ui-timepicker-addon.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Scripts/jquery/galleria/galleria-1.2.9.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/galleria/galleria-1.5.7.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js")"></script>*@
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/galleria/galleria.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/jquery.onPressEnter.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/core.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/padroes.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/mensagens.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/rotasMVC.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/autorizacao.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Autorizacao/funcoesAutorizacao.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/util.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/formControls.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/setup.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/serializacao.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/validacaoFormatos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/json2.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Comum.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Agenda.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/ProjetosRecebidos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/ProjetosDepartamento.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Post.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Contatos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Taxonomias.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Documentos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/AprovacaoEtapa.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Mensagens/Upload.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/clima.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/carrosselProjetos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/dadosUsuario.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/notificacao.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/projetosRecebidos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/projetosDepartamento.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/contadores.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/mapas.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/timeline.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/postagem.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/contatos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/dadosProjeto.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/protocolos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/inteligenciaMercado.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/agenda.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/linhaTempo.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/buscaGeral.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/associarProjetoPostagem.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/buscaGeral.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/aprovacaoEtapa.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/arquivoEmail.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/faq.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Documentos/documentos.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Templates/templates.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Templates/modal-template.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Templates/modal-taxonomia.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Templates/modal-classificacao.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ArquivosManuais/arquivosmanuais.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/PowerBi/powerbi.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/orgchart/jquery.jOrgChart.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/relatorios.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/relatorio-estrutura.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/relatorio-landbank.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/relatorio-pipeline.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Home/relatorio-andamento-projetos.js")"></script>
+
+    <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=@PortalConfiguration.GoogleSection.ApiKey" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/maps.js")"></script>
+    <script type="text/javascript">
+@*    Galleria.loadTheme('@Url.Content("~/Scripts/jquery/galleria/themes/classic/galleria.classic.min.js")');*@
+    /*Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/themes/classic/galleria.classic.min.js');*/
+    </script>
+    <!-- Fim Script's -->
+
+    <script type="text/javascript">
+        @{
+            var sessaoSistema = new SessaoSistema(ViewData);
+            var sessaoUsuario = new SessaoUsuario(sessaoSistema);
+            var departamento = sessaoUsuario.Departamento;
+            var cargo = sessaoUsuario.Cargo;
+            var nomeCompleto = sessaoUsuario.Nome.Split(' ').First() + " " + sessaoUsuario.Sobrenome.Split(' ').Last();
+
+            var permissaoBuscaGeral = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Geral, Funcionalidade.BuscaGeral, Acao.Visualizar);
+            var permissaoNotificacao = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Geral, Funcionalidade.CaixaNotificações, Acao.Visualizar);
+            var permissaoFaq = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Geral, Funcionalidade.FAQVisualizador, Acao.Visualizar);
+        }
+
+        var statusProjeto = { descartadaDireto: '@(StatusProjeto.DescartadaDireto)', fechada: '@(StatusProjeto.Fechada)', oferta: '@(StatusProjeto.Oferta)', avaliar: '@(StatusProjeto.Avaliar)' };
+        var areas = {prospeccao: '@(Departamento.Prospeccao)', negocios: '@(Departamento.Negocios)' };
+        var cargos = {analistaProspeccao: '@(Cargo.AnalistaProspeccao)', analistaNegocios: '@(Cargo.AnalistaNegocios)', coordenadorProspeccao: '@(Cargo.CoordenadorProspeccao)' };
+        var departamentoUsuario = @(departamento);
+        var cargoUsuario = @(cargo);
+        var usuarioDiretor = @(Cargo.EhDiretor(cargo).ToString().ToLower());
+        var usuarioGerente = @(Cargo.EhGerente(cargo).ToString().ToLower());
+        var urlBase = '@(AlphabookSettings.Url.AlphaBook.ToLower())';
+        var urlImpressaoLinhaTempo = '@(Url.Content("~/Content/css/linha-tempo-impressao.css"))';
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/namespace.js")"></script>
+</head>
+<body>
+    <div class="seg-header">
+        <div class="header">
+            <h1>
+                <a class="logo-alphabook" href="@AlphabookSettings.Url.AlphaBook">Alphabook</a>
+            </h1>
+            <div class="busca-geral">
+                <input class="" watermark="Busca geral" type="text" id="campoBuscaGeral" @(permissaoBuscaGeral ? String.Empty : "disabled='disabled' ") />
+                <a href="javascript:void(0);" id="botaoEfetuarBuscaGeral" class="bt-busca-geral @(permissaoBuscaGeral ? String.Empty : "inativo")">Buscar</a>
+            </div>
+            <div class="box-notificacoes">
+                <div class="box-mensagens">
+                    @if (permissaoNotificacao)
+                    {
+                        <a class="bt-mensagens" href="javascript:void(0);">Mensagens</a>
+                        <div class="box-notificacao-mensagens">
+                        </div>
+                        <div class="box-show-msg">
+                        </div>
+                    }
+                </div>
+                <div class="box-faq">
+                    @if (permissaoFaq)
+                    {
+                        <a class="bt-faq" href="javascript:void();" id="lnkFaq">FAQ</a>
+                    }
+                </div>
+            </div>
+            <div class="box-usuario">
+                <a class="bt-usuario" href="javascript:void(0);">
+                    <div class="photoContainer">@Html.ProfilePhoto(sessaoUsuario.Id.Value)</div>
+                </a>
+                <span><a class="bt-usuario" href="javascript:void(0);">@nomeCompleto</a></span>
+                <div class="box-detalhe-usuario"></div>
+            </div>
+        </div>
+    </div>
+    <div id="carregandoTela" class="loading-circulo hide">
+    </div>
+    <div class="seg-content">
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="seg-footer hide">
+        <div class="footer">
+            <span class="text-left">Todos os direitos reservados.<br />
+                @typeof(HomeController).Assembly.GetName().Version.ToString(3)</span> <a href="http://www.alphaville.com.br"
+                    class="text-right" title="www.alphaville.com.br">www.alphaville.com.br</a>
+        </div>
+    </div>
+    <div class="box-confirmacao">
+        <div class="msg-confirmacao">
+            <p>
+            </p>
+            <a class="bt-padrao bt-msg-fechar" href="javascript:void(0);">Ok</a>
+        </div>
+    </div>
+    <div class="box-alerta">
+        <div class="msg-alerta">
+            <p>
+            </p>
+            <a class="bt-padrao bt-msg-fechar" href="javascript:void(0);">Ok</a>
+        </div>
+    </div>
+    <div class="box-erro">
+        <div class="msg-erro">
+            <p>
+            </p>
+            <a class="bt-padrao bt-msg-fechar-erro" href="javascript:void(0);">Ok</a>
+        </div>
+    </div>
+    <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="conteudoModal">
+        </div>
+    </div>
+    <div id="modalConfirmacao" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="seg-modal">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="box-modal-confirmacao">
+                    <p>
+                    </p>
+                    <div class="box-bts-modal-confirmacao">
+                        <a id="nao" class="bt-padrao" href="javascript:void(0);">Não</a> <a id="sim" class="bt-padrao" href="javascript:void(0);">Sim</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalSelecaoTripla" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="seg-modal">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="box-modal-confirmacao">
+                    <p>
+                    </p>
+                    <div class="box-bts-modal-confirmacao">
+                        <a id="opcao1" class="bt-padrao" href="javascript:void(0);"></a>
+                        <a id="opcao2" class="bt-padrao" href="javascript:void(0);"></a>
+                        <a id="opcao3" class="bt-padrao" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-wrap antiscroll-wrap">
+        <div class="box-seguidores antiscroll-inner hide ">
+        </div>
+    </div>
+    <div id="modalEtapaCriarPost" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="modalEtapaPost" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="modalImpressaoTimeline" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="modalImpressaoContato" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;width: 1000px;left: 43%;"></div>
+    <div id="modalGalleriaPostPhoto" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="modalAssociarContato" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div id="modalEnviarEmail" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+</body>
+
+@RenderSection("scripts", false)
+<script type="text/javascript">
+    $.navegar.ajustarRodape();
+</script>
+
+</html>

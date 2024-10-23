@@ -1,0 +1,252 @@
+/* Legenda da Linha do tempo RESUMO */
+.resumo-header{
+	display:table;
+	width:100%;
+	padding:10px 0 30px 0;
+	border-bottom:1px solid #c1c1c1;
+}
+	.seg-leg {
+	    float:left;
+	    color:#a1a1a1;
+	    font-size:14px;
+	}
+
+	.seg-leg label,
+	.seg-leg span{
+		font-weight:bold;
+		float:left;
+	    margin-top: 5px;
+	}
+		div.leg-mudanca{
+			display:block;
+			float:left;
+			text-indent:-9999px;
+			width: 29px;
+			height:29px;
+			margin:0 10px 0 40px;
+			border-radius:50%;
+            -moz-border-radius:50%;
+            -webkit-border-radius:50%;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #000;
+		}
+
+		div.leg-posts{
+			display:block;
+			float:left;
+			text-indent:-9999px;
+		    width: 17px;
+		    height: 17px;
+			margin:6px 10px 0 40px;
+			border-style: solid;
+            border-width: 1px;
+            border-color: #000;
+		}
+		
+		span.leg-negocios{
+			background:#f4a61d;
+			color:#FFF;
+			padding:3px  10px;
+			border-radius:6px;
+			margin-left:70px;
+		}
+		span.leg-prospeccao{
+			background:#009eb4;
+			color:#FFF;
+			padding:3px 10px;
+			border-radius:6px;
+			margin-left:40px;
+		}
+		
+/* END Legenda da Linha do tempo RESUMO */
+
+/* Linha do Tempo RESUMO */
+
+.seg-linha-tempo{
+	width:852px;
+	height:250px;
+	overflow:auto;
+	margin:40px 0;
+	padding:20px;
+}
+
+.seg-linha-tempo-ver{
+	width:852px;
+	overflow:auto;
+	margin:40px 0;
+	padding:20px;
+}
+	.box-linha-tempo{
+		position:relative;
+		display:table;
+		height:120px;
+		background:url(../img/bg-linha-tempo.jpg) center repeat-x;
+	}
+	
+	.box-linha-tempo-ver{
+		position:relative;
+		display:table;
+		background:url(../img/bg-linha-tempo-ver.jpg) 55px 0 repeat-y;
+	}
+
+.item-linha{
+	position:relative;
+	width:110px;
+	height:140px;
+	float:left;
+	margin-right:20px;
+	text-align:center;
+	color:#a1a1a1;
+	font-size:12px;
+	line-height:15px;
+}
+
+.item-linha-ver {
+	position:relative;
+	width:110px;
+	height:140px;
+	margin-right:20px;
+	text-align:left;
+	color:#a1a1a1;
+	font-size:12px;
+	line-height:15px;
+}
+
+.item-linha-ver p 
+{
+    float: left;
+    margin-left: -140px;
+    margin-top: 55px;
+}
+
+.seg-linha-tempo .status, .seg-linha-tempo-ver .status{
+	position:absolute;
+	top:55px;
+	left:40px;
+	display:block;
+	width:29px;
+	height:29px;
+	text-indent:-9999px;
+	overflow:hidden;
+	border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+}	
+.seg-linha-tempo .post, .seg-linha-tempo-ver .post{
+	position:absolute;
+	top:60px;
+	left:45px;
+	display:block;
+	width:17px;
+	height:17px;
+	text-indent:-9999px;
+	overflow:hidden;
+	border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+}
+
+.text-down p{padding-top:95px;}
+
+.box-linha-tempo-mes{
+	position:relative;
+	clear:both;
+	display:table;
+	height:80px;
+	margin:5px 0 0 0;
+	overflow:hidden;
+	background: url(../img/bg-linha-tempo-mes.jpg) center repeat-x;
+}
+
+.box-linha-tempo-mes-ver{
+	position:relative;
+	display:table;
+	height:140px;
+	overflow:hidden;
+	background: url(../img/bg-linha-tempo-mes-ver.jpg) center repeat-y;
+	float: left;
+	width: 500px;
+}
+	.item-linha-mes{
+		position:relative;
+		float:left;
+		margin-top:30px;
+		margin-right:70px;
+		text-align:center;
+		color:#333;
+		padding-top:23px;
+		font-size:14px;
+		line-height:15px;
+		font-weight:bold;
+		text-transform:uppercase;
+		background: url(../img/bg-marcacao-mes.jpg) center 0 no-repeat;
+	}
+	
+	.item-linha-mes-ver{
+		position: relative;
+        margin-top: 67px;
+        margin-left: 219px;
+        text-align: center;
+        color: #333;
+        padding-top: 23px;
+        font-size: 14px;
+        line-height: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: url(../img/bg-marcacao-mes-ver.jpg) center 0 no-repeat;
+        text-indent: -100px;
+        height: 50px;
+	}
+
+.container-mes
+{
+    width: 895px;
+    height: 45px;
+    position:relative;
+    clear:both;
+    margin-top: 5px;
+}
+
+.container-mes .imagem-fundo
+{
+    position:absolute;
+    left:0;
+    top:0;
+    width: 895px;
+    height: 45px;
+}
+.container-mes .titulo-mes
+{
+    z-index:100;
+    position:absolute;
+    color:#222;
+	font-size:30px;
+	padding:0px 10px;
+	font-family: 'BreeRgRegular';
+}
+	#aba-detalhe .bt-padrao{margin-bottom:20px;}
+/* END Linha do Tempo RESUMO */
+
+/* detalhe */
+.page-break {
+    page-break-before: always;
+}
+
+.linha-tempo-nome-projeto {
+    font-size: 26px;
+    color: #6f6f6f;
+    font-weight: bold;
+}
+
+.linha-tempo-tipo-relatorio {
+    font-size: 14px;
+    color: #6f6f6f;
+}
+
+.detalheNomePost {
+    margin-bottom: 5px;
+}

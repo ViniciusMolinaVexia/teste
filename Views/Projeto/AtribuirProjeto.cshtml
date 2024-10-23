@@ -1,0 +1,38 @@
+﻿<div class="container-fluid">
+    <div class="container">
+        <div class="modal-header">
+            <div class="modalAtribuirProjeto">
+                <div class="ico-atribuir-projeto">
+                    <h1>Atribuir projeto</h1>
+                </div>
+                <div class="div-secao">
+                    <div class="div-1">
+                        <label class="label">Projeto:</label>
+                        <select id="ddlProjetos" name="projetoId">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="div-secao">
+                    <div class="div-2">
+                        <label class="label">Nome:</label>
+                        <input type="text" value="" id="nomeUsuario" maxlength="300" name="nomeUsuario" class="span2" />
+                        <a href="javascript:void(0)" id="incluirCoordenador" title="" class="btn-incluir">Incluir</a>
+                    </div>
+                </div>
+
+                <div id="atribuirProjeto" class="rolagem">
+                    <div id="loadAtribuirProjeto" class="loading hide"></div>
+                    @*tabela*@
+                    <div id="tabelaCoordenadores">
+                        
+                    </div>
+                </div>
+                <div class="div-btn">
+                    <a href="javascript:void(0)" data-dismiss="modal" class="btn-modal" id="fechaModalCompromissos">Fechar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

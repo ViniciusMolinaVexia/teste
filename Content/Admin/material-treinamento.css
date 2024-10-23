@@ -1,0 +1,110 @@
+﻿.inner
+{
+    height: 375px !important;
+}
+
+.wrap
+{
+    height: 417px !important;
+}
+
+.form-container
+{
+    background: #FFF !important;
+    padding: 30px !important;
+    height: 410px;
+}
+
+#form .form-titulo
+{
+    width: 400px;
+}
+
+#form .form-arquivo
+{
+    width: 400px;
+}
+
+.div-acoes
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+#tabela th
+{
+    border-right: none;
+}
+
+    #tabela th.col-1
+    {
+        width: 748px !important;
+        padding-left: 15px !important;
+    }
+
+    #tabela th.col-2
+    {
+        width: 100px !important;
+    }
+
+    #tabela th.col-3
+    {
+        width: 104px !important;
+    }
+
+#tabela td.col-1
+{
+    width: 738px !important;
+}
+
+#tabela td.col-2
+{
+    width: 100px !important;
+    padding-left: 20px;
+}
+
+#tabela td.col-3
+{
+    width: 100px !important;
+    padding-left: 20px;
+}
+
+table .ic-download
+{
+    background: url("../img/ico-download.png") no-repeat scroll 20px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+table .ic-excluir
+{
+    background: url("../img/icons/ico-excluir.png") no-repeat scroll 20px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+.box-erro
+{
+    height: 150px !important;
+}
+
+
+.div-upload .bt-procurar
+{
+    float: left;
+    margin: 10px 0 0 0;
+}
+
+.removerArquivo
+{
+    float: right;
+}
+
+.ico-excluir
+{
+    background: url(../img/ico-excluir.png) no-repeat;
+    width: 17px;
+    height: 17px;
+    text-indent: -9999px;
+    display: block;
+}

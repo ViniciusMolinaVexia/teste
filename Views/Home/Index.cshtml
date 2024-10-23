@@ -1,0 +1,271 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Componentes.Sessao
+@using Gafisa.AlphaBook.Dominio.Permissao
+
+@model Gafisa.AlphaBook.Models.Home.HomeModel
+
+@{
+    ViewBag.Title = "AlphaBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var sessaoSistema = new SessaoSistema(ViewData);
+    var sessaoUsuario = new SessaoUsuario(sessaoSistema);
+    
+    // Permissões Visualização
+    
+    var permissaoAgenda = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.AgendaCompromisso, Acao.Visualizar);
+    var permissaoContatos = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.Contatos, Acao.Visualizar);
+    var permissaoRelatorio = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosEstrutura, Acao.Visualizar) || Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosLandBanking, Acao.Visualizar) || Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosPipeline, Acao.Visualizar);
+    var permissaoInteligencia = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.InteligênciaMercado, Acao.Visualizar);
+    var permissaoTemplates = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ModelosPadrões, Acao.Visualizar);
+    var permissaoProjetosRecebidos = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ProjetosRecebidos, Acao.Visualizar);
+    var permissaoProjetosDepartamento = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.ProjetosMeuDepartamento, Acao.Visualizar);
+    
+    var permissaoLinks = Permissao.UsuarioPossuiPermissao(ViewData, Secao.Geral, Funcionalidade.LinksVisualizador, Acao.Visualizar);
+
+    var permissaoMapas = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Mapas, Acao.Visualizar);
+    var permissaoDocumentos = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Documentos, Acao.Visualizar);
+
+    var permissaoLinhaTempo = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoDetalhe, Acao.Visualizar) ||
+                              Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoFase, Acao.Visualizar) ||
+                              Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoCronologica, Acao.Visualizar) ||
+                              Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.LinhaTempoPadrao, Acao.Visualizar);
+                              
+    var permissaoProtocolos = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Protocolos, Acao.Visualizar);
+
+    var permissaoDadosProjetos = (
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoContatosPrincipais, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosFinanceiros, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoDadosTerreno, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoFases, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInformacoesContrato, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoInteligênciaMercado, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoAtaReuniao, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoPassagens, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoCentroCusto, Acao.Visualizar) ||
+                                  Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.DadosProjetoTileeCabeçalho, Acao.Visualizar)
+                                );
+    
+    var permissaoPost = Permissao.UsuarioPossuiPermissao(ViewData, Model.ProjetoId.HasValue ? Secao.HomeProjeto : Secao.HomeInicial, Funcionalidade.Posts, Acao.Visualizar);
+    var permissaoCriarPost = Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeProjeto, Funcionalidade.Posts, Acao.Adicionar);
+
+    // FIM : Permissões Visualização
+        
+}
+
+@Html.HiddenFor(model => model.ProjetoId)
+<div id="cabecalhoProjetoHome" data-home="true"></div>
+<div class="barra-sup-carrossel">
+    <div class="meus-projetos" data-tipofiltro="0">
+        <h2>Meus Projetos <span>(@Model.Projetos.Count)</span></h2>
+        <div class="dropdown-projetos hide">
+            <h3>Seguidos</h3>
+        </div>
+    </div>
+    @if (Model.Projetos.Count > 0)
+    {
+        <div class="filtro-carrossel">
+            <span>Filtros</span>
+            @Html.DropDownList("Status", this.Model.StatusProjetos, "Status", new { id = "status", @class = "campo-status filtro-carrossel-status" })
+            @Html.DropDownList("Estado", this.Model.UFs, "UF", new { id = "estados", @class = "campo-estados filtro-carrossel-uf" })
+            <div class="div-busca-projetos">
+                <input type="text" value="" id="campoBuscaProjetos" class="watermark-font  filtro-carrossel-nome" watermark="Busca" />
+            </div>
+            <a class="bt-padrao-filtro" id="botaoBuscaProjetos" href="javascript:void(0)">Buscar</a>
+            <a class="bt-padrao-filtro" id="botaoLimparBuscaProjetos" href="javascript:void(0)">Limpar</a>
+        </div>
+    }
+</div>
+<div id="carrosselProjetos" class="carrossel" data-blocoexibido='0' data-idprojeto='0'>
+    <div id="carregandoCarrossel" class="hide loading-circulo loading-carrossel">
+    </div>
+    <div class="section-project" id="section1">
+        <div id="listaProjetos">
+            @Html.Partial("CarrosselProjetos", Model)
+        </div>
+        <a class="bt-padrao bt-ocultar" id="ocultarProjetos" style="display: none;" href="javascript:void(0)">Ocultar</a>
+        <a class="bt-exibir bt-adicionar" @Html.Conditional((Model.Projetos.Count <= 4), "style=\"display: none;\"") id="exibirMaisProjetos" href="javascript:void(0)">Exibir</a>    
+    </div>
+</div>
+<div class="section-middle">
+    <div class="tiles-my-panel">
+        <h2>Meu Painel</h2>
+
+
+        <a id="tileAgenda" href="javascript:void(0)" class="tile-triple dark-green ico-agenda @(permissaoAgenda ? String.Empty : "tile inativo")">
+            <span class="nome-tile">Agenda</span> <span class="numero-tile" style="display: none;">
+            </span>
+            <div id="carregandoCompromissos" class="loading-circulo-verde-escuro" style="width: 120% !important;
+                height: 140px !important;">
+            </div>
+            <div class="section-right">
+            </div>
+        </a>
+
+        <a href="javascript:void(0)" class="tile ico-contatos tile-contatos @(permissaoContatos ? String.Empty : "inativo")">
+            <span class="nome-tile">Contatos</span>
+            @if (permissaoContatos)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" class="tile ico-relatorios tile-home tile-relatorios @(permissaoRelatorio ? String.Empty : "inativo")">
+            <span class="nome-tile">Relatórios</span>
+            @if (permissaoRelatorio)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a id="documentos" href="javascript:void(0)" class="tile ico-documentos tile-projeto tile-documentos @(permissaoDocumentos ? String.Empty : "inativo")" style="display: none;">
+            <span class="nome-tile">Documentos</span>
+            @if (permissaoDocumentos)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" id="tileMapas" class="tile ico-mapas tile-projeto last tile-mapas @(permissaoMapas ? String.Empty : "inativo")" style="display: none;">
+            <span class="nome-tile">Mapas</span>
+            @if (permissaoMapas)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" id="tileMapasHome" class="tile ico-mapas last tile-mapas">
+            <span class="nome-tile">Mapas</span>
+            @if (permissaoMapas)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a id="templates" href="javascript:void(0)" class="tile ico-modelos-padroes tile-home tile-modelopadroes @(permissaoTemplates ? String.Empty : "inativo")">
+            <span class="nome-tile">Modelos e Padrões</span>
+            @if (permissaoTemplates)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" id="linhaDoTempo" class="tile ico-linha-tempo tile-projeto tile-linhatempo @(permissaoLinhaTempo ? String.Empty : "inativo")" style="display: none;">
+            <span class="nome-tile">Linha do Tempo</span>
+            @if (permissaoLinhaTempo)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" id="tileProjetosRecebidos" class="tile ico-projetos-recebidos tile-home tile-projetosrecebidos @(permissaoProjetosRecebidos ? String.Empty : "inativo")">
+            <span class="nome-tile">Projetos Recebidos</span>
+            @if (permissaoProjetosRecebidos)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" id="tileProtocolos" class="tile ico-protocolos tile-projeto tile-protocolos @(permissaoProtocolos ? String.Empty : "inativo")" style="display: none;">
+            <span class="nome-tile">Protocolos</span>
+            @if (permissaoProtocolos)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0)" id="tileProjetosDepartamento" class="tile ico-projetos-depto tile-home last tile-projetosdepartamento @(permissaoProjetosDepartamento ? String.Empty : "inativo")">
+            <span class="nome-tile">Projetos<br />do Depto.</span>
+            @if (permissaoProjetosDepartamento)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <a href="javascript:void(0);" id="tileDadosProjeto" class="tile ico-dados-projeto tile-projeto last tile-dadosprojeto @(permissaoDadosProjetos ? String.Empty : "inativo")" style="display: none;">
+            <span class="nome-tile">Dados do Projeto</span>
+            @if (permissaoDadosProjetos)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+        <div class="tile-triple-links @(permissaoLinks ? String.Empty : "tile inativo")">
+            @if (permissaoLinks)
+            {
+                <div class="links">
+                    @foreach (var link in Model.Links)
+                    {
+                        var idImgLink = "imgLink" + link.Id;
+                        var idCanvasLink = "canvas" + link.Id;
+                        <a href="@link.Url" target="_blank" class="ico-link" title="@link.Tooltip" data-id="@link.Id" data-cor="@link.Cor">
+                            <img src="@Url.Content("~/Content/img/links/" + link.Icone)" data-id="@link.Id" class="imagemLink" id="@idImgLink" />
+                            <canvas id="@idCanvasLink" class="hide" width="35" height="35"></canvas>
+                        </a>        }
+                </div>
+                <span class="nome-tile">Links</span>}
+        </div>
+
+        <a href="javascript:void(0)" id="tileInteligenciaMercado" class="tile ico-inteligencia-mercado tile-home last tile-inteligenciamercado @(permissaoInteligencia ? String.Empty : "inativo")">
+            <span class="nome-tile">Inteligência de Mercado</span>
+            @if (permissaoInteligencia)
+            {
+                <span class="numero-tile" style="display: none"></span>}
+        </a>
+
+
+
+        <a id="arquivosmanuais" href="javascript:void(0)" class="tile ico-modelos-padroes tile-home tile-modelopadroes @(permissaoTemplates ? String.Empty : "inativo")">
+            <span class="nome-tile">Arquivos manuais</span>
+            @if (permissaoTemplates)
+            {
+
+            }
+
+        </a>
+
+        <a id="powerbirelatorios" href="javascript:void(0)" class="tile ico-modelos-padroes tile-home tile-modelopadroes @(permissaoTemplates ? String.Empty : "inativo")">
+            <span class="nome-tile">Powerbi Relatorios</span>
+            @if (permissaoTemplates)
+            {
+
+            }
+
+        </a>
+
+
+        <div class="tile-triple clima-tempo">
+            <div id="carregandoClima" class="loading-circulo-verde-claro"></div>
+            <div id="conteudoClima" class="hide">
+            </div>
+        </div>
+    </div>
+    <div class="div-posts">
+        @if (permissaoCriarPost && permissaoPost)
+        {
+            <div class="top">
+                <h2 id="labelPostsTimeline">Posts <span class="contagem"></span></h2>
+                <a href="javascript:void(0);" class="bt-adicionar" id="criarPost" style="display: none !important;">Adicionar Post</a>
+                <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirTimeline" style="display: none !important;">Imprimir</a>
+                
+            </div>
+            <div id="criarPostHome" style="display: none;"></div>
+        }
+        else if (!permissaoCriarPost && permissaoPost)
+        {
+            <div class="top">
+                <h2 id="labelPostsTimeline">Posts <span class="contagem"></span></h2>
+                <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirTimeline" style="display: none !important;">Imprimir</a>
+            </div>
+        }
+        else if (permissaoCriarPost && !permissaoPost)
+        {
+            <div class="top">
+                <a href="javascript:void(0);" class="bt-adicionar" id="criarPost" style="display: none !important;">Adicionar Post</a>
+                <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirTimeline" style="display: none !important;">Imprimir</a>
+            </div>
+            <div id="criarPostHome" style="display: none;"></div>
+        }
+        
+        @if (permissaoPost)
+        {
+            <div class="div-search">
+                <input type="text" id="campoBuscaTimeline" watermark="Busca nos posts" />
+                <a class="btn-busca-posts" id="botaoBuscaTimeline" href="javascript:void(0);"></a>
+            </div>
+            <div id="carregandoTimeline" class="loading-circulo" style="float: left"></div>
+            <div id="divTimelinePosts" class="posts"></div>
+        }
+    </div>
+</div>

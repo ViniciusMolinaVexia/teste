@@ -1,0 +1,21 @@
+﻿@model Gafisa.AlphaBook.Models.Home.TimelineModel
+<div class="tituloTimeline">
+    <h1 id="tituloTimeline">Atualizações</h1>
+</div>
+<div id="componentePostagemHome">
+    @Html.Partial("Postagem", Model)
+</div>
+<div class="aroundTimeLine">
+    <div id="buscaTimeLine" class="input-control text">
+        <input id="campoBuscaTimeline" watermark="Pesquise nesta time line" type="text" />
+        <button id="botaoBuscaTimeline" class="btn-search"></button>
+    </div>
+    <div id="timelineWrap" class="antiscroll-wrap">
+        <div id="timeline" class="timeline antiscroll-inner">
+            <div id="loadTimeline" class="loading-circulo-cinza hide"></div>
+            <ul id="listaTimeline">
+                @Html.Partial("Post", Model.Posts)
+            </ul>
+        </div>
+    </div>
+</div>

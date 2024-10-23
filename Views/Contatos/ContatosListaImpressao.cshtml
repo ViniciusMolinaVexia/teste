@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ContatoDto>
+
+<div class="seg-modal" style="height: 520px; width: 1000px;">
+
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">X</a>
+        <h2>Lista de Contatos</h2>
+    </div>
+
+    <div class="modal-body" >
+        <a href="javascript:void(0);" class="bt-padrao bt-print" id="imprimirListaContato">Imprimir</a>
+        <div class="box-tabela" >
+            <div class="seg-table-pp">
+                <table id="tabelaRelatorioPipelineH" style="position: relative;">
+                    <thead>
+                        <tr class="even">
+                            <th class="table-title-ord-down" style="width: 200px;">
+                                <a href="javascript:void(0);" data-ordenacao="1" data-tipo="1">Nome </a>
+                            </th>
+                            <th class="table-title-ord-down" style="width: 100px;">
+                                <a href="javascript:void(0);" data-ordenacao="2" data-tipo="1">Empresa</a>
+                            </th>
+                            <th class="table-title-ord-down" style="width: 250px;">
+                                <a href="javascript:void(0);" data-ordenacao="3" data-tipo="1">E-mail</a>
+                            </th>
+                            <th class="table-title-ord-down" style="width: 100px;">
+                                <a href="javascript:void(0);" data-ordenacao="4" data-tipo="1">Telefone Comercial</a>
+                            </th> 
+                            <th class="table-title-ord-down" style="width: 100px;">
+                                <a href="javascript:void(0);" data-ordenacao="5" data-tipo="1">Telefone Residencial</a>
+                            </th>
+                            <th class="table-title-ord-down" style="width: 100px;">
+                                <a href="javascript:void(0);" data-ordenacao="6" data-tipo="1">Telefone Celular</a>
+                            </th>
+                            <th class="table-title-ord-down" style="width: 100px;">
+                                <a href="javascript:void(0);" data-ordenacao="7" data-tipo="1">Categoria</a>
+                            </th>
+                            <th class="table-title-ord-down" style="width: 50px;">
+                                <a href="javascript:void(0);" data-ordenacao="8" data-tipo="1">Nota</a>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="seg-table-pp">
+                <table id="tabelaRelatorioPipelineH" style="position: relative;">
+                    @foreach (var item in Model) {
+                        <tr class="odd">
+                            <th style="width: 200px;">
+                                @Html.DisplayFor(modelItem => item.NomeContato)
+                            </th>
+                            <th style="width: 100px;">
+                                @Html.DisplayFor(modelItem => item.NomeEmpresa)
+                            </th>
+                            <th style="width: 250px;">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </th>
+                            <th style="width: 100px;">
+                                @Html.DisplayFor(modelItem => item.DDDComercial)
+                                @Html.DisplayFor(modelItem => item.TelefoneComercial)
+                            </th>
+                            <th style="width: 100px;">
+                                @Html.DisplayFor(modelItem => item.DDDResidencial)
+                                @Html.DisplayFor(modelItem => item.TelefoneResidencial)
+                            </th>
+                            <th style="width: 100px;">
+                                @Html.DisplayFor(modelItem => item.DDDCelular)
+                                @Html.DisplayFor(modelItem => item.TelefoneCelular)
+                            </th>
+                            <th style="width: 100px;">
+                                @Html.DisplayFor(modelItem => item.NomeTipoContato)
+                            </th>
+                            <th style="width: 50px;">
+                                @Html.DisplayFor(modelItem => item.MediaAvaliacao)
+                            </th>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

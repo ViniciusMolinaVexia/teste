@@ -1,0 +1,72 @@
+﻿@using Gafisa.AlphaBook.Componentes.Conversao
+@using Gafisa.AlphaBook.Componentes.Permissao
+@using Gafisa.AlphaBook.Dominio
+@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.ContatoDto>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@Gafisa.AlphaBook.Dominio.Mensagens.Contatos.NenhumEncontrato</p>
+}
+else
+{
+    var count = 1;
+    foreach (var item in Model)
+    {
+        var colorRating = "cinza";
+        if (item.MediaAvaliacao.HasValue)
+        {
+            colorRating = item.MediaAvaliacao < 2 ? "pessimo" : (item.MediaAvaliacao < 4 ? "ruim" : (item.MediaAvaliacao < 6 ? "neutro" : (item.MediaAvaliacao < 8 ? "bom" : "excelente")));
+        }
+
+        if (count % 2 != 0)
+        {
+    @:<div class="line-contatos">
+}
+
+        <div class="box-contato-geral">
+            <a data-contatoId="@item.Id" data-AvaliacaoId="@item.IdAvaliacao" class="linkBoxContato" href="javascript:void(0);">
+                <span class="box-conatato @Html.Conditional(count % 2 == 0, "last")">
+                    <span class="box-contato">
+                        <span class="box-nota @colorRating">
+                            <span class="nota">NOTA</span> <span class="valor-nota">@(item.MediaAvaliacao.HasValue ? item.MediaAvaliacao.Value.ToString() : "n/d")</span>
+                        </span>
+                        <span class="box-dados-contato">
+                            <span class="nome-dados-contato">@string.Format("NOME: {0}", item.NomeContato.IsNullOrEmpty() ? "n/d" : item.NomeContato)</span>
+                            <span>@string.Format("EMPRESA: {0}", item.NomeEmpresa.IsNullOrEmpty() ? "n/d" : item.NomeEmpresa)</span>
+                            <span>@string.Format("E-MAIL: {0}", Html.Conditional(item.PodeVerDadosConfidenciais, item.Email, "------------"))</span>
+                            <span>Telefone Comercial: @Html.Conditional(item.PodeVerDadosConfidenciais, (!String.IsNullOrEmpty(item.TelefoneComercial) ? item.TelefoneComercial.ToPhoneFormat(item.DDDComercial) : "n/d"), "------------")</span>
+                            <span>Telefone Residencial: @Html.Conditional(item.PodeVerDadosConfidenciais, (!String.IsNullOrEmpty(item.TelefoneResidencial) ? item.TelefoneResidencial.ToPhoneFormat(item.DDDResidencial) : "n/d"), "------------")</span>
+                            <span>Telefone Celular: @Html.Conditional(item.PodeVerDadosConfidenciais, (!String.IsNullOrEmpty(item.TelefoneCelular) ? item.TelefoneCelular.ToPhoneFormat(item.DDDCelular) : "n/d"), "------------")</span>
+                            <span>CATEGORIA: @(!String.IsNullOrEmpty(item.NomeTipoContato) ? item.NomeTipoContato : "n/d")</span>
+                        </span>
+                    </span>
+                </span>
+                @if (item.Latitude.HasValue)
+                {
+                    <a href="javascript:void(0)" class="box-pin-mapa-contato-ativo navegar-mapa" title="Localização"   data-id="@item.Id" data-tipo="contato">Localização</a>
+                }
+                else
+                {
+                    <a class="box-pin-mapa-contato-inativo" href="javascript:void(0)">Pin Mapa</a>    
+                }
+                @if (item.Confidencialidade != ConfidencialidadeContato.Publico)
+                {
+                    <a href="javascript:void(0)" class="box-confidencialidade-contato" title="@(item.TextoConfidencialidade)" data-id="@item.Id" data-tipo="contato"></a>
+                }
+                @if (Permissao.UsuarioPossuiPermissao(ViewData, Secao.Geral, Funcionalidade.ContatosExportar, Acao.ExportarImprimir))
+                {
+                    <a class="ico-exporta-contato-box" href="javascript:void(0);">Exportar contato</a>
+                }
+            </a>
+        </div>
+                if (count % 2 == 0)
+                {
+            @:</div>
+            }
+                count++;
+    }
+
+    if (Model.Count() % 2 != 0)
+    {
+    @:</div>
+    }
+}

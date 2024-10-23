@@ -1,0 +1,113 @@
+﻿@model Gafisa.AlphaBook.Models.Relatorios.RelatorioModel
+<div class="box-relatorio-andamento-projetos">
+    <h2 id="">Relatório Andamento de Projetos</h2>
+    @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.HomeInicial, Funcionalidade.RelatoriosAndamentoProjetos, Acao.ExportarImprimir))
+    {
+        <div class="bt-excel">
+            <a href="javascript:void(0)" class="bt-padrao" id="btnExportarRelatorioAndamentoProjetos">Exportar
+                excel</a>
+        </div>
+    }
+    <div id="ListaUsuarios" class="hide">
+        <ul>
+            @Html.Partial("HierarquiaUsuario", Model.Usuarios)
+        </ul>
+    </div>
+    @Html.Partial("HierarquiaStatusProjeto", Model.ListaStatusProjeto)
+    <div class="forms">
+        <div class="div-filtro" style="width: 773px;">
+            <h4>Filtros</h4>
+            <div class="input-block filtro-estado">
+                @Html.MultipleCheckList("FiltroEstado", Model.ListaUf.ToSelectList(text => text.Value, value => value.Value), null, 30, true)
+            </div>
+            <div class="input-block">
+                <input style="width: 160px;" type="text" value="" watermark="Cidade" class="cidade watermark-font ui-autocomplete-input" autocomplete="off" />
+            </div>
+            <div class="input-block">
+                <select id="statusProjeto" style="width: 125px">
+                    <option id="opcaoStatusProjeto">Status</option>
+                </select>
+            </div>
+            <div class="input-block">
+                @Html.DropDownList("ProdutoId", Model.ListaProdutos, "Produto", new { id = "ProdutoId", style = "width: 182px;" })
+            </div>
+            <div class="input-block" style="margin-right: 0px !important;">
+                <select id="responsavel" style="width: 125px">
+                    <option id="opcaoResponsavel">Responsável</option>
+                </select>
+            </div>
+            <div class="input-block margin-top margin-left">
+                @Html.DropDownList("EtapaId", Model.ListaEtapasSelectItems, "Etapa", new { id = "EtapaId", style = "width: 265px;" })
+            </div>
+            <div class="input-block margin-top">
+                <label>Maturação de:</label>
+                @Html.TextBox("AnoMaturacaoDe", null, new { @class = "campo-data", style = "width: 112px" })
+                <label>&nbsp;Até:</label>
+                @Html.TextBox("AnoMaturacaoAte", null, new { @class = "campo-data", style = "width: 112px" })
+            </div>
+            <a href="javascript:void(0)" class="bt-padrao-filtro margin-top btnFiltroAndamentoProjetos">Buscar</a>
+        </div>
+    </div>
+</div>
+<div class="box-tabela table-ap-head">
+    <div class="@(Model.IdDepartamento == Gafisa.AlphaBook.Dominio.Departamento.Prospeccao ? "classeProc" : "classeNeg")">
+        <table id="tabelaRelatorioAndamentoProjetosH" class="table-projetos-andamentoH">
+            <thead>
+                @{
+                    var passagens = Model.Etapas.Select(e => e.Passagem).Distinct(p => p.Id);
+
+                    <tr style="background: #fff !important;">
+                        <th class="col-1 align-center" rowspan="2">Nome do Projeto</th>
+                        <th class="col-1 align-center" rowspan="2">ID</th>
+                        <th class="col-1 align-center" rowspan="2">VGV AUSA (R$)</th>
+                        <th class="col-1 align-center" rowspan="2">Divisão ativa</th>
+                        <th class="col-1 align-center" rowspan="2">Divisão Inativa</th>    
+                         @foreach (var passagem in passagens)
+                        {
+                            <th style="text-align: center; position: relative;" colspan="@Model.Etapas.Count(e => e.Passagem.Id == passagem.Id)">
+                                @(Html.Raw(string.Format("<span class=\"nameBold\">{0}</span>: {1}", Model.Etapas.First(e => e.Passagem.Nome == passagem.Nome).Departamento.Nome, passagem.Nome)))
+                                @if (passagem.Id != passagens.Last().Id)
+                                {
+                                <div style="position: absolute;width: 5px;height: 4px;background: #fff;right: 0;bottom: -4px;"></div>
+                                }
+                            </th>
+                        }
+                    </tr>
+                    <tr>
+                        @foreach (var etapa in Model.Etapas)
+                        {
+                            <th class="col-1 align-center">@etapa.Nome</th>
+                        }
+                    
+                      
+                    </tr>
+                    
+
+                    
+                }
+                  
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+<div class="relatorio-andamento-projetos" tabela-scroll="true">
+    <div class="box-tabela hide @(Model.IdDepartamento == Gafisa.AlphaBook.Dominio.Departamento.Prospeccao ? "classeProc" : "classeNeg")">
+        <div class="table2">
+            <div>
+                <table id="tabelaRelatorioAndamentoProjetos" class="table-projetos-andamento">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-legenda-status-etapa">
+    <ul>
+        <li class="leg-nao-iniciado">- Não iniciada</li>
+        <li class="leg-na">- Não se aplica</li>
+        <li class="leg-concluido">- Concluída</li>
+        <li class="leg-iniciado">- Iniciada / Aguardando validação</li>
+    </ul>
+</div>

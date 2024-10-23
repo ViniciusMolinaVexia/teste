@@ -1,0 +1,40 @@
+﻿@model Gafisa.AlphaBook.Dominio.DTO.ContatoDto
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+            <h3 id="">Associar um Contato a um Usuário</h3>
+        </div>
+        <div class="modal-body">
+            <div class="forms">
+                <div class="sep-line-form">
+                    <div class="form-line nome-contato">
+                        <input type="text" id="nomeContato" watermark="Buscar contato" class="watermark-font">
+                    </div>
+                    <div class="form-line botao-buscar">
+                        <a id="buscarNovoContato" href="javascript:void(0);" class="bt-padrao">Buscar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-tabela">
+                <div class="wrap">
+                    <div class="inner">
+                        <table id="tabelaContatos">
+                            <thead>
+                                <tr class="even">
+                                    <th class="table-title colun-1"></th>
+                                    <th class="table-title colun-2">Nome do Contato</th>
+                                    <th class="table-title colun-3">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <a class="bt-padrao" href="javascript:void(0);" id="associarAoContato">ASSOCIAR</a>
+        </div>
+        
+</div>

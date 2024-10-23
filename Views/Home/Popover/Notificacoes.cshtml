@@ -1,0 +1,9 @@
+﻿@model Gafisa.AlphaBook.Models.Home.NotificacoesModel
+@foreach (var notificacao in Model.Notificacoes)
+{
+    <li data-id="@notificacao.Id" data-projeto="@(notificacao.IdProjeto.HasValue ? notificacao.IdProjeto.Value + "|" + notificacao.NomeProjeto + "|" + notificacao.IdCidade + "|" + notificacao.NomeCidade + "|" + notificacao.Favorito : "")" class="notificacao @Html.Conditional(notificacao.Lida, "lida", "naoLida")">@notificacao.Descricao</li>
+}
+@if (Model.Notificacoes.IsNullOrEmptyCollection())
+{
+    <span>@Gafisa.AlphaBook.Dominio.Mensagens.Notificacao.NaoPossuiNotificacoes</span>    
+}

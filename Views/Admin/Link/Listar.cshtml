@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.LinkDto>
+
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "Link")</p>
+}
+else
+{
+    foreach (var link in Model)
+    {
+        <tr data-id="@link.Id">
+            <td class="colun-1">@link.Id</td>
+			<td class="colun-2">@link.Tooltip</td>
+            <td class="colun-3">@(link.Url.Length > 25 ? link.Url.Substring(0, 25) + "..." : link.Url)</td>
+            <td class="colun-4"><img src="@Url.Content("~/Content/img/links/" + link.Icone)"/></td>
+            <td class="colun-5"><div class="div-cor" style="background-color: @link.Cor">&nbsp;</div></td>
+            <td class="colun-6">@link.NomeUsuario</td>
+            <td class="colun-7">@(link.DataAlteracao.HasValue?link.DataAlteracao.ToString():"")</td>
+            <td class="colun-8">@link.Sequencia</td>
+			<td class="colun-9">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Links, Acao.EditarProprios))
+            {
+                <a class="ic-editar" href="@Url.Action("EditarLink", "Admin", new { id = link.Id })">Editar</a>
+            }
+            </td>
+            <td class="colun-9">
+            @if (Gafisa.AlphaBook.Componentes.Permissao.Permissao.UsuarioPossuiPermissao(ViewData, Secao.Administracao, Funcionalidade.Links, Acao.RemoverProprios))
+            {
+                <a class="ic-excluir" data-id="@link.Id" href="javascript:void(0);">Excluir</a>
+            }
+            </td>
+        </tr>
+    }
+}

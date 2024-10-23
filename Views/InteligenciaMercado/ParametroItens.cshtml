@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Gafisa.AlphaBook.Dominio.DTO.InteligenciaMercado.ParametrosInteligenciaMercadoDTO>
+@if (Model.IsNullOrEmptyCollection())
+{
+    <p class="msg-sem-retorno">@String.Format(Gafisa.AlphaBook.Dominio.Mensagens.Comum.NaoHaNenhumaInformacaoSobre, "inteligência mercado")</p>
+}
+else
+{
+    foreach (var parametros in Model)
+    {
+    <tr>
+        <td class="colun-1"><div>@parametros.idUF</div>
+        </td>
+        <td class="colun-2"><div>@parametros.nmCidade</div>
+        </td>
+        <td class="colun-3"><div>@parametros.nmRegiao</div>
+        </td>
+        <td class="colun-4"><div>@(parametros.icCidadeAlvo ? "Sim" : "Não")</div>
+        </td>
+        <td class="colun-5"><div>@parametros.nuPopulacao.ToString("N0")</div>
+        </td>
+        <td class="colun-6"><div>@parametros.nuTaxaCrescimento.ToString("P")</div>
+        </td>
+        <td class="colun-7"><div>@parametros.nuDomiciliosTotal.ToString("N0")</div>
+        </td>
+        <td class="colun-8"><div>@parametros.nuDomiciliosClasseA.ToString("N0")</div>
+        </td>
+        <td class="colun-9"><div>@parametros.nuDomiciliosClasseB.ToString("N0")</div>
+        </td>
+        <td class="colun-10"><div>@parametros.nuDomiciliosClasseC1.ToString("N0")</div>
+        </td>
+        <td class="colun-11"><div>@parametros.nuDomiciliosClasseC2.ToString("N0")</div>
+        </td>
+        <td class="colun-12"><div>@parametros.nuDomiciliosClasseC3.ToString("N0")</div>
+        </td>
+        <td class="colun-13"><div>@parametros.nuDomiciliosClasseDE.ToString("N0")</div>
+        </td>
+        <td class="colun-14"><div>@parametros.nuIndiceDesenvMunicipal.ToString("N0")</div>
+        </td>
+        <td class="colun-15"><div>@parametros.nuIndiceViolenciaMunicipal.ToString("N0")</div>
+        </td>
+    </tr>
+    }
+}

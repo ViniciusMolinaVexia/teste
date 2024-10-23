@@ -1,0 +1,188 @@
+﻿.inner {
+    height: 375px !important;
+}
+.wrap
+{
+    height: 417px !important;
+}
+
+.form-container
+{
+    background: #FFF !important;
+    padding: 30px !important;
+    height: 400px;
+}
+
+#form .form-tooltip {
+    width: 700px;
+}
+
+#form .form-cor {
+    width: 50px;
+    margin-left: 20px;
+}
+
+#form .form-icone {
+    width: 80px;
+    
+}
+
+#form .form-ordem {
+    width: 150px;
+    margin-left: 20px;
+}
+
+.div-acoes 
+{
+    margin-bottom: 11px;
+    float: right;
+}
+
+.div-cor {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000000;
+    display: inline-block;
+}
+
+#filtros .div-filtro 
+{
+    border: 1px solid #b0b2b2;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    float: left;
+    padding: 5px 11px !important;
+    width: 735px;
+}
+
+#tabela th {
+    border-right: none;
+}
+
+#tabela th.colun-1
+{
+    width: 40px;
+}
+
+#tabela th.colun-2
+{
+    width: 163px;
+}
+
+#tabela th.colun-3
+{
+    width: 221px;
+}
+
+#tabela th.colun-4
+{
+    width: 77px;
+}
+
+#tabela th.colun-5
+{
+    width: 52px;
+}
+
+#tabela th.colun-6
+{
+    width: 133px;
+}
+
+#tabela th.colun-7
+{
+    width: 97px;
+}
+
+#tabela th.colun-8
+{
+    width: 65px;
+}
+
+#tabela th.colun-9
+{
+    width: 43px;
+}
+
+#tabela th.colun-10
+{
+    width: 45px;
+}
+
+
+#tabela td.colun-1
+{
+    width: 35px;
+}
+
+#tabela td.colun-2
+{
+    width: 150px;
+    text-align: left;
+}
+
+#tabela td.colun-3
+{
+    width: 150px;
+    text-align: left;
+}
+
+#tabela td.colun-4
+{
+    width: 70px;
+}
+
+#tabela td.colun-4 img
+{
+    background-color: rgb(98, 187, 70);
+}
+
+.imagem-lista {
+    background-color: rgb(98, 187, 70);
+}
+#tabela td.colun-5
+{
+    width: 50px;
+    text-align: center;
+}
+
+#tabela td.colun-6
+{
+    width: 120px;
+}
+
+#tabela td.colun-7
+{
+    width: 89px;
+
+}
+
+#tabela td.colun-8
+{
+    width: 58px;
+
+}
+
+#tabela td.colun-9
+{
+    width: 40px;
+    padding-left: 15px;
+}
+
+#tabela td.colun-10
+{
+    width: 40px;
+    padding-left: 15px;
+}
+
+table .ic-editar {
+    background: url("../img/icons/ico-editar.png") no-repeat scroll 0px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}
+
+table .ic-excluir {
+    background: url("../img/icons/ico-excluir.png") no-repeat scroll 0px 0 transparent;
+    display: block;
+    text-indent: -9999px;
+}

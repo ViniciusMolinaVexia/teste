@@ -1,0 +1,34 @@
+.ui-multiselect { background-color: #FFFFFF; padding:3px 0 4px 4px; text-align:left; color: #a1a1a1; border: 1px solid #006655; display: inline-block; overflow: hidden; white-space: nowrap; }
+.ui-multiselect.ui-state-disabled { background-color: #CFCFCF; }
+
+.ui-multiselect span.ui-icon { float:right; height: 15px; width: 15px; }
+.ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
+.ui-multiselect-single .ui-multiselect-checkboxes label { padding:2px !important }
+
+.ui-multiselect-header { margin-bottom:3px; padding:3px 0 3px 4px }
+.ui-multiselect-header ul { font-size:0.9em }
+.ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }
+.ui-multiselect-header a { text-decoration:none }
+.ui-multiselect-header a:hover { text-decoration:underline }
+.ui-multiselect-header span.ui-icon { float:left }
+.ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
+
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000; text-align: left; background-color: #FFFFFF; color:#A1A1A1; border-left: 1px solid #096b5b; border-right: 1px solid #096b5b; border-bottom: 1px solid #096b5b;  }
+.ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:scroll }
+.ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:2px 1px }
+.ui-multiselect-checkboxes label input { position:relative; top:1px }
+.ui-multiselect-checkboxes li { clear:both; font-size:0.9em; padding-right:3px }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label { text-align:center; font-weight:bold; border-bottom:1px solid }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a { display:block; padding:3px; margin:1px 0; text-decoration:none }
+
+
+
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label { border:none }
+
+
+.ui-icon-triangle-1-s{background-image: url('ico-dropdown-sel.png') !important ;}
+.ui-icon-circle-close{background-image: url('ico-dropdown-close.png') ;}
+
+label.ui-state-hover {background-color: #006655 !important; color: #FFFFFF !important; }
+label.ui-state-active {background-color: #096B5B !important; color: #FFFFFF !important; }

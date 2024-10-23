@@ -1,0 +1,151 @@
+﻿@using Gafisa.AlphaBook.Componentes.Permissao;
+
+
+
+
+<link rel="stylesheet" href="@Url.Content("~/Content/css/modelos-padroes.css")" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<div id="controlepowerbi">
+    <input type="hidden" id="controleSessao" />
+
+
+
+
+    <div id="controleRelatorios">
+        <h2 class="title-relatorios">Relatórios PowerBi</h2>
+
+        <div class="tiles-documents">
+
+            <a class="tile-ativo tile-Marketing">
+                <span class="nome-tile">Marketing</span>
+            </a>
+            <a class="tile-ativo tile-Relacionamento">
+                <span class="nome-tile">Relacionamento</span>
+            </a>
+            <a class="tile-ativo tile-Suprimentos">
+                <span class="nome-tile">Suprimentos</span>
+            </a>
+            <a class="tile-ativo tile-Informacao">
+                <span class="nome-tile">
+                    Segurança da Informação
+
+                </span>
+            </a>
+            <a class="tile-ativo tile-Facilitites">
+                <span class="nome-tile">
+                    Facilitites
+
+                </span>
+            </a>
+            <a class="tile-ativo tile-Comercial">
+                <span class="nome-tile">
+                    Planejamento Comercial
+
+                </span>
+            </a>
+            <a class="tile-ativo tile-Controladoria">
+                <span class="nome-tile">
+                    Controladoria
+                </span>
+            </a>
+
+        </div>
+    </div>
+
+    <div id="controleRelatoriosItem" style="display:none">
+        <h2 class="title-relatorios">Relatórios PowerBi</h2>
+
+        <div class="tiles-documents-powerbi">
+            @*Marketing*@
+            <div id="documentos-market" class="documentos-market" style="display:none">
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Mídia</span>
+                </a>
+
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Comercial</span>
+                </a>
+
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Marketing</span>
+                </a>
+            </div>
+            @*Relacionamento*@
+            <div id="documentos-relacionamento" class="documentos-relacionamento" style="display:none">
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Relacionamento</span>
+                </a>
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Controle de Ocupações</span>
+                </a>
+            </div>
+            @*Suprimentos*@
+            <div id="documentos-Suprimentos" class="documentos-Suprimentos" style="display:none">
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Suprimentos</span>
+                </a>
+            </div>
+            @*Informações*@
+            <div id="documentos-informacao" class="documentos-informacao" style="display:none">
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Relatório SI</span>
+                </a>
+            </div>
+            @*Facilities*@
+            <div id="documentos-facilities" class="documentos-facilities" style="display:none">
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Dashboard Facilitites</span>
+                </a>
+            </div>
+            @*Comercial*@
+            <div id="documentos-Comercial" class="documentos-facilities" style="display:none">
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Desenvolvimento Comercial</span>
+                </a>
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Acompanhamento de Lançamentos</span>
+                </a>
+            </div>
+            @*Controladoria*@
+            <div id="documentos-controladoria" class="documentos-controladoria" style="display:none">
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Acompanhamento de Razão_SP</span>
+                </a>
+                <a class="tile-ativo tile-Click">
+                    <span class="nome-tile">Diagrama de Estruturas</span>
+                </a>
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Dashboard OKR</span>
+                </a>
+
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Dashboard OKR_Preview</span>
+                </a>
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Dashboard RI</span>
+                </a>
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">EstudosEconomicos</span>
+                </a>
+                <a class="tile-ativo tile-Marketing">
+                    <span class="nome-tile">Inflow</span>
+                </a>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div id="iframe" style="display: none">
+        <iframe style="border: none; width: 100%; height: 600px" src="https://app.powerbi.com/groups/017ebee1-437e-4f78-a1cd-e9376867ae39/reports/6ae256da-b88b-4f97-9116-635c4851ceed/ReportSection0767effaba0c041c5eec?ctid=9479b49f-8d62-489d-aa2d-5df3e676b96d&experience=power-bi"
+                allowFullScreen="true">
+        </iframe>
+    </div>
+
+
+
+</div>

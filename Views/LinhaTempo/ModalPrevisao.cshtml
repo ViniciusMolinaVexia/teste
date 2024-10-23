@@ -1,0 +1,28 @@
+﻿@model Gafisa.AlphaBook.Models.LinhaTempo.PrevisaoModel
+<div class="seg-modal">
+    <div class="modal-header">
+        <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">x</a>
+        <h3>@Html.Conditional(String.IsNullOrWhiteSpace(Model.DataPrevisao), "Adicionar", "Editar") data prevista</h3>
+        <span>@Model.EtapaNome</span>
+    </div>
+    <div class="modal-body">
+        <form id="form-previsao" class="forms">
+            <fieldset>
+                @Html.HiddenFor(model => model.EtapaId)
+                <div class="sep-line-form">
+                    <div class="form-line">
+                        <label>Data Baseline:</label>
+                        <input type="text" value="@Model.DataBaseline" disabled="disabled" />
+                    </div>
+                    <div class="form-line">
+                        <label>Data Prevista:</label>
+                        <input type="text" value="@Model.DataPrevisao" id="DataPrevisao" name="DataPrevisao" class="campo-data" />
+                    </div>
+                </div>
+            </fieldset>	
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a id="salvarPrevisao" class="bt-padrao" href="javascript:void(0);">Salvar</a>
+    </div>
+</div>
